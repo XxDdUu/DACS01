@@ -35,7 +35,7 @@ class Login(QWidget):
         login_layout.addWidget(self.password_input)
         login_layout.addWidget(self.signUp_button)
 
-        pixmap = QPixmap("D:/PYTHON/py_project/App_Project1/View/img/logo/dark_pythonLogo.png")
+        pixmap = QPixmap("img/logo/dark_pythonLogo.png")
         self.img_label.setPixmap(pixmap.scaled(350,350))
 
 
