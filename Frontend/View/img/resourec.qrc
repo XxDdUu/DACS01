@@ -1,0 +1,13 @@
+<RCC>
+  <qresource prefix="img">
+    <file>logo/dark_pythonLogo.png</file>
+    <file>logo/moon-vector.jpg</file>
+  </qresource>
+  <qresource prefix="icon">
+    <file>icon/home.png</file>
+    <file>icon/report.png</file>
+    <file>icon/revenue_chart.png</file>
+    <file>icon/setting.png</file>
+    <file>icon/sidebar.png</file>
+  </qresource>
+</RCC>
