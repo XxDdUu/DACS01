@@ -1,6 +1,6 @@
 import sys
 
-from PyQt6.QtGui import QPixmap, QColor
+from PyQt6.QtGui import QPixmap, QColor, QIcon
 from PyQt6.QtWidgets import (QMainWindow, QApplication, QPushButton,
                              QLabel, QLineEdit, QVBoxLayout, QWidget, QSizePolicy, QHBoxLayout, QGridLayout)
 from PyQt6.QtCore import Qt
@@ -13,6 +13,8 @@ class Login(QWidget):
         self.setGeometry(220,100,500,550)
         # self.setFixedSize(700, 500)
         # self.resize(700, 500)
+        self.setWindowIcon(QIcon("D:/Python/py_project/App_Project1/View/img/logo/dark_pythonLogo.png"))
+
 
         self.img_label = QLabel()
         self.signUp_label = QLabel("Sign-in", self)
@@ -35,7 +37,7 @@ class Login(QWidget):
         login_layout.addWidget(self.password_input)
         login_layout.addWidget(self.signUp_button)
 
-        pixmap = QPixmap("img/logo/dark_pythonLogo.png")
+        pixmap = QPixmap("D:/PYTHON/py_project/App_Project1/View/img/logo/dark_pythonLogo.png")
         self.img_label.setPixmap(pixmap.scaled(350,350))
 
 
@@ -60,16 +62,17 @@ class Login(QWidget):
         self.signUp_button.setObjectName("signUp_button")
 
         self.setStyleSheet("""
-            QLabel,QPushbutton,QPixmap{
+            QLabel,QPushbutton,QPixmap,QLineEdit{
                 background-color: white;
                 color: black;
                 font-family: Cascadia Mono SemiBold;
             }
             QLabel#signUp_label{
-                font-size: 39px;
-                padding-left: 50%;
+                font-size: 45px;
+                width: 100px;
             }
             QLabel#username_label{
+                padding-top: 0;
                 font-size: 19px;
             }
             QLabel#password_label{
@@ -78,13 +81,11 @@ class Login(QWidget):
             }
             QLineEdit#username_input{
                 font-size: 19px;
-                padding-right: 300px;
                 border-radius: 10px;
                 border: 2px solid black;
             }
             QLineEdit#password_input{
                 font-size: 19px;
-                padding-right: 300px;
                 border-radius: 10px;
                 border: 2px solid black;
             }
