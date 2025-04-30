@@ -108,7 +108,7 @@ class Login(QWidget):
         self.setAutoFillBackground(True)
 
 if __name__ == '__main__':
-    app = QApplication(sys.argv)
+    app = QApplication(sys.arg  v)
     window = Login()
     window.show()
     sys.exit(app.exec())

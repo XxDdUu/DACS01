@@ -5,7 +5,7 @@ from PyQt6.QtWidgets import QApplication
 
 app = QtWidgets.QApplication(sys.argv)
 
-window = uic.loadUi("dashboardUI.ui")
+window = uic.loadUi("../dashboardUI.ui")
 window.show()
 
 sys.exit(app.exec())

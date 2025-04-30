@@ -4,7 +4,10 @@
     <file>logo/moon-vector.jpg</file>
   </qresource>
   <qresource prefix="icon">
+    <file>stack-svgrepo-com.svg</file>
+    <file>minus.png</file>
     <file>icon/home.png</file>
+    <file>x.png</file>
     <file>icon/report.png</file>
     <file>icon/revenue_chart.png</file>
     <file>icon/setting.png</file>
