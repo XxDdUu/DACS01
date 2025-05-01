@@ -1,16 +1,14 @@
 <RCC>
   <qresource prefix="img">
-    <file>logo/dark_pythonLogo.png</file>
-    <file>logo/moon-vector.jpg</file>
-  </qresource>
-  <qresource prefix="icon">
-    <file>stack-svgrepo-com.svg</file>
-    <file>minus.png</file>
     <file>icon/home.png</file>
-    <file>x.png</file>
+    <file>icon/minus.png</file>
     <file>icon/report.png</file>
     <file>icon/revenue_chart.png</file>
     <file>icon/setting.png</file>
     <file>icon/sidebar.png</file>
+    <file>icon/stack-svgrepo-com.svg</file>
+    <file>icon/x.png</file>
+    <file>logo/dark_pythonLogo.png</file>
+    <file>logo/moon-vector.jpg</file>
   </qresource>
 </RCC>
