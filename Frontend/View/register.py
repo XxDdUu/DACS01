@@ -1,29 +1,18 @@
 from PyQt6 import uic, QtWidgets
 from PyQt6.QtWidgets import QMainWindow, QLabel
-from PyQt6.QtCore import Qt, QPoint
+from PyQt6.QtCore import Qt, QPoint, QEvent
 import sys
 import resources_rc
 
 from PyQt6.QtWidgets import QApplication
+from clickableLabel import ClickableLabel
+from Login import Login
 
 class Register(QtWidgets.QWidget):
     def __init__(self):
         super().__init__(   )
         uic.loadUi("../login_resgister.ui", self)
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
-        self.placeholder_label = QLabel("Enter your date of birth", self)
-        self.placeholder_label.setStyleSheet("color: gray; position: absolute;")
-        self.placeholder_label.move(self.DateOfBirth.x() + 5, self.DateOfBirth.y() + 3)
-        self.placeholder_label.raise_()
-        self.DateOfBirth.dateChanged.connect(self.hide_placeholder)
-        self.DateOfBirth.installEventFilter(self)
-        def hide_placeholder(self):
-            self.placeholder_label.hide()
-
-        def eventFilter(self, obj, event):
-            if obj == self.DateOfBirth and event.type() == QEvent.FocusIn:
-                self.placeholder_label.hide()
-            return super().eventFilter(obj, event)
         
         self.close_btn.clicked.connect(self.close)
         self.minimize_btn.clicked.connect(self.showMinimized)
@@ -39,9 +28,17 @@ class Register(QtWidgets.QWidget):
         self.header.mouseMoveEvent = self.mouse_move_event
         self.header.mouseReleaseEvent = self.mouse_release_event
 
+
         # Example: custom button signals
         self.minimize_btn.clicked.connect(self.showMinimized)
         self.close_btn.clicked.connect(self.close)
+
+        self.login_label.clicked.connect(self.open_login_window)
+        self.login_window = Login()
+    
+    def open_login_window(self):
+        self.login_window.show()
+        self.hide()
 
     def mouse_press_event(self, event):
         if event.button() == Qt.MouseButton.LeftButton:

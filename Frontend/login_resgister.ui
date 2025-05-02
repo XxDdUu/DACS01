@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>414</width>
-    <height>566</height>
+    <height>578</height>
    </rect>
   </property>
   <property name="sizeIncrement">
@@ -73,6 +73,11 @@
           <width>16777215</width>
           <height>30</height>
          </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#header::hover {
+	background: rgb(235, 235, 235);
+}</string>
         </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
@@ -443,19 +448,18 @@ QPushButton::hover {
 	border-bottom-color: #000;
 	margin: 2px;
 	height: 35px;
+	padding-left: 3px;
 }
 #DateOfBirth {
 	margin: 2px;
-	border:none;
-	border-bottom-color: #000;
-	border-bottom-width: 1px;
+
 	border-radius: 2px;
 	color : #232, 237, 234;
 	background-color: #217, 217, 217;
 	height: 35px;
-	text-align: center
-}
-</string>
+	text-align: center;
+	padding-left: 3px
+}</string>
             </property>
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
@@ -529,7 +533,110 @@ QPushButton::hover {
               </widget>
              </item>
              <item>
-              <widget class="QDateEdit" name="DateOfBirth"/>
+              <widget class="QFrame" name="DOB">
+               <property name="maximumSize">
+                <size>
+                 <width>16777212</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>10</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">#text_dob{
+	padding-left:  3px;
+	color:rgb(139, 139, 139);
+}
+QFrame#DOB {
+	border:none;
+	border-bottom: 1px solid #000;
+	border-radius: 2px;
+	background: rgb(255, 255, 255)
+}</string>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_6">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QLabel" name="text_dob">
+                  <property name="minimumSize">
+                   <size>
+                    <width>20</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>100</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>Enter date of birth</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QDateEdit" name="DateOfBirth">
+                  <property name="font">
+                   <font>
+                    <family>MS Shell Dlg 2</family>
+                    <pointsize>10</pointsize>
+                   </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>SizeVerCursor</cursorShape>
+                  </property>
+                  <property name="mouseTracking">
+                   <bool>false</bool>
+                  </property>
+                  <property name="focusPolicy">
+                   <enum>Qt::WheelFocus</enum>
+                  </property>
+                  <property name="acceptDrops">
+                   <bool>false</bool>
+                  </property>
+                  <property name="autoFillBackground">
+                   <bool>false</bool>
+                  </property>
+                  <property name="inputMethodHints">
+                   <set>Qt::ImhPreferNumbers</set>
+                  </property>
+                  <property name="buttonSymbols">
+                   <enum>QAbstractSpinBox::NoButtons</enum>
+                  </property>
+                  <property name="specialValueText">
+                   <string/>
+                  </property>
+                  <property name="displayFormat">
+                   <string>dd/MM/yyyy</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
              </item>
              <item>
               <widget class="QLineEdit" name="Password">
@@ -562,6 +669,20 @@ QPushButton::hover {
           </item>
           <item>
            <widget class="QFrame" name="submit_frame">
+            <property name="styleSheet">
+             <string notr="true">#register_btn {
+	background: rgb(203, 203, 203);
+	color: rgb(255, 255, 255);
+}
+#register_btn::hover {
+	background: rgb(211, 211, 211);
+}
+#login_label {
+}
+#login_label::hover {
+	color: rgb(85, 85, 127);
+}</string>
+            </property>
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
             </property>
@@ -660,9 +781,21 @@ QPushButton::hover {
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QLabel" name="label_2">
+                 <widget class="ClickableLabel" name="login_label">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <weight>50</weight>
+                    <bold>false</bold>
+                   </font>
+                  </property>
                   <property name="text">
-                   <string>Already have account? Sign in</string>
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Already have account? Sign in&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignCenter</set>
@@ -685,6 +818,13 @@ QPushButton::hover {
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ClickableLabel</class>
+   <extends>QLabel</extends>
+   <header>clickableLabel</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="View/img/resources.qrc"/>
   <include location="C:/Users/Admin/.designer/backup/View/img/resources.qrc"/>
