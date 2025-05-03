@@ -2,18 +2,16 @@ from PyQt6 import uic, QtWidgets
 from PyQt6.QtWidgets import QMainWindow, QLabel
 from PyQt6.QtCore import Qt, QPoint, QEvent
 import sys
-import resources_rc
+import Frontend.View.resources_rc
 
 from PyQt6.QtWidgets import QApplication
-from clickableLabel import ClickableLabel
-from Login import Login
 
 class Register(QtWidgets.QWidget):
     def __init__(self):
-        super().__init__(   )
-        uic.loadUi("../login_resgister.ui", self)
+        super().__init__()
+        uic.loadUi("Frontend/login_resgister.ui", self)
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
-        
+
         self.close_btn.clicked.connect(self.close)
         self.minimize_btn.clicked.connect(self.showMinimized)
         self.maximize_btn.clicked.connect(self.toggle_maximize)
@@ -33,13 +31,12 @@ class Register(QtWidgets.QWidget):
         self.minimize_btn.clicked.connect(self.showMinimized)
         self.close_btn.clicked.connect(self.close)
 
-        self.login_label.clicked.connect(self.open_login_window)
-        self.login_window = Login()
+        self.switch_to_login = None
+        self.login_label.clicked.connect(self.handle_switch)
     
-    def open_login_window(self):
-        self.login_window.show()
-        self.hide()
-
+    def handle_switch(self):
+        if self.switch_to_login:
+            self.switch_to_login()
     def mouse_press_event(self, event):
         if event.button() == Qt.MouseButton.LeftButton:
             self._drag_active = True
@@ -60,12 +57,3 @@ class Register(QtWidgets.QWidget):
             self.showMaximized()
         self.is_maximized = not self.is_maximized
 
-
-
-if __name__ == '__main__':
-    app = QtWidgets.QApplication(sys.argv)
-
-    main = Register()
-    main.show()
-
-    sys.exit(app.exec())

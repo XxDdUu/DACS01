@@ -822,12 +822,11 @@ QFrame#DOB {
   <customwidget>
    <class>ClickableLabel</class>
    <extends>QLabel</extends>
-   <header>clickableLabel</header>
+   <header>Frontend/View/clickableLabel</header>
   </customwidget>
  </customwidgets>
  <resources>
   <include location="View/img/resources.qrc"/>
-  <include location="C:/Users/Admin/.designer/backup/View/img/resources.qrc"/>
  </resources>
  <connections/>
 </ui>

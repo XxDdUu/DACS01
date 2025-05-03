@@ -1,12 +1,10 @@
-import sys
+import os
 
 from PyQt6.QtWidgets import (QMainWindow, QApplication,
                              QLabel, QListWidget, QListWidgetItem, QWidget)
 from PyQt6.QtCore import Qt, QSize
 from PyQt6.QtGui import QPixmap, QFont, QIcon
-from loginUI import Ui_MainWindow
-
-
+from Frontend.View.loginUI import Ui_MainWindow
 class Login(QMainWindow):
 
     def __init__(self):
@@ -15,7 +13,7 @@ class Login(QMainWindow):
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.setWindowIcon(QIcon('./img/logo/dark_pythonLogo.png'))
+        self.setWindowIcon(QIcon('Frontend/View/img/logo/dark_pythonLogo.png'))
 
         self.loginTitle = self.ui.title_header
         self.loginTitle.setObjectName("loginTitle")
@@ -23,7 +21,7 @@ class Login(QMainWindow):
 
         self.bg_logo = self.ui.label
         self.bg_logo.setObjectName("bgLogo")
-        self.bg_logo.setPixmap(QPixmap("./img/logo/dark_pythonLogo.png"))
+        self.bg_logo.setPixmap(QPixmap("Frontend/View/img/logo/dark_pythonLogo.png"))
         self.bg_logo.setFixedSize(400, 450)
         self.bg_logo.setScaledContents(True)
 
@@ -46,14 +44,21 @@ class Login(QMainWindow):
         self.nameLineEdit = self.ui.passLineEdit.setObjectName("nameLineEdit")
         self.passLineEdit = self.ui.passLineEdit.setObjectName("passLineEdit")
 
+        self.switch_to_register = None
+        self.register_button.clicked.connect(self.handle_switch)
 
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    with open('./loginStyle.qss') as f:
-        loginQss = f.read()
-        app.setStyleSheet(loginQss)
-
-    window = Login()
-    window.show()
-    sys.exit(app.exec())
+        self.load_stylesheet()
+    def handle_switch(self):
+        if self.switch_to_register:
+            self.switch_to_register()
+    def load_stylesheet(self):
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        css_path = os.path.join(script_dir, 'loginStyle.css')
+        
+        try:
+            with open(css_path, 'r') as f:
+                self.setStyleSheet(f.read())
+        except FileNotFoundError:
+            print(f"Error: CSS file not found at {css_path}")
+        except Exception as e:
+            print(f"Error loading stylesheet: {e}")
