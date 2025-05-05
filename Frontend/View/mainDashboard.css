@@ -1,0 +1,13 @@
+QMainWindow{
+    background-color: white;
+}
+#nameSetting,#passSetting,#birthdateSetting, #emailSetting, #phoneSetting {
+    font-size: 15px;
+}
+#logoutButton{
+    font-size: 18px;
+    background: black;
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 1em;
+}
