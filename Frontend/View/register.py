@@ -1,4 +1,4 @@
-from PyQt6 import uic, QtWidgets
+from PyQt6 import uic, QtWidgets, QtGui
 from PyQt6.QtWidgets import QMainWindow, QLabel
 from PyQt6.QtCore import Qt, QPoint, QEvent
 import sys
@@ -29,7 +29,7 @@ class Register(QtWidgets.QWidget):
 
         # Example: custom button signals
         self.minimize_btn.clicked.connect(self.showMinimized)
-        self.close_btn.clicked.connect(self.close)
+        self.close_btn.clicked.connect(self.confirm_exit)
 
         self.switch_to_login = None
         self.login_label.clicked.connect(self.handle_switch)
@@ -56,4 +56,10 @@ class Register(QtWidgets.QWidget):
         else:
             self.showMaximized()
         self.is_maximized = not self.is_maximized
+    def confirm_exit(self):
+        qm = QtGui.QMessageBox
+        res = qm.question(self, 'Confirm', 'Are you sure to exit?', qm.Yes | qm.No)
+
+        if qm.Yes:
+            self.hide()
 
