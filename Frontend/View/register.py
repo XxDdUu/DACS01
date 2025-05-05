@@ -58,8 +58,7 @@ class Register(QtWidgets.QWidget):
         self.is_maximized = not self.is_maximized
     def confirm_exit(self):
         qm = QtGui.QMessageBox
-        res = qm.question(self, 'Confirm', 'Are you sure to exit?', qm.Yes | qm.No)
-
+        res = qm.question(self, 'Confirm', 'Are you sure to exit?', qm.Yes | qm.No
         if qm.Yes:
             self.hide()
 
