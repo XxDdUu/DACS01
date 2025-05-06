@@ -5,11 +5,13 @@ from PyQt6.QtWidgets import (QMainWindow, QApplication,
 from PyQt6.QtCore import Qt, QSize
 from PyQt6.QtGui import QPixmap, QFont, QIcon
 from Frontend.View.loginUI import Ui_MainWindow
+
+
 class Login(QMainWindow):
 
     def __init__(self):
         super().__init__()
-        self.setFixedSize(743,490)
+        self.setFixedSize(743, 490)
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
@@ -33,28 +35,41 @@ class Login(QMainWindow):
         self.passwordLabel.setObjectName("passwordLabel")
         self.passwordLabel.setText("Password:")
 
-        self.signUp_button = self.ui.login_btn
-        self.signUp_button.setObjectName("signUpButton")
-        self.signUp_button.setText("Login")
+        self.login_button = self.ui.login_btn
+        self.login_button.setObjectName("signUpButton")
+        self.login_button.setText("Login")
 
         self.register_button = self.ui.register_btn
         self.register_button.setObjectName("registerButton")
         self.register_button.setText("Create new account?")
 
-        self.nameLineEdit = self.ui.passLineEdit.setObjectName("nameLineEdit")
+        self.nameLineEdit = self.ui.usernameLineEdit.setObjectName("nameLineEdit")
         self.passLineEdit = self.ui.passLineEdit.setObjectName("passLineEdit")
 
         self.switch_to_register = None
         self.register_button.clicked.connect(self.handle_switch)
 
         self.load_stylesheet()
+
+        self.switch_to_dashboardApp = None
+        self.login_button.clicked.connect(self.handle_login)
+
+    def handle_login(self):
+        print("Đang thử chuyển sang Dashboard...") # test debug
+        if self.switch_to_dashboardApp:
+            try:
+                self.switch_to_dashboardApp()
+            except Exception as e:
+                print(f"Lỗi khi gọi callback: {e}") #test debug
+
     def handle_switch(self):
         if self.switch_to_register:
             self.switch_to_register()
+
     def load_stylesheet(self):
         script_dir = os.path.dirname(os.path.abspath(__file__))
         css_path = os.path.join(script_dir, 'loginStyle.css')
-        
+
         try:
             with open(css_path, 'r') as f:
                 self.setStyleSheet(f.read())

@@ -1,3 +1,4 @@
+import os
 import sys
 
 from PyQt6.QtWidgets import QScrollArea, QPushButton, QLineEdit
@@ -8,23 +9,25 @@ from PyQt6.QtCore import Qt, QSize
 from PyQt6.QtGui import QPixmap, QFont, QIcon
 
 from Backend.Model.plot_dataChart import generalChart, ProductChart
-from frameUI import Ui_MainWindow
+from Frontend.View.frameUI import Ui_MainWindow
 
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
 
 
-class MainWindow(QMainWindow):
+class MainDashboard(QMainWindow):
 
     def __init__(self):
         super().__init__()
         screen = QApplication.primaryScreen()
         size = screen.availableGeometry()  # kích thước vùng làm việc (không gồm taskbar)
         self.setGeometry(size)  # set kích thước cửa sổ = màn hình lap,pc
+        self.setWindowTitle("pyYou App")
+        self.setWindowIcon(QIcon("./img/logo/dark_pythonLogo.png"))
+        print("Đang khởi tạo dashboard")  # Cho phần test debug
 
         # Initialize the UI from the generated mainFrame class
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.setWindowIcon(QIcon("D:/Python/py_project/App_Project1/View/img/logo/dark_pythonLogo.png"))
 
         # Initialize UI elements
         self.titleLabel = self.ui.title_label
@@ -75,6 +78,8 @@ class MainWindow(QMainWindow):
         self.init_ListWidget()
         self.connect_signal_slot()
         self.init_stackWidget()
+
+        self.load_stylesheet()
 
     def init_ListWidget(self):
         self.sideIconMenu.clear()
@@ -217,9 +222,7 @@ class MainWindow(QMainWindow):
                     settingLayout.addWidget(QLabel(), 12, 5)
                     settingLayout.addWidget(logoutButton, 13, 5)
 
-
                     newPage.setLayout(settingLayout)
-
                 else:
                     layout = QGridLayout()
                     label = QLabel(text=text)
@@ -238,13 +241,20 @@ class MainWindow(QMainWindow):
             print(f"Error:{e}")
             print(traceback.format_exc())
 
+    def load_stylesheet(self):
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        css_path = os.path.join(script_dir, 'mainDashboard.css')
+        try:
+            with open(css_path, 'r') as f:
+                self.setStyleSheet(f.read())
+        except FileNotFoundError:
+            print(f"Error: CSS file not found at {css_path}")
+        except Exception as e:
+            print(f"Error loading stylesheet: {e}")
 
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    with open('mainDashboard.css') as f:
-        dashboardQss = f.read()
-        app.setStyleSheet(dashboardQss)
 
-    window = MainWindow()
-    window.show()
-    sys.exit(app.exec())
+# if __name__ == '__main__':
+#     app = QApplication(sys.argv)
+#     window = MainDashboard()
+#     window.show()
+#     sys.exit(app.exec())
