@@ -7,7 +7,7 @@ CREATE TABLE BRANCHES (
 	Branch_name NVARCHAR(255),
 	Branch_address NVARCHAR(255),
 	Branch_phone_number CHAR(15) CHECK(REGEXP_LIKE(Branch_phone_number,"^[0-9]{10,15}$")),
-	Create_at DATETIME,
+	Create_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     Employer_ID INT,
     Enterprise_ID Varchar(255)
 --     foreign key (Employer_ID) references EMPLOYER(Employer_ID),
@@ -17,7 +17,7 @@ CREATE TABLE REVENUE (
 	Revenue_ID INT PRIMARY KEY AUTO_INCREMENT, -- AUTO_INCREMENT CHO MYSQL
 	Revenue_date DATE,
 	Amount DECIMAL(15, 2),
-	Create_at DATETIME,
+	Create_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 	Branch_ID INT
 --     foreign key (Branch_ID) references BRANCHES(Branch_ID)
 );
@@ -27,7 +27,7 @@ CREATE TABLE EMPLOYER(
     Employer_Phone_Number Varchar(255),
     Employer_Email Varchar(255),
 	DOB DATE,
-	Create_at DATETIME,
+	Create_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 	Employer_password Varchar(255),
     Enterprise_ID Varchar(255)
     Branch_ID 
@@ -77,3 +77,10 @@ ADD foreign key (Branch_ID) references BRANCHES(Branch_ID)
 ALTER TABLE PRODUCT_SALES
 ADD foreign key (Product_ID) references PRODUCT(Product_ID),
 ADD foreign key (Branch_ID) references BRANCHES(Branch_ID)
+-- Default cho create_at
+ALTER TABLE EMPLOYER
+MODIFY COLUMN Create_at DATETIME DEFAULT CURRENT_TIMESTAMP
+ALTER TABLE BRANCHES
+MODIFY COLUMN Create_at DATETIME DEFAULT CURRENT_TIMESTAMP
+ALTER TABLE REVENUE
+MODIFY COLUMN Create_at DATETIME DEFAULT CURRENT_TIMESTAMP

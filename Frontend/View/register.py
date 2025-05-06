@@ -1,5 +1,5 @@
 from PyQt6 import uic, QtWidgets, QtGui
-from PyQt6.QtWidgets import QMainWindow, QLabel
+from PyQt6.QtWidgets import QMainWindow, QLabel, QMessageBox
 from PyQt6.QtCore import Qt, QPoint, QEvent
 import sys
 import Frontend.View.resources_rc
@@ -12,7 +12,6 @@ class Register(QtWidgets.QWidget):
         uic.loadUi("Frontend/login_resgister.ui", self)
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
 
-        self.close_btn.clicked.connect(self.close)
         self.minimize_btn.clicked.connect(self.showMinimized)
         self.maximize_btn.clicked.connect(self.toggle_maximize)
 
@@ -57,8 +56,17 @@ class Register(QtWidgets.QWidget):
             self.showMaximized()
         self.is_maximized = not self.is_maximized
     def confirm_exit(self):
-        qm = QtGui.QMessageBox
-        res = qm.question(self, 'Confirm', 'Are you sure to exit?', qm.Yes | qm.No
-        if qm.Yes:
-            self.hide()
-
+        qm = QMessageBox
+        res = qm.question(self, 'Confirm', 'Are you sure to exit?', qm.StandardButton.Yes | qm.StandardButton.No)
+        if res == qm.StandardButton.Yes:
+            self.close()
+    def get_form_data(self):
+        return {
+            "username": self.Username.text().strip(),
+            "email": self.Email.text().strip(),
+            "phone_number": self.Phone_Num.text().strip(),
+            "enterprise_id": self.Enterprise_id.text().strip(),
+            "date_of_birth": self.DateOfBirth.date().toString("yyyy-MM-dd"),
+            "password": self.Password.text().strip(),
+            "confirm_password": self.Confirm_password.text().strip()
+        }

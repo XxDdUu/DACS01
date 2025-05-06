@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>414</width>
-    <height>578</height>
+    <height>577</height>
    </rect>
   </property>
   <property name="sizeIncrement">
@@ -77,6 +77,7 @@
         <property name="styleSheet">
          <string notr="true">#header::hover {
 	background: rgb(235, 235, 235);
+ 	 transition-duration: 2s;
 }</string>
         </property>
         <property name="frameShape">
@@ -783,7 +784,7 @@ QFrame#DOB {
                 <item>
                  <widget class="ClickableLabel" name="login_label">
                   <property name="sizePolicy">
-                   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                     <horstretch>0</horstretch>
                     <verstretch>0</verstretch>
                    </sizepolicy>
