@@ -47,7 +47,13 @@ class Login(QMainWindow):
         self.switch_to_register = None
         self.register_button.clicked.connect(self.handle_switch)
 
+        self.switch_to_dashboardApp = None
+        self.register_button.clicked.connect(self.handle_login)
+
         self.load_stylesheet()
+    def handle_login(self):
+        if self.switch_to_dashboardApp:
+            self.switch_to_dashboardApp()
     def handle_switch(self):
         if self.switch_to_register:
             self.switch_to_register()

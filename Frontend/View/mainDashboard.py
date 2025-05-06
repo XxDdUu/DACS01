@@ -8,12 +8,12 @@ from PyQt6.QtCore import Qt, QSize
 from PyQt6.QtGui import QPixmap, QFont, QIcon
 
 from Backend.Model.plot_dataChart import generalChart, ProductChart
-from frameUI import Ui_MainWindow
+from Frontend.View.frameUI import Ui_MainWindow
 
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
 
 
-class MainWindow(QMainWindow):
+class MainDashboard(QMainWindow):
 
     def __init__(self):
         super().__init__()
@@ -239,12 +239,12 @@ class MainWindow(QMainWindow):
             print(traceback.format_exc())
 
 
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    with open('mainDashboard.css') as f:
-        dashboardQss = f.read()
-        app.setStyleSheet(dashboardQss)
-
-    window = MainWindow()
-    window.show()
-    sys.exit(app.exec())
+# if __name__ == '__main__':
+#     app = QApplication(sys.argv)
+#     with open('mainDashboard.css') as f:
+#         dashboardQss = f.read()
+#         app.setStyleSheet(dashboardQss)
+#
+#     window = MainWindow()
+#     window.show()
+#     sys.exit(app.exec())
