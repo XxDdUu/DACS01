@@ -6,6 +6,7 @@ import Frontend.View.resources_rc
 
 from PyQt6.QtWidgets import QApplication
 
+#branch duy
 class Register(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
