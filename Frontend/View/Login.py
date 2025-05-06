@@ -33,9 +33,9 @@ class Login(QMainWindow):
         self.passwordLabel.setObjectName("passwordLabel")
         self.passwordLabel.setText("Password:")
 
-        self.signUp_button = self.ui.login_btn
-        self.signUp_button.setObjectName("signUpButton")
-        self.signUp_button.setText("Login")
+        self.login_button = self.ui.login_btn
+        self.login_button.setObjectName("signUpButton")
+        self.login_button.setText("Login")
 
         self.register_button = self.ui.register_btn
         self.register_button.setObjectName("registerButton")
@@ -48,7 +48,7 @@ class Login(QMainWindow):
         self.register_button.clicked.connect(self.handle_switch)
 
         self.switch_to_dashboardApp = None
-        self.register_button.clicked.connect(self.handle_login)
+        self.login_button.clicked.connect(self.handle_login)
 
         self.load_stylesheet()
     def handle_login(self):
