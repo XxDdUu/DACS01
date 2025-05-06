@@ -52,6 +52,7 @@ class MainDashboard(QMainWindow):
 
         self.mainContent = self.ui.stackedWidget
 
+        self.switch_to_signUp = None
         # Define a list of menu items with name and icon
         self.menuItems = [
             {
@@ -217,7 +218,8 @@ class MainDashboard(QMainWindow):
                     settingLayout.addWidget(QLabel(), 12, 5)
                     settingLayout.addWidget(logoutButton, 13, 5)
 
-
+                    # handle cái nút logout
+                    logoutButton.clicked.connect(self.handle_logout)
                     newPage.setLayout(settingLayout)
 
                 else:
@@ -239,7 +241,11 @@ class MainDashboard(QMainWindow):
             print(traceback.format_exc())
 
 
-# if __name__ == '__main__':
+    def handle_logout(self):
+        if self.switch_to_signUp:
+            self.switch_to_signUp()
+
+        # if __name__ == '__main__':
 #     app = QApplication(sys.argv)
 #     with open('mainDashboard.css') as f:
 #         dashboardQss = f.read()

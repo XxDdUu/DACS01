@@ -7,7 +7,7 @@
     <list default="true" id="b664035e-7b0c-4c4d-8252-f0d6dc412f5b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Controller/MainController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Controller/MainController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/View/Login.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/Login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/View/mainDashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/mainDashboard.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,12 +156,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Backend/DAO/DatabaseConnection.py</url>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
