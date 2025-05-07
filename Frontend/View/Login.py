@@ -17,7 +17,7 @@ class Login(QMainWindow):
 
         self.loginTitle = self.ui.title_header
         self.loginTitle.setObjectName("loginTitle")
-        self.loginTitle.setText("Sign Up")
+        self.loginTitle.setText("Sign In")
 
         self.bg_logo = self.ui.label
         self.bg_logo.setObjectName("bgLogo")
@@ -33,9 +33,9 @@ class Login(QMainWindow):
         self.passwordLabel.setObjectName("passwordLabel")
         self.passwordLabel.setText("Password:")
 
-        self.signUp_button = self.ui.login_btn
-        self.signUp_button.setObjectName("signUpButton")
-        self.signUp_button.setText("Login")
+        self.login_button = self.ui.login_btn
+        self.login_button.setObjectName("signUpButton")
+        self.login_button.setText("Login")
 
         self.register_button = self.ui.register_btn
         self.register_button.setObjectName("registerButton")
@@ -47,7 +47,13 @@ class Login(QMainWindow):
         self.switch_to_register = None
         self.register_button.clicked.connect(self.handle_switch)
 
+        self.switch_to_dashboardApp = None
+        self.login_button.clicked.connect(self.handle_login)
+
         self.load_stylesheet()
+    def handle_login(self):
+        if self.switch_to_dashboardApp:
+            self.switch_to_dashboardApp()
     def handle_switch(self):
         if self.switch_to_register:
             self.switch_to_register()

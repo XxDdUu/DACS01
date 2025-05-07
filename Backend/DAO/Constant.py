@@ -1,4 +1,4 @@
-DB_CONFIG = {
+DB_CONFIG = {              # from duy
     'host': 'localhost', 
     'user': 'root',           
     'password': '12345678',  
@@ -7,11 +7,11 @@ DB_CONFIG = {
     'charset': 'utf8mb4',    
     'autocommit': True,       
 }
-PYAPP_DB_CONFIG = {
-    'host': 'localhost',
+PYAPP_DB_CONFIG = {         # from cuong
+    'host': '127.0.0.1',
     'user': 'root',
     'password': 'mypassword',
-    'database': 'pyapp',
+    'database': 'qldtcnch',
     'port': 3306,
     'charset': 'utf8mb4',
     'autocommit': True

@@ -1,3 +1,4 @@
+import os
 import sys
 
 from PyQt6.QtWidgets import QScrollArea, QPushButton, QLineEdit
@@ -8,12 +9,12 @@ from PyQt6.QtCore import Qt, QSize
 from PyQt6.QtGui import QPixmap, QFont, QIcon
 
 from Backend.Model.plot_dataChart import generalChart, ProductChart
-from frameUI import Ui_MainWindow
+from Frontend.View.frameUI import Ui_MainWindow
 
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
 
 
-class MainWindow(QMainWindow):
+class MainDashboard(QMainWindow):
 
     def __init__(self):
         super().__init__()
@@ -52,6 +53,7 @@ class MainWindow(QMainWindow):
 
         self.mainContent = self.ui.stackedWidget
 
+        self.switch_to_signUp = None
         # Define a list of menu items with name and icon
         self.menuItems = [
             {
@@ -75,6 +77,7 @@ class MainWindow(QMainWindow):
         self.init_ListWidget()
         self.connect_signal_slot()
         self.init_stackWidget()
+        self.load_stylesheet()
 
     def init_ListWidget(self):
         self.sideIconMenu.clear()
@@ -175,36 +178,35 @@ class MainWindow(QMainWindow):
                     infoLabel.setFont(font)
                     settingLayout.addWidget(infoLabel, 0, 0, 1, 12)  # row, col, rowspan, colspan
                     # Thêm các widget thông tin khác
-                    settingLayout.addWidget(QLabel(),1,5)
+                    settingLayout.addWidget(QLabel(), 1, 5)
                     nameSetting = QLabel("☺ Username:")
                     nameSetting.setObjectName("nameSetting")
                     settingLayout.addWidget(nameSetting, 2, 1)
                     settingLayout.addWidget(QLabel("Lecris Ronal Si"), 2, 5)
                     settingLayout.addWidget(QPushButton("Edit"), 2, 10)
 
-                    settingLayout.addWidget(QLabel(),3,5)
+                    settingLayout.addWidget(QLabel(), 3, 5)
                     passSetting = QLabel("⛉ Password:")
                     passSetting.setObjectName("passSetting")
                     settingLayout.addWidget(passSetting, 4, 1)
                     settingLayout.addWidget(QLabel("************"), 4, 5)
                     settingLayout.addWidget(QPushButton("Edit"), 4, 10)
 
-
-                    settingLayout.addWidget(QLabel(),5,5)
+                    settingLayout.addWidget(QLabel(), 5, 5)
                     birthdateSetting = QLabel("𝄜 Date birth:")
                     birthdateSetting.setObjectName("birthdateSetting")
                     settingLayout.addWidget(birthdateSetting, 6, 1)
                     settingLayout.addWidget(QLabel("99/99/9999"), 6, 5)
                     settingLayout.addWidget(QPushButton("Edit"), 6, 10)
 
-                    settingLayout.addWidget(QLabel(),7,5)
+                    settingLayout.addWidget(QLabel(), 7, 5)
                     gmailSetting = QLabel("🖂 Email:")
                     gmailSetting.setObjectName("emailSetting")
                     settingLayout.addWidget(gmailSetting, 8, 1)
                     settingLayout.addWidget(QLabel("abcdxyz1234@gmail.com"), 8, 5)
                     settingLayout.addWidget(QPushButton("Edit"), 8, 10)
 
-                    settingLayout.addWidget(QLabel(),9,5)
+                    settingLayout.addWidget(QLabel(), 9, 5)
                     phoneSetting = QLabel("✆ Phone number: ")
                     phoneSetting.setObjectName("phoneSetting")
                     settingLayout.addWidget(phoneSetting, 10, 1)
@@ -217,7 +219,8 @@ class MainWindow(QMainWindow):
                     settingLayout.addWidget(QLabel(), 12, 5)
                     settingLayout.addWidget(logoutButton, 13, 5)
 
-
+                    # handle cái nút logout
+                    logoutButton.clicked.connect(self.handle_logout)
                     newPage.setLayout(settingLayout)
 
                 else:
@@ -238,13 +241,18 @@ class MainWindow(QMainWindow):
             print(f"Error:{e}")
             print(traceback.format_exc())
 
+    def handle_logout(self):
+        if self.switch_to_signUp:
+            self.switch_to_signUp()
 
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    with open('mainDashboard.css') as f:
-        dashboardQss = f.read()
-        app.setStyleSheet(dashboardQss)
+    def load_stylesheet(self):
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        css_path = os.path.join(script_dir, 'mainDashboard.css')
 
-    window = MainWindow()
-    window.show()
-    sys.exit(app.exec())
+        try:
+            with open(css_path, 'r') as f:
+                self.setStyleSheet(f.read())
+        except FileNotFoundError:
+            print(f"Error: CSS file not found at {css_path}")
+        except Exception as e:
+            print(f"Error loading stylesheet: {e}")
