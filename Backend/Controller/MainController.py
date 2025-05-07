@@ -30,3 +30,4 @@ class MainController:
         self.login_window.hide()
         self.register_window.hide()
         self.dashboard_window.show()
+            
