@@ -6,7 +6,6 @@ import Frontend.View.resources_rc
 
 from PyQt6.QtWidgets import QApplication
 
-#branch duy
 class Register(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
@@ -26,14 +25,12 @@ class Register(QtWidgets.QWidget):
         self.header.mouseMoveEvent = self.mouse_move_event
         self.header.mouseReleaseEvent = self.mouse_release_event
 
-
         # Example: custom button signals
         self.minimize_btn.clicked.connect(self.showMinimized)
         self.close_btn.clicked.connect(self.confirm_exit)
 
         self.switch_to_login = None
         self.login_label.clicked.connect(self.handle_switch)
-    
     def handle_switch(self):
         if self.switch_to_login:
             self.switch_to_login()
