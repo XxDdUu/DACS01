@@ -36,23 +36,23 @@ class Register(QtWidgets.QWidget):
     
     def handle_switch(self):
         if self.switch_to_login:
-            self.switch_to_login()
+           self.switch_to_login()
     def mouse_press_event(self, event):
         if event.button() == Qt.MouseButton.LeftButton:
-            self._drag_active = True
-            self._drag_position = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
-            event.accept()
+           self._drag_active = True
+           self._drag_position = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
+           event.accept()
 
     def mouse_move_event(self, event):
         if self._drag_active and event.buttons() == Qt.MouseButton.LeftButton:
-            self.move(event.globalPosition().toPoint() - self._drag_position)
-            event.accept()
+           self.move(event.globalPosition().toPoint() - self._drag_position)
+           event.accept()
 
     def mouse_release_event(self, event):
         self._drag_active = False
     def toggle_maximize(self):
         if self.is_maximized:
-            self.showNormal()
+           self.showNormal()
         else:
             self.showMaximized()
         self.is_maximized = not self.is_maximized

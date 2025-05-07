@@ -1,8 +1,7 @@
+print("App starting...")
 import sys
 from PyQt6.QtWidgets import QApplication
 from Backend.Controller.MainController import MainController
-
-print("App starting...")
 if __name__ == "__main__":
     def main():
         try:
@@ -10,4 +9,6 @@ if __name__ == "__main__":
             controller = MainController()
             sys.exit(app.exec())
         except Exception as e:
-            rint(f"{e}")
+            import traceback
+            traceback.print_exc()
+    main()

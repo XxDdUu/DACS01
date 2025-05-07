@@ -25,6 +25,21 @@
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
    <item>
     <widget class="QFrame" name="main_frame">
      <property name="styleSheet">
@@ -79,6 +94,9 @@
 	background: rgb(235, 235, 235);
  	 transition-duration: 2s;
 	margin: auto;
+}
+#header {
+	background: rgb(255, 255, 255);
 }</string>
         </property>
         <property name="frameShape">
@@ -113,7 +131,7 @@
            </property>
            <property name="sizeHint" stdset="0">
             <size>
-             <width>240</width>
+             <width>999999999</width>
              <height>7</height>
             </size>
            </property>
@@ -296,8 +314,8 @@ QPushButton::hover {
         </property>
         <widget class="QWidget" name="Register_page">
          <property name="styleSheet">
-          <string notr="true">#Login_page {
-	background: rgb(195, 195, 195)
+          <string notr="true">* {
+	background-color : rgb(255, 255, 255);
 }</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -335,6 +353,17 @@ QPushButton::hover {
              </property>
              <item>
               <widget class="QFrame" name="register_label_frame">
+               <property name="styleSheet">
+                <string notr="true">#register_label_frame {
+	background-color : rgb(255, 255, 255);
+}
+#image_frame_2 {
+	background-color : rgb(255, 255, 255);
+}
+#label {
+	color: rgb(0, 0, 0);
+}</string>
+               </property>
                <property name="frameShape">
                 <enum>QFrame::StyledPanel</enum>
                </property>
@@ -346,7 +375,7 @@ QPushButton::hover {
                  <number>9</number>
                 </property>
                 <item>
-                 <widget class="QFrame" name="frame_3">
+                 <widget class="QFrame" name="image_frame_2">
                   <property name="frameShape">
                    <enum>QFrame::StyledPanel</enum>
                   </property>
@@ -418,6 +447,8 @@ QPushButton::hover {
                    <font>
                     <family>Tw Cen MT Condensed Extra Bold</family>
                     <pointsize>15</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
                    </font>
                   </property>
                   <property name="text">
@@ -442,7 +473,7 @@ QPushButton::hover {
             <property name="styleSheet">
              <string notr="true">QLineEdit {
 	color : #232, 237, 234;
-	background-color: #217, 217, 217;
+	background: #217, 217, 217;
 	border: none;
 	border-bottom-style: solid;
 	border-bottom-width: 1px;
@@ -680,9 +711,16 @@ QFrame#DOB {
 	background: rgb(211, 211, 211);
 }
 #login_label {
+	color: rgb(0, 0, 0);
 }
 #login_label::hover {
 	color: rgb(85, 85, 127);
+}
+#submit_frame, btn_frame {
+	background: rgb(255, 255, 255);
+}
+#signin_enterpriseRegister {
+	background: rgb(255, 255, 255);
 }</string>
             </property>
             <property name="frameShape">

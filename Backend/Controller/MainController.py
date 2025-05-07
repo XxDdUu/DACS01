@@ -24,10 +24,9 @@ class MainController:
     def show_register(self):
         self.login_window.hide()
         self.register_window.show()
-        self.dashboard_window.hide()
+        # self.dashboard_window.hide()
 
     def show_dashboardApp(self):
         self.login_window.hide()
         self.register_window.hide()
         self.dashboard_window.show()
-            

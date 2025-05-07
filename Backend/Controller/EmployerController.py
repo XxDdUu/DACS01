@@ -1,5 +1,4 @@
 from Backend.DAO.EmployerDAO import EmployerDAO
-from Frontend.View.register import Register
 from PyQt6.QtWidgets import QMessageBox
 
 class EmployerController:
