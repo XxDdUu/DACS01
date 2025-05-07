@@ -30,7 +30,6 @@ CREATE TABLE EMPLOYER(
 	Create_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 	Employer_password Varchar(255),
     Enterprise_ID Varchar(255)
-    Branch_ID 
 --     Foreign key(Enterprise_ID) references ENTERPRISE(Enterprise_ID)
 );
 CREATE TABLE ENTERPRISE(

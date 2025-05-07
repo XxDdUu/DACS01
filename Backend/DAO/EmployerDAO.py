@@ -5,8 +5,6 @@ from PyQt6.QtWidgets import QMessageBox
 from mysql.connector import Error
 from datetime import datetime
 import re
-import traceback
-
 class EmployerDAO:
     def insert_employer(self, data):
         username = data.get("username")
@@ -50,12 +48,10 @@ class EmployerDAO:
 
         except Error as e:
             return False, f"Database Error: {e}"
-            traceback.print_exc()
         except ValueError:
             return False, "Invalid date format! Use yyyy-mm-dd"
         except Exception as e:
             print(f"[Unhandled Error] {e}") 
-            traceback.print_exc()
             return False, f"Unexpected error: {e}"
 
         finally:
