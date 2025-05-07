@@ -29,13 +29,12 @@ class EmployerDAO:
 
         try:
             hashed_password = generate_password_hash(password)
-            connection = get_connection() 
+            connection = get_connection()
             cursor = connection.cursor()
-
             query = """
                 INSERT INTO EMPLOYER
-                (Employer_name, Employer_Phone_Number, Employer_Email, DOB, Employer_password, Enterprise_ID)
-                VALUES (%s, %s, %s, %s, %s, %s)
+                (Employer_name, Employer_Phone_Number, Employer_Email, DOB, Create_at, Employer_password, Enterprise_ID)
+                VALUES (%s, %s, %s, %s, NOW(), %s, %s)
             """
             cursor.execute(query, (
                 username,
@@ -49,12 +48,12 @@ class EmployerDAO:
             return True, "Employer registered successfully"
 
         except Error as e:
-            return False, f"Database Error: {e}"
             traceback.print_exc()
+            return False, f"Database Error: {e}"
         except ValueError:
             return False, "Invalid date format! Use yyyy-mm-dd"
         except Exception as e:
-            print(f"[Unhandled Error] {e}") 
+            print(f"[Unhandled Error] {e}")
             traceback.print_exc()
             return False, f"Unexpected error: {e}"
 

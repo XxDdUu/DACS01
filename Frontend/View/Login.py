@@ -17,7 +17,7 @@ class Login(QMainWindow):
 
         self.loginTitle = self.ui.title_header
         self.loginTitle.setObjectName("loginTitle")
-        self.loginTitle.setText("Sign Up")
+        self.loginTitle.setText("Sign In")
 
         self.bg_logo = self.ui.label
         self.bg_logo.setObjectName("bgLogo")
