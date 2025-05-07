@@ -56,7 +56,7 @@ class MainWindow(QMainWindow):
         self.menuItems = [
             {
                 "name": "Home",
-                "icon": "D:/PYTHON/py_project/App_Project1/View/img/icon/home.png"
+                "icon": "Frontend/View/img/icon/home.png"
             },
             {
                 "name": "Revenue Info",
