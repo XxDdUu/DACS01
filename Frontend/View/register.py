@@ -31,6 +31,12 @@ class Register(QtWidgets.QWidget):
 
         self.switch_to_login = None
         self.login_label.clicked.connect(self.handle_switch)
+
+        self.Background.setCurrentWidget(self.Register_page)
+
+        self.create_enterprise.clicked.connect(lambda: self.Background.setCurrentWidget(self.Enterprise_register))
+
+        self.goback_register.clicked.connect(lambda: self.Background.setCurrentWidget(self.Register_page))
     def handle_switch(self):
         if self.switch_to_login:
             self.switch_to_login()

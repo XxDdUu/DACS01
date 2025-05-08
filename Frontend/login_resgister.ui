@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>414</width>
+    <width>406</width>
     <height>577</height>
    </rect>
   </property>
@@ -25,11 +25,27 @@
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
    <item>
     <widget class="QFrame" name="main_frame">
      <property name="styleSheet">
       <string notr="true">#main_frame {
 	background-color: rgb(255, 255, 255);
+	border-radius: 5px;
 }</string>
      </property>
      <property name="frameShape">
@@ -286,12 +302,12 @@ QPushButton::hover {
       <item>
        <widget class="QStackedWidget" name="Background">
         <property name="styleSheet">
-         <string notr="true">#Background {
-	background-color: rgb(255, 255, 255);
+         <string notr="true">#Register_page {
+	background: rgb(255, 255, 255);
 }</string>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="Register_page">
          <property name="styleSheet">
@@ -334,6 +350,14 @@ QPushButton::hover {
              </property>
              <item>
               <widget class="QFrame" name="register_label_frame">
+               <property name="styleSheet">
+                <string notr="true">#register_label_frame {
+	background-color: rgb(255, 255, 255);
+}
+#main_image_frame {
+	background-color: rgb(255, 255, 255);
+}</string>
+               </property>
                <property name="frameShape">
                 <enum>QFrame::StyledPanel</enum>
                </property>
@@ -345,7 +369,7 @@ QPushButton::hover {
                  <number>9</number>
                 </property>
                 <item>
-                 <widget class="QFrame" name="frame_3">
+                 <widget class="QFrame" name="main_image_frame">
                   <property name="frameShape">
                    <enum>QFrame::StyledPanel</enum>
                   </property>
@@ -412,7 +436,7 @@ QPushButton::hover {
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label">
+                 <widget class="QLabel" name="main_text_label">
                   <property name="font">
                    <font>
                     <family>Tw Cen MT Condensed Extra Bold</family>
@@ -556,6 +580,10 @@ QFrame#DOB {
 	border-bottom: 1px solid #000;
 	border-radius: 2px;
 	background: rgb(255, 255, 255)
+}
+QDateEdit {
+    background-color: rgb(255, 255, 255);
+	color: rgb(159, 159, 159)
 }</string>
                </property>
                <property name="frameShape">
@@ -679,9 +707,19 @@ QFrame#DOB {
 	background: rgb(211, 211, 211);
 }
 #login_label {
+	color: rgb(0, 0, 0);
+}
+#create_enterprise::hover {
+	color: rgb(0, 0, 0);
+}
+#create_enterprise::hover {
+	color: rgb(85, 85, 127);
 }
 #login_label::hover {
 	color: rgb(85, 85, 127);
+}
+#submit_frame {
+	background-color: rgb(255, 255, 255);
 }</string>
             </property>
             <property name="frameShape">
@@ -693,6 +731,20 @@ QFrame#DOB {
             <layout class="QVBoxLayout" name="verticalLayout_6">
              <item>
               <widget class="QFrame" name="btn_frame">
+               <property name="styleSheet">
+                <string notr="true">#btn_frame {
+	background-color: rgb(255, 255, 255);
+}
+#register_btn {
+	color: rgb(255, 255, 255);
+	
+}
+#register_btn::hover {
+ 	
+	background-color: rgb(89, 89, 89);
+}
+</string>
+               </property>
                <property name="frameShape">
                 <enum>QFrame::StyledPanel</enum>
                </property>
@@ -752,12 +804,25 @@ QFrame#DOB {
               </widget>
              </item>
              <item>
-              <widget class="QFrame" name="signin">
+              <widget class="QFrame" name="signin_createEnterprise">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>8</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">#login_label {
+
+}</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::StyledPanel</enum>
@@ -791,12 +856,706 @@ QFrame#DOB {
                   </property>
                   <property name="font">
                    <font>
+                    <pointsize>8</pointsize>
                     <weight>50</weight>
                     <bold>false</bold>
                    </font>
                   </property>
+                  <property name="lineWidth">
+                   <number>1</number>
+                  </property>
                   <property name="text">
                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Already have account? Sign in&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="div">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="sizeIncrement">
+                   <size>
+                    <width>0</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="baseSize">
+                   <size>
+                    <width>0</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>15</pointsize>
+                    <weight>50</weight>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">#div {
+	color : rgb(0, 0, 0);
+}</string>
+                  </property>
+                  <property name="lineWidth">
+                   <number>1</number>
+                  </property>
+                  <property name="text">
+                   <string>|</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="margin">
+                   <number>0</number>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="ClickableLabel" name="create_enterprise">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>8</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Don't have enterprise yet? Create one</string>
+                  </property>
+                  <property name="scaledContents">
+                   <bool>false</bool>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
+                  </property>
+                  <property name="margin">
+                   <number>0</number>
+                  </property>
+                  <property name="openExternalLinks">
+                   <bool>false</bool>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="Enterprise_register">
+         <property name="styleSheet">
+          <string notr="true">#Enterprise_register {
+	background-color: rgb(255, 255, 255);
+}</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_8">
+          <item>
+           <widget class="QFrame" name="main_image_frame_2">
+            <property name="styleSheet">
+             <string notr="true">#main_image_frame_2 {
+	background-color: rgb(255, 255, 255);
+}
+#image_frame_2 {
+	background-color: rgb(255, 255, 255);
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_7">
+             <item>
+              <widget class="QFrame" name="image_frame_2">
+               <property name="layoutDirection">
+                <enum>Qt::LeftToRight</enum>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_8">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <property name="leftMargin">
+                 <number>25</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QLabel" name="image_label_2">
+                  <property name="minimumSize">
+                   <size>
+                    <width>60</width>
+                    <height>60</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>100</width>
+                    <height>100</height>
+                   </size>
+                  </property>
+                  <property name="layoutDirection">
+                   <enum>Qt::LeftToRight</enum>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="pixmap">
+                   <pixmap resource="View/img/resources.qrc">:/img/icon/enterprise.svg</pixmap>
+                  </property>
+                  <property name="scaledContents">
+                   <bool>true</bool>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="margin">
+                   <number>0</number>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="main_label">
+               <property name="minimumSize">
+                <size>
+                 <width>235</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>12</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Welcome! Let's create your enterprise</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
+               </property>
+               <property name="scaledContents">
+                <bool>false</bool>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+               </property>
+               <property name="wordWrap">
+                <bool>true</bool>
+               </property>
+               <property name="margin">
+                <number>0</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="input_text_enterprise">
+            <property name="styleSheet">
+             <string notr="true">#input_text_enterprise {
+	background-color: rgb(255, 255, 255);
+}
+QLineEdit {
+	color : #232, 237, 234;
+	background-color: #217, 217, 217;
+	border: none;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-radius: 2px;
+	border-bottom-color: #000;
+	margin: 2px;
+	height: 35px;
+	padding-left: 10px;
+}
+QComboBox {
+	border: none;
+}
+QComboBox QAbstractItemView::item {
+        height: 28px;
+ }
+</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_9">
+             <item>
+              <widget class="QFrame" name="frame">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>45</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>45</height>
+                </size>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_9">
+                <property name="spacing">
+                 <number>6</number>
+                </property>
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QLineEdit" name="enterprise_name">
+                  <property name="placeholderText">
+                   <string>Enter enterprise name</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="enterprise_founder">
+                  <property name="placeholderText">
+                   <string>Enter enterprise founder</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="address">
+               <property name="placeholderText">
+                <string>Enter address</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="enterprise_phone_number">
+               <property name="placeholderText">
+                <string>Enter phone number</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QFrame" name="business_type_frame">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>35</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QFrame#business_type_frame {
+	border:none;
+	border-bottom: 1px solid #000;
+	border-radius: 2px;
+	background: rgb(255, 255, 255);
+}
+QComboBox#business_type {
+	color: rgb(126, 126, 126);
+}</string>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_10">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <property name="leftMargin">
+                 <number>9</number>
+                </property>
+                <property name="topMargin">
+                 <number>9</number>
+                </property>
+                <property name="rightMargin">
+                 <number>9</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>9</number>
+                </property>
+                <item>
+                 <widget class="QComboBox" name="business_type">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>9</pointsize>
+                   </font>
+                  </property>
+                  <property name="editable">
+                   <bool>false</bool>
+                  </property>
+                  <property name="currentText">
+                   <string notr="true">Partnership (Hợp tác xã)
+
+</string>
+                  </property>
+                  <property name="maxVisibleItems">
+                   <number>10</number>
+                  </property>
+                  <property name="insertPolicy">
+                   <enum>QComboBox::InsertAtCurrent</enum>
+                  </property>
+                  <property name="sizeAdjustPolicy">
+                   <enum>QComboBox::AdjustToContents</enum>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>16</width>
+                    <height>16</height>
+                   </size>
+                  </property>
+                  <property name="duplicatesEnabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="frame">
+                   <bool>true</bool>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>Partnership (Hợp tác xã)
+
+</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string notr="true">Sole Proprietorship (Doanh nghiệp cá nhân)</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Limited Liability Company (Công ty trách nhiệm hữu hạn)
+
+</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Franchise (Nhượng quyền thương hiệu)
+
+</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Corporation (Công ty cổ phần)
+
+</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Non-profit Organization (Tổ chức phi lợi nhuận)
+
+</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Joint Venture (Liên doanh)
+
+</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Family Business (Doanh nghiệp gia đình)
+
+</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Start-up (Công ty khởi nghiệp)
+
+</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Social Enterprise (Doanh nghiệp xã hội)
+
+</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Multinational Corporation (Tập đoàn đa quốc gia)
+
+</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Cooperative (Tổ hợp tác xã)
+
+</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Small and Medium-sized Enterprise (SME) (Doanh nghiệp vừa và nhỏ)
+
+</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Online Business (Doanh nghiệp trực tuyến)
+
+</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Green Business (Doanh nghiệp xanh)
+
+</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Retail Business (Doanh nghiệp bán lẻ)
+
+</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Service-based Business (Doanh nghiệp dựa vào dịch vụ)
+
+</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Franchise (Nhượng quyền thương hiệu)
+
+</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Nonprofit Organization (Tổ chức phi lợi nhuận)
+
+</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>State-owned Enterprise (Doanh nghiệp nhà nước)
+
+</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="enterprise_industry">
+               <property name="placeholderText">
+                <string>Enter industry</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QFrame" name="frame_2">
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_11">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QLineEdit" name="lineEdit_2">
+                  <property name="placeholderText">
+                   <string>Enter password</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="lineEdit">
+                  <property name="placeholderText">
+                   <string>Confirm password</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="submit_frame_2">
+            <property name="styleSheet">
+             <string notr="true">#submit_frame_2 {
+	background-color: rgb(255, 255, 255);
+}
+#create_enterprise_btn {
+	background: rgb(203, 203, 203);
+	color: rgb(255, 255, 255);
+}
+#create_enterprise_btn::hover {
+	background: rgb(211, 211, 211);
+}
+#goback_register {
+	color: rgb(0, 0, 0);
+}
+#goback_register::hover {
+	color: rgb(150, 150, 150)
+}
+#create_frame {
+	background-color: rgb(255, 255, 255);
+}
+#goback_frame{
+	background-color: rgb(255, 255, 255);
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_10">
+             <item>
+              <widget class="QFrame" name="create_frame">
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_11">
+                <item>
+                 <widget class="QPushButton" name="create_enterprise_btn">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>35</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>Create Enterprise</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QFrame" name="goback_frame">
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_12">
+                <item>
+                 <widget class="ClickableLabel" name="goback_register">
+                  <property name="text">
+                   <string>Go back</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignCenter</set>
@@ -811,7 +1570,6 @@ QFrame#DOB {
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="Reg"/>
        </widget>
       </item>
      </layout>
@@ -823,7 +1581,7 @@ QFrame#DOB {
   <customwidget>
    <class>ClickableLabel</class>
    <extends>QLabel</extends>
-   <header>Frontend/View/clickableLabel</header>
+   <header location="global">Frontend/View/clickableLabel</header>
   </customwidget>
  </customwidgets>
  <resources>
