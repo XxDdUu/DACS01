@@ -25,7 +25,7 @@ class MainDashboard(QMainWindow):
         # Initialize the UI from the generated mainFrame class
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.setWindowIcon(QIcon("D:/Python/py_project/App_Project1/View/img/logo/dark_pythonLogo.png"))
+        self.setWindowIcon(QIcon("Frontend/View/img/logo/dark_pythonLogo.png"))
 
         # Initialize UI elements
         self.titleLabel = self.ui.title_label
@@ -33,7 +33,7 @@ class MainDashboard(QMainWindow):
 
         self.titleLogo = self.ui.iconTitle_label
         self.titleLogo.setText("")
-        self.titleLogo.setPixmap(QPixmap("D:/Python/py_project/App_Project1/View/img/logo/dark_pythonLogo.png"))
+        self.titleLogo.setPixmap(QPixmap("Frontend/View/View/img/logo/dark_pythonLogo.png"))
         self.titleLogo.setFixedSize(QSize(50, 50))
         self.titleLogo.setScaledContents(True)
 
@@ -46,7 +46,7 @@ class MainDashboard(QMainWindow):
         self.menuBtn = self.ui.menuButton
         self.menuBtn.setText("")
         self.menuBtn.setObjectName("menu_btn")
-        self.menuBtn.setIcon(QIcon("D:/PYTHON/py_project/App_Project1/View/img/icon/sidebar.png"))
+        self.menuBtn.setIcon(QIcon("Frontend/View/img/icon/sidebar.png"))
         self.menuBtn.setIconSize(QSize(20, 20))
         self.menuBtn.setCheckable(True)
         self.menuBtn.setChecked(False)
@@ -62,15 +62,15 @@ class MainDashboard(QMainWindow):
             },
             {
                 "name": "Revenue Info",
-                "icon": "D:/PYTHON/py_project/App_Project1/View/img/icon/revenue_chart.png"
+                "icon": "Frontend/View/img/icon/revenue_chart.png"
             },
             {
                 "name": "Reports",
-                "icon": "D:/PYTHON/py_project/App_Project1/View/img/icon/report.png"
+                "icon": "Frontend/View/img/icon/report.png"
             },
             {
                 "name": "Setting",
-                "icon": "D:/PYTHON/py_project/App_Project1/View/img/icon/setting.png"
+                "icon": "Frontend/View/img/icon/setting.png"
             },
         ]
         # Initialize the main Q
@@ -115,9 +115,9 @@ class MainDashboard(QMainWindow):
     def iconButtonChange(self, status):
         # change the icon button of menu based on its status
         if status:
-            self.menuBtn.setIcon(QIcon("D:/PYTHON/py_project/App_Project1/View/img/icon/sidebar.png"))
+            self.menuBtn.setIcon(QIcon("Frontend/View/img/icon/sidebar.png"))
         else:
-            self.menuBtn.setIcon(QIcon("D:/PYTHON/py_project/App_Project1/View/img/icon/sidebar.png"))
+            self.menuBtn.setIcon(QIcon("Frontend/View/img/icon/sidebar.png"))
 
     def init_stackWidget(self):
         # create content page in stackWidget
