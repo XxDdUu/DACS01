@@ -1,7 +1,7 @@
 import os
 import sys
 
-from PyQt6.QtWidgets import QScrollArea, QPushButton, QLineEdit
+from PyQt6.QtWidgets import QScrollArea, QPushButton, QLineEdit, QTableWidget, QFormLayout, QHBoxLayout
 from PyQt6.QtWidgets import QGridLayout, QVBoxLayout, QSizePolicy
 from PyQt6.QtWidgets import (QMainWindow, QApplication,
                              QLabel, QListWidgetItem, QWidget)
@@ -65,8 +65,12 @@ class MainDashboard(QMainWindow):
                 "icon": "Frontend/View/img/icon/revenue_chart.png"
             },
             {
-                "name": "Reports",
-                "icon": "Frontend/View/img/icon/report.png"
+                "name":"Product Sales Info",
+                "icon": "Frontend/View/img/icon/productSales.png"
+            },
+            {
+                "name": "Distribution Info",
+                "icon": "Frontend/View/img/icon/distributor.png"
             },
             {
                 "name": "Setting",
