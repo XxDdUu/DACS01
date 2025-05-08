@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b664035e-7b0c-4c4d-8252-f0d6dc412f5b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Database_Define/appDB.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Database_Define/appDB.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +65,7 @@
     "Python.testTable.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "cuong",
+    "git-widget-placeholder": "Merging cuong",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "D:/PYTHON/py_project",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"

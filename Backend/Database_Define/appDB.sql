@@ -30,9 +30,12 @@ CREATE TABLE EMPLOYER(
 	Create_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 	Employer_password Varchar(255),
     Enterprise_ID Varchar(255)
-    Branch_ID 
 --     Foreign key(Enterprise_ID) references ENTERPRISE(Enterprise_ID)
 );
+
+ALTER TABLE ENTERPRISE ADD Enterprise_password Varchar(255) /* use this */ 
+
+
 CREATE TABLE ENTERPRISE(
 	Enterprise_ID Varchar(255) PRIMARY KEY,
 	Enterprise_NAME NVARCHAR(255),
@@ -40,7 +43,8 @@ CREATE TABLE ENTERPRISE(
     ADDRESS TEXT,
     Enterprise_PHONE_NUMBER VARCHAR(255),
     BUSINESS_TYPE NVARCHAR(255),
-    INDUSTRY NVARCHAR(255)
+    INDUSTRY NVARCHAR(255),
+    Enterprise_password Varchar(255)
 );
 CREATE TABLE PRODUCT(
 		Product_ID INT PRIMARY KEY AUTO_INCREMENT, -- AUTO_INCREMENT CHO MYSQL
