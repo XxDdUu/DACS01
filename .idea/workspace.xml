@@ -5,13 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b664035e-7b0c-4c4d-8252-f0d6dc412f5b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Frontend/View/img/icon/branches.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Frontend/View/img/icon/distributor.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/View/img/icon/enterprise.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/View/img/icon/noun-enterprise-1584264.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Model/plot_dataChart.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Model/plot_dataChart.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/View/img/iceberg-minimalist.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/View/mainDashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/mainDashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/DAO/Constant.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/DAO/Constant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/View/img/resources.qrc" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/img/resources.qrc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/View/mainDashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/mainDashboard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/View/register.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/register.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/View/resources_rc.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/resources_rc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/login_resgister.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/login_resgister.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,28 +58,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.DatabaseConnection.executor&quot;: &quot;Run&quot;,
-    &quot;Python.EmployerDAO.executor&quot;: &quot;Run&quot;,
-    &quot;Python.EnterpriseDAO.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Login.executor&quot;: &quot;Run&quot;,
-    &quot;Python.frameUI.executor&quot;: &quot;Run&quot;,
-    &quot;Python.loginUI.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.main (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.main (2).executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.mainDashboard.executor&quot;: &quot;Run&quot;,
-    &quot;Python.testEmpDao.executor&quot;: &quot;Run&quot;,
-    &quot;Python.testTable.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;cuong&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/PYTHON/py_project&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.DatabaseConnection.executor": "Run",
+    "Python.EmployerDAO.executor": "Run",
+    "Python.EnterpriseDAO.executor": "Run",
+    "Python.Login.executor": "Run",
+    "Python.frameUI.executor": "Run",
+    "Python.loginUI.executor": "Debug",
+    "Python.main (1).executor": "Run",
+    "Python.main (2).executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.mainDashboard.executor": "Run",
+    "Python.testEmpDao.executor": "Run",
+    "Python.testTable.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "Merging cuong",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "D:/PYTHON/py_project",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\PYTHON\DACS01\Frontend" />

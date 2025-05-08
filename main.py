@@ -9,4 +9,4 @@ if __name__ == "__main__":
         controller = MainController()
         sys.exit(app.exec())
     except Exception as e:
-        print(f"{e}")
+        print(f"{e}")   
