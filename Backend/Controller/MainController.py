@@ -2,6 +2,7 @@ from Frontend.View.Login import Login
 from Frontend.View.mainDashboard import MainDashboard
 from Frontend.View.register import Register
 from Backend.Controller.EmployerController import EmployerController
+from Backend.Controller.EnterpriseController import EnterpriseController
 class MainController:
     def __init__(self):
         self.login_window = Login()
@@ -14,7 +15,8 @@ class MainController:
         self.dashboard_window.switch_to_signUp = self.show_login
 
         self.show_login()
-        self.employer_controller = EmployerController(self.register_window)
+        self.employer_controller = EmployerController(self.register_window, self.login_window)
+        self.enterprise_controller = EnterpriseController(self.register_window)
 
     def show_login(self):
         self.register_window.hide()
