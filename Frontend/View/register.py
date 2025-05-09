@@ -5,6 +5,7 @@ import sys
 import Frontend.View.resources_rc
 
 from PyQt6.QtWidgets import QApplication
+from Backend.DAO.DatabaseConnection import get_connection
 
 class Register(QtWidgets.QWidget):
     def __init__(self):
@@ -37,6 +38,7 @@ class Register(QtWidgets.QWidget):
         self.create_enterprise.clicked.connect(lambda: self.Background.setCurrentWidget(self.Enterprise_register))
 
         self.goback_register.clicked.connect(lambda: self.Background.setCurrentWidget(self.Register_page))
+
     def handle_switch(self):
         if self.switch_to_login:
             self.switch_to_login()
@@ -64,7 +66,7 @@ class Register(QtWidgets.QWidget):
         res = qm.question(self, 'Confirm', 'Are you sure to exit?', qm.StandardButton.Yes | qm.StandardButton.No)
         if res == qm.StandardButton.Yes:
             self.close()
-    def get_form_data(self):
+    def get_employer_form_data(self):
         return {
             "username": self.Username.text().strip(),
             "email": self.Email.text().strip(),
@@ -73,4 +75,15 @@ class Register(QtWidgets.QWidget):
             "date_of_birth": self.DateOfBirth.date().toString("yyyy-MM-dd"),
             "password": self.Password.text().strip(),
             "confirm_password": self.Confirm_password.text().strip()
+        }
+    def get_enterprise_form_data(self):
+        return {
+            "enterprise_name": self.enterprise_name.text().strip(),
+            "enterprise_founder": self.enterprise_founder.text().strip(),
+            "enterprise_address": self.enterprise_address.text().strip(),
+            "enterprise_phone_number": self.enterprise_phone_number.text().strip(),
+            "business_type" : self.business_type.currentText(),
+            "enterprise_industry": self.enterprise_industry.text().strip(),
+            "enterprise_password": self.enterprise_password.text().strip(),
+            "confirm_enterprise_password": self.confirm_enterprise_password.text().strip()
         }
