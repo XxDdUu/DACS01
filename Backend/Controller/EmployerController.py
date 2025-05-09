@@ -9,7 +9,7 @@ class EmployerController:
 		self.view.register_btn.clicked.connect(self.handle_register)
 	def handle_register(self):
 		data = self.view.get_form_data()
-		success, message = self.dao.insert_employer(data)
+		success, message = self.dao.check_loginUser(data)
 		if success:
 			QMessageBox.information(self.view, "Success", message)
 		else:

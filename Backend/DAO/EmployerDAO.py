@@ -1,5 +1,6 @@
 from mysql.connector import Error
 from werkzeug.security import generate_password_hash
+
 from Backend.DAO.DatabaseConnection import get_connection
 from PyQt6.QtWidgets import QMessageBox
 from mysql.connector import Error
@@ -47,6 +48,40 @@ class EmployerDAO:
             connection.commit()
             return True, "Employer registered successfully"
 
+        except Error as e:
+            traceback.print_exc()
+            return False, f"Database Error: {e}"
+        except ValueError:
+            return False, "Invalid date format! Use yyyy-mm-dd"
+        except Exception as e:
+            print(f"[Unhandled Error] {e}")
+            traceback.print_exc()
+            return False, f"Unexpected error: {e}"
+
+        finally:
+            if cursor:
+                cursor.close()
+            if connection.is_connected():
+                connection.close()
+    def check_loginUser(self,data):
+        username = data.get("username")
+        password = data.get("password")
+        connection = None
+        cursor = None
+        try:
+            hashed_password = generate_password_hash(password)
+            connection = get_connection()
+            cursor = connection.cursor()
+            cursor.execute("Select * from employer where Employer_name = %s and Employer_password = %s",(username,hashed_password))
+            result = cursor.fetchone()
+            connection.commit()
+            if result is not None:
+                from Backend.Controller.MainController import MainController
+                enterApp = MainController()
+                enterApp.login_window.switch_to_dashboardApp = enterApp.show_dashboardApp()
+                return True, "Login successfully!"
+            else:
+                return False, "Wrong login input!"
         except Error as e:
             traceback.print_exc()
             return False, f"Database Error: {e}"
