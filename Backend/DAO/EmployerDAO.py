@@ -1,5 +1,5 @@
 from mysql.connector import Error
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 
 from Backend.DAO.DatabaseConnection import get_connection
 from PyQt6.QtWidgets import QMessageBox
@@ -72,16 +72,20 @@ class EmployerDAO:
             hashed_password = generate_password_hash(password)
             connection = get_connection()
             cursor = connection.cursor()
-            cursor.execute("Select * from employer where Employer_name = %s and Employer_password = %s",(username,hashed_password))
+            cursor.execute("SELECT * FROM employer WHERE Employer_name = %s", (username,))
             result = cursor.fetchone()
             connection.commit()
-            if result is not None:
-                from Backend.Controller.MainController import MainController
-                enterApp = MainController()
-                enterApp.login_window.switch_to_dashboardApp = enterApp.show_dashboardApp()
-                return True, "Login successfully!"
+            if result:
+                stored_hashed_pass = result[5]
+                if check_password_hash(stored_hashed_pass,password):
+                    # from Backend.Controller.MainController import MainController
+                    # enterApp = MainController()
+                    # enterApp.login_window.switch_to_dashboardApp = enterApp.show_dashboardApp()
+                    return True, "Login successfully!"
+                else:
+                    return False,"Password does not match!"
             else:
-                return False, "Wrong login input!"
+                return False, "User account not found"
         except Error as e:
             traceback.print_exc()
             return False, f"Database Error: {e}"
