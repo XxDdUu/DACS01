@@ -20,10 +20,12 @@ class EnterpriseDao:
 		confirm_enterprise_password = data.get("confirm_enterprise_password")
 
 		if enterprise_password != confirm_enterprise_password:
-			return False, "password do not match"
+			return False, "Password do not match"
 		connection = None
 		cursor = None
 		try:
+			hashed_password_enterprise = generate_password_hash(enterprise_password)
+
 			print("Connecting")
 			connection = get_connection()
 			print("Connection successful.")
@@ -37,7 +39,6 @@ class EnterpriseDao:
 					Enterprise_password)
 					VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
 				"""
-			print("Hello")
 			cursor.execute(query, (
 					enterprise_id,
 					enterprise_name,
@@ -46,7 +47,7 @@ class EnterpriseDao:
 					enterprise_phone_number,
 					business_type,
 					enterprise_industry,
-					enterprise_password
+					hashed_password_enterprise
 				))
 
 			connection.commit()
@@ -67,4 +68,3 @@ class EnterpriseDao:
 					connection.close()
 				except MySQLdb.Error:
 					pass
-  
