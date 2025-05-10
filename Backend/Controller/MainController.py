@@ -1,3 +1,4 @@
+from Backend.Controller.DistributionController import ManageBranches
 from Frontend.View.Login import Login
 from Frontend.View.mainDashboard import MainDashboard
 from Frontend.View.register import Register
@@ -17,6 +18,7 @@ class MainController:
         self.show_login()
         self.employer_controller = EmployerController(self.register_window, self.login_window)
         self.enterprise_controller = EnterpriseController(self.register_window)
+        # self.branches_controller = ManageBranches(self.dashboard_window)
 
     def show_login(self):
         self.register_window.hide()
