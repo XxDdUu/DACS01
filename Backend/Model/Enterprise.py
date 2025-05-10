@@ -1,5 +1,3 @@
-import pandas as pd
-
 class Enterprise:
     def __init__(self, ID, name, founder, address, phone_number, type, industry):
         self.ID = ID
