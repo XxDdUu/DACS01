@@ -607,7 +607,10 @@ QPushButton::hover {
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit">
+                 <widget class="QLineEdit" name="enterprise_password_employer">
+                  <property name="echoMode">
+                   <enum>QLineEdit::Password</enum>
+                  </property>
                   <property name="placeholderText">
                    <string>Enter Enterprise password</string>
                   </property>
@@ -1548,6 +1551,9 @@ QComboBox#business_type {
                 </property>
                 <item>
                  <widget class="QLineEdit" name="enterprise_password">
+                  <property name="echoMode">
+                   <enum>QLineEdit::Password</enum>
+                  </property>
                   <property name="placeholderText">
                    <string>Enter password</string>
                   </property>
@@ -1557,6 +1563,9 @@ QComboBox#business_type {
                  <widget class="QLineEdit" name="confirm_enterprise_password">
                   <property name="autoFillBackground">
                    <bool>false</bool>
+                  </property>
+                  <property name="echoMode">
+                   <enum>QLineEdit::Password</enum>
                   </property>
                   <property name="placeholderText">
                    <string>Confirm password</string>

@@ -1,5 +1,6 @@
 from Backend.DAO.EmployerDAO import EmployerDAO
 from PyQt6.QtWidgets import QMessageBox
+from PyQt6.QtCore import QDate
 
 class EmployerController:
 	def __init__(self, register_view, login_view):
@@ -13,6 +14,15 @@ class EmployerController:
 		success, message = self.dao.insert_employer(data)
 		if success:
 			QMessageBox.information(self.register_view, "Success", message)
+			# clear tất cả khi register thanh cong
+			self.register_view.Username.clear()
+			self.register_view.Email.clear()
+			self.register_view.Phone_Num.clear()
+			self.register_view.Enterprise_id.clear()
+			self.register_view.enterprise_password_employer.clear()
+			self.register_view.Password.clear()
+			self.register_view.Confirm_password.clear()
+			self.register_view.DateOfBirth.setDate(QDate.currentDate())
 		else:
 			QMessageBox.warning(self.register_view, "Error", message)
 	def handle_loginCheck(self):

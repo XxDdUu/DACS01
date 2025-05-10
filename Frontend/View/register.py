@@ -5,7 +5,6 @@ import sys
 import Frontend.View.resources_rc
 
 from PyQt6.QtWidgets import QApplication
-from Backend.DAO.DatabaseConnection import get_connection
 
 class Register(QtWidgets.QWidget):
     def __init__(self):
@@ -72,6 +71,7 @@ class Register(QtWidgets.QWidget):
             "email": self.Email.text().strip(),
             "phone_number": self.Phone_Num.text().strip(),
             "enterprise_id": self.Enterprise_id.text().strip(),
+            "enterprise_password_employer": self.enterprise_password_employer.text().strip(),
             "date_of_birth": self.DateOfBirth.date().toString("yyyy-MM-dd"),
             "password": self.Password.text().strip(),
             "confirm_password": self.Confirm_password.text().strip()
