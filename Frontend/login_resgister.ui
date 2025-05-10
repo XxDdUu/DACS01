@@ -312,7 +312,7 @@ QPushButton::hover {
 }</string>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="Register_page">
          <property name="styleSheet">
@@ -1202,6 +1202,7 @@ QComboBox {
 }
 QComboBox QAbstractItemView::item {
         height: 28px;
+		color: rgb(0, 0, 0);
  }
 </string>
             </property>
@@ -1266,7 +1267,7 @@ QComboBox QAbstractItemView::item {
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="address">
+              <widget class="QLineEdit" name="enterprise_address">
                <property name="placeholderText">
                 <string>Enter address</string>
                </property>
@@ -1546,14 +1547,14 @@ QComboBox#business_type {
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QLineEdit" name="Confirm">
+                 <widget class="QLineEdit" name="enterprise_password">
                   <property name="placeholderText">
                    <string>Enter password</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="Password_enterprise">
+                 <widget class="QLineEdit" name="confirm_enterprise_password">
                   <property name="autoFillBackground">
                    <bool>false</bool>
                   </property>
