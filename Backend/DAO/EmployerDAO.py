@@ -1,10 +1,7 @@
-from mysql.connector import Error
+import MySQLdb
 from werkzeug.security import generate_password_hash, check_password_hash
-
 from Backend.DAO.DatabaseConnection import get_connection
 from PyQt6.QtWidgets import QMessageBox
-from mysql.connector import Error
-from datetime import datetime
 import re
 import traceback
 
@@ -17,9 +14,7 @@ class EmployerDAO:
         dateofbirth = data.get("date_of_birth")
         password = data.get("password")
         confirm_password = data.get("confirm_password")
-        connection = None
-        cursor = None
-        # Validation
+
         if password != confirm_password:
             return False, "Passwords do not match"
 
@@ -28,9 +23,14 @@ class EmployerDAO:
         if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
             return False, "Invalid email format"
 
+        connection = None
+        cursor = None
         try:
             hashed_password = generate_password_hash(password)
             connection = get_connection()
+            if not connection:
+                return False, "Failed to connect to DB"
+
             cursor = connection.cursor()
             query = """
                 INSERT INTO EMPLOYER
@@ -48,56 +48,50 @@ class EmployerDAO:
             connection.commit()
             return True, "Employer registered successfully"
 
-        except Error as e:
+        except MySQLdb.Error as e:
             traceback.print_exc()
             return False, f"Database Error: {e}"
         except ValueError:
             return False, "Invalid date format! Use yyyy-mm-dd"
         except Exception as e:
-            print(f"[Unhandled Error] {e}")
             traceback.print_exc()
             return False, f"Unexpected error: {e}"
-
         finally:
             if cursor:
                 cursor.close()
-            if connection.is_connected():
+            if connection:
                 connection.close()
-    def check_loginUser(self,data):
+    def check_loginUser(self, data):
         username = data.get("username")
         password = data.get("password")
         connection = None
         cursor = None
         try:
-            hashed_password = generate_password_hash(password)
             connection = get_connection()
+            if not connection:
+                return False, "Failed to connect to DB"
+
             cursor = connection.cursor()
-            cursor.execute("SELECT * FROM employer WHERE Employer_name = %s", (username,))
+            cursor.execute("SELECT * FROM EMPLOYER WHERE Employer_name = %s", (username,))
             result = cursor.fetchone()
-            connection.commit()
+
             if result:
-                stored_hashed_pass = result[5]
-                if check_password_hash(stored_hashed_pass,password):
-                    # from Backend.Controller.MainController import MainController
-                    # enterApp = MainController()
-                    # enterApp.login_window.switch_to_dashboardApp = enterApp.show_dashboardApp()
+                stored_hashed_pass = result[5]  # Giả sử mật khẩu ở cột 5
+                if check_password_hash(stored_hashed_pass, password):
                     return True, "Login successfully!"
                 else:
-                    return False,"Password does not match!"
+                    return False, "Password does not match!"
             else:
                 return False, "User account not found"
-        except Error as e:
+
+        except MySQLdb.Error as e:
             traceback.print_exc()
             return False, f"Database Error: {e}"
-        except ValueError:
-            return False, "Invalid date format! Use yyyy-mm-dd"
         except Exception as e:
-            print(f"[Unhandled Error] {e}")
             traceback.print_exc()
             return False, f"Unexpected error: {e}"
-
         finally:
             if cursor:
                 cursor.close()
-            if connection.is_connected():
+            if connection:
                 connection.close()

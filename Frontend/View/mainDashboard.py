@@ -9,6 +9,8 @@ from PyQt6.QtWidgets import (QMainWindow, QApplication,
 from PyQt6.QtCore import Qt, QSize
 from PyQt6.QtGui import QPixmap, QFont, QIcon
 
+from Backend.Model.Branches import BranchesFormData
+from Backend.Model.Product import ProductFormData
 from Backend.Model.plot_dataChart import generalChart, ProductChart
 from Frontend.View.frameUI import Ui_MainWindow
 
@@ -305,13 +307,13 @@ class MainDashboard(QMainWindow):
                     # Horizontal button layout for Table 1
                     button_layout1 = QHBoxLayout()
                     button_layout1.setAlignment(Qt.AlignmentFlag.AlignCenter)
-                    add_btn1 = QPushButton("Add")
-                    add_btn1.setFixedSize(80, 30)
+                    self.add_btn1 = QPushButton("Add")
+                    self.add_btn1.setFixedSize(80, 30)
                     remove_btn1 = QPushButton("Remove")
                     remove_btn1.setFixedSize(80, 30)
                     update_btn1 = QPushButton("Update")
                     update_btn1.setFixedSize(80, 30)
-                    button_layout1.addWidget(add_btn1)
+                    button_layout1.addWidget(self.add_btn1)
                     button_layout1.addWidget(remove_btn1)
                     button_layout1.addWidget(update_btn1)
                     button_widget1 = QWidget()
@@ -344,7 +346,7 @@ class MainDashboard(QMainWindow):
                     form2_layout.addLayout(input_layout2)
 
                     # BFD viết tắt BranchesFormData
-                    self.BFD = BranchesFormData(branch_id2,name2,address2,phone_number2)
+                    self.BFD = BranchesFormData(name2,address2,phone_number2)
                     #PFD viet tat ProductFormData
                     self.PFD = ProductFormData(name1,price1,amount1,branch_id1)
 
@@ -428,7 +430,7 @@ class MainDashboard(QMainWindow):
                             phone_number2.clear()
 
                     # Connect buttons to slots
-                    add_btn1.clicked.connect(add_row_table1)
+                    self.add_btn1.clicked.connect(add_row_table1)
                     remove_btn1.clicked.connect(remove_row_table1)
                     update_btn1.clicked.connect(update_row_table1)
                     self.add_btn2.clicked.connect(add_row_table2)
@@ -539,32 +541,30 @@ class MainDashboard(QMainWindow):
             print(f"Error loading stylesheet: {e}")
 
 
-class BranchesFormData:
-    def __init__(self, Id, name, address, phone_num):
-        self.Id = Id
-        self.name = name
-        self.address = address
-        self.phone_num = phone_num
+# class BranchesFormData:
+#     def __init__(self, name, address, phone_num):
+#         self.name = name
+#         self.address = address
+#         self.phone_num = phone_num
+#
+#     def get_branchesForm_data(self):
+#         return {
+#             "name": self.name.text().strip(),
+#             "address": self.address.text().strip(),
+#             "phone_number": self.phone_num.text().strip()
+#         }
 
-    def get_branchesForm_data(self):
-        return {
-            "id": self.Id.text().strip(),
-            "name": self.name.text().strip(),
-            "address": self.address.text().strip(),
-            "phone_number": self.phone_num.text().strip()
-        }
-
-class ProductFormData:
-    def __init__(self, name, price, amount, branch_Id):
-        self.name = name
-        self.price = price
-        self.amount = amount
-        self.branch_Id = branch_Id
-
-    def get_ProductForm_data(self):
-        return {
-            "name": self.name.text().strip(),
-            "price": self.price.text().strip(),
-            "amount": self.amount.text().strip(),
-            "branch_id": self.branch_Id.text().strip()
-        }
+# class ProductFormData:
+#     def __init__(self, name, price, amount, branch_Id):
+#         self.name = name
+#         self.price = price
+#         self.amount = amount
+#         self.branch_Id = branch_Id
+#
+#     def get_ProductForm_data(self):
+#         return {
+#             "name": self.name.text().strip(),
+#             "price": self.price.text().strip(),
+#             "amount": self.amount.text().strip(),
+#             "branch_id": self.branch_Id.text().strip()
+#         }
