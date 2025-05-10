@@ -1,18 +1,17 @@
-<<<<<<< HEAD
-=======
-import mysql.connector
-from mysql.connector import Error
+import MySQLdb
+from MySQLdb import Error
 from werkzeug.security import generate_password_hash
 from Backend.DAO.DatabaseConnection import get_connection
 from PyQt6.QtWidgets import QMessageBox
-from mysql.connector import Error
 from datetime import datetime
+from Backend.Utils.EnterpriseUtilities import generate_random_enterprise_id
 import re
 import traceback
 
 
 class EnterpriseDao:
 	def insert_enterprise(self, data):
+		enterprise_id = generate_random_enterprise_id()
 		enterprise_name = data.get("enterprise_name")
 		enterprise_founder = data.get("enterprise_founder")
 		enterprise_address = data.get("enterprise_address")
@@ -24,6 +23,8 @@ class EnterpriseDao:
 
 		if enterprise_password != confirm_enterprise_password:
 			return False, "password do not match"
+		connection = None
+		cursor = None
 		try:
 			print("Connecting")
 			connection = get_connection()
@@ -40,6 +41,7 @@ class EnterpriseDao:
 				"""
 			print("Hello")
 			cursor.execute(query, (
+					enterprise_id,
 					enterprise_name,
 					enterprise_founder,
 					enterprise_address,
@@ -57,7 +59,13 @@ class EnterpriseDao:
 			print(f"Error:{e}")
 			return False, f"Database error: {e}"
 		finally:
-			if cursor:
-				cursor.close()
-			if connection.is_connected():
-				connection.close()
+			if cursor is not None:
+				try:
+					cursor.close()
+				except MySQLdb.Error:
+					pass
+			if connection is not None:
+				try:
+					connection.close()
+				except MySQLdb.Error:
+					pass

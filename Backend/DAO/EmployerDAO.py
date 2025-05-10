@@ -1,9 +1,9 @@
-from mysql.connector import Error
+import MySQLdb
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from Backend.DAO.DatabaseConnection import get_connection
 from PyQt6.QtWidgets import QMessageBox
-from mysql.connector import Error
+from MySQLdb import Error
 from datetime import datetime
 import re
 class EmployerDAO:
@@ -15,8 +15,6 @@ class EmployerDAO:
         dateofbirth = data.get("date_of_birth")
         password = data.get("password")
         confirm_password = data.get("confirm_password")
-        connection = None
-        cursor = None
         # Validation
         if password != confirm_password:
             return False, "Passwords do not match"
@@ -25,7 +23,8 @@ class EmployerDAO:
             return False, "All fields are required"
         if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
             return False, "Invalid email format"
-
+        connection = None
+        cursor = None
         try:
             hashed_password = generate_password_hash(password)
             connection = get_connection()
@@ -46,7 +45,7 @@ class EmployerDAO:
             connection.commit()
             return True, "Employer registered successfully"
 
-        except Error as e:
+        except MySQLdb.Error as e:
             return False, f"Database Error: {e}"
         except ValueError:
             return False, "Invalid date format! Use yyyy-mm-dd"
@@ -55,10 +54,16 @@ class EmployerDAO:
             return False, f"Unexpected error: {e}"
 
         finally:
-            if cursor:
-                cursor.close()
-            if connection.is_connected():
-                connection.close()
+            if cursor is not None:
+                try:
+                    cursor.close()
+                except MySQLdb.Error:
+                    pass
+            if connection is not None:
+                try:
+                    connection.close()
+                except MySQLdb.Error:
+                    pass    
     def check_loginUser(self,data):
         username = data.get("username")
         password = data.get("password")
@@ -95,5 +100,5 @@ class EmployerDAO:
         finally:
             if cursor:
                 cursor.close()
-            if connection.is_connected():
+            if connection:
                 connection.close()
