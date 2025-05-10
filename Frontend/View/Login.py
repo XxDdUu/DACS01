@@ -41,8 +41,10 @@ class Login(QMainWindow):
         self.register_button.setObjectName("registerButton")
         self.register_button.setText("Create new account?")
 
-        self.nameLineEdit = self.ui.passLineEdit.setObjectName("nameLineEdit")
-        self.passLineEdit = self.ui.passLineEdit.setObjectName("passLineEdit")
+        self.nameLineEdit = self.ui.passLineEdit
+        self.nameLineEdit.setObjectName("nameLineEdit")
+        self.passLineEdit = self.ui.passLineEdit
+        self.passLineEdit.setObjectName("passLineEdit")
 
         self.switch_to_register = None
         self.register_button.clicked.connect(self.handle_switch)
@@ -68,3 +70,8 @@ class Login(QMainWindow):
             print(f"Error: CSS file not found at {css_path}")
         except Exception as e:
             print(f"Error loading stylesheet: {e}")
+    def check_loginForm_data(self):
+        return{
+            "username": self.nameLineEdit.text().strip(),
+            "password": self.passLineEdit.text().strip()
+        }

@@ -289,8 +289,8 @@ class MainDashboard(QMainWindow):
 
                     input_layout1 = QGridLayout()
                     input_layout1.addWidget(QLabel("Name:"), 0, 0)
-                    name_1 = QLineEdit()
-                    input_layout1.addWidget(name_1, 0, 1)
+                    name1 = QLineEdit()
+                    input_layout1.addWidget(name1, 0, 1)
                     input_layout1.addWidget(QLabel("Price:"), 1, 0)
                     price1 = QLineEdit()
                     input_layout1.addWidget(price1, 1, 1)
@@ -343,18 +343,23 @@ class MainDashboard(QMainWindow):
                     input_layout2.addWidget(phone_number2, 3, 1)
                     form2_layout.addLayout(input_layout2)
 
+                    # BFD viết tắt BranchesFormData
+                    self.BFD = BranchesFormData(branch_id2,name2,address2,phone_number2)
+                    #PFD viet tat ProductFormData
+                    self.PFD = ProductFormData(name1,price1,amount1,branch_id1)
+
                     # Horizontal button layout for Table 2
                     button_layout2 = QHBoxLayout()
                     button_layout2.setAlignment(Qt.AlignmentFlag.AlignCenter)
-                    add_btn2 = QPushButton("Add")
-                    add_btn2.setFixedSize(80, 30)
-                    remove_btn2 = QPushButton("Remove")
-                    remove_btn2.setFixedSize(80, 30)
-                    update_btn2 = QPushButton("Update")
-                    update_btn2.setFixedSize(80, 30)
-                    button_layout2.addWidget(add_btn2)
-                    button_layout2.addWidget(remove_btn2)
-                    button_layout2.addWidget(update_btn2)
+                    self.add_btn2 = QPushButton("Add")
+                    self.add_btn2.setFixedSize(80, 30)
+                    self.remove_btn2 = QPushButton("Remove")
+                    self.remove_btn2.setFixedSize(80, 30)
+                    self.update_btn2 = QPushButton("Update")
+                    self.update_btn2.setFixedSize(80, 30)
+                    button_layout2.addWidget(self.add_btn2)
+                    button_layout2.addWidget(self.remove_btn2)
+                    button_layout2.addWidget(self.update_btn2 )
                     button_widget2 = QWidget()
                     button_widget2.setLayout(button_layout2)
                     form2_layout.addWidget(button_widget2)
@@ -366,11 +371,11 @@ class MainDashboard(QMainWindow):
                     def add_row_table1():
                         row_count = table1.rowCount()
                         table1.insertRow(row_count)
-                        table1.setItem(row_count, 0, QTableWidgetItem(name_1.text()))
+                        table1.setItem(row_count, 0, QTableWidgetItem(name1.text()))
                         table1.setItem(row_count, 1, QTableWidgetItem(price1.text()))
                         table1.setItem(row_count, 2, QTableWidgetItem(amount1.text()))
                         table1.setItem(row_count, 3, QTableWidgetItem(branch_id1.text()))
-                        name_1.clear()
+                        name1.clear()
                         price1.clear()
                         amount1.clear()
                         branch_id1.clear()
@@ -383,11 +388,11 @@ class MainDashboard(QMainWindow):
                     def update_row_table1():
                         current_row = table1.currentRow()
                         if current_row >= 0:
-                            table1.setItem(current_row, 0, QTableWidgetItem(name_1.text()))
+                            table1.setItem(current_row, 0, QTableWidgetItem(name1.text()))
                             table1.setItem(current_row, 1, QTableWidgetItem(price1.text()))
                             table1.setItem(current_row, 2, QTableWidgetItem(amount1.text()))
                             table1.setItem(current_row, 3, QTableWidgetItem(branch_id1.text()))
-                            name_1.clear()
+                            name1.clear()
                             price1.clear()
                             amount1.clear()
                             branch_id1.clear()
@@ -426,9 +431,9 @@ class MainDashboard(QMainWindow):
                     add_btn1.clicked.connect(add_row_table1)
                     remove_btn1.clicked.connect(remove_row_table1)
                     update_btn1.clicked.connect(update_row_table1)
-                    add_btn2.clicked.connect(add_row_table2)
-                    remove_btn2.clicked.connect(remove_row_table2)
-                    update_btn2.clicked.connect(update_row_table2)
+                    self.add_btn2.clicked.connect(add_row_table2)
+                    self.remove_btn2.clicked.connect(remove_row_table2)
+                    self.update_btn2.clicked.connect(update_row_table2)
 
                     # Layout for tables and forms
                     content_layout = QHBoxLayout()
@@ -443,6 +448,7 @@ class MainDashboard(QMainWindow):
                     content_layout.addLayout(table1_layout)
                     content_layout.addLayout(table2_layout)
                     newPage.setLayout(content_layout)
+
                 elif text == "Setting":
                     settingLayout = QGridLayout()
                     # Thêm một số widget vào layout dưới cùng
@@ -531,3 +537,34 @@ class MainDashboard(QMainWindow):
             print(f"Error: CSS file not found at {css_path}")
         except Exception as e:
             print(f"Error loading stylesheet: {e}")
+
+
+class BranchesFormData:
+    def __init__(self, Id, name, address, phone_num):
+        self.Id = Id
+        self.name = name
+        self.address = address
+        self.phone_num = phone_num
+
+    def get_branchesForm_data(self):
+        return {
+            "id": self.Id.text().strip(),
+            "name": self.name.text().strip(),
+            "address": self.address.text().strip(),
+            "phone_number": self.phone_num.text().strip()
+        }
+
+class ProductFormData:
+    def __init__(self, name, price, amount, branch_Id):
+        self.name = name
+        self.price = price
+        self.amount = amount
+        self.branch_Id = branch_Id
+
+    def get_ProductForm_data(self):
+        return {
+            "name": self.name.text().strip(),
+            "price": self.price.text().strip(),
+            "amount": self.amount.text().strip(),
+            "branch_id": self.branch_Id.text().strip()
+        }
