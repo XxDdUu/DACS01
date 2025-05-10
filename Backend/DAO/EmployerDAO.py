@@ -41,7 +41,7 @@ class EmployerDAO:
             if result:
                 stored_hashed_pass = result[0]
                 if not check_password_hash(stored_hashed_pass, enterprise_password_employer):
-                    return False, ("Wrong password for enterprise: " + enterprise_id)  
+                    return False, ("Wrong password for enterprise: " + enterprise_id)
             else:
                 return False, "Enterprise id not found"
 
@@ -111,11 +111,13 @@ class EmployerDAO:
             if result:
                 stored_hashed_pass = result["Employer_password"]
                 if check_password_hash(stored_hashed_pass, password):
+                    print("Login successfully!")
                     return True, "Login successfully!"
                 else:
                     return False, "Password does not match!"
             else:
-                return False, "User account not found"
+                print("Wrong password or username!")
+                return False, "WRONG password or username!"
 
         except MySQLdb.Error as e:
             traceback.print_exc()

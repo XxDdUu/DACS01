@@ -30,5 +30,6 @@ class EmployerController:
 		success, message = self.dao.check_loginUser(data)
 		if success:
 			QMessageBox.information(self.login_view, "Success", message)
+			self.login_view.handle_login_enter()
 		else:
 			QMessageBox.warning(self.login_view, "Error", message)
