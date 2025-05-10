@@ -7,7 +7,7 @@ class EmployerController:
 		self.login_view = login_view	# login
 		self.dao = EmployerDAO()
 		self.register_view.register_btn.clicked.connect(self.handle_register)
-		self.login_view.login_button.clicked.connect(self.handle_loginCheck)
+		# self.login_view.login_button.clicked.connect(self.handle_loginCheck)
 	def handle_register(self):
 		data = self.register_view.get_employer_form_data()
 		success, message = self.dao.insert_employer(data)
