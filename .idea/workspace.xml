@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b664035e-7b0c-4c4d-8252-f0d6dc412f5b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/Utils/EmployerUtilities.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Controller/EmployerController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Controller/EmployerController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Controller/EnterpriseController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Controller/EnterpriseController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Controller/MainController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Controller/MainController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/DAO/EmployerDAO.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/DAO/EmployerDAO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/DAO/EnterpriseDAO.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/DAO/EnterpriseDAO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Model/Employer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Model/Employer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Model/Enterprise.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Model/Enterprise.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Model/Product.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Model/Product.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/View/register.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/register.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/login_resgister.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/login_resgister.ui" afterDir="false" />
-    </list>
+    <list default="true" id="b664035e-7b0c-4c4d-8252-f0d6dc412f5b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -75,7 +62,7 @@
     "Python.testTable.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Merging long",
+    "git-widget-placeholder": "long",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "D:/PYTHON/py_project",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
