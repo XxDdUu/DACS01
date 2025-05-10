@@ -567,4 +567,3 @@ class MainDashboard(QMainWindow):
 #             "price": self.price.text().strip(),
 #             "amount": self.amount.text().strip(),
 #             "branch_id": self.branch_Id.text().strip()
-#         }

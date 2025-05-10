@@ -2,9 +2,9 @@ import MySQLdb
 from werkzeug.security import generate_password_hash, check_password_hash
 from Backend.DAO.DatabaseConnection import get_connection
 from PyQt6.QtWidgets import QMessageBox
+from MySQLdb import Error
+from datetime import datetime
 import re
-import traceback
-
 class EmployerDAO:
     def insert_employer(self, data):
         username = data.get("username")
@@ -14,6 +14,7 @@ class EmployerDAO:
         dateofbirth = data.get("date_of_birth")
         password = data.get("password")
         confirm_password = data.get("confirm_password")
+        # Validation
 
         if password != confirm_password:
             return False, "Passwords do not match"
@@ -54,14 +55,21 @@ class EmployerDAO:
         except ValueError:
             return False, "Invalid date format! Use yyyy-mm-dd"
         except Exception as e:
+            print(f"[Unhandled Error] {e}") 
             traceback.print_exc()
             return False, f"Unexpected error: {e}"
         finally:
-            if cursor:
-                cursor.close()
-            if connection:
-                connection.close()
-    def check_loginUser(self, data):
+            if cursor is not None:
+                try:
+                    cursor.close()
+                except MySQLdb.Error:
+                    pass
+            if connection is not None:
+                try:
+                    connection.close()
+                except MySQLdb.Error:
+                    pass    
+    def check_loginUser(self,data):
         username = data.get("username")
         password = data.get("password")
         connection = None
@@ -76,7 +84,7 @@ class EmployerDAO:
             result = cursor.fetchone()
 
             if result:
-                stored_hashed_pass = result[5]  # Giả sử mật khẩu ở cột 5
+                stored_hashed_pass = result[5]
                 if check_password_hash(stored_hashed_pass, password):
                     return True, "Login successfully!"
                 else:
@@ -95,3 +103,4 @@ class EmployerDAO:
                 cursor.close()
             if connection:
                 connection.close()
+

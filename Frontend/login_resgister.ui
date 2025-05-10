@@ -21,7 +21,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">#main_frame {
-	background-color: rgb(255, 255, 255);
+        background-color: rgb(255, 255, 255);
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -44,8 +44,8 @@
     <widget class="QFrame" name="main_frame">
      <property name="styleSheet">
       <string notr="true">#main_frame {
-	background-color: rgb(255, 255, 255);
-	border-radius: 5px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 5px;
 }</string>
      </property>
      <property name="frameShape">
@@ -92,8 +92,13 @@
         </property>
         <property name="styleSheet">
          <string notr="true">#header::hover {
-	background: rgb(235, 235, 235);
- 	 transition-duration: 2s;
+        background: rgb(235, 235, 235);
+}
+#header {
+	background-color: rgb(255, 255, 255);
+}
+QFrame#interact {
+	background-color: rgb(255, 255, 255);
 }</string>
         </property>
         <property name="frameShape">
@@ -162,14 +167,14 @@
            </property>
            <property name="styleSheet">
             <string notr="true">QPushButton {
-	border: none;
+        border: none;
 }
 QPushButton::hover {
-	border: 1px solid #000;
+        border: 1px solid #000;
 }
 #interact {
-	margin: 0;
-	padding: 0;
+        margin: 0;
+        padding: 0;
 }</string>
            </property>
            <property name="frameShape">
@@ -303,7 +308,7 @@ QPushButton::hover {
        <widget class="QStackedWidget" name="Background">
         <property name="styleSheet">
          <string notr="true">#Register_page {
-	background: rgb(255, 255, 255);
+        background: rgb(255, 255, 255);
 }</string>
         </property>
         <property name="currentIndex">
@@ -312,7 +317,7 @@ QPushButton::hover {
         <widget class="QWidget" name="Register_page">
          <property name="styleSheet">
           <string notr="true">#Login_page {
-	background: rgb(195, 195, 195)
+        background: rgb(195, 195, 195)
 }</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -320,10 +325,10 @@ QPushButton::hover {
            <widget class="QFrame" name="image_frame">
             <property name="styleSheet">
              <string notr="true">#image_framel {
-	align-items: center;
- 	 justify-content: center;
-  	display: flex;
-	  font-size: 1.5rem;
+        align-items: center;
+         justify-content: center;
+        display: flex;
+          font-size: 1.5rem;
 }</string>
             </property>
             <property name="frameShape">
@@ -331,6 +336,9 @@ QPushButton::hover {
             </property>
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
+            </property>
+            <property name="lineWidth">
+             <number>0</number>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_5">
              <property name="spacing">
@@ -352,10 +360,13 @@ QPushButton::hover {
               <widget class="QFrame" name="register_label_frame">
                <property name="styleSheet">
                 <string notr="true">#register_label_frame {
-	background-color: rgb(255, 255, 255);
+        background-color: rgb(255, 255, 255);
 }
 #main_image_frame {
-	background-color: rgb(255, 255, 255);
+        background-color: rgb(255, 255, 255);
+}
+#main_text_label {
+		color: rgb(0, 0, 0);
 }</string>
                </property>
                <property name="frameShape">
@@ -363,6 +374,9 @@ QPushButton::hover {
                </property>
                <property name="frameShadow">
                 <enum>QFrame::Raised</enum>
+               </property>
+               <property name="lineWidth">
+                <number>0</number>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_7">
                 <property name="rightMargin">
@@ -464,26 +478,34 @@ QPushButton::hover {
            <widget class="QFrame" name="text_frame">
             <property name="styleSheet">
              <string notr="true">QLineEdit {
-	color : #232, 237, 234;
-	background-color: #217, 217, 217;
-	border: none;
-	border-bottom-style: solid;
-	border-bottom-width: 1px;
-	border-radius: 2px;
-	border-bottom-color: #000;
-	margin: 2px;
-	height: 35px;
-	padding-left: 3px;
+        color :  rgb(56, 56, 56);
+        background-color: rgb(255, 255, 255);
+        border: none;
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        border-radius: 2px;
+        border-bottom-color: #000;
+        margin: 2px;
+        height: 35px;
+        padding-left: 3px;
+		
 }
 #DateOfBirth {
-	margin: 2px;
+        margin: 2px;
 
-	border-radius: 2px;
-	color : #232, 237, 234;
-	background-color: #217, 217, 217;
-	height: 35px;
-	text-align: center;
-	padding-left: 3px
+        border-radius: 2px;
+        color : #232, 237, 234;
+        background-color: #217, 217, 217;
+        height: 35px;
+        text-align: center;
+        padding-left: 3px
+}
+#text_frame {
+	background-color: rgb(255, 255, 255);
+}
+#div_frame_2 {
+	
+	background-color: rgb(255, 255, 255);
 }</string>
             </property>
             <property name="frameShape">
@@ -491,6 +513,9 @@ QPushButton::hover {
             </property>
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
+            </property>
+            <property name="lineWidth">
+             <number>0</number>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_4">
              <property name="spacing">
@@ -551,10 +576,44 @@ QPushButton::hover {
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="Enterprise_id">
-               <property name="placeholderText">
-                <string>Enter Enterprise ID</string>
+              <widget class="QFrame" name="div_frame_2">
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
                </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_12">
+                <property name="spacing">
+                 <number>4</number>
+                </property>
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QLineEdit" name="Enterprise_id">
+                  <property name="placeholderText">
+                   <string>Enter Enterprise ID</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="lineEdit">
+                  <property name="placeholderText">
+                   <string>Enter Enterprise password</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </widget>
              </item>
              <item>
@@ -572,18 +631,18 @@ QPushButton::hover {
                </property>
                <property name="styleSheet">
                 <string notr="true">#text_dob{
-	padding-left:  3px;
-	color:rgb(139, 139, 139);
+        padding-left:  3px;
+        color:rgb(139, 139, 139);
 }
 QFrame#DOB {
-	border:none;
-	border-bottom: 1px solid #000;
-	border-radius: 2px;
-	background: rgb(255, 255, 255)
+        border:none;
+        border-bottom: 1px solid #000;
+        border-radius: 2px;
+        background: rgb(255, 255, 255)
 }
 QDateEdit {
     background-color: rgb(255, 255, 255);
-	color: rgb(159, 159, 159)
+        color: rgb(159, 159, 159)
 }</string>
                </property>
                <property name="frameShape">
@@ -700,26 +759,32 @@ QDateEdit {
            <widget class="QFrame" name="submit_frame">
             <property name="styleSheet">
              <string notr="true">#register_btn {
-	background: rgb(203, 203, 203);
-	color: rgb(255, 255, 255);
+        color: rgb(255, 255, 255);
+		background-color: rgb(150, 150, 150);
+		border: 1px solid rgb(67, 67, 67);
+		border-radius: 3px;
 }
 #register_btn::hover {
-	background: rgb(211, 211, 211);
+		color: rgb(54, 54, 54);
 }
+
 #login_label {
-	color: rgb(0, 0, 0);
+        color: rgb(0, 0, 0);
+}
+#create_enterprise {
+		color: rgb(0, 0, 0);
 }
 #create_enterprise::hover {
-	color: rgb(0, 0, 0);
-}
-#create_enterprise::hover {
-	color: rgb(85, 85, 127);
+        color: rgb(85, 85, 127);
 }
 #login_label::hover {
-	color: rgb(85, 85, 127);
+        color: rgb(85, 85, 127);
 }
 #submit_frame {
-	background-color: rgb(255, 255, 255);
+        background-color: rgb(255, 255, 255);
+}
+#signin_createEnterprise {
+		background-color: rgb(255, 255, 255);
 }</string>
             </property>
             <property name="frameShape">
@@ -728,28 +793,25 @@ QDateEdit {
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
             </property>
+            <property name="lineWidth">
+             <number>0</number>
+            </property>
             <layout class="QVBoxLayout" name="verticalLayout_6">
              <item>
               <widget class="QFrame" name="btn_frame">
                <property name="styleSheet">
                 <string notr="true">#btn_frame {
-	background-color: rgb(255, 255, 255);
-}
-#register_btn {
-	color: rgb(255, 255, 255);
-	
-}
-#register_btn::hover {
- 	
-	background-color: rgb(89, 89, 89);
-}
-</string>
+        background-color: rgb(255, 255, 255);
+}</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::StyledPanel</enum>
                </property>
                <property name="frameShadow">
                 <enum>QFrame::Raised</enum>
+               </property>
+               <property name="lineWidth">
+                <number>0</number>
                </property>
                <layout class="QHBoxLayout" name="horizontalLayout_4">
                 <property name="spacing">
@@ -769,6 +831,12 @@ QDateEdit {
                 </property>
                 <item>
                  <widget class="QPushButton" name="register_btn">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>30</height>
+                   </size>
+                  </property>
                   <property name="font">
                    <font>
                     <family>Segoe UI Semibold</family>
@@ -830,6 +898,9 @@ QDateEdit {
                <property name="frameShadow">
                 <enum>QFrame::Raised</enum>
                </property>
+               <property name="lineWidth">
+                <number>0</number>
+               </property>
                <layout class="QHBoxLayout" name="horizontalLayout_5">
                 <property name="spacing">
                  <number>0</number>
@@ -862,10 +933,10 @@ QDateEdit {
                    </font>
                   </property>
                   <property name="lineWidth">
-                   <number>1</number>
+                   <number>0</number>
                   </property>
                   <property name="text">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Already have account? Sign in&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Already have account? Sign in&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignCenter</set>
@@ -907,11 +978,11 @@ QDateEdit {
                   </property>
                   <property name="styleSheet">
                    <string notr="true">#div {
-	color : rgb(0, 0, 0);
+        color : rgb(0, 0, 0);
 }</string>
                   </property>
                   <property name="lineWidth">
-                   <number>1</number>
+                   <number>0</number>
                   </property>
                   <property name="text">
                    <string>|</string>
@@ -935,9 +1006,12 @@ QDateEdit {
                   <property name="font">
                    <font>
                     <pointsize>8</pointsize>
-                    <weight>75</weight>
-                    <bold>true</bold>
+                    <weight>50</weight>
+                    <bold>false</bold>
                    </font>
+                  </property>
+                  <property name="lineWidth">
+                   <number>0</number>
                   </property>
                   <property name="text">
                    <string>Don't have enterprise yet? Create one</string>
@@ -970,7 +1044,7 @@ QDateEdit {
         <widget class="QWidget" name="Enterprise_register">
          <property name="styleSheet">
           <string notr="true">#Enterprise_register {
-	background-color: rgb(255, 255, 255);
+        background-color: rgb(255, 255, 255);
 }</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -978,10 +1052,14 @@ QDateEdit {
            <widget class="QFrame" name="main_image_frame_2">
             <property name="styleSheet">
              <string notr="true">#main_image_frame_2 {
-	background-color: rgb(255, 255, 255);
+        background-color: rgb(255, 255, 255);
 }
 #image_frame_2 {
-	background-color: rgb(255, 255, 255);
+        background-color: rgb(255, 255, 255);
+}
+#main_label {
+		
+	color: rgb(0, 0, 0);
 }</string>
             </property>
             <property name="frameShape">
@@ -1102,26 +1180,29 @@ QDateEdit {
           <item>
            <widget class="QFrame" name="input_text_enterprise">
             <property name="styleSheet">
-             <string notr="true">#input_text_enterprise {
-	background-color: rgb(255, 255, 255);
+             <string notr="true">QFrame {
+        background-color: rgb(255, 255, 255);
 }
 QLineEdit {
-	color : #232, 237, 234;
-	background-color: #217, 217, 217;
-	border: none;
-	border-bottom-style: solid;
-	border-bottom-width: 1px;
-	border-radius: 2px;
-	border-bottom-color: #000;
-	margin: 2px;
-	height: 35px;
-	padding-left: 10px;
+		
+		color: rgb(0, 0, 0);
+        background: rgb(255, 255, 255);
+        border: none;
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        border-radius: 2px;
+        border-bottom-color: #000;
+        margin: 2px;
+        height: 35px;
+        padding-left: 10px;
 }
 QComboBox {
-	border: none;
+        border: none;
+		background-color: rgb(255, 255, 255);
 }
 QComboBox QAbstractItemView::item {
         height: 28px;
+		color: rgb(0, 0, 0);
  }
 </string>
             </property>
@@ -1133,7 +1214,7 @@ QComboBox QAbstractItemView::item {
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_9">
              <item>
-              <widget class="QFrame" name="frame">
+              <widget class="QFrame" name="div_frame">
                <property name="minimumSize">
                 <size>
                  <width>0</width>
@@ -1209,13 +1290,13 @@ QComboBox QAbstractItemView::item {
                </property>
                <property name="styleSheet">
                 <string notr="true">QFrame#business_type_frame {
-	border:none;
-	border-bottom: 1px solid #000;
-	border-radius: 2px;
-	background: rgb(255, 255, 255);
+        border:none;
+        border-bottom: 1px solid #000;
+        border-radius: 2px;
+        background: rgb(255, 255, 255);
 }
 QComboBox#business_type {
-	color: rgb(126, 126, 126);
+        color: rgb(126, 126, 126);
 }</string>
                </property>
                <property name="frameShape">
@@ -1474,6 +1555,9 @@ QComboBox#business_type {
                 </item>
                 <item>
                  <widget class="QLineEdit" name="confirm_enterprise_password">
+                  <property name="autoFillBackground">
+                   <bool>false</bool>
+                  </property>
                   <property name="placeholderText">
                    <string>Confirm password</string>
                   </property>
@@ -1489,26 +1573,31 @@ QComboBox#business_type {
            <widget class="QFrame" name="submit_frame_2">
             <property name="styleSheet">
              <string notr="true">#submit_frame_2 {
-	background-color: rgb(255, 255, 255);
+        background-color: rgb(255, 255, 255);
 }
 #create_enterprise_btn {
-	background: rgb(203, 203, 203);
-	color: rgb(255, 255, 255);
+        background: rgb(203, 203, 203);
+        color: rgb(255, 255, 255);
+		border: 1px solid rgb(54, 54, 54);
+		border-radius: 3px;
 }
 #create_enterprise_btn::hover {
-	background: rgb(211, 211, 211);
+        color: rgb(77, 77, 77);
+}
+#goback_frame {
+		color:rgb(0, 0, 0);
 }
 #goback_register {
-	color: rgb(0, 0, 0);
+        color: rgb(0, 0, 0);
 }
 #goback_register::hover {
-	color: rgb(150, 150, 150)
+        color: rgb(150, 150, 150)
 }
 #create_frame {
-	background-color: rgb(255, 255, 255);
+        background-color: rgb(255, 255, 255);
 }
 #goback_frame{
-	background-color: rgb(255, 255, 255);
+        background-color: rgb(255, 255, 255);
 }</string>
             </property>
             <property name="frameShape">
@@ -1581,7 +1670,7 @@ QComboBox#business_type {
   <customwidget>
    <class>ClickableLabel</class>
    <extends>QLabel</extends>
-   <header location="global">Frontend/View/clickableLabel</header>
+   <header>Frontend/View/clickableLabel</header>
   </customwidget>
  </customwidgets>
  <resources>
