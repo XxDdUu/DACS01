@@ -11,3 +11,6 @@ QMainWindow{
     border-radius: 10px;
     margin-bottom: 1em;
 }
+#editRevenueLabel,#update_ProductSaleLabel{
+    font-size: 40px;
+}

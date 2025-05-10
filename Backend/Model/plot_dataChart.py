@@ -18,7 +18,7 @@ class generalChart:
         revenue = [2000.0, 4203.0, 10000.0, 9909.0, 3215.0]
 
         self.ax.clear()
-        self.ax.bar(branches, revenue, color='black')
+        self.ax.bar(branches, revenue, color='skyblue')
         self.ax.set_title("Năm 2025")
         self.ax.set_xlabel("Chi nhánh")
         self.ax.set_ylabel("Doanh thu")

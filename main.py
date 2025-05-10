@@ -9,6 +9,6 @@ if __name__ == "__main__":
             controller = MainController()
             sys.exit(app.exec())
         except Exception as e:
-            import traceback
-            traceback.print_exc()
+            print(f"{e}")   
     main()
+

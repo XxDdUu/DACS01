@@ -7,7 +7,7 @@ class EmployerController:
 		self.dao = EmployerDAO()
 		self.view.register_btn.clicked.connect(self.handle_register)
 	def handle_register(self):
-		data = self.view.get_form_data()
+		data = self.view.get_employer_form_data()
 		success, message = self.dao.insert_employer(data)
 		if success:
 			QMessageBox.information(self.view, "Success", message)

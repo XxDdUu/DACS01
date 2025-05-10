@@ -6,7 +6,6 @@ import Frontend.View.resources_rc
 
 from PyQt6.QtWidgets import QApplication
 
-#branch duy
 class Register(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
@@ -26,14 +25,18 @@ class Register(QtWidgets.QWidget):
         self.header.mouseMoveEvent = self.mouse_move_event
         self.header.mouseReleaseEvent = self.mouse_release_event
 
-
         # Example: custom button signals
         self.minimize_btn.clicked.connect(self.showMinimized)
         self.close_btn.clicked.connect(self.confirm_exit)
 
         self.switch_to_login = None
         self.login_label.clicked.connect(self.handle_switch)
-    
+
+        self.Background.setCurrentWidget(self.Register_page)
+
+        self.create_enterprise.clicked.connect(lambda: self.Background.setCurrentWidget(self.Enterprise_register))
+
+        self.goback_register.clicked.connect(lambda: self.Background.setCurrentWidget(self.Register_page))
     def handle_switch(self):
         if self.switch_to_login:
            self.switch_to_login()
@@ -61,7 +64,7 @@ class Register(QtWidgets.QWidget):
         res = qm.question(self, 'Confirm', 'Are you sure to exit?', qm.StandardButton.Yes | qm.StandardButton.No)
         if res == qm.StandardButton.Yes:
             self.close()
-    def get_form_data(self):
+    def get_employer_form_data(self):
         return {
             "username": self.Username.text().strip(),
             "email": self.Email.text().strip(),
