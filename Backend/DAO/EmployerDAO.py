@@ -1,3 +1,4 @@
+import traceback
 import MySQLdb
 from werkzeug.security import generate_password_hash, check_password_hash
 from Backend.DAO.DatabaseConnection import get_connection
@@ -84,13 +85,13 @@ class EmployerDAO:
             result = cursor.fetchone()
 
             if result:
-                stored_hashed_pass = result[5]
+                stored_hashed_pass = result[6]
                 if check_password_hash(stored_hashed_pass, password):
+                    print("Login successfully!")
                     return True, "Login successfully!"
-                else:
-                    return False, "Password does not match!"
             else:
-                return False, "User account not found"
+                print("Wrong password or username!")
+                return False, "WRONG password or username!"
 
         except MySQLdb.Error as e:
             traceback.print_exc()

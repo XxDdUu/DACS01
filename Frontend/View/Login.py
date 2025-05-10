@@ -47,16 +47,17 @@ class Login(QMainWindow):
         self.passLineEdit.setObjectName("passLineEdit")
 
         self.switch_to_register = None
-        self.register_button.clicked.connect(self.handle_switch)
+        self.register_button.clicked.connect(self.handle_switch_to_register)
 
         self.switch_to_dashboardApp = None
-        self.login_button.clicked.connect(self.handle_login)
+        # self.login_button.clicked.connect(self.handle_login_enter)
+        # code trên cần vô hiệu hóa để tránh logic nhập mk login sai mà vẫn enter ngay dashboardApp đc
 
         self.load_stylesheet()
-    def handle_login(self):
+    def handle_login_enter(self):
         if self.switch_to_dashboardApp:
             self.switch_to_dashboardApp()
-    def handle_switch(self):
+    def handle_switch_to_register(self):
         if self.switch_to_register:
             self.switch_to_register()
     def load_stylesheet(self):

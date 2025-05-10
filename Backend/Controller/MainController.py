@@ -1,3 +1,5 @@
+from pyexpat.errors import messages
+
 from Backend.Controller.BranchesController import ManageBranches
 from Backend.Controller.ProductController import ManageProduct
 from Frontend.View.Login import Login
@@ -13,8 +15,8 @@ class MainController:
 
         self.login_window.switch_to_register = self.show_register
         self.register_window.switch_to_login = self.show_login
-        self.login_window.switch_to_dashboardApp = self.show_dashboardApp
         self.dashboard_window.switch_to_signUp = self.show_login
+        self.login_window.switch_to_dashboardApp = self.show_dashboardApp
 
         self.show_login()
         self.employer_controller = EmployerController(self.register_window, self.login_window)
