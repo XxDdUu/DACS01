@@ -1,0 +1,3 @@
+use QLDTCNCH
+
+create procedure calculate_sale_amount
