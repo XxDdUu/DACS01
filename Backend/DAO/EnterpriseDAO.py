@@ -68,4 +68,3 @@ class EnterpriseDao:
 					connection.close()
 				except MySQLdb.Error:
 					pass
-  
