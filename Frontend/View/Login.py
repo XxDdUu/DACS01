@@ -25,9 +25,9 @@ class Login(QMainWindow):
         self.bg_logo.setFixedSize(400, 450)
         self.bg_logo.setScaledContents(True)
 
-        self.usernameLabel = self.ui.usernameLabel
-        self.usernameLabel.setObjectName("usernameLabel")
-        self.usernameLabel.setText("Username:")
+        self.identifierLabel = self.ui.identifierLabel
+        self.identifierLabel.setObjectName("identifierLabel")
+        self.identifierLabel.setText("Email or phone number:")
 
         self.passwordLabel = self.ui.passLabel
         self.passwordLabel.setObjectName("passwordLabel")
@@ -41,8 +41,8 @@ class Login(QMainWindow):
         self.register_button.setObjectName("registerButton")
         self.register_button.setText("Create new account?")
 
-        self.nameLineEdit = self.ui.passLineEdit
-        self.nameLineEdit.setObjectName("nameLineEdit")
+        self.identifierLineEdit = self.ui.identifierLineEdit
+        self.identifierLineEdit.setObjectName("identifierLineEdit")
         self.passLineEdit = self.ui.passLineEdit
         self.passLineEdit.setObjectName("passLineEdit")
 
@@ -73,6 +73,6 @@ class Login(QMainWindow):
             print(f"Error loading stylesheet: {e}")
     def check_loginForm_data(self):
         return{
-            "username": self.nameLineEdit.text().strip(),
+            "identifier": self.identifierLineEdit.text().strip(),
             "password": self.passLineEdit.text().strip()
         }

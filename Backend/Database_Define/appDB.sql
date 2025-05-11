@@ -37,7 +37,7 @@ ALTER TABLE ENTERPRISE ADD Enterprise_password Varchar(255) /* use this */
 
 
 CREATE TABLE ENTERPRISE(
-	Enterprise_ID Varchar(255) PRIMARY KEY,
+	Enterprise_ID Varchar(255) PRIMARY KEY,employer
 	Enterprise_NAME NVARCHAR(255),
     Enterprise_FOUNDER NVARCHAR(255),
     ADDRESS TEXT,
@@ -88,5 +88,9 @@ ALTER TABLE BRANCHES
 MODIFY COLUMN Create_at DATETIME DEFAULT CURRENT_TIMESTAMP
 ALTER TABLE REVENUE
 MODIFY COLUMN Create_at DATETIME DEFAULT CURRENT_TIMESTAMP
-ALTER TABLE BRANCHES
-ADD UNIQUE (Branch_name, Branch_address, Branch_phone_number)
+-- unique cho employer & enterprise
+ALTER TABLE EMPLOYER
+ADD unique (Employer_Email),
+ADD unique (Employer_Phone_Number)
+ALTER TABLE ENTERPRISE
+ADD unique (Enterprise_PHONE_NUMBER)
