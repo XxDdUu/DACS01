@@ -6,9 +6,10 @@ class ManageBranches:
     def __init__(self,distribution_view):
         self.distribution_view = distribution_view
         self.branches_dao = BranchesDAO()
-        self.distribution_view.add_btn2.clicked.connect(self.handle_add_button)
+        self.distribution_view.branch_add_btn.clicked.connect(self.handle_add_button)
     def handle_add_button(self):
         data = self.distribution_view.BFD.get_branchesForm_data()
+        print("[DEBUG] Form data:", data)  # Kiểm tra lại giá trị thực tế
         self.branches_dao.insert_branches(data)
         success, message = self.branches_dao.insert_branches(data)
         if success:

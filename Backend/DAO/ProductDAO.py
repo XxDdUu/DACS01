@@ -5,16 +5,20 @@ import traceback
 class ProductDAO:
     def insert_product(self, data):
         productName = data.get("name")
-        price_raw = data.get("price") #ép kiểu cho price
-        productPrice = float(price_raw) if price_raw not in (None, '', 'null') else 0.0
+        price_raw = data.get("price", "").strip()
         productAmount = data.get("amount")
-        branchID = data.get("branchID")         # fallback nếu None
+        branchID = data.get("branch_id")
 
         connection = None
         cursor = None
 
-        if not price_raw or not price_raw.replace('.', '', 1).isdigit():
-            return False, "Invalid price"
+        # Kiểm tra và ép kiểu giá
+        try:
+            productPrice = float(price_raw)
+            if productPrice <= 0:
+                return False, "Invalid price: must be greater than 0"
+        except ValueError:
+            return False, f"Invalid price format: '{price_raw}'"
 
         try:
             connection = get_connection()
@@ -29,13 +33,13 @@ class ProductDAO:
             """
             cursor.execute(query, (
                 productName,
-                productPrice,
+                productPrice,         # ✅ đã ép kiểu float
                 productAmount,
                 branchID
             ))
 
             connection.commit()
-            return True, "Branch inserted successfully"
+            return True, "Product inserted successfully"
 
         except MySQLdb.Error as e:
             traceback.print_exc()
