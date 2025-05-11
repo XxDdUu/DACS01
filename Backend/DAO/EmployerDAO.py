@@ -109,7 +109,7 @@ class EmployerDAO:
             result = cursor.fetchone()
 
             if result:
-                stored_hashed_pass = result["Employer_password"]
+                stored_hashed_pass = result[6]
                 if check_password_hash(stored_hashed_pass, password):
                     print("Login successfully!")
                     return True, "Login successfully!"

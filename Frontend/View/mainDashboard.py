@@ -204,13 +204,19 @@ class MainDashboard(QMainWindow):
                     updateR_Layout.addWidget(QLabel("Update new revenue :"), 3, 0)
                     updateR_Layout.addWidget(QLineEdit(), 3, 1)
 
-                    updateBtn_layout = QGridLayout()
-                    updateBtn_layout.addWidget(QLabel(),4,0,1,12)
-                    updateBtn_layout.addWidget(QPushButton('Update'),5,7)
+                    # Tạo layout ngang chứa 3 nút
+                    crudButton_layoutR = QHBoxLayout()
+                    crudButton_layoutR.addStretch(1)
+                    crudButton_layoutR.addWidget(QPushButton('Add'))
+                    crudButton_layoutR.addStretch(0)
+                    crudButton_layoutR.addWidget(QPushButton('Update'))
+                    crudButton_layoutR.addStretch(0)
+                    crudButton_layoutR.addWidget(QPushButton('Remove'))
+                    crudButton_layoutR.addStretch(1)
 
                     updateForm_layout = QVBoxLayout()
                     updateForm_layout.addLayout(updateR_Layout)
-                    updateForm_layout.addLayout(updateBtn_layout)
+                    updateForm_layout.addLayout(crudButton_layoutR)
 
                     updateR_Widget = QWidget()
                     updateR_Widget.setLayout(updateForm_layout)
@@ -250,13 +256,19 @@ class MainDashboard(QMainWindow):
                     updatePS_Layout.addWidget(QLabel("Update new revenue :"), 3, 0)
                     updatePS_Layout.addWidget(QLineEdit(), 3, 1)
 
-                    updateBtn_layout = QGridLayout()
-                    updateBtn_layout.addWidget(QLabel(), 4, 0, 1, 12)
-                    updateBtn_layout.addWidget(QPushButton('Update'), 5, 7)
+                    # Tạo layout ngang chứa 3 nút
+                    crudButton_layoutPS = QHBoxLayout()
+                    crudButton_layoutPS.addStretch(1)
+                    crudButton_layoutPS.addWidget(QPushButton('Add'))
+                    crudButton_layoutPS.addStretch(0)
+                    crudButton_layoutPS.addWidget(QPushButton('Update'))
+                    crudButton_layoutPS.addStretch(0)
+                    crudButton_layoutPS.addWidget(QPushButton('Remove'))
+                    crudButton_layoutPS.addStretch(1)
 
                     updateForm_layout = QVBoxLayout()
                     updateForm_layout.addLayout(updatePS_Layout)
-                    updateForm_layout.addLayout(updateBtn_layout)
+                    updateForm_layout.addLayout(crudButton_layoutPS)
 
                     updatePS_Widget = QWidget()
                     updatePS_Widget.setLayout(updateForm_layout)
