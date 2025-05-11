@@ -1,27 +1,28 @@
 import os
 import sys
 
-from PyQt6.QtWidgets import QScrollArea, QPushButton, QLineEdit, QTableWidget, QFormLayout, QHBoxLayout, \
+from PyQt6.QtWidgets import QScrollArea, QPushButton, QLineEdit, QDateEdit, QTableWidget, QFormLayout, QHBoxLayout, \
     QTableWidgetItem
 from PyQt6.QtWidgets import QGridLayout, QVBoxLayout, QSizePolicy
 from PyQt6.QtWidgets import (QMainWindow, QApplication,
                              QLabel, QListWidgetItem, QWidget)
-from PyQt6.QtCore import Qt, QSize
+from PyQt6.QtCore import Qt, QSize, QDate
 from PyQt6.QtGui import QPixmap, QFont, QIcon
 
-from Backend.Controller.BranchesController import ManageBranches
+from Backend.Controller.BranchesController import BranchesController
 from Backend.Model.Branches import BranchesFormData
 from Backend.Model.Product import ProductFormData
 from Backend.Model.plot_dataChart import generalChart, ProductChart
 from Frontend.View.frameUI import Ui_MainWindow
-
+from Backend.Model.Employer import Employer
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
 
 
 class MainDashboard(QMainWindow):
 
-    def __init__(self):
+    def __init__(self, employer_data: Employer):
         super().__init__()
+        self.employer_data = employer_data # truyền model
         screen = QApplication.primaryScreen()
         size = screen.availableGeometry()  # kích thước vùng làm việc (không gồm taskbar)
         self.setGeometry(size)  # set kích thước cửa sổ = màn hình lap,pc
@@ -531,7 +532,7 @@ class MainDashboard(QMainWindow):
                     # Username
                     lbl_username = QLabel("☺ Username:")
                     lbl_username.setObjectName("lbl_username")
-                    self.le_username = QLineEdit("Lecris Ronal Si")
+                    self.le_username = QLineEdit(self.employer_data.username)
                     self.btn_edit_username = QPushButton("Edit")
                     settingLayout.addWidget(lbl_username, 2, 1)
                     settingLayout.addWidget(self.le_username, 2, 5)
@@ -540,23 +541,27 @@ class MainDashboard(QMainWindow):
                     # Spacer hàng 3
                     settingLayout.addWidget(QLabel(), 3, 5)
 
-                    # Password
-                    lbl_password = QLabel("⛉ Password:")
-                    lbl_password.setObjectName("lbl_password")
-                    self.le_password = QLineEdit("************")
-                    self.le_password.setEchoMode(QLineEdit.EchoMode.Password)
-                    self.btn_edit_password = QPushButton("Edit")
-                    settingLayout.addWidget(lbl_password, 4, 1)
-                    settingLayout.addWidget(self.le_password, 4, 5)
-                    settingLayout.addWidget(self.btn_edit_password, 4, 10)
+                    # Enterprise_ID
+                    lbl_enterprise_id = QLabel("Enterprise_ID:")
+                    lbl_enterprise_id.setObjectName("lbl_enterprise_id")
+                    self.le_enterprise_id = QLineEdit(self.employer_data.enterprise_id)
+                    self.btn_view_enterprise_data = QPushButton("Get")
+                    settingLayout.addWidget(lbl_enterprise_id, 4, 1)
+                    settingLayout.addWidget(self.le_enterprise_id, 4, 5)
+                    settingLayout.addWidget(self.btn_view_enterprise_data, 4, 10)
 
                     # Spacer hàng 5
                     settingLayout.addWidget(QLabel(), 5, 5)
 
                     # Birthdate
+                    birthdate = self.employer_data.date_of_birth
+                    qbirthdate = QDate(birthdate.year, birthdate.month, birthdate.day)
+
                     lbl_birthdate = QLabel("𝄜 Date birth:")
                     lbl_birthdate.setObjectName("lbl_birthdate")
-                    self.le_birthdate = QLineEdit("99/99/9999")
+                    self.le_birthdate = QDateEdit(qbirthdate)
+                    # Set format of qdateedit
+                    self.le_birthdate.setDisplayFormat("dd-MM-yyyy")
                     self.btn_edit_birthdate = QPushButton("Edit")
                     settingLayout.addWidget(lbl_birthdate, 6, 1)
                     settingLayout.addWidget(self.le_birthdate, 6, 5)
@@ -568,7 +573,7 @@ class MainDashboard(QMainWindow):
                     # Email
                     lbl_email = QLabel("🖂 Email:")
                     lbl_email.setObjectName("lbl_email")
-                    self.le_email = QLineEdit("abcdxyz1234@gmail.com")
+                    self.le_email = QLineEdit(self.employer_data.email)
                     self.btn_edit_email = QPushButton("Edit")
                     settingLayout.addWidget(lbl_email, 8, 1)
                     settingLayout.addWidget(self.le_email, 8, 5)
@@ -580,7 +585,7 @@ class MainDashboard(QMainWindow):
                     # Phone Number
                     lbl_phone = QLabel("✆ Phone number:")
                     lbl_phone.setObjectName("lbl_phone")
-                    self.le_phone = QLineEdit("(08+) 905-XXX-XXX")
+                    self.le_phone = QLineEdit(self.employer_data.phone_number)
                     self.btn_edit_phone = QPushButton("Edit")
                     settingLayout.addWidget(lbl_phone, 10, 1)
                     settingLayout.addWidget(self.le_phone, 10, 5)
@@ -618,8 +623,8 @@ class MainDashboard(QMainWindow):
             print(traceback.format_exc())
 
     def handle_logout(self):
-        if self.switch_to_signUp:
-            self.switch_to_signUp()
+        if self.switch_to_login:
+            self.switch_to_login()
 
     def load_stylesheet(self):
         script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -632,31 +637,3 @@ class MainDashboard(QMainWindow):
             print(f"Error: CSS file not found at {css_path}")
         except Exception as e:
             print(f"Error loading stylesheet: {e}")
-
-
-# class BranchesFormData:
-#     def __init__(self, name, address, phone_num):
-#         self.name = name
-#         self.address = address
-#         self.phone_num = phone_num
-#
-#     def get_branchesForm_data(self):
-#         return {
-#             "name": self.name.text().strip(),
-#             "address": self.address.text().strip(),
-#             "phone_number": self.phone_num.text().strip()
-#         }
-
-# class ProductFormData:
-#     def __init__(self, name, price, amount, branch_Id):
-#         self.name = name
-#         self.price = price
-#         self.amount = amount
-#         self.branch_Id = branch_Id
-#
-#     def get_ProductForm_data(self):
-#         return {
-#             "name": self.name.text().strip(),
-#             "price": self.price.text().strip(),
-#             "amount": self.amount.text().strip(),
-#             "branch_id": self.branch_Id.text().strip()
