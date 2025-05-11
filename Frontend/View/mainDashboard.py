@@ -409,9 +409,9 @@ class MainDashboard(QMainWindow):
                     branch_form_layout.addLayout(branch_input_layout)
 
                     # Branch and Product Form Data
-                    self.branch_form_data = BranchesFormData(branch_name_input, branch_address_input,
+                    self.BFD = BranchesFormData(branch_name_input, branch_address_input,
                                                              branch_phone_input)
-                    self.prod_form_data = ProductFormData(prod_name_input, prod_price_input, prod_amount_input,
+                    self.PFD = ProductFormData(prod_name_input, prod_price_input, prod_amount_input,
                                                           prod_branch_id_input)
 
                     # Horizontal button layout for Branch
