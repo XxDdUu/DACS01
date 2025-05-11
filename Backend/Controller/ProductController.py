@@ -3,7 +3,7 @@ from Backend.DAO.BranchesDAO import BranchesDAO
 from Backend.DAO.ProductDAO import ProductDAO
 
 
-class ManageProduct:
+class ProductController:
     def __init__(self,distribution_view):
         self.distribution_view = distribution_view
         self.product_dao = ProductDAO()

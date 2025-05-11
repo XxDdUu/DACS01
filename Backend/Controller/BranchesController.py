@@ -2,7 +2,7 @@ from PyQt6.QtWidgets import QMessageBox
 from Backend.DAO.BranchesDAO import BranchesDAO
 
 
-class ManageBranches:
+class BranchesController:
     def __init__(self,distribution_view):
         self.distribution_view = distribution_view
         self.branches_dao = BranchesDAO()
