@@ -11,7 +11,6 @@ class ManageBranches:
     def handle_add_button(self):
         data = self.distribution_view.BFD.get_branchesForm_data()
         print("[DEBUG] Form data:", data)  # Kiểm tra lại giá trị thực tế
-        # self.branches_dao.insert_branches(data)
         success, message = self.branches_dao.insert_branches(data)
         if success:
             QMessageBox.information(self.distribution_view, "Success", message)
@@ -20,8 +19,14 @@ class ManageBranches:
     def handle_remove_button(self):
         data = self.distribution_view.BFD.get_branchesForm_data()
         print("[DEBUG] Form data:", data)  # Kiểm tra lại giá trị thực tế
-        # self.branches_dao.remove_branches(data)
         success, message = self.branches_dao.remove_branches(data)
+        if success:
+            QMessageBox.information(self.distribution_view, "Success", message)
+        else:
+            QMessageBox.warning(self.distribution_view, "Error", message)
+    def handle_update_button(self):
+        data = self.distribution_view.BFD.get_branchesForm_data()
+        success, message = self.branches_dao.update_branches(data)
         if success:
             QMessageBox.information(self.distribution_view, "Success", message)
         else:
