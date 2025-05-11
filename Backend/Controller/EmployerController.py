@@ -27,9 +27,9 @@ class EmployerController:
 			QMessageBox.warning(self.register_view, "Error", message)
 	def handle_loginCheck(self):
 		data = self.login_view.check_loginForm_data()
-		success, message = self.dao.check_loginUser(data)
+		success, message, employer_data = self.dao.check_loginUser(data)
 		if success:
 			QMessageBox.information(self.login_view, "Success", message)
-			self.login_view.handle_login_enter()
+			self.login_view.handle_switch_to_maindashboard(employer_data)
 		else:
 			QMessageBox.warning(self.login_view, "Error", message)

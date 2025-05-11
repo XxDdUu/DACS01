@@ -6,6 +6,8 @@ from MySQLdb import Error
 from datetime import datetime
 import re
 import traceback
+
+from Backend.Model.Employer import Employer
 class EmployerDAO:
     def insert_employer(self, data):
         username = data.get("username")
@@ -95,39 +97,50 @@ class EmployerDAO:
                 except MySQLdb.Error:
                     pass    
     def check_loginUser(self,data):
-        username = data.get("username")
+        identifier = data.get("identifier")
         password = data.get("password")
         connection = None
         cursor = None
+        print(identifier + " " + password)
+        if not all([identifier, password]):
+            return False, "All fields are required", None
         try:
             connection = get_connection()
             if not connection:
-                return False, "Failed to connect to DB"
+                return False, "Failed to connect to DB", None
 
-            cursor = connection.cursor()
-            cursor.execute("SELECT * FROM EMPLOYER WHERE Employer_name = %s", (username,))
+            cursor = connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute("""SELECT * FROM EMPLOYER WHERE 
+                Employer_Email = %s OR Employer_Phone_Number = %s LIMIT 1""", 
+                (identifier, identifier))
             result = cursor.fetchone()
-
+            print("Query result:", result)
             if result:
-                stored_hashed_pass = result[6]
+                stored_hashed_pass = result["Employer_password"]
                 if check_password_hash(stored_hashed_pass, password):
+                    employer_data = Employer(
+                        ID = result["Employer_ID"],
+                        username = result["Employer_name"],
+                        phone_number = result["Employer_Phone_Number"],
+                        email = result["Employer_Email"],
+                        date_of_birth = result["DOB"],
+                        enterprise_id = result["Enterprise_ID"]
+                        )
                     print("Login successfully!")
-                    return True, "Login successfully!"
+                    return True, "Login successfully!", employer_data
                 else:
-                    return False, "Password does not match!"
+                    return False, "Password does not match!", None
             else:
-                print("Wrong password or username!")
-                return False, "WRONG password or username!"
+                return False, "Wrong password or email or phone_number!", None
 
         except MySQLdb.Error as e:
             traceback.print_exc()
-            return False, f"Database Error: {e}"
+            return False, f"Database Error: {e}", None
         except Exception as e:
             traceback.print_exc()
-            return False, f"Unexpected error: {e}"
+            return False, f"Unexpected error: {e}", None
         finally:
             if cursor:
                 cursor.close()
             if connection:
                 connection.close()
-
