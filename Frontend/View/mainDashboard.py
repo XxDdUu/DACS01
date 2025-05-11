@@ -353,18 +353,22 @@ class MainDashboard(QMainWindow):
                     prod_form_layout.addWidget(prod_title)
 
                     prod_input_layout = QGridLayout()
-                    prod_input_layout.addWidget(QLabel("Name:"), 0, 0)
+                    prod_input_layout.addWidget(QLabel("Product ID:"), 0, 0)
+                    prod_id_input = QLineEdit()
+                    prod_input_layout.addWidget(prod_id_input, 0, 1)
+                    prod_form_layout.addLayout(prod_input_layout)
+                    prod_input_layout.addWidget(QLabel("Name:"), 1, 0)
                     prod_name_input = QLineEdit()
-                    prod_input_layout.addWidget(prod_name_input, 0, 1)
-                    prod_input_layout.addWidget(QLabel("Price:"), 1, 0)
+                    prod_input_layout.addWidget(prod_name_input, 1, 1)
+                    prod_input_layout.addWidget(QLabel("Price:"), 2, 0)
                     prod_price_input = QLineEdit()
-                    prod_input_layout.addWidget(prod_price_input, 1, 1)
-                    prod_input_layout.addWidget(QLabel("Amount:"), 2, 0)
+                    prod_input_layout.addWidget(prod_price_input, 2, 1)
+                    prod_input_layout.addWidget(QLabel("Amount:"), 3, 0)
                     prod_amount_input = QLineEdit()
-                    prod_input_layout.addWidget(prod_amount_input, 2, 1)
-                    prod_input_layout.addWidget(QLabel("Branch ID:"), 3, 0)
+                    prod_input_layout.addWidget(prod_amount_input, 3, 1)
+                    prod_input_layout.addWidget(QLabel("Branch ID:"), 4, 0)
                     prod_branch_id_input = QLineEdit()
-                    prod_input_layout.addWidget(prod_branch_id_input, 3, 1)
+                    prod_input_layout.addWidget(prod_branch_id_input, 4, 1)
                     prod_form_layout.addLayout(prod_input_layout)
 
                     # Horizontal button layout for Product
@@ -372,12 +376,12 @@ class MainDashboard(QMainWindow):
                     prod_button_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
                     self.prod_add_btn = QPushButton("Add")
                     self.prod_add_btn.setFixedSize(80, 30)
-                    prod_remove_btn = QPushButton("Remove")
-                    prod_remove_btn.setFixedSize(80, 30)
+                    self.prod_remove_btn = QPushButton("Remove")
+                    self.prod_remove_btn.setFixedSize(80, 30)
                     prod_update_btn = QPushButton("Update")
                     prod_update_btn.setFixedSize(80, 30)
                     prod_button_layout.addWidget(self.prod_add_btn)
-                    prod_button_layout.addWidget(prod_remove_btn)
+                    prod_button_layout.addWidget(self.prod_remove_btn)
                     prod_button_layout.addWidget(prod_update_btn)
                     prod_button_widget = QWidget()
                     prod_button_widget.setLayout(prod_button_layout)
@@ -409,9 +413,9 @@ class MainDashboard(QMainWindow):
                     branch_form_layout.addLayout(branch_input_layout)
 
                     # Branch and Product Form Data
-                    self.branch_form_data = BranchesFormData(branch_name_input, branch_address_input,
+                    self.BFD = BranchesFormData(branch_id_input,branch_name_input, branch_address_input,
                                                              branch_phone_input)
-                    self.prod_form_data = ProductFormData(prod_name_input, prod_price_input, prod_amount_input,
+                    self.PFD = ProductFormData(prod_id_input,prod_name_input, prod_price_input, prod_amount_input,
                                                           prod_branch_id_input)
 
                     # Horizontal button layout for Branch
@@ -487,7 +491,7 @@ class MainDashboard(QMainWindow):
 
                     # Connect buttons to slots
                     self.prod_add_btn.clicked.connect(add_row_prod)
-                    prod_remove_btn.clicked.connect(remove_row_prod)
+                    self.prod_remove_btn.clicked.connect(remove_row_prod)
                     prod_update_btn.clicked.connect(update_row_prod)
                     self.branch_add_btn.clicked.connect(add_row_branch)
                     self.branch_remove_btn.clicked.connect(remove_row_branch)

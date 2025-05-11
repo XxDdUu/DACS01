@@ -11,9 +11,6 @@ class BranchesDAO:
         branchesName = data.get("name")
         branchesAddress = data.get("address")
         branchesPhone = data.get("phone_number").strip()
-
-        emp_dao = EmployerDAO()
-        ent_dao = EnterpriseDao()
         employerId = data.get("employer_id") or "2"         # fallback nếu None
         enterpriseId = data.get("enterprise_id") or "ENT_VTX22NH"   # fallback nếu None
 
@@ -70,6 +67,75 @@ class BranchesDAO:
 
             connection.commit()
             return True, "Branch inserted successfully"
+
+        except MySQLdb.Error as e:
+            traceback.print_exc()
+            return False, f"Database Error: {e}"
+
+        except Exception as e:
+            traceback.print_exc()
+            return False, f"Unexpected Error: {e}"
+
+        finally:
+            if cursor:
+                cursor.close()
+            if connection:
+                connection.close()
+    def remove_branches(self, data):
+        branchesID = data.get("id")
+        # branchesName = data.get("name")
+        # branchesAddress = data.get("address")
+        # branchesPhone = data.get("phone_number").strip()
+        employerId = data.get("employer_id") or "2"         # fallback nếu None
+        enterpriseId = data.get("enterprise_id") or "ENT_VTX22NH"   # fallback nếu None
+
+        connection = None
+        cursor = None
+
+        # if not branchesPhone.isdigit() or len(branchesPhone) != 10:
+        #     return False, "Invalid phone number format"
+        # def is_valid_phoneNum(phone_number):
+        #     return bool(re.fullmatch(r"[0-9]{10}",branchesPhone))
+        #
+        # if not is_valid_phoneNum(branchesPhone):
+        #     print(f"Phone input raw: '{data.get('phone_number')}'")
+        #     print(f"Phone after strip: '{branchesPhone}'")
+        #     print(f"Phone length: {len(branchesPhone)}")
+        #     print(f"Digits only: {branchesPhone.isdigit()}")
+        #     print([ord(c) for c in branchesPhone])  # In mã unicode từng ký tự
+        #     return False, "Invalid phone number format"
+        #
+        # def branch_name_exists(branch_name):
+        #     try:
+        #         conn_test = get_connection()
+        #         cursor_test = conn_test.cursor()
+        #         query = "SELECT 1 FROM BRANCHES WHERE Branch_name = %s"
+        #         cursor_test.execute(query, (branch_name,))
+        #         return cursor_test.fetchone() is not None
+        #     finally:
+        #         if cursor:
+        #             cursor.close()
+        #         if connection:
+        #             connection.close()
+        #
+        # if branch_name_exists(branchesName):
+        #     return False, f"Branch name {branchesName} already exits"
+        #
+        try:
+            connection = get_connection()
+            if not connection:
+                return False, "Failed to connect to database"
+
+            cursor = connection.cursor()
+            query = """
+                DELETE FROM BRANCHES WHERE Branch_ID = %s
+            """
+            cursor.execute(query, (
+                branchesID
+            ))
+
+            connection.commit()
+            return True, "Branch deleted successfully"
 
         except MySQLdb.Error as e:
             traceback.print_exc()

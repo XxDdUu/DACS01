@@ -10,9 +10,9 @@
       <change beforePath="$PROJECT_DIR$/Backend/Controller/MainController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Controller/MainController.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Controller/ProductController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Controller/ProductController.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/DAO/BranchesDAO.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/DAO/BranchesDAO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/DAO/EnterpriseDAO.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/DAO/EnterpriseDAO.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/DAO/ProductDAO.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/DAO/ProductDAO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Database_Define/appDB.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Database_Define/appDB.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Model/Branches.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Model/Branches.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Model/Product.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Model/Product.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/View/mainDashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/mainDashboard.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
