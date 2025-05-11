@@ -9,6 +9,7 @@ from PyQt6.QtWidgets import (QMainWindow, QApplication,
 from PyQt6.QtCore import Qt, QSize
 from PyQt6.QtGui import QPixmap, QFont, QIcon
 
+from Backend.Controller.BranchesController import ManageBranches
 from Backend.Model.Branches import BranchesFormData
 from Backend.Model.Product import ProductFormData
 from Backend.Model.plot_dataChart import generalChart, ProductChart
@@ -154,12 +155,12 @@ class MainDashboard(QMainWindow):
 
                     settingLayout = QGridLayout()
                     # Thêm một số widget vào layout dưới cùng
-                    infoLabel = QLabel("Statistic Information")
-                    infoLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
+                    infoHomeLabel = QLabel("Statistic Information")
+                    infoHomeLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
                     font = QFont()
                     font.setPixelSize(30)
-                    infoLabel.setFont(font)
-                    settingLayout.addWidget(infoLabel, 0, 0, 1, 2)  # row, col, rowspan, colspan
+                    infoHomeLabel.setFont(font)
+                    settingLayout.addWidget(infoHomeLabel, 0, 0, 1, 2)  # row, col, rowspan, colspan
                     # Thêm các widget thông tin khác
                     settingLayout.addWidget(QLabel("Revenue total:"), 1, 0)
                     settingLayout.addWidget(QLabel("29,327.00 $USD"), 1, 1)
@@ -175,347 +176,423 @@ class MainDashboard(QMainWindow):
                     contentLayout.addWidget(chartWidget)
                     newPage.setLayout(contentLayout)
                 elif text == "Revenue Info":
+                    # Khởi tạo biểu đồ tổng quan
                     general_chart = generalChart()
-                    fig_G = general_chart.figure
-                    canvas_1 = FigureCanvas(fig_G)
-                    canvas_2 = FigureCanvas(fig_G)
-                    canvas_3 = FigureCanvas(fig_G)
+                    fig_general_chart = general_chart.figure
 
-                    chartRLayout = QGridLayout()
-                    chartRLayout.addWidget(canvas_1,0,0)
-                    chartRLayout.addWidget(canvas_2,0,1)
-                    chartRLayout.addWidget(canvas_3,0,2)
-                    chartRWidget = QWidget()
-                    chartRWidget.setLayout(chartRLayout)
+                    canvas_chart_1 = FigureCanvas(fig_general_chart)
+                    canvas_chart_2 = FigureCanvas(fig_general_chart)
+                    canvas_chart_3 = FigureCanvas(fig_general_chart)
 
-                    updateR_Layout = QGridLayout()
-                    # Thêm một số widget vào layout dưới cùng
-                    infoLabel = QLabel("Edit Revenue Information")
-                    infoLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
+                    # Layout chứa 3 biểu đồ
+                    chart_layout = QGridLayout()
+                    chart_layout.addWidget(canvas_chart_1, 0, 0)
+                    chart_layout.addWidget(canvas_chart_2, 0, 1)
+                    chart_layout.addWidget(canvas_chart_3, 0, 2)
+
+                    chart_widget = QWidget()
+                    chart_widget.setLayout(chart_layout)
+
+                    # Layout cập nhật thông tin doanh thu
+                    revenue_form_layout = QGridLayout()
+
+                    # Tiêu đề
+                    lbl_form_title = QLabel("Edit Revenue Information")
+                    lbl_form_title.setAlignment(Qt.AlignmentFlag.AlignCenter)
                     font = QFont()
                     font.setPixelSize(30)
-                    infoLabel.setFont(font)
-                    updateR_Layout.addWidget(infoLabel, 0, 0, 1, 1)  # row, col, rowspan, colspan
-                    # Thêm các widget thông tin khác
-                    updateR_Layout.addWidget(QLabel("Branch ID:"), 1, 0)
-                    updateR_Layout.addWidget(QLineEdit(), 1, 1)
-                    updateR_Layout.addWidget(QLabel("Revenue Date:"), 2, 0)
-                    updateR_Layout.addWidget(QLineEdit(), 2, 1)
-                    updateR_Layout.addWidget(QLabel("Update new revenue :"), 3, 0)
-                    updateR_Layout.addWidget(QLineEdit(), 3, 1)
+                    lbl_form_title.setFont(font)
+                    revenue_form_layout.addWidget(lbl_form_title, 0, 0, 1, 2)
 
-                    # Tạo layout ngang chứa 3 nút
-                    crudButton_layoutR = QHBoxLayout()
-                    crudButton_layoutR.addStretch(1)
-                    crudButton_layoutR.addWidget(QPushButton('Add'))
-                    crudButton_layoutR.addStretch(0)
-                    crudButton_layoutR.addWidget(QPushButton('Update'))
-                    crudButton_layoutR.addStretch(0)
-                    crudButton_layoutR.addWidget(QPushButton('Remove'))
-                    crudButton_layoutR.addStretch(1)
+                    # Branch ID
+                    lbl_branch_id = QLabel("Branch ID:")
+                    self.le_branch_id_general = QLineEdit()
+                    revenue_form_layout.addWidget(lbl_branch_id, 1, 0)
+                    revenue_form_layout.addWidget(self.le_branch_id_general, 1, 1)
 
-                    updateForm_layout = QVBoxLayout()
-                    updateForm_layout.addLayout(updateR_Layout)
-                    updateForm_layout.addLayout(crudButton_layoutR)
+                    # Revenue Date
+                    lbl_revenue_date = QLabel("Revenue Date:")
+                    self.le_revenue_date_general = QLineEdit()
+                    revenue_form_layout.addWidget(lbl_revenue_date, 2, 0)
+                    revenue_form_layout.addWidget(self.le_revenue_date_general, 2, 1)
 
-                    updateR_Widget = QWidget()
-                    updateR_Widget.setLayout(updateForm_layout)
+                    # New Revenue
+                    lbl_new_revenue = QLabel("Update new revenue:")
+                    self.le_new_revenue_general = QLineEdit()
+                    revenue_form_layout.addWidget(lbl_new_revenue, 3, 0)
+                    revenue_form_layout.addWidget(self.le_new_revenue_general, 3, 1)
 
-                    contentLayout = QVBoxLayout()
-                    contentLayout.addWidget(chartRWidget)
-                    contentLayout.addWidget(updateR_Widget)
-                    newPage.setLayout(contentLayout)
+                    # Các nút CRUD
+                    self.btn_add_general = QPushButton("Add")
+                    self.btn_update_general = QPushButton("Update")
+                    self.btn_remove_general = QPushButton("Remove")
+
+                    crud_button_layout = QHBoxLayout()
+                    crud_button_layout.addStretch(1)
+                    crud_button_layout.addWidget(self.btn_add_general)
+                    crud_button_layout.addStretch(0)
+                    crud_button_layout.addWidget(self.btn_update_general)
+                    crud_button_layout.addStretch(0)
+                    crud_button_layout.addWidget(self.btn_remove_general)
+                    crud_button_layout.addStretch(1)
+
+                    # Tổng hợp layout
+                    form_container_layout = QVBoxLayout()
+                    form_container_layout.addLayout(revenue_form_layout)
+                    form_container_layout.addLayout(crud_button_layout)
+
+                    form_widget = QWidget()
+                    form_widget.setLayout(form_container_layout)
+
+                    # Layout tổng thể
+                    main_layout = QVBoxLayout()
+                    main_layout.addWidget(chart_widget)
+                    main_layout.addWidget(form_widget)
+
+                    newPage.setLayout(main_layout)
+
 
                 elif text == "Product Sales Info":
+                    # Khởi tạo biểu đồ doanh thu sản phẩm
                     PS_chart = ProductChart()
-                    fig_PS = PS_chart.figure
-                    canvas_4 = FigureCanvas(fig_PS)
-                    canvas_5 = FigureCanvas(fig_PS)
-                    canvas_6 = FigureCanvas(fig_PS)
+                    fig_product_chart = PS_chart.figure
 
-                    chartPSLayout = QGridLayout()
-                    chartPSLayout.addWidget(canvas_4, 0, 0)
-                    chartPSLayout.addWidget(canvas_5, 0, 1)
-                    chartPSLayout.addWidget(canvas_6, 0, 2)
-                    chartPSWidget = QWidget()
-                    chartPSWidget.setLayout(chartPSLayout)
+                    canvas_chart_left = FigureCanvas(fig_product_chart)
+                    canvas_chart_center = FigureCanvas(fig_product_chart)
+                    canvas_chart_right = FigureCanvas(fig_product_chart)
 
-                    updatePS_Layout = QGridLayout()
-                    # Thêm một số widget vào layout dưới cùng
-                    infoPSLabel = QLabel("Edit Revenue Information")
-                    infoPSLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
+                    # Layout cho biểu đồ
+                    chart_layout = QGridLayout()
+                    chart_layout.addWidget(canvas_chart_left, 0, 0)
+                    chart_layout.addWidget(canvas_chart_center, 0, 1)
+                    chart_layout.addWidget(canvas_chart_right, 0, 2)
+
+                    chart_widget = QWidget()
+                    chart_widget.setLayout(chart_layout)
+
+                    # Layout cập nhật thông tin doanh thu
+                    update_revenue_layout = QGridLayout()
+
+                    # Tiêu đề
+                    lbl_revenue_title = QLabel("Edit Revenue Information")
+                    lbl_revenue_title.setAlignment(Qt.AlignmentFlag.AlignCenter)
                     font = QFont()
                     font.setPixelSize(30)
-                    infoPSLabel.setFont(font)
-                    updatePS_Layout.addWidget(infoPSLabel, 0, 0, 1, 1)  # row, col, rowspan, colspan
-                    # Thêm các widget thông tin khác
-                    updatePS_Layout.addWidget(QLabel("Branch ID:"), 1, 0)
-                    updatePS_Layout.addWidget(QLineEdit(), 1, 1)
-                    updatePS_Layout.addWidget(QLabel("Revenue Date:"), 2, 0)
-                    updatePS_Layout.addWidget(QLineEdit(), 2, 1)
-                    updatePS_Layout.addWidget(QLabel("Update new revenue :"), 3, 0)
-                    updatePS_Layout.addWidget(QLineEdit(), 3, 1)
+                    lbl_revenue_title.setFont(font)
+                    update_revenue_layout.addWidget(lbl_revenue_title, 0, 0, 1, 2)
 
-                    # Tạo layout ngang chứa 3 nút
-                    crudButton_layoutPS = QHBoxLayout()
-                    crudButton_layoutPS.addStretch(1)
-                    crudButton_layoutPS.addWidget(QPushButton('Add'))
-                    crudButton_layoutPS.addStretch(0)
-                    crudButton_layoutPS.addWidget(QPushButton('Update'))
-                    crudButton_layoutPS.addStretch(0)
-                    crudButton_layoutPS.addWidget(QPushButton('Remove'))
-                    crudButton_layoutPS.addStretch(1)
+                    # Branch ID
+                    lbl_branch_id = QLabel("Branch ID:")
+                    self.le_branch_id = QLineEdit()
+                    update_revenue_layout.addWidget(lbl_branch_id, 1, 0)
+                    update_revenue_layout.addWidget(self.le_branch_id, 1, 1)
 
-                    updateForm_layout = QVBoxLayout()
-                    updateForm_layout.addLayout(updatePS_Layout)
-                    updateForm_layout.addLayout(crudButton_layoutPS)
+                    # Revenue Date
+                    lbl_revenue_date = QLabel("Revenue Date:")
+                    self.le_revenue_date = QLineEdit()
+                    update_revenue_layout.addWidget(lbl_revenue_date, 2, 0)
+                    update_revenue_layout.addWidget(self.le_revenue_date, 2, 1)
 
-                    updatePS_Widget = QWidget()
-                    updatePS_Widget.setLayout(updateForm_layout)
+                    # New Revenue Value
+                    lbl_new_revenue = QLabel("Update new revenue:")
+                    self.le_new_revenue = QLineEdit()
+                    update_revenue_layout.addWidget(lbl_new_revenue, 3, 0)
+                    update_revenue_layout.addWidget(self.le_new_revenue, 3, 1)
 
-                    contentLayout = QVBoxLayout()
-                    contentLayout.addWidget(chartPSWidget)
-                    contentLayout.addWidget(updatePS_Widget)
-                    newPage.setLayout(contentLayout)
+                    # Các nút CRUD
+                    btn_add_revenue = QPushButton("Add")
+                    btn_update_revenue = QPushButton("Update")
+                    btn_remove_revenue = QPushButton("Remove")
+
+                    crud_btn_layout = QHBoxLayout()
+                    crud_btn_layout.addStretch(1)
+                    crud_btn_layout.addWidget(btn_add_revenue)
+                    crud_btn_layout.addStretch(0)
+                    crud_btn_layout.addWidget(btn_update_revenue)
+                    crud_btn_layout.addStretch(0)
+                    crud_btn_layout.addWidget(btn_remove_revenue)
+                    crud_btn_layout.addStretch(1)
+
+                    # Tổng hợp layout form
+                    form_revenue_layout = QVBoxLayout()
+                    form_revenue_layout.addLayout(update_revenue_layout)
+                    form_revenue_layout.addLayout(crud_btn_layout)
+
+                    form_revenue_widget = QWidget()
+                    form_revenue_widget.setLayout(form_revenue_layout)
+
+                    # Layout cuối cùng
+                    content_layout = QVBoxLayout()
+                    content_layout.addWidget(chart_widget)
+                    content_layout.addWidget(form_revenue_widget)
+
+                    newPage.setLayout(content_layout)
+
 
                 elif text == "Distribution Info":
                     # Initialize two empty tables
-                    table1 = QTableWidget()
-                    table1.setRowCount(0)
-                    table1.setColumnCount(4)
-                    table1.setHorizontalHeaderLabels(["Name", "Price", "Amount", "Branch ID"])
-                    table1.resizeColumnsToContents()
+                    prod_table = QTableWidget()
+                    prod_table.setRowCount(0)
+                    prod_table.setColumnCount(4)
+                    prod_table.setHorizontalHeaderLabels(["Name", "Price", "Amount", "Branch ID"])
+                    prod_table.resizeColumnsToContents()
 
-                    table2 = QTableWidget()
-                    table2.setRowCount(0)
-                    table2.setColumnCount(4)
-                    table2.setHorizontalHeaderLabels(["Branch ID", "Name", "Address", "Phone Number"])
-                    table2.resizeColumnsToContents()
+                    branch_table = QTableWidget()
+                    branch_table.setRowCount(0)
+                    branch_table.setColumnCount(4)
+                    branch_table.setHorizontalHeaderLabels(["Branch ID", "Name", "Address", "Phone Number"])
+                    branch_table.resizeColumnsToContents()
 
-                    # Form for Table 1
-                    form1_layout = QVBoxLayout()
-                    form1_label = QLabel("Manage Product Data")
-                    form1_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+                    # Form for Product Table
+                    prod_form_layout = QVBoxLayout()
+                    prod_title = QLabel("Manage Product Data")
+                    prod_title.setAlignment(Qt.AlignmentFlag.AlignCenter)
                     font = QFont()
                     font.setPixelSize(20)
-                    form1_label.setFont(font)
-                    form1_layout.addWidget(form1_label)
+                    prod_title.setFont(font)
+                    prod_form_layout.addWidget(prod_title)
 
-                    input_layout1 = QGridLayout()
-                    input_layout1.addWidget(QLabel("Name:"), 0, 0)
-                    name1 = QLineEdit()
-                    input_layout1.addWidget(name1, 0, 1)
-                    input_layout1.addWidget(QLabel("Price:"), 1, 0)
-                    price1 = QLineEdit()
-                    input_layout1.addWidget(price1, 1, 1)
-                    input_layout1.addWidget(QLabel("Amount:"), 2, 0)
-                    amount1 = QLineEdit()
-                    input_layout1.addWidget(amount1, 2, 1)
-                    input_layout1.addWidget(QLabel("Branch ID:"), 3, 0)
-                    branch_id1 = QLineEdit()
-                    input_layout1.addWidget(branch_id1, 3, 1)
-                    form1_layout.addLayout(input_layout1)
+                    prod_input_layout = QGridLayout()
+                    prod_input_layout.addWidget(QLabel("Name:"), 0, 0)
+                    prod_name_input = QLineEdit()
+                    prod_input_layout.addWidget(prod_name_input, 0, 1)
+                    prod_input_layout.addWidget(QLabel("Price:"), 1, 0)
+                    prod_price_input = QLineEdit()
+                    prod_input_layout.addWidget(prod_price_input, 1, 1)
+                    prod_input_layout.addWidget(QLabel("Amount:"), 2, 0)
+                    prod_amount_input = QLineEdit()
+                    prod_input_layout.addWidget(prod_amount_input, 2, 1)
+                    prod_input_layout.addWidget(QLabel("Branch ID:"), 3, 0)
+                    prod_branch_id_input = QLineEdit()
+                    prod_input_layout.addWidget(prod_branch_id_input, 3, 1)
+                    prod_form_layout.addLayout(prod_input_layout)
 
-                    # Horizontal button layout for Table 1
-                    button_layout1 = QHBoxLayout()
-                    button_layout1.setAlignment(Qt.AlignmentFlag.AlignCenter)
-                    self.add_btn1 = QPushButton("Add")
-                    self.add_btn1.setFixedSize(80, 30)
-                    remove_btn1 = QPushButton("Remove")
-                    remove_btn1.setFixedSize(80, 30)
-                    update_btn1 = QPushButton("Update")
-                    update_btn1.setFixedSize(80, 30)
-                    button_layout1.addWidget(self.add_btn1)
-                    button_layout1.addWidget(remove_btn1)
-                    button_layout1.addWidget(update_btn1)
-                    button_widget1 = QWidget()
-                    button_widget1.setLayout(button_layout1)
-                    form1_layout.addWidget(button_widget1)
-                    form1_layout.addStretch()
-                    form1_widget = QWidget()
-                    form1_widget.setLayout(form1_layout)
+                    # Horizontal button layout for Product
+                    prod_button_layout = QHBoxLayout()
+                    prod_button_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+                    self.prod_add_btn = QPushButton("Add")
+                    self.prod_add_btn.setFixedSize(80, 30)
+                    prod_remove_btn = QPushButton("Remove")
+                    prod_remove_btn.setFixedSize(80, 30)
+                    prod_update_btn = QPushButton("Update")
+                    prod_update_btn.setFixedSize(80, 30)
+                    prod_button_layout.addWidget(self.prod_add_btn)
+                    prod_button_layout.addWidget(prod_remove_btn)
+                    prod_button_layout.addWidget(prod_update_btn)
+                    prod_button_widget = QWidget()
+                    prod_button_widget.setLayout(prod_button_layout)
+                    prod_form_layout.addWidget(prod_button_widget)
+                    prod_form_layout.addStretch()
+                    prod_form_widget = QWidget()
+                    prod_form_widget.setLayout(prod_form_layout)
 
-                    # Form for Table 2
-                    form2_layout = QVBoxLayout()
-                    form2_label = QLabel("Manage Branches Info")
-                    form2_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-                    form2_label.setFont(font)
-                    form2_layout.addWidget(form2_label)
+                    # Form for Branch Table
+                    branch_form_layout = QVBoxLayout()
+                    branch_title = QLabel("Manage Branches Info")
+                    branch_title.setAlignment(Qt.AlignmentFlag.AlignCenter)
+                    branch_title.setFont(font)
+                    branch_form_layout.addWidget(branch_title)
 
-                    input_layout2 = QGridLayout()
-                    input_layout2.addWidget(QLabel("Branch ID:"), 0, 0)
-                    branch_id2 = QLineEdit()
-                    input_layout2.addWidget(branch_id2, 0, 1)
-                    input_layout2.addWidget(QLabel("Name:"), 1, 0)
-                    name2 = QLineEdit()
-                    input_layout2.addWidget(name2, 1, 1)
-                    input_layout2.addWidget(QLabel("Address:"), 2, 0)
-                    address2 = QLineEdit()
-                    input_layout2.addWidget(address2, 2, 1)
-                    input_layout2.addWidget(QLabel("Phone Number:"), 3, 0)
-                    phone_number2 = QLineEdit()
-                    input_layout2.addWidget(phone_number2, 3, 1)
-                    form2_layout.addLayout(input_layout2)
+                    branch_input_layout = QGridLayout()
+                    branch_input_layout.addWidget(QLabel("Branch ID:"), 0, 0)
+                    branch_id_input = QLineEdit()
+                    branch_input_layout.addWidget(branch_id_input, 0, 1)
+                    branch_input_layout.addWidget(QLabel("Name:"), 1, 0)
+                    branch_name_input = QLineEdit()
+                    branch_input_layout.addWidget(branch_name_input, 1, 1)
+                    branch_input_layout.addWidget(QLabel("Address:"), 2, 0)
+                    branch_address_input = QLineEdit()
+                    branch_input_layout.addWidget(branch_address_input, 2, 1)
+                    branch_input_layout.addWidget(QLabel("Phone Number:"), 3, 0)
+                    branch_phone_input = QLineEdit()
+                    branch_input_layout.addWidget(branch_phone_input, 3, 1)
+                    branch_form_layout.addLayout(branch_input_layout)
 
-                    # BFD viết tắt BranchesFormData
-                    self.BFD = BranchesFormData(name2,address2,phone_number2)
-                    #PFD viet tat ProductFormData
-                    self.PFD = ProductFormData(name1,price1,amount1,branch_id1)
+                    # Branch and Product Form Data
+                    self.branch_form_data = BranchesFormData(branch_name_input, branch_address_input,
+                                                             branch_phone_input)
+                    self.prod_form_data = ProductFormData(prod_name_input, prod_price_input, prod_amount_input,
+                                                          prod_branch_id_input)
 
-                    # Horizontal button layout for Table 2
-                    button_layout2 = QHBoxLayout()
-                    button_layout2.setAlignment(Qt.AlignmentFlag.AlignCenter)
-                    self.add_btn2 = QPushButton("Add")
-                    self.add_btn2.setFixedSize(80, 30)
-                    self.remove_btn2 = QPushButton("Remove")
-                    self.remove_btn2.setFixedSize(80, 30)
-                    self.update_btn2 = QPushButton("Update")
-                    self.update_btn2.setFixedSize(80, 30)
-                    button_layout2.addWidget(self.add_btn2)
-                    button_layout2.addWidget(self.remove_btn2)
-                    button_layout2.addWidget(self.update_btn2 )
-                    button_widget2 = QWidget()
-                    button_widget2.setLayout(button_layout2)
-                    form2_layout.addWidget(button_widget2)
-                    form2_layout.addStretch()
-                    form2_widget = QWidget()
-                    form2_widget.setLayout(form2_layout)
+                    # Horizontal button layout for Branch
+                    branch_button_layout = QHBoxLayout()
+                    branch_button_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+                    self.branch_add_btn = QPushButton("Add")
+                    self.branch_add_btn.setFixedSize(80, 30)
+                    self.branch_remove_btn = QPushButton("Remove")
+                    self.branch_remove_btn.setFixedSize(80, 30)
+                    self.branch_update_btn = QPushButton("Update")
+                    self.branch_update_btn.setFixedSize(80, 30)
+                    branch_button_layout.addWidget(self.branch_add_btn)
+                    branch_button_layout.addWidget(self.branch_remove_btn)
+                    branch_button_layout.addWidget(self.branch_update_btn)
+                    branch_button_widget = QWidget()
+                    branch_button_widget.setLayout(branch_button_layout)
+                    branch_form_layout.addWidget(branch_button_widget)
+                    branch_form_layout.addStretch()
+                    branch_form_widget = QWidget()
+                    branch_form_widget.setLayout(branch_form_layout)
 
-                    # Slot methods for Table 1
-                    def add_row_table1():
-                        row_count = table1.rowCount()
-                        table1.insertRow(row_count)
-                        table1.setItem(row_count, 0, QTableWidgetItem(name1.text()))
-                        table1.setItem(row_count, 1, QTableWidgetItem(price1.text()))
-                        table1.setItem(row_count, 2, QTableWidgetItem(amount1.text()))
-                        table1.setItem(row_count, 3, QTableWidgetItem(branch_id1.text()))
-                        name1.clear()
-                        price1.clear()
-                        amount1.clear()
-                        branch_id1.clear()
+                    # Slot methods for Product Table
+                    def add_row_prod():
+                        row = prod_table.rowCount()
+                        prod_table.insertRow(row)
+                        prod_table.setItem(row, 0, QTableWidgetItem(prod_name_input.text()))
+                        prod_table.setItem(row, 1, QTableWidgetItem(prod_price_input.text()))
+                        prod_table.setItem(row, 2, QTableWidgetItem(prod_amount_input.text()))
+                        prod_table.setItem(row, 3, QTableWidgetItem(prod_branch_id_input.text()))
 
-                    def remove_row_table1():
-                        current_row = table1.currentRow()
-                        if current_row >= 0:
-                            table1.removeRow(current_row)
+                    def remove_row_prod():
+                        row = prod_table.currentRow()
+                        if row >= 0:
+                            prod_table.removeRow(row)
 
-                    def update_row_table1():
-                        current_row = table1.currentRow()
-                        if current_row >= 0:
-                            table1.setItem(current_row, 0, QTableWidgetItem(name1.text()))
-                            table1.setItem(current_row, 1, QTableWidgetItem(price1.text()))
-                            table1.setItem(current_row, 2, QTableWidgetItem(amount1.text()))
-                            table1.setItem(current_row, 3, QTableWidgetItem(branch_id1.text()))
-                            name1.clear()
-                            price1.clear()
-                            amount1.clear()
-                            branch_id1.clear()
+                    def update_row_prod():
+                        row = prod_table.currentRow()
+                        if row >= 0:
+                            prod_table.setItem(row, 0, QTableWidgetItem(prod_name_input.text()))
+                            prod_table.setItem(row, 1, QTableWidgetItem(prod_price_input.text()))
+                            prod_table.setItem(row, 2, QTableWidgetItem(prod_amount_input.text()))
+                            prod_table.setItem(row, 3, QTableWidgetItem(prod_branch_id_input.text()))
+                            prod_name_input.clear()
+                            prod_price_input.clear()
+                            prod_amount_input.clear()
+                            prod_branch_id_input.clear()
 
-                    # Slot methods for Table 2
-                    def add_row_table2():
-                        row_count = table2.rowCount()
-                        table2.insertRow(row_count)
-                        table2.setItem(row_count, 0, QTableWidgetItem(branch_id2.text()))
-                        table2.setItem(row_count, 1, QTableWidgetItem(name2.text()))
-                        table2.setItem(row_count, 2, QTableWidgetItem(address2.text()))
-                        table2.setItem(row_count, 3, QTableWidgetItem(phone_number2.text()))
-                        branch_id2.clear()
-                        name2.clear()
-                        address2.clear()
-                        phone_number2.clear()
+                    # Slot methods for Branch Table
+                    def add_row_branch():
+                        row = branch_table.rowCount()
+                        branch_table.insertRow(row)
+                        branch_table.setItem(row, 0, QTableWidgetItem(branch_id_input.text()))
+                        branch_table.setItem(row, 1, QTableWidgetItem(branch_name_input.text()))
+                        branch_table.setItem(row, 2, QTableWidgetItem(branch_address_input.text()))
+                        branch_table.setItem(row, 3, QTableWidgetItem(branch_phone_input.text()))
 
-                    def remove_row_table2():
-                        current_row = table2.currentRow()
-                        if current_row >= 0:
-                            table2.removeRow(current_row)
+                    def remove_row_branch():
+                        row = branch_table.currentRow()
+                        if row >= 0:
+                            branch_table.removeRow(row)
 
-                    def update_row_table2():
-                        current_row = table2.currentRow()
-                        if current_row >= 0:
-                            table2.setItem(current_row, 0, QTableWidgetItem(branch_id2.text()))
-                            table2.setItem(current_row, 1, QTableWidgetItem(name2.text()))
-                            table2.setItem(current_row, 2, QTableWidgetItem(address2.text()))
-                            table2.setItem(current_row, 3, QTableWidgetItem(phone_number2.text()))
-                            branch_id2.clear()
-                            name2.clear()
-                            address2.clear()
-                            phone_number2.clear()
+                    def update_row_branch():
+                        row = branch_table.currentRow()
+                        if row >= 0:
+                            branch_table.setItem(row, 0, QTableWidgetItem(branch_id_input.text()))
+                            branch_table.setItem(row, 1, QTableWidgetItem(branch_name_input.text()))
+                            branch_table.setItem(row, 2, QTableWidgetItem(branch_address_input.text()))
+                            branch_table.setItem(row, 3, QTableWidgetItem(branch_phone_input.text()))
+                            branch_id_input.clear()
+                            branch_name_input.clear()
+                            branch_address_input.clear()
+                            branch_phone_input.clear()
 
                     # Connect buttons to slots
-                    self.add_btn1.clicked.connect(add_row_table1)
-                    remove_btn1.clicked.connect(remove_row_table1)
-                    update_btn1.clicked.connect(update_row_table1)
-                    self.add_btn2.clicked.connect(add_row_table2)
-                    self.remove_btn2.clicked.connect(remove_row_table2)
-                    self.update_btn2.clicked.connect(update_row_table2)
+                    self.prod_add_btn.clicked.connect(add_row_prod)
+                    prod_remove_btn.clicked.connect(remove_row_prod)
+                    prod_update_btn.clicked.connect(update_row_prod)
+                    self.branch_add_btn.clicked.connect(add_row_branch)
+                    self.branch_remove_btn.clicked.connect(remove_row_branch)
+                    self.branch_update_btn.clicked.connect(update_row_branch)
 
                     # Layout for tables and forms
                     content_layout = QHBoxLayout()
-                    table1_layout = QVBoxLayout()
-                    table1_layout.addWidget(QLabel("Product Data"))
-                    table1_layout.addWidget(table1)
-                    table1_layout.addWidget(form1_widget)
-                    table2_layout = QVBoxLayout()
-                    table2_layout.addWidget(QLabel("Branches Info"))
-                    table2_layout.addWidget(table2)
-                    table2_layout.addWidget(form2_widget)
-                    content_layout.addLayout(table1_layout)
-                    content_layout.addLayout(table2_layout)
+                    prod_layout = QVBoxLayout()
+                    prod_layout.addWidget(QLabel("Product Data"))
+                    prod_layout.addWidget(prod_table)
+                    prod_layout.addWidget(prod_form_widget)
+
+                    branch_layout = QVBoxLayout()
+                    branch_layout.addWidget(QLabel("Branches Info"))
+                    branch_layout.addWidget(branch_table)
+                    branch_layout.addWidget(branch_form_widget)
+
+                    content_layout.addLayout(prod_layout)
+                    content_layout.addLayout(branch_layout)
                     newPage.setLayout(content_layout)
+
 
                 elif text == "Setting":
                     settingLayout = QGridLayout()
-                    # Thêm một số widget vào layout dưới cùng
+
+                    # Tiêu đề
                     infoLabel = QLabel("Account Setting")
                     infoLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
                     font = QFont()
                     font.setPixelSize(50)
                     infoLabel.setFont(font)
-                    settingLayout.addWidget(infoLabel, 0, 0, 1, 12)  # row, col, rowspan, colspan
-                    # Thêm các widget thông tin khác
+                    settingLayout.addWidget(infoLabel, 0, 0, 1, 12)
+
+                    # Spacer hàng 1
                     settingLayout.addWidget(QLabel(), 1, 5)
-                    nameSetting = QLabel("☺ Username:")
-                    nameSetting.setObjectName("nameSetting")
-                    settingLayout.addWidget(nameSetting, 2, 1)
-                    settingLayout.addWidget(QLabel("Lecris Ronal Si"), 2, 5)
-                    settingLayout.addWidget(QPushButton("Edit"), 2, 10)
 
+                    # Username
+                    lbl_username = QLabel("☺ Username:")
+                    lbl_username.setObjectName("lbl_username")
+                    self.le_username = QLineEdit("Lecris Ronal Si")
+                    self.btn_edit_username = QPushButton("Edit")
+                    settingLayout.addWidget(lbl_username, 2, 1)
+                    settingLayout.addWidget(self.le_username, 2, 5)
+                    settingLayout.addWidget(self.btn_edit_username, 2, 10)
+
+                    # Spacer hàng 3
                     settingLayout.addWidget(QLabel(), 3, 5)
-                    passSetting = QLabel("⛉ Password:")
-                    passSetting.setObjectName("passSetting")
-                    settingLayout.addWidget(passSetting, 4, 1)
-                    settingLayout.addWidget(QLabel("************"), 4, 5)
-                    settingLayout.addWidget(QPushButton("Edit"), 4, 10)
 
+                    # Password
+                    lbl_password = QLabel("⛉ Password:")
+                    lbl_password.setObjectName("lbl_password")
+                    self.le_password = QLineEdit("************")
+                    self.le_password.setEchoMode(QLineEdit.EchoMode.Password)
+                    self.btn_edit_password = QPushButton("Edit")
+                    settingLayout.addWidget(lbl_password, 4, 1)
+                    settingLayout.addWidget(self.le_password, 4, 5)
+                    settingLayout.addWidget(self.btn_edit_password, 4, 10)
+
+                    # Spacer hàng 5
                     settingLayout.addWidget(QLabel(), 5, 5)
-                    birthdateSetting = QLabel("𝄜 Date birth:")
-                    birthdateSetting.setObjectName("birthdateSetting")
-                    settingLayout.addWidget(birthdateSetting, 6, 1)
-                    settingLayout.addWidget(QLabel("99/99/9999"), 6, 5)
-                    settingLayout.addWidget(QPushButton("Edit"), 6, 10)
 
+                    # Birthdate
+                    lbl_birthdate = QLabel("𝄜 Date birth:")
+                    lbl_birthdate.setObjectName("lbl_birthdate")
+                    self.le_birthdate = QLineEdit("99/99/9999")
+                    self.btn_edit_birthdate = QPushButton("Edit")
+                    settingLayout.addWidget(lbl_birthdate, 6, 1)
+                    settingLayout.addWidget(self.le_birthdate, 6, 5)
+                    settingLayout.addWidget(self.btn_edit_birthdate, 6, 10)
+
+                    # Spacer hàng 7
                     settingLayout.addWidget(QLabel(), 7, 5)
-                    gmailSetting = QLabel("🖂 Email:")
-                    gmailSetting.setObjectName("emailSetting")
-                    settingLayout.addWidget(gmailSetting, 8, 1)
-                    settingLayout.addWidget(QLabel("abcdxyz1234@gmail.com"), 8, 5)
-                    settingLayout.addWidget(QPushButton("Edit"), 8, 10)
 
+                    # Email
+                    lbl_email = QLabel("🖂 Email:")
+                    lbl_email.setObjectName("lbl_email")
+                    self.le_email = QLineEdit("abcdxyz1234@gmail.com")
+                    self.btn_edit_email = QPushButton("Edit")
+                    settingLayout.addWidget(lbl_email, 8, 1)
+                    settingLayout.addWidget(self.le_email, 8, 5)
+                    settingLayout.addWidget(self.btn_edit_email, 8, 10)
+
+                    # Spacer hàng 9
                     settingLayout.addWidget(QLabel(), 9, 5)
-                    phoneSetting = QLabel("✆ Phone number: ")
-                    phoneSetting.setObjectName("phoneSetting")
-                    settingLayout.addWidget(phoneSetting, 10, 1)
-                    settingLayout.addWidget(QLabel("(08+) 905-XXX-XXX"), 10, 5)
-                    settingLayout.addWidget(QPushButton("Edit"), 10, 10)
 
+                    # Phone Number
+                    lbl_phone = QLabel("✆ Phone number:")
+                    lbl_phone.setObjectName("lbl_phone")
+                    self.le_phone = QLineEdit("(08+) 905-XXX-XXX")
+                    self.btn_edit_phone = QPushButton("Edit")
+                    settingLayout.addWidget(lbl_phone, 10, 1)
+                    settingLayout.addWidget(self.le_phone, 10, 5)
+                    settingLayout.addWidget(self.btn_edit_phone, 10, 10)
+
+                    # Logout Button
                     logoutButton = QPushButton("Log out")
                     logoutButton.setObjectName("logoutButton")
                     settingLayout.addWidget(QLabel(), 11, 5)
                     settingLayout.addWidget(QLabel(), 12, 5)
                     settingLayout.addWidget(logoutButton, 13, 5)
 
-                    # handle cái nút logout
+                    # Sự kiện cho nút logout
                     logoutButton.clicked.connect(self.handle_logout)
+
+                    # Set layout cho trang mới
                     newPage.setLayout(settingLayout)
 
                 else:

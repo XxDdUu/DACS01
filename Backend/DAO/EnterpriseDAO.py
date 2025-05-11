@@ -35,7 +35,7 @@ class EnterpriseDao:
 			INSERT INTO ENTERPRISE
 				(Enterprise_ID, Enterprise_NAME, Enterprise_FOUNDER, ADDRESS,
 					Enterprise_PHONE_NUMBER,
-					BUSINESS_TYPE, INDUSTRY)
+					BUSINESS_TYPE, INDUSTRY, Enterprise_password)
 					VALUES (%s, %s, %s, %s, %s, %s, %s)
 				"""
 			cursor.execute(query, (
@@ -46,6 +46,7 @@ class EnterpriseDao:
 					enterprise_phone_number,
 					business_type,
 					enterprise_industry,
+					hashed_password_enterprise
 				))
 
 			connection.commit()
