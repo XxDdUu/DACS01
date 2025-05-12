@@ -12,6 +12,8 @@ from PyQt6.QtGui import QPixmap, QFont, QIcon
 from Backend.Controller.BranchesController import BranchesController
 from Backend.Model.Branches import BranchesFormData
 from Backend.Model.Product import ProductFormData
+from Backend.Model.ProductSales import ProductSalesFormData
+from Backend.Model.Revenue import RevenueFormData
 from Backend.Model.plot_dataChart import generalChart, ProductChart
 from Frontend.View.frameUI import Ui_MainWindow
 from Backend.Model.Employer import Employer
@@ -206,35 +208,49 @@ class MainDashboard(QMainWindow):
                     revenue_form_layout.addWidget(lbl_form_title, 0, 0, 1, 2)
 
                     # Branch ID
-                    lbl_branch_id = QLabel("Branch ID:")
-                    self.le_branch_id_general = QLineEdit()
-                    revenue_form_layout.addWidget(lbl_branch_id, 1, 0)
-                    revenue_form_layout.addWidget(self.le_branch_id_general, 1, 1)
+                    lbl_revenue_id = QLabel("Revenue ID:")
+                    self.le_revenue_id = QLineEdit()
+                    revenue_form_layout.addWidget(lbl_revenue_id, 1, 0)
+                    revenue_form_layout.addWidget(self.le_revenue_id, 1, 1)
 
                     # Revenue Date
-                    lbl_revenue_date = QLabel("Revenue Date:")
-                    self.le_revenue_date_general = QLineEdit()
-                    revenue_form_layout.addWidget(lbl_revenue_date, 2, 0)
-                    revenue_form_layout.addWidget(self.le_revenue_date_general, 2, 1)
+                    lbl_sale_date = QLabel("Revenue Date:")
+                    self.le_revenue_date = QDateEdit()
+                    revenue_form_layout.addWidget(lbl_sale_date, 2, 0)
+                    revenue_form_layout.addWidget(self.le_revenue_date, 2, 1)
 
-                    # New Revenue
-                    lbl_new_revenue = QLabel("Update new revenue:")
-                    self.le_new_revenue_general = QLineEdit()
-                    revenue_form_layout.addWidget(lbl_new_revenue, 3, 0)
-                    revenue_form_layout.addWidget(self.le_new_revenue_general, 3, 1)
+                    #Revenue Amount
+                    lbl_revenueAmount = QLabel("Revneue Amount:")
+                    self.le_revenueAmount = QLineEdit()
+                    revenue_form_layout.addWidget(lbl_revenueAmount, 3, 0)
+                    revenue_form_layout.addWidget(self.le_revenueAmount, 3, 1)
+
+                    #Branch Id _revenue_
+                    lbl_rev_branchId = QLabel("Branch ID:")
+                    self.le_rev_branchId = QLineEdit()
+                    revenue_form_layout.addWidget(lbl_rev_branchId, 4, 0)
+                    revenue_form_layout.addWidget(self.le_rev_branchId, 4, 1)
+
+                    #RFD stand for Revenue Form Data, truyền vào Controller
+                    self.RFD = RevenueFormData(
+                        self.le_revenue_id,
+                        self.le_revenue_date,
+                        self.le_revenueAmount,
+                        self.le_rev_branchId
+                    )
 
                     # Các nút CRUD
-                    self.btn_add_general = QPushButton("Add")
-                    self.btn_update_general = QPushButton("Update")
-                    self.btn_remove_general = QPushButton("Remove")
+                    self.btn_add_Revenue = QPushButton("Add")
+                    self.btn_update_Revenue = QPushButton("Update")
+                    self.btn_remove_Revenue = QPushButton("Remove")
 
                     crud_button_layout = QHBoxLayout()
                     crud_button_layout.addStretch(1)
-                    crud_button_layout.addWidget(self.btn_add_general)
+                    crud_button_layout.addWidget(self.btn_add_Revenue)
                     crud_button_layout.addStretch(0)
-                    crud_button_layout.addWidget(self.btn_update_general)
+                    crud_button_layout.addWidget(self.btn_update_Revenue)
                     crud_button_layout.addStretch(0)
-                    crud_button_layout.addWidget(self.btn_remove_general)
+                    crud_button_layout.addWidget(self.btn_remove_Revenue)
                     crud_button_layout.addStretch(1)
 
                     # Tổng hợp layout
@@ -271,52 +287,77 @@ class MainDashboard(QMainWindow):
                     chart_widget = QWidget()
                     chart_widget.setLayout(chart_layout)
 
-                    # Layout cập nhật thông tin doanh thu
-                    update_revenue_layout = QGridLayout()
+                    # Layout cập nhật thông tin doanh số bán sản phẩm
+                    update_PS_layout = QGridLayout()
 
                     # Tiêu đề
-                    lbl_revenue_title = QLabel("Edit Revenue Information")
-                    lbl_revenue_title.setAlignment(Qt.AlignmentFlag.AlignCenter)
+                    lbl_PS_title = QLabel("Manage Product Sales")
+                    lbl_PS_title.setAlignment(Qt.AlignmentFlag.AlignCenter)
                     font = QFont()
                     font.setPixelSize(30)
-                    lbl_revenue_title.setFont(font)
-                    update_revenue_layout.addWidget(lbl_revenue_title, 0, 0, 1, 2)
+                    lbl_PS_title.setFont(font)
+                    update_PS_layout.addWidget(lbl_PS_title, 0, 0, 1, 2)
 
-                    # Branch ID
-                    lbl_branch_id = QLabel("Branch ID:")
-                    self.le_branch_id = QLineEdit()
-                    update_revenue_layout.addWidget(lbl_branch_id, 1, 0)
-                    update_revenue_layout.addWidget(self.le_branch_id, 1, 1)
+                    # Sale ID
+                    lbl_saleID = QLabel("Sale ID:")
+                    self.le_saleID = QLineEdit()
+                    update_PS_layout.addWidget(lbl_saleID, 1, 0)
+                    update_PS_layout.addWidget(self.le_saleID, 1, 1)
 
-                    # Revenue Date
-                    lbl_revenue_date = QLabel("Revenue Date:")
-                    self.le_revenue_date = QLineEdit()
-                    update_revenue_layout.addWidget(lbl_revenue_date, 2, 0)
-                    update_revenue_layout.addWidget(self.le_revenue_date, 2, 1)
+                    # PS Date
+                    lbl_sale_date = QLabel("Sale Date:")
+                    self.le_sale_date = QDateEdit()
+                    update_PS_layout.addWidget(lbl_sale_date, 2, 0)
+                    update_PS_layout.addWidget(self.le_sale_date, 2, 1)
 
-                    # New Revenue Value
-                    lbl_new_revenue = QLabel("Update new revenue:")
-                    self.le_new_revenue = QLineEdit()
-                    update_revenue_layout.addWidget(lbl_new_revenue, 3, 0)
-                    update_revenue_layout.addWidget(self.le_new_revenue, 3, 1)
+                    # Sale Quantity
+                    lbl_quantitySold = QLabel("Quantity Sold:")
+                    self.le_quantitySold = QLineEdit()
+                    update_PS_layout.addWidget(lbl_quantitySold, 3, 0)
+                    update_PS_layout.addWidget(self.le_quantitySold, 3, 1)
+
+                    # Sale amount
+                    lbl_saleAmount = QLabel("Sale Amount:")
+                    self.le_saleAmount = QLineEdit()
+                    update_PS_layout.addWidget(lbl_saleAmount, 4, 0)
+                    update_PS_layout.addWidget(self.le_saleAmount, 4, 1)
+
+                    lbl_PS_productId = QLabel("Product ID:")
+                    self.le_PS_productId = QLineEdit()
+                    update_PS_layout.addWidget(lbl_PS_productId, 5, 0)
+                    update_PS_layout.addWidget(self.le_PS_productId, 5, 1)
+
+                    lbl_PS_branchId = QLabel("Branch ID:")
+                    self.le_PS_branchId = QLineEdit()
+                    update_PS_layout.addWidget(lbl_PS_branchId, 6, 0)
+                    update_PS_layout.addWidget(self.le_PS_branchId, 6, 1)
+
+                    self.PSFD = ProductSalesFormData(
+                        self.le_saleID,
+                        self.le_PS_productId,
+                        self.le_PS_branchId,
+                        self.le_sale_date,
+                        self.le_quantitySold,
+                        self.le_saleAmount
+                    )
 
                     # Các nút CRUD
-                    btn_add_revenue = QPushButton("Add")
-                    btn_update_revenue = QPushButton("Update")
-                    btn_remove_revenue = QPushButton("Remove")
+                    self.btn_add_PS = QPushButton("Add")
+                    self.btn_update_PS = QPushButton("Update")
+                    self.btn_remove_PS = QPushButton("Remove")
 
                     crud_btn_layout = QHBoxLayout()
                     crud_btn_layout.addStretch(1)
-                    crud_btn_layout.addWidget(btn_add_revenue)
+                    crud_btn_layout.addWidget(self.btn_add_PS)
                     crud_btn_layout.addStretch(0)
-                    crud_btn_layout.addWidget(btn_update_revenue)
+                    crud_btn_layout.addWidget(self.btn_update_PS)
                     crud_btn_layout.addStretch(0)
-                    crud_btn_layout.addWidget(btn_remove_revenue)
+                    crud_btn_layout.addWidget(self.btn_remove_PS)
                     crud_btn_layout.addStretch(1)
 
                     # Tổng hợp layout form
                     form_revenue_layout = QVBoxLayout()
-                    form_revenue_layout.addLayout(update_revenue_layout)
+                    form_revenue_layout.addLayout(update_PS_layout)
                     form_revenue_layout.addLayout(crud_btn_layout)
 
                     form_revenue_widget = QWidget()
