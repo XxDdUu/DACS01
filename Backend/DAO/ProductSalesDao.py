@@ -2,23 +2,25 @@ from Backend.DAO.DatabaseConnection import get_connection
 import MySQLdb
 import traceback
 
-class RevenueDAO:
-    def create_revenue(self, data):
-        revenueId = data.get("id")
-        revenueDate =  data.get("date")
-        revenue_raw = data.get("amount").strip()
-        branchID = data.get("branch_id")
+class ProductSalesDAO:
+    def add_ProductSales(self, data):
+        sale_Id = data.get("id")
+        product_id =  data.get("product_id")
+        branch_id = data.get("branch_id")
+        sale_date =  data.get("date")
+        quantity_sold =  data.get("quantity_sold")
+        sale_amount_raw = data.get("amount").strip()
 
         connection = None
         cursor = None
 
         #Kiểm tra và ép kiểu giá
         try:
-            revenueAmount = float(revenue_raw)
-            if revenueAmount <= 0:
+            sale_amount = float(sale_amount_raw)
+            if sale_amount <= 0:
                 return False, "Invalid price: must be greater than 0"
         except ValueError:
-            return False, f"Invalid price format: '{revenue_raw}'"
+            return False, f"Invalid price format: '{sale_amount_raw}'"
         try:
             connection = get_connection()
             if not connection:
@@ -26,19 +28,21 @@ class RevenueDAO:
 
             cursor = connection.cursor()
             query = """
-                INSERT INTO REVENUE
-                (Revenue_ID, Revenue_date, Amount, Branch_ID)
-                VALUES (%s, %s, %s, %s)
+                INSERT INTO PRODUCT_SALES
+                (SALE_ID, Product_ID, Branch_ID, SALE_DATE, QUANTITY_SOLD, SALE_AMOUNT)
+                VALUES (%s, %s, %s, %s, %s, %s)
             """
             cursor.execute(query, (
-                revenueId,
-                revenueDate,         # đã ép kiểu float
-                revenueAmount,
-                branchID
+                sale_Id,
+                product_id,
+                branch_id,
+                sale_date,
+                quantity_sold,
+                sale_amount
             ))
 
             connection.commit()
-            return True, "Revenue inserted successfully"
+            return True, "Product_Sales add successfully"
 
         except MySQLdb.Error as e:
             traceback.print_exc()
@@ -53,23 +57,24 @@ class RevenueDAO:
                 cursor.close()
             if connection:
                 connection.close()
-    def remove_revenue(self, data):
-        revenueId = data.get("id")
-        revenueDate = data.get("date")
-        revenue_raw = data.get("amount").strip()
-        branchID = data.get("branch_id")
+    def remove_ProductSales(self, data):
+        sale_Id = data.get("id")
+        product_id = data.get("product_id")
+        branch_id = data.get("branch_id")
+        sale_date = data.get("date")
+        quantity_sold = data.get("quantity_sold")
+        sale_amount_raw = data.get("amount").strip()
 
         connection = None
         cursor = None
 
         # Kiểm tra và ép kiểu giá
         try:
-            revenueAmount = float(revenue_raw)
-            if revenueAmount <= 0:
+            sale_amount = float(sale_amount_raw)
+            if sale_amount <= 0:
                 return False, "Invalid price: must be greater than 0"
         except ValueError:
-            return False, f"Invalid price format: '{revenue_raw}'"
-
+            return False, f"Invalid price format: '{sale_amount_raw}'"
         try:
             connection = get_connection()
             if not connection:
@@ -77,16 +82,17 @@ class RevenueDAO:
 
             cursor = connection.cursor()
             query = """
-                DELETE FROM REVENUE WHERE Revenue_ID = %s AND Revenue_date = AND Branch_ID = %s
+                DELETE FROM product_sales 
+                WHERE SALE_ID = %s AND Product_ID = %s AND Branch_ID = %s
             """
             cursor.execute(query, (
-                revenueId,
-                revenueDate,
-                branchID,
+                sale_Id,
+                product_id,
+                branch_id,
             ))
 
             connection.commit()
-            return True, "Revenue deleted successfully"
+            return True, "Product_Sales removed successfully"
 
         except MySQLdb.Error as e:
             traceback.print_exc()
@@ -101,22 +107,24 @@ class RevenueDAO:
                 cursor.close()
             if connection:
                 connection.close()
-    def update_revenue(self, data):
-        revenueId = data.get("id")
-        revenueDate = data.get("date")
-        revenue_raw = data.get("amount").strip()
-        branchID = data.get("branch_id")
+    def update_ProductSales(self, data):
+        sale_Id = data.get("id")
+        product_id = data.get("product_id")
+        branch_id = data.get("branch_id")
+        sale_date = data.get("date")
+        quantity_sold = data.get("quantity_sold")
+        sale_amount_raw = data.get("amount").strip()
 
         connection = None
         cursor = None
 
         # Kiểm tra và ép kiểu giá
         try:
-            revenueAmount = float(revenue_raw)
-            if revenueAmount <= 0:
+            sale_amount = float(sale_amount_raw)
+            if sale_amount <= 0:
                 return False, "Invalid price: must be greater than 0"
         except ValueError:
-            return False, f"Invalid price format: '{revenue_raw}'"
+            return False, f"Invalid price format: '{sale_amount_raw}'"
 
         try:
             connection = get_connection()
@@ -125,19 +133,21 @@ class RevenueDAO:
 
             cursor = connection.cursor()
             query = """
-                UPDATE PRODUCT 
-                SET Revenue_date = %s, AMOUNT = %s 
-                WHERE Branch_ID = %s AND Revenue_ID = %s,
+                UPDATE product_sales 
+                SET SALE_DATE = %s, QUANTITY_SOLD = %s, SALE_AMOUNT = %s
+                WHERE SALE_ID = %s AND Product_ID = %s AND Branch_ID = %s
             """
             cursor.execute(query, (
-                revenueDate,
-                revenueAmount,
-                branchID,
-                revenueId
+                sale_date,
+                quantity_sold,
+                sale_amount,
+                sale_Id,
+                product_id,
+                branch_id
             ))
 
             connection.commit()
-            return True, "Revenue updated successfully"
+            return True, "Product_Sales updated successfully"
 
         except MySQLdb.Error as e:
             traceback.print_exc()

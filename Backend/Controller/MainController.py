@@ -2,6 +2,8 @@ from pyexpat.errors import messages
 
 from Backend.Controller.BranchesController import BranchesController
 from Backend.Controller.ProductController import ProductController
+from Backend.Controller.ProductSalesController import ProductSalesController
+from Backend.Controller.RevenueController import RevenueController
 from Frontend.View.Login import Login
 from Frontend.View.mainDashboard import MainDashboard
 from Frontend.View.register import Register
@@ -40,3 +42,5 @@ class MainController:
 
         self.branches_controller = BranchesController(self.dashboard_window)
         self.product_controller = ProductController(self.dashboard_window)
+        self.revenue_controller = RevenueController(self.dashboard_window)
+        self.PS_controller = ProductSalesController(self.dashboard_window)
