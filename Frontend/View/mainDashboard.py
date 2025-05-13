@@ -681,3 +681,12 @@ class MainDashboard(QMainWindow):
             print(f"Error: CSS file not found at {css_path}")
         except Exception as e:
             print(f"Error loading stylesheet: {e}")
+
+    def get_accountSetting_data(self):
+        return {
+            "username": self.le_username.text().strip(),
+            "date_of_birth": self.le_birthdate.date().toPyDate(),
+            "email": self.le_email.text().strip(),
+            "phone_number": self.le_phone.text().strip(),
+            "enterprise_id": self.le_enterprise_id.text().strip()
+        }

@@ -30,7 +30,6 @@ class generalChart:
 
         self.canvas.draw()
 
-
 class ProductChart:
     def __init__(self):
         self.figure, self.ax = plt.subplots()

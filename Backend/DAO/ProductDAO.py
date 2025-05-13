@@ -68,14 +68,6 @@ class ProductDAO:
         connection = None
         cursor = None
 
-        # Kiểm tra và ép kiểu giá
-        # try:
-        #     productPrice = float(price_raw)
-        #     if productPrice <= 0:
-        #         return False, "Invalid price: must be greater than 0"
-        # except ValueError:
-        #     return False, f"Invalid price format: '{price_raw}'"
-
         try:
             connection = get_connection()
             if not connection:
