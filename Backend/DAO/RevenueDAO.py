@@ -75,11 +75,11 @@ class RevenueDAO:
             if not connection:
                 return False, "Failed to connect to database"
 
-            cursor = connection.cursor()
+            cursor2 = connection.cursor()
             query = """
-                DELETE FROM REVENUE WHERE Revenue_ID = %s AND Revenue_date = AND Branch_ID = %s
+                DELETE FROM REVENUE WHERE Revenue_ID = %s AND Revenue_date = %s AND Branch_ID = %s
             """
-            cursor.execute(query, (
+            cursor2.execute(query, (
                 revenueId,
                 revenueDate,
                 branchID,

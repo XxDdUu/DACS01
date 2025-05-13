@@ -5,14 +5,14 @@ import MySQLdb
 import traceback
 from Backend.DAO.EmployerDAO import EmployerDAO
 from Backend.DAO.EnterpriseDAO import EnterpriseDao
-
+from Backend.Model.Employer import Employer
 class BranchesDAO:
     def insert_branches(self, data):
         branchesName = data.get("name")
         branchesAddress = data.get("address")
         branchesPhone = data.get("phone_number").strip()
-        employerId = data.get("employer_id") or "2"         # fallback nếu None
-        enterpriseId = data.get("enterprise_id") or "ENT_VTX22NH"   # fallback nếu None
+        employerId = data.get("employer_id")     # fallback nếu None
+        enterpriseId = data.get("enterprise_id")    # fallback nếu None
 
         connection = None
         cursor = None
@@ -129,12 +129,21 @@ class BranchesDAO:
             if not connection:
                 return False, "Failed to connect to database"
 
-            cursor = connection.cursor()
+            cursor1 = connection.cursor()
             query = """
-                DELETE FROM BRANCHES WHERE Branch_ID = %s
+                DELETE FROM REVENUE WHERE Branch_ID = %s
             """
-            cursor.execute(query, (
+            cursor1.execute(query, (
                 branchesID
+            ))
+            cursor2 = connection.cursor()
+            query = """
+                DELETE FROM BRANCHES WHERE Branch_ID = %s AND Employer_ID = %s AND Enterprise_ID = %s
+            """
+            cursor2.execute(query, (
+                branchesID,
+                employerId,
+                enterpriseId
             ))
 
             connection.commit()

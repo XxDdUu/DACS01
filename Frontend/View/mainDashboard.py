@@ -642,6 +642,9 @@ class MainDashboard(QMainWindow):
                     # Sự kiện cho nút logout
                     logoutButton.clicked.connect(self.handle_logout)
 
+                    #lấy dữ liệu từ lineEdit
+
+
                     # Set layout cho trang mới
                     newPage.setLayout(settingLayout)
 

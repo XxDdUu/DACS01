@@ -5,8 +5,8 @@ from Backend.DAO.Constant import DB_CONFIG, PYAPP_DB_CONFIG
 def get_connection():
 	try:
 		print("Trying to connect...")
-		connection = MySQLdb.connect(**DB_CONFIG)
-		
+		connection = MySQLdb.connect(**PYAPP_DB_CONFIG)
+
 		if connection:
 			connection.set_character_set('utf8mb4')
 			connection.autocommit = True
