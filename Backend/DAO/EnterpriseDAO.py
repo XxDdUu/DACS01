@@ -19,6 +19,10 @@ class EnterpriseDao:
 		enterprise_password = data.get("enterprise_password")
 		confirm_enterprise_password = data.get("confirm_enterprise_password")
 
+		if not all([enterprise_name, enterprise_founder, enterprise_address, enterprise_phone_number,
+			business_type, enterprise_industry, enterprise_password, confirm_enterprise_password]):
+			return False, "All fields are required"
+
 		if enterprise_password != confirm_enterprise_password:
 			return False, "Password do not match"
 		connection = None

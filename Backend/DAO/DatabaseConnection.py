@@ -10,6 +10,7 @@ def get_connection():
 		if connection:
 			connection.set_character_set('utf8mb4')
 			connection.autocommit = True
+			print("Database connected!.")
 			return connection
 		else:
 			raise Error("Connection failed.")

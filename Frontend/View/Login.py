@@ -1,6 +1,6 @@
 import os
 
-from PyQt6.QtWidgets import (QMainWindow, QApplication,
+from PyQt6.QtWidgets import (QMainWindow, QApplication, QLineEdit,
                              QLabel, QListWidget, QListWidgetItem, QWidget)
 from PyQt6.QtCore import Qt, QSize
 from PyQt6.QtGui import QPixmap, QFont, QIcon
@@ -45,6 +45,7 @@ class Login(QMainWindow):
         self.identifierLineEdit.setObjectName("identifierLineEdit")
         self.passLineEdit = self.ui.passLineEdit
         self.passLineEdit.setObjectName("passLineEdit")
+        self.passLineEdit.setEchoMode(QLineEdit.EchoMode.Password)
 
         self.switch_to_register = None
         self.register_button.clicked.connect(self.handle_switch_to_register)

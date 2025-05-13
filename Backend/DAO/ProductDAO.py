@@ -16,6 +16,8 @@ class ProductDAO:
 
         # Kiểm tra và ép kiểu giá
         try:
+            if not all([productName, price_raw, productAmount, branchID]):
+                return False, "All fields are required"
             productPrice = float(price_raw)
             if productPrice <= 0:
                 return False, "Invalid price: must be greater than 0"
