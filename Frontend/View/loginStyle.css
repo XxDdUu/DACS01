@@ -5,7 +5,7 @@ QMainWindow{
 QLabel#loginTitle {
     font-size: 47px;
     font-weight: bold;
-    margin-left: 40%;
+    margin-left: 47%;
 }
 
 QLabel#usernameLabel{
@@ -16,7 +16,7 @@ QLabel {
     color: black;
 }
 
-QLabel#usernameLabel,#passwordLabel{
+QLabel#identifierLabel,#passwordLabel{
     font-size: 13px;
 }
 

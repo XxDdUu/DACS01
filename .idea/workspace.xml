@@ -6,12 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="b664035e-7b0c-4c4d-8252-f0d6dc412f5b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Controller/EmployerController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Controller/EmployerController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Controller/MainController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Controller/MainController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Controller/BranchesController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Controller/BranchesController.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/DAO/BranchesDAO.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/DAO/BranchesDAO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/DAO/EmployerDAO.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/DAO/EmployerDAO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/DAO/ProductSalesDao.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/DAO/ProductSalesDao.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Model/Employer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Model/Employer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Model/Branches.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Model/Branches.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Model/plot_dataChart.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Model/plot_dataChart.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/View/Login.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/Login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/View/loginStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/loginStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/View/mainDashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/mainDashboard.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/View/mainDashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/mainDashboard.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

@@ -91,8 +91,8 @@ class BranchesDAO:
         # branchesName = data.get("name")
         # branchesAddress = data.get("address")
         # branchesPhone = data.get("phone_number").strip()
-        employerId = data.get("employer_id") or "2"         # fallback nếu None
-        enterpriseId = data.get("enterprise_id") or "ENT_VTX22NH"   # fallback nếu None
+        employerId = data.get("employer_id")         # fallback nếu None
+        enterpriseId = data.get("enterprise_id")   # fallback nếu None
 
         connection = None
         cursor = None
@@ -160,8 +160,8 @@ class BranchesDAO:
         branchesName = data.get("name")
         branchesAddress = data.get("address")
         branchesPhone = data.get("phone_number").strip()
-        employerId = data.get("employer_id") or "2"  # fallback nếu None
-        enterpriseId = data.get("enterprise_id") or "ENT_VTX22NH"  # fallback nếu None
+        employerId = data.get("employer_id")  # fallback nếu None
+        enterpriseId = data.get("enterprise_id") # fallback nếu None
 
         connection = None
         cursor = None
@@ -177,72 +177,72 @@ class BranchesDAO:
             print([ord(c) for c in branchesPhone])  # In mã unicode từng ký tự
             return False, "Invalid phone number format"
 
-    #     def branch_name_exists(branch_name):
-    #         try:
-    #             conn_test = get_connection()
-    #             cursor_test = conn_test.cursor()
-    #             query = "SELECT 1 FROM BRANCHES WHERE Branch_name = %s"
-    #             cursor_test.execute(query, (branch_name,))
-    #             return cursor_test.fetchone() is not None
-    #         finally:
-    #             if cursor:
-    #                 cursor.close()
-    #             if connection:
-    #                 connection.close()
-    #
-    #         if branch_name_exists(branchesName):
-    #             return False, f"Branch name {branchesName} already exits"
-    #
-    #         try:
-    #             connection = get_connection()
-    #             if not connection:
-    #                 return False, "Failed to connect to database"
-    #
-    #             cursor = connection.cursor()
-    #             query = """
-    #                        UPDATE BRANCHES
-    #                        SET Branch_name = %s, Branch_address = %s, Branch_phone_number = %s
-    #                        WHERE Employer_ID = %s AND Enterprise_ID = %s AND Branch_ID = %s
-    #                    """
-    #             cursor.execute(query, (
-    #                 branchesName,
-    #                 branchesAddress,
-    #                 branchesPhone,
-    #                 employerId,
-    #                 enterpriseId,
-    #                 branchId
-    #             ))
-    #
-    #             connection.commit()
-    #             return True, "Branch updated successfully"
-    #
-    #         except MySQLdb.Error as e:
-    #             traceback.print_exc()
-    #             return False, f"Database Error: {e}"
-    #
-    #         except Exception as e:
-    #             traceback.print_exc()
-    #             return False, f"Unexpected Error: {e}"
-    #
-    #         finally:
-    #             if cursor:
-    #                 cursor.close()
-    #             if connection:
-    #                 connection.close()
-    # def get_branches_by_enterprise_employer(self, enterprise_id, employer_id):
-    #     connection = get_connection()
-    #     cursor = connection.cursor()
-    #
-    #     query = """
-    #         SELECT * FROM BRANCH
-    #         WHERE Enterprise_ID = %s AND Employer_ID = %s
-    #     """
-    #
-    #     cursor.execute(query, (enterprise_id, employer_id))
-    #     rows = cursor.fetchall()
-    #     columns = [col[0] for col in cursor.description]
-    #     df = pd.DataFrame(rows, columns=columns)
-    #     cursor.close()
-    #     connection.close()
-    #
-    #     return df.to_dict(orient="records")
+        def branch_name_exists(branch_name):
+            try:
+                conn_test = get_connection()
+                cursor_test = conn_test.cursor()
+                query = "SELECT 1 FROM BRANCHES WHERE Branch_name = %s"
+                cursor_test.execute(query, (branch_name,))
+                return cursor_test.fetchone() is not None
+            finally:
+                if cursor:
+                    cursor.close()
+                if connection:
+                    connection.close()
+
+            if branch_name_exists(branchesName):
+                return False, f"Branch name {branchesName} already exits"
+
+            try:
+                connection = get_connection()
+                if not connection:
+                    return False, "Failed to connect to database"
+
+                cursor = connection.cursor()
+                query = """
+                           UPDATE BRANCHES
+                           SET Branch_name = %s, Branch_address = %s, Branch_phone_number = %s
+                           WHERE Employer_ID = %s AND Enterprise_ID = %s AND Branch_ID = %s
+                       """
+                cursor.execute(query, (
+                    branchesName,
+                    branchesAddress,
+                    branchesPhone,
+                    employerId,
+                    enterpriseId,
+                    branchId
+                ))
+
+                connection.commit()
+                return True, "Branch updated successfully"
+
+            except MySQLdb.Error as e:
+                traceback.print_exc()
+                return False, f"Database Error: {e}"
+
+            except Exception as e:
+                traceback.print_exc()
+                return False, f"Unexpected Error: {e}"
+
+            finally:
+                if cursor:
+                    cursor.close()
+                if connection:
+                    connection.close()
+    def get_branches_by_enterprise_employer(self, enterprise_id, employer_id):
+        connection = get_connection()
+        cursor = connection.cursor()
+
+        query = """
+            SELECT * FROM BRANCH
+            WHERE Enterprise_ID = %s AND Employer_ID = %s
+        """
+
+        cursor.execute(query, (enterprise_id, employer_id))
+        rows = cursor.fetchall()
+        columns = [col[0] for col in cursor.description]
+        df = pd.DataFrame(rows, columns=columns)
+        cursor.close()
+        connection.close()
+
+        return df.to_dict(orient="records")
