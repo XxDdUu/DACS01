@@ -1,6 +1,9 @@
 
 import pandas as pd
 
+from Backend.Model import Employer
+
+
 class Branches:
     def __init__(self, ID, name, address, phone_number, create_at_time):
         self.ID = ID
@@ -16,10 +19,12 @@ class BranchesFormData:
         self.address = address
         self.phone_num = phone_num
 
-    def get_branchesForm_data(self):
+    def get_branchesForm_data(self, employer_model : Employer):
         return {
             "id": self.id.text().strip(),
             "name": self.name.text().strip(),
             "address": self.address.text().strip(),
-            "phone_number": self.phone_num.text().strip()
+            "phone_number": self.phone_num.text().strip(),
+            "employer_id": employer_model.ID.text().strip(),
+            "enterprise_id": employer_model.enterprise_id.text().strip()
         }

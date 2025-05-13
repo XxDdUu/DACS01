@@ -36,7 +36,7 @@ class EnterpriseDao:
 				(Enterprise_ID, Enterprise_NAME, Enterprise_FOUNDER, ADDRESS,
 					Enterprise_PHONE_NUMBER,
 					BUSINESS_TYPE, INDUSTRY, Enterprise_password)
-					VALUES (%s, %s, %s, %s, %s, %s, %s)
+					VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
 				"""
 			cursor.execute(query, (
 					enterprise_id,

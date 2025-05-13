@@ -144,3 +144,10 @@ class EmployerDAO:
                 cursor.close()
             if connection:
                 connection.close()
+    def edit_username(self,data):
+        username = data.get("username")
+
+    def edit_dateBirth(self, data):
+    def edit_email(self, data):
+    def edit_phoneNum(self, data):
+

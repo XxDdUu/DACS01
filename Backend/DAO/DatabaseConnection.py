@@ -6,11 +6,10 @@ def get_connection():
 	try:
 		print("Trying to connect...")
 		connection = MySQLdb.connect(**PYAPP_DB_CONFIG)
-		
+
 		if connection:
 			connection.set_character_set('utf8mb4')
 			connection.autocommit = True
-			print("Database connected!.")
 			return connection
 		else:
 			raise Error("Connection failed.")
