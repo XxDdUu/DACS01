@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="img">
+    <file>icon/success.svg</file>
     <file>icon/noun-enterprise-1584264.svg</file>
     <file>icon/enterprise.svg</file>
     <file>icon/home.png</file>

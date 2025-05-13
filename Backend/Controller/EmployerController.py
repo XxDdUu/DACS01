@@ -31,5 +31,7 @@ class EmployerController:
 		if success:
 			# QMessageBox.information(self.login_view, "Success", message)
 			self.login_view.handle_switch_to_maindashboard(employer_data)
+			self.login_view.passLineEdit.clear()
+			self.login_view.identifierLineEdit.clear()
 		else:
 			QMessageBox.warning(self.login_view, "Error", message)

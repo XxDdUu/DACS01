@@ -131,7 +131,7 @@ class EmployerDAO:
                 else:
                     return False, "Password does not match!", None
             else:
-                return False, "Wrong password or email or phone_number!", None
+                return False, "Wrong email or phone_number!", None
 
         except MySQLdb.Error as e:
             traceback.print_exc()
