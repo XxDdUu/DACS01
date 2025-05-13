@@ -7,10 +7,4 @@ class Employer:
         self.date_of_birth = date_of_birth
         self.enterprise_id = enterprise_id
 
-class AccountSettingData:
-    def __init__(self, username, email, phone_number, date_of_birth):
-        self.username = username
-        self.email = email
-        self.phone_number = phone_number
-        self.date_of_birth = date_of_birth
 

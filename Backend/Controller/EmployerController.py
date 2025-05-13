@@ -5,10 +5,9 @@ from PyQt6.QtWidgets import QMessageBox
 from PyQt6.QtCore import QDate
 
 class EmployerController:
-	def __init__(self, register_view, login_view,main_view):
+	def __init__(self, register_view, login_view):
 		self.register_view = register_view # register
 		self.login_view = login_view	# login
-		self.main_view = main_view		# dashboard app
 		self.dao = EmployerDAO()
 		self.register_view.register_btn.clicked.connect(self.handle_register)
 		self.login_view.login_button.clicked.connect(self.handle_loginCheck)
@@ -38,38 +37,52 @@ class EmployerController:
 			self.login_view.identifierLineEdit.clear()
 		else:
 			QMessageBox.warning(self.login_view, "Error", message)
+class AccSettingController:
+	def __init__(self,main_view):
+		self.main_view = main_view  # dashboard app
+		self.dao = EmployerDAO()
+		self.main_view.btn_edit_username.clicked.connect(self.handle_editName)
+		self.main_view.btn_edit_birthdate.clicked.connect(self.handle_editDateBirth)
+		self.main_view.btn_edit_email.clicked.connect(self.handle_editEmail)
+		self.main_view.btn_edit_phone.clicked.connect(self.handle_editPhoneNum)
 	def handle_editName(self):
-		data = self.main_view.get_employerName_data()
-		success, message, employer_data = self.dao.(data)
+		data = self.main_view.get_accountSetting_data()
+		success, message = self.dao.edit_username(data)
 		if success:
-			# QMessageBox.information(self.login_view, "Success", message)
-			self.login_view.handle_switch_to_maindashboard(employer_data)
+			QMessageBox.information(self.main_view, "Success", message)
+			# self.main_view.employer_data.username = data["username"]
+			# self.main_view.le_username.setText(data["username"])
 		else:
-			QMessageBox.warning(self.login_view, "Error", message)
+			QMessageBox.warning(self.main_view, "Error", message)
 	def handle_editDateBirth(self):
-		data = self.main_view.get_employerDateBirth_data()
-		success, message, employer_data = self.dao.(data)
+		data = self.main_view.get_accountSetting_data()
+		success, message = self.dao.edit_dateBirth(data)
 		if success:
-			QMessageBox.information(self.login_view, "Success", message)
-			self.login_view.handle_switch_to_maindashboard(employer_data)
+			QMessageBox.information(self.main_view, "Success", message)
+			self.main_view.employer_data.username = data["date_of_birth"]
+			self.main_view.le_birthdate.setDate(QDate(data["date_of_birth"].year,
+													  data["date_of_birth"].month,
+													  data["date_of_birth"].day))
 		else:
-			QMessageBox.warning(self.login_view, "Error", message)
+			QMessageBox.warning(self.main_view, "Error", message)
 	def handle_editEmail(self):
-		data = self.main_view.get_employerEmail_data()
-		success, message, employer_data = self.dao.(data)
+		data = self.main_view.get_accountSetting_data()
+		success, message = self.dao.edit_email(data)
 		if success:
-			QMessageBox.information(self.login_view, "Success", message)
-			self.login_view.handle_switch_to_maindashboard(employer_data)
+			QMessageBox.information(self.main_view, "Success", message)
+			self.main_view.employer_data.username = data["email"]
+			self.main_view.le_email.setText(data["email"])
 		else:
-			QMessageBox.warning(self.login_view, "Error", message)
-	def handle_editEmail(self):
-		data = self.main_view.get_employerPhoneNum_data()
-		success, message, employer_data = self.dao.(data)
+			QMessageBox.warning(self.main_view, "Error", message)
+	def handle_editPhoneNum(self):
+		data = self.main_view.get_accountSetting_data()
+		success, message = self.dao.edit_phoneNum(data)
 		if success:
-			QMessageBox.information(self.login_view, "Success", message)
-			self.login_view.handle_switch_to_maindashboard(employer_data)
+			QMessageBox.information(self.main_view, "Success", message)
+			self.main_view.employer_data.username = data["phone_number"]
+			self.main_view.le_phone.setText(data["phone_number"])
 		else:
-			QMessageBox.warning(self.login_view, "Error", message)
+			QMessageBox.warning(self.main_view, "Error", message)
 
 
 

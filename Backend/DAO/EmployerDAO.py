@@ -8,6 +8,8 @@ import re
 import traceback
 
 from Backend.Model.Employer import Employer
+
+
 class EmployerDAO:
     def insert_employer(self, data):
         username = data.get("username")
@@ -82,7 +84,7 @@ class EmployerDAO:
         except ValueError:
             return False, "Invalid date format! Use yyyy-mm-dd"
         except Exception as e:
-            print(f"[Unhandled Error] {e}") 
+            print(f"[Unhandled Error] {e}")
             traceback.print_exc()
             return False, f"Unexpected error: {e}"
         finally:
@@ -95,8 +97,9 @@ class EmployerDAO:
                 try:
                     connection.close()
                 except MySQLdb.Error:
-                    pass    
-    def check_loginUser(self,data):
+                    pass
+
+    def check_loginUser(self, data):
         identifier = data.get("identifier")
         password = data.get("password")
         connection = None
@@ -111,21 +114,21 @@ class EmployerDAO:
 
             cursor = connection.cursor(MySQLdb.cursors.DictCursor)
             cursor.execute("""SELECT * FROM EMPLOYER WHERE 
-                Employer_Email = %s OR Employer_Phone_Number = %s LIMIT 1""", 
-                (identifier, identifier))
+                Employer_Email = %s OR Employer_Phone_Number = %s LIMIT 1""",
+                           (identifier, identifier))
             result = cursor.fetchone()
             print("Query result:", result)
             if result:
                 stored_hashed_pass = result["Employer_password"]
                 if check_password_hash(stored_hashed_pass, password):
                     employer_data = Employer(
-                        ID = result["Employer_ID"],
-                        username = result["Employer_name"],
-                        phone_number = result["Employer_Phone_Number"],
-                        email = result["Employer_Email"],
-                        date_of_birth = result["DOB"],
-                        enterprise_id = result["Enterprise_ID"]
-                        )
+                        ID=result["Employer_ID"],
+                        username=result["Employer_name"],
+                        phone_number=result["Employer_Phone_Number"],
+                        email=result["Employer_Email"],
+                        date_of_birth=result["DOB"],
+                        enterprise_id=result["Enterprise_ID"]
+                    )
                     print("Login successfully!")
                     return True, "Login successfully!", employer_data
                 else:
@@ -144,7 +147,8 @@ class EmployerDAO:
                 cursor.close()
             if connection:
                 connection.close()
-    def edit_username(self,data):
+
+    def edit_username(self, data):
         username = data.get("username")
         enterprise_id = data.get("enterprise_id")
 
@@ -155,23 +159,15 @@ class EmployerDAO:
             connection = get_connection()
             if not connection:
                 return False, "Failed to connect to database"
-            cursor1 = connection.cursor()
+            cursor = connection.cursor()
             query = """
                 UPDATE EMPLOYER 
-                SET Employer_name = %S 
+                SET Employer_name = %s 
                 WHERE Enterprise_ID = %s
                             """
-            cursor1.execute(query, (
+            cursor.execute(query, (
                 username,
-                branchID
-            ))
-            cursor2 = connection.cursor()
-            query = """
-                        DELETE FROM PRODUCT WHERE Product_ID = %s AND Branch_ID = %s
-                    """
-            cursor2.execute(query, (
-                productId,
-                branchID
+                enterprise_id
             ))
             connection.commit()
             return True, "Product deleted successfully"
@@ -189,9 +185,116 @@ class EmployerDAO:
                 cursor.close()
             if connection:
                 connection.close()
+
     def edit_dateBirth(self, data):
         datebirth = data.get("date_of_birth")
+        enterprise_id = data.get("enterprise_id")
+
+        connection = None
+        cursor = None
+
+        try:
+            connection = get_connection()
+            if not connection:
+                return False, "Failed to connect to database"
+            cursor = connection.cursor()
+            query = """
+                        UPDATE EMPLOYER 
+                        SET DOB = %s
+                        WHERE Enterprise_ID = %s
+                                    """
+            cursor.execute(query, (
+                datebirth,
+                enterprise_id
+            ))
+            connection.commit()
+            return True, "Product deleted successfully"
+
+        except MySQLdb.Error as e:
+            traceback.print_exc()
+            return False, f"Database Error: {e}"
+
+        except Exception as e:
+            traceback.print_exc()
+            return False, f"Unexpected Error: {e}"
+
+        finally:
+            if cursor:
+                cursor.close()
+            if connection:
+                connection.close()
+
     def edit_email(self, data):
         email = data.get("email")
+        enterprise_id = data.get("enterprise_id")
+
+        connection = None
+        cursor = None
+
+        try:
+            connection = get_connection()
+            if not connection:
+                return False, "Failed to connect to database"
+            cursor = connection.cursor()
+            query = """
+                UPDATE EMPLOYER 
+                SET Employer_Email = %s
+                WHERE Enterprise_ID = %s
+            """
+            cursor.execute(query, (
+                email,
+                enterprise_id
+            ))
+            connection.commit()
+            return True, "Product deleted successfully"
+
+        except MySQLdb.Error as e:
+            traceback.print_exc()
+            return False, f"Database Error: {e}"
+
+        except Exception as e:
+            traceback.print_exc()
+            return False, f"Unexpected Error: {e}"
+
+        finally:
+            if cursor:
+                cursor.close()
+            if connection:
+                connection.close()
+
     def edit_phoneNum(self, data):
         phoneNumber = data.get("phone_number")
+        enterprise_id = data.get("enterprise_id")
+
+        connection = None
+        cursor = None
+
+        try:
+            connection = get_connection()
+            if not connection:
+                return False, "Failed to connect to database"
+            cursor = connection.cursor()
+            query = """
+                        UPDATE EMPLOYER 
+                        SET Employer_Phone_Number = %s
+                        WHERE Enterprise_ID = %s
+                    """
+            cursor.execute(query, (
+                phoneNumber,
+                enterprise_id
+            ))
+            connection.commit()
+            return True, "Product deleted successfully"
+
+        except MySQLdb.Error as e:
+            traceback.print_exc()
+            return False, f"Database Error: {e}"
+
+        except Exception as e:
+            traceback.print_exc()
+            return False, f"Unexpected Error: {e}"
+        finally:
+            if cursor:
+                cursor.close()
+            if connection:
+                connection.close()

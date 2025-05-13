@@ -682,23 +682,11 @@ class MainDashboard(QMainWindow):
         except Exception as e:
             print(f"Error loading stylesheet: {e}")
 
-    def get_employerName_data(self):
+    def get_accountSetting_data(self):
         return {
             "username": self.le_username.text().strip(),
-            "enterprise_id": self.le_enterprise_id.text().strip()
-        }
-    def get_employerDateBirth_data(self):
-        return {
-            "date_of_birth": self.le_birthdate.date().toString("YYYY-MM-DD"),
-            "enterprise_id": self.le_enterprise_id.text().strip()
-        }
-    def get_employerEmail_data(self):
-        return {
+            "date_of_birth": self.le_birthdate.date().toPyDate(),
             "email": self.le_email.text().strip(),
-            "enterprise_id": self.le_enterprise_id.text().strip()
-        }
-    def get_employerPhoneNum_data(self):
-        return {
             "phone_number": self.le_phone.text().strip(),
             "enterprise_id": self.le_enterprise_id.text().strip()
         }
