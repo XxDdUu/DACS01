@@ -146,8 +146,52 @@ class EmployerDAO:
                 connection.close()
     def edit_username(self,data):
         username = data.get("username")
+        enterprise_id = data.get("enterprise_id")
 
+        connection = None
+        cursor = None
+
+        try:
+            connection = get_connection()
+            if not connection:
+                return False, "Failed to connect to database"
+            cursor1 = connection.cursor()
+            query = """
+                UPDATE EMPLOYER 
+                SET Employer_name = %S 
+                WHERE Enterprise_ID = %s
+                            """
+            cursor1.execute(query, (
+                username,
+                branchID
+            ))
+            cursor2 = connection.cursor()
+            query = """
+                        DELETE FROM PRODUCT WHERE Product_ID = %s AND Branch_ID = %s
+                    """
+            cursor2.execute(query, (
+                productId,
+                branchID
+            ))
+            connection.commit()
+            return True, "Product deleted successfully"
+
+        except MySQLdb.Error as e:
+            traceback.print_exc()
+            return False, f"Database Error: {e}"
+
+        except Exception as e:
+            traceback.print_exc()
+            return False, f"Unexpected Error: {e}"
+
+        finally:
+            if cursor:
+                cursor.close()
+            if connection:
+                connection.close()
     def edit_dateBirth(self, data):
+        datebirth = data.get("date_of_birth")
     def edit_email(self, data):
+        email = data.get("email")
     def edit_phoneNum(self, data):
-
+        phoneNumber = data.get("phone_number")
