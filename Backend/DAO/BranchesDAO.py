@@ -22,6 +22,9 @@ class BranchesDAO:
         def is_valid_phoneNum(phone_number):
             return bool(re.fullmatch(r"[0-9]{10}",branchesPhone))
 
+        if not all([branchesName, branchesAddress, branchesPhone, employerId, enterpriseId]):
+            return False, "All fields are required"
+
         if not is_valid_phoneNum(branchesPhone):
             print(f"Phone input raw: '{data.get('phone_number')}'")
             print(f"Phone after strip: '{branchesPhone}'")
