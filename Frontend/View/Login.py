@@ -27,7 +27,7 @@ class Login(QMainWindow):
 
         self.identifierLabel = self.ui.identifierLabel
         self.identifierLabel.setObjectName("identifierLabel")
-        self.identifierLabel.setText("Email or phone number:")
+        self.identifierLabel.setText("Email / Phone:")
 
         self.passwordLabel = self.ui.passLabel
         self.passwordLabel.setObjectName("passwordLabel")

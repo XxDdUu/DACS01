@@ -56,3 +56,5 @@ class ProductChart:
         except Exception as e:
             traceback.print_exc()
             print(f"Exception: {e}")
+        except UserWarning:
+            traceback.print_exc()
