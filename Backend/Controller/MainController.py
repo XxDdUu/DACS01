@@ -8,7 +8,7 @@ from Backend.Model.Employer import Employer
 from Frontend.View.Login import Login
 from Frontend.View.mainDashboard import MainDashboard
 from Frontend.View.register import Register
-from Backend.Controller.EmployerController import EmployerController, AccSettingController
+from Backend.Controller.EmployerController import EmployerController, EmployerAccountSettingController
 from Backend.Controller.EnterpriseController import EnterpriseController
 class MainController:
 
@@ -25,6 +25,8 @@ class MainController:
         self.show_login()
         self.employer_controller = EmployerController(self.register_window, self.login_window)
         self.enterprise_controller = EnterpriseController(self.register_window)
+        self.branches_controller = None
+
 
     def show_login(self):
         self.register_window.hide()
@@ -38,15 +40,27 @@ class MainController:
         self.register_window.show()
 
     def show_dashboardApp(self, employer_data):
-        self.dashboard_window = MainDashboard(employer_data)
-        self.dashboard_window.switch_to_login = self.show_login
-        self.login_window.switch_to_dashboardApp = self.show_dashboardApp
-        self.login_window.hide()
-        self.register_window.hide()
-        self.dashboard_window.show()
 
+        self.dashboard_window = MainDashboard(employer_data, self)
+
+        self.dashboard_window.init_stackWidget()
+        self.dashboard_window.init_ListWidget()
+        
+        self.employer_controller = EmployerController(self.register_window, self.login_window)
         self.branches_controller = BranchesController(self.dashboard_window)
         self.product_controller = ProductController(self.dashboard_window)
         self.revenue_controller = RevenueController(self.dashboard_window)
         self.PS_controller = ProductSalesController(self.dashboard_window)
-        self.accSetting_controller = AccSettingController(self.dashboard_window)
+
+        self.dashboard_window.load_branches()
+
+        self.dashboard_window.switch_to_login = self.show_login
+
+        self.login_window.hide()
+        self.register_window.hide()
+        self.dashboard_window.show()
+        self.EmployerAccountSettingController = EmployerAccountSettingController(self.dashboard_window)
+
+    def get_branches_data(self, enterprise_id, employer_id):
+        if self.branches_controller:
+            return self.branches_controller.get_branches(enterprise_id, employer_id)

@@ -20,9 +20,10 @@ from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
 
 class MainDashboard(QMainWindow):
 
-    def __init__(self, employer_data: Employer):
+    def __init__(self, employer_data: Employer, controller):
         super().__init__()
         self.employer_data = employer_data # truyền model
+        self.controller = controller
         screen = QApplication.primaryScreen()
         size = screen.availableGeometry()  # kích thước vùng làm việc (không gồm taskbar)
         self.setGeometry(size)  # set kích thước cửa sổ = màn hình lap,pc
@@ -130,6 +131,7 @@ class MainDashboard(QMainWindow):
 
     def init_stackWidget(self):
         # create content page in stackWidget
+        print(">>> init_stackWidget called")
         widget_list = self.mainContent.findChildren(QWidget)
 
         for widgetChild in widget_list:
@@ -377,11 +379,7 @@ class MainDashboard(QMainWindow):
                     prod_table.setHorizontalHeaderLabels(["Name", "Price", "Amount", "Branch ID"])
                     prod_table.resizeColumnsToContents()
 
-                    branch_table = QTableWidget()
-                    branch_table.setRowCount(0)
-                    branch_table.setColumnCount(4)
-                    branch_table.setHorizontalHeaderLabels(["Branch ID", "Name", "Address", "Phone Number"])
-                    branch_table.resizeColumnsToContents()
+                    branch_table = self.load_branches()
 
                     # Form for Product Table
                     prod_form_layout = QVBoxLayout()
@@ -528,7 +526,6 @@ class MainDashboard(QMainWindow):
                             self.branch_name_input.clear()
                             self.branch_address_input.clear()
                             self.branch_phone_input.clear()
-
                     # Connect buttons to slots
                     self.prod_add_btn.clicked.connect(add_row_prod)
                     self.prod_remove_btn.clicked.connect(remove_row_prod)
@@ -672,6 +669,32 @@ class MainDashboard(QMainWindow):
         if self.switch_to_login:
             self.switch_to_login()
 
+    def load_branches(self):
+        branches = []
+        if hasattr(self.controller, "branches_controller") and self.controller.branches_controller:
+            branches = self.controller.get_branches_data(
+            self.employer_data.enterprise_id,
+            self.employer_data.ID
+            )
+        else:
+            print("⚠️ BranchesController chưa sẵn sàng.")
+
+        branch_table = QTableWidget()
+        branch_table.setColumnCount(4)
+        branch_table.setHorizontalHeaderLabels(["Branch ID", "Name", "Address", "Phone Number"])
+        branch_table.setRowCount(len(branches))
+
+        for row_index, branch in enumerate(branches):
+            branch_table.setItem(row_index, 0, QTableWidgetItem(str(branch["Branch_ID"])))
+            branch_table.setItem(row_index, 1, QTableWidgetItem(branch["Branch_name"]))
+            branch_table.setItem(row_index, 2, QTableWidgetItem(branch["Branch_address"]))
+            branch_table.setItem(row_index, 3, QTableWidgetItem(branch["Branch_phone_number"]))
+
+        branch_table.resizeColumnsToContents()
+        return branch_table
+
+
+
     def load_stylesheet(self):
         script_dir = os.path.dirname(os.path.abspath(__file__))
         css_path = os.path.join(script_dir, 'mainDashboard.css')
@@ -708,5 +731,3 @@ class MainDashboard(QMainWindow):
             "amount": self.prod_amount_input.text().strip(),
             "branch_id": self.prod_branch_id_input.text().strip()
         }
-
-

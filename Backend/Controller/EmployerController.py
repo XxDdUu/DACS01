@@ -37,7 +37,7 @@ class EmployerController:
 			self.login_view.identifierLineEdit.clear()
 		else:
 			QMessageBox.warning(self.login_view, "Error", message)
-class AccSettingController:
+class EmployerAccountSettingController:
 	def __init__(self,main_view):
 		self.main_view = main_view  # dashboard app
 		self.dao = EmployerDAO()
