@@ -68,28 +68,26 @@ class ProductDAO:
         connection = None
         cursor = None
 
-        # Kiểm tra và ép kiểu giá
-        # try:
-        #     productPrice = float(price_raw)
-        #     if productPrice <= 0:
-        #         return False, "Invalid price: must be greater than 0"
-        # except ValueError:
-        #     return False, f"Invalid price format: '{price_raw}'"
-
         try:
             connection = get_connection()
             if not connection:
                 return False, "Failed to connect to database"
-
-            cursor = connection.cursor()
+            cursor1 = connection.cursor()
             query = """
-                DELETE FROM PRODUCT WHERE Product_ID = %s AND Branch_ID = %s
-            """
-            cursor.execute(query, (
+                DELETE FROM PRODUCT_SALES WHERE Product_ID = %s AND Branch_ID = %s
+                    """
+            cursor1.execute(query, (
                 productId,
                 branchID
             ))
-
+            cursor2 = connection.cursor()
+            query = """
+                DELETE FROM PRODUCT WHERE Product_ID = %s AND Branch_ID = %s
+            """
+            cursor2.execute(query, (
+                productId,
+                branchID
+            ))
             connection.commit()
             return True, "Product deleted successfully"
 

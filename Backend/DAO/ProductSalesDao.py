@@ -44,17 +44,17 @@ class ProductSalesDAO:
 
             # Decrease the product's stock amount
             cursor.execute("""
-                UPDATE PRODUCT
-                SET Amount = Amount - %s
-                WHERE Product_ID = %s
-            """, (quantity_sold, product_id))
+                        UPDATE PRODUCT
+                        SET Amount = Amount - %s
+                        WHERE Product_ID = %s
+                    """, (quantity_sold, product_id))
 
             # Insert the sale record into PRODUCT_SALES
             query = """
-                INSERT INTO PRODUCT_SALES
-                (Product_ID, Branch_ID, SALE_DATE, QUANTITY_SOLD, SALE_AMOUNT)
-                VALUES (%s, %s, %s, %s, %s)
-            """
+                        INSERT INTO PRODUCT_SALES
+                        (Product_ID, Branch_ID, SALE_DATE, QUANTITY_SOLD, SALE_AMOUNT)
+                        VALUES (%s, %s, %s, %s, %s)
+                    """
             cursor.execute(query, (
                 product_id,
                 branch_id,
@@ -141,13 +141,13 @@ class ProductSalesDAO:
         connection = None
         cursor = None
 
-        # Kiểm tra và ép kiểu giá
-        try:
-            sale_amount = float(sale_amount_raw)
-            if sale_amount <= 0:
-                return False, "Invalid price: must be greater than 0"
-        except ValueError:
-            return False, f"Invalid price format: '{sale_amount_raw}'"
+        # # Kiểm tra và ép kiểu giá
+        # try:
+        #     sale_amount = float(sale_amount_raw)
+        #     if sale_amount <= 0:
+        #         return False, "Invalid price: must be greater than 0"
+        # except ValueError:
+        #     return False, f"Invalid price format: '{sale_amount_raw}'"
 
         try:
             connection = get_connection()

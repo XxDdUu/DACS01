@@ -89,8 +89,8 @@ class BranchesDAO:
         # branchesName = data.get("name")
         # branchesAddress = data.get("address")
         # branchesPhone = data.get("phone_number").strip()
-        employerId = data.get("employer_id") or "2"         # fallback nếu None
-        enterpriseId = data.get("enterprise_id") or "ENT_VTX22NH"   # fallback nếu None
+        employerId = data.get("employer_id")         # fallback nếu None
+        enterpriseId = data.get("enterprise_id")   # fallback nếu None
 
         connection = None
         cursor = None
@@ -158,8 +158,8 @@ class BranchesDAO:
         branchesName = data.get("name")
         branchesAddress = data.get("address")
         branchesPhone = data.get("phone_number").strip()
-        employerId = data.get("employer_id") or "2"  # fallback nếu None
-        enterpriseId = data.get("enterprise_id") or "ENT_VTX22NH"  # fallback nếu None
+        employerId = data.get("employer_id")  # fallback nếu None
+        enterpriseId = data.get("enterprise_id") # fallback nếu None
 
         connection = None
         cursor = None
@@ -233,10 +233,10 @@ class BranchesDAO:
 
         query = """
             SELECT * FROM BRANCHES
-            WHERE Enterprise_ID = %s AND Employer_ID = %s
+            WHERE Enterprise_ID = %s
         """
 
-        cursor.execute(query, (enterprise_id, employer_id))
+        cursor.execute(query, (enterprise_id,))
         rows = cursor.fetchall()
         columns = [col[0] for col in cursor.description]
         df = pd.DataFrame(rows, columns=columns)

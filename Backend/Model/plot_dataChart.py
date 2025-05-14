@@ -1,6 +1,11 @@
+import traceback
+
 import matplotlib.pyplot as plt
+import pandas as pd
 from PyQt6.QtWidgets import QSizePolicy
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
+
+from Backend.DAO.DatabaseConnection import get_connection
 
 
 class generalChart:
@@ -25,7 +30,6 @@ class generalChart:
 
         self.canvas.draw()
 
-
 class ProductChart:
     def __init__(self):
         self.figure, self.ax = plt.subplots()
@@ -35,11 +39,22 @@ class ProductChart:
 
     def plot_chart(self):
         # test data:
-        products = ['iPhones', 'iMac', 'AirPods', 'iWatch', 'Tablets']
-        quantity_sold = [9999, 7777, 8888, 6666, 5555]
+        try:
+            conn = get_connection()
+            if not conn:
+                return False, "Failed to connect to DB"
+            query =  "SELECT * FROM PRODUCT"
+            product = pd.read_sql(query,conn)
+            name = product['Product_NAME']
+            amount = product['AMOUNT']
 
-        self.ax.clear()
-        self.ax.pie(quantity_sold, labels=products)
-        self.ax.set_title("Product Sales 2025")
+            self.ax.clear()
+            self.ax.pie(amount, labels=name)
+            self.ax.set_title("Product Sales 2025")
 
-        self.canvas.draw()
+            self.canvas.draw()
+        except Exception as e:
+            traceback.print_exc()
+            print(f"Exception: {e}")
+        except UserWarning:
+            traceback.print_exc()
