@@ -9,12 +9,10 @@ from PyQt6.QtWidgets import (QMainWindow, QApplication,
 from PyQt6.QtCore import Qt, QSize, QDate
 from PyQt6.QtGui import QPixmap, QFont, QIcon
 
-from Backend.Controller.BranchesController import BranchesController
-from Backend.Model.Branches import BranchesFormData
-from Backend.Model.Product import ProductFormData
 from Backend.Model.ProductSales import ProductSalesFormData
 from Backend.Model.Revenue import RevenueFormData
-from Backend.Model.plot_dataChart import generalChart, ProductChart
+from Frontend.Chart.PSGeneralChart import ProductSaleChart
+from Frontend.Chart.RevenueGeneralChart import generalChart
 from Frontend.View.frameUI import Ui_MainWindow
 from Backend.Model.Employer import Employer
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
@@ -86,7 +84,9 @@ class MainDashboard(QMainWindow):
             },
         ]
         # Initialize the main Q
+        self.init_ListWidget()
         self.connect_signal_slot()
+        self.init_stackWidget()
         self.load_stylesheet()
 
     def init_ListWidget(self):
@@ -144,7 +144,7 @@ class MainDashboard(QMainWindow):
 
                 if text == "Home":
                     general_chart = generalChart()
-                    product_chart = ProductChart()
+                    product_chart = ProductSaleChart()
                     fig_G = general_chart.figure
                     fig_P = product_chart.figure
                     canvas_G = FigureCanvas(fig_G)
@@ -271,7 +271,7 @@ class MainDashboard(QMainWindow):
 
                 elif text == "Product Sales Info":
                     # Khởi tạo biểu đồ doanh thu sản phẩm
-                    PS_chart = ProductChart()
+                    PS_chart = ProductSaleChart()
                     fig_product_chart = PS_chart.figure
 
                     canvas_chart_left = FigureCanvas(fig_product_chart)
@@ -479,10 +479,10 @@ class MainDashboard(QMainWindow):
                     def add_row_prod():
                         row = prod_table.rowCount()
                         prod_table.insertRow(row)
-                        prod_table.setItem(row, 0, QTableWidgetItem(prod_name_input.text()))
-                        prod_table.setItem(row, 1, QTableWidgetItem(prod_price_input.text()))
-                        prod_table.setItem(row, 2, QTableWidgetItem(prod_amount_input.text()))
-                        prod_table.setItem(row, 3, QTableWidgetItem(prod_branch_id_input.text()))
+                        prod_table.setItem(row, 0, QTableWidgetItem(self.prod_name_input.text()))
+                        prod_table.setItem(row, 1, QTableWidgetItem(self.prod_price_input.text()))
+                        prod_table.setItem(row, 2, QTableWidgetItem(self.prod_amount_input.text()))
+                        prod_table.setItem(row, 3, QTableWidgetItem(self.prod_branch_id_input.text()))
 
                     def remove_row_prod():
                         row = prod_table.currentRow()
@@ -492,14 +492,14 @@ class MainDashboard(QMainWindow):
                     def update_row_prod():
                         row = prod_table.currentRow()
                         if row >= 0:
-                            prod_table.setItem(row, 0, QTableWidgetItem(selfprod_name_input.text()))
+                            prod_table.setItem(row, 0, QTableWidgetItem(self.prod_name_input.text()))
                             prod_table.setItem(row, 1, QTableWidgetItem(self.prod_price_input.text()))
                             prod_table.setItem(row, 2, QTableWidgetItem(self.prod_amount_input.text()))
                             prod_table.setItem(row, 3, QTableWidgetItem(self.prod_branch_id_input.text()))
-                            prod_name_input.clear()
-                            prod_price_input.clear()
-                            prod_amount_input.clear()
-                            prod_branch_id_input.clear()
+                            # prod_name_input.clear()
+                            # prod_price_input.clear()
+                            # prod_amount_input.clear()
+                            # prod_branch_id_input.clear()
 
                     # Slot methods for Branch Table
                     def add_row_branch():
@@ -712,6 +712,8 @@ class MainDashboard(QMainWindow):
             "name": self.branch_name_input.text().strip(),
             "address": self.branch_address_input.text().strip(),
             "phone_number": self.branch_phone_input.text().strip(),
+            "employer_id": str(self.employer_data.ID).strip(),
+            "enterprise_id": str(self.employer_data.enterprise_id).strip()
         }
     def get_accountSetting_data(self):
         return {
@@ -720,4 +722,12 @@ class MainDashboard(QMainWindow):
             "email": self.le_email.text().strip(),
             "phone_number": self.le_phone.text().strip(),
             "enterprise_id": self.le_enterprise_id.text().strip()
+        }
+    def get_productForm_data(self):
+        return {
+            "id": self.prod_id_input.text().strip(),
+            "name": self.prod_name_input.text().strip(),
+            "price": self.prod_price_input.text().strip(),
+            "amount": self.prod_amount_input.text().strip(),
+            "branch_id": self.prod_branch_id_input.text().strip()
         }
