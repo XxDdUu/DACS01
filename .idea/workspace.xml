@@ -5,12 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b664035e-7b0c-4c4d-8252-f0d6dc412f5b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Frontend/Chart/Branch_PSChart.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/Chart/Branch_RevenueChart.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/Chart/PSGeneralChart.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/Chart/RevenueGeneralChart.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/Chart/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Controller/ProductController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Controller/ProductController.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/DAO/ProductSalesDao.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/DAO/ProductSalesDao.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Model/Product.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Model/Product.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Model/ProductSales.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Model/ProductSales.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Model/plot_dataChart.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Model/plot_dataChart.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Model/plot_dataChart.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/View/mainDashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/mainDashboard.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
