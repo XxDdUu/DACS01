@@ -14,58 +14,58 @@ class ProductSalesDAO:
         cursor = None
 
         try:
-        # Establish the connection
-        connection = get_connection()
-        if not connection:
-            return False, "Failed to connect to database"
+            # Establish the connection
+            connection = get_connection()
+            if not connection:
+                return False, "Failed to connect to database"
 
-        cursor = connection.cursor()
+            cursor = connection.cursor()
 
-        # Generate product_sales
-        query = """SELECT PRICE, Product_NAME FROM PRODUCT WHERE Product_ID = %s"""
-        cursor.execute(query, (product_id,))
-        result = cursor.fetchone()
+            # Generate product_sales
+            query = """SELECT PRICE, Product_NAME FROM PRODUCT WHERE Product_ID = %s"""
+            cursor.execute(query, (product_id,))
+            result = cursor.fetchone()
 
-        if not result:
-            return False, f"Product id {product_id} not found."
+            if not result:
+                return False, f"Product id {product_id} not found."
 
-        price = float(result[0])
-        productName = result[1]
+            price = float(result[0])
+            productName = result[1]
 
-        quantity_sold = int(quantity_sold)
-        sale_amount = np.multiply(price, quantity_sold)  # Simple multiplication instead of np.multiply
+            quantity_sold = int(quantity_sold)
+            sale_amount = np.multiply(price, quantity_sold)  # Simple multiplication instead of np.multiply
 
-        # Check if product is out of stock
-        cursor.execute("SELECT Amount FROM PRODUCT WHERE Product_ID = %s", (product_id,))
-        stock = cursor.fetchone()[0]
+            # Check if product is out of stock
+            cursor.execute("SELECT Amount FROM PRODUCT WHERE Product_ID = %s", (product_id,))
+            stock = cursor.fetchone()[0]
 
-        if stock < quantity_sold:
-            return False, f"Not enough stock. Available: {stock}, Requested: {quantity_sold}"
+            if stock < quantity_sold:
+                return False, f"Not enough stock. Available: {stock}, Requested: {quantity_sold}"
 
-        # Decrease the product's stock amount
-        cursor.execute("""
-            UPDATE PRODUCT
-            SET Amount = Amount - %s
-            WHERE Product_ID = %s
-        """, (quantity_sold, product_id))
+            # Decrease the product's stock amount
+            cursor.execute("""
+                UPDATE PRODUCT
+                SET Amount = Amount - %s
+                WHERE Product_ID = %s
+            """, (quantity_sold, product_id))
 
-        # Insert the sale record into PRODUCT_SALES
-        query = """
-            INSERT INTO PRODUCT_SALES
-            (Product_ID, Branch_ID, SALE_DATE, QUANTITY_SOLD, SALE_AMOUNT)
-            VALUES (%s, %s, %s, %s, %s)
-        """
-        cursor.execute(query, (
-            product_id,
-            branch_id,
-            sale_date,
-            quantity_sold,
-            sale_amount
-        ))
+            # Insert the sale record into PRODUCT_SALES
+            query = """
+                INSERT INTO PRODUCT_SALES
+                (Product_ID, Branch_ID, SALE_DATE, QUANTITY_SOLD, SALE_AMOUNT)
+                VALUES (%s, %s, %s, %s, %s)
+            """
+            cursor.execute(query, (
+                product_id,
+                branch_id,
+                sale_date,
+                quantity_sold,
+                sale_amount
+            ))
 
-        # Commit the transaction
-        connection.commit()
-        return True, f"Added product {productName} sale information successfully"
+            # Commit the transaction
+            connection.commit()
+            return True, f"Added product {productName} sale information successfully"
 
         except MySQLdb.Error as e:
             traceback.print_exc()
