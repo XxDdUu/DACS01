@@ -66,21 +66,21 @@ CREATE TABLE PRODUCT_SALES (
 );
 -- khoa ngoai branches
 ALTER TABLE BRANCHES 
-ADD FOREIGN KEY (Employer_ID) REFERENCES EMPLOYER(Employer_ID),
-ADD FOREIGN KEY (Enterprise_ID) REFERENCES ENTERPRISE(Enterprise_ID);
+ADD FOREIGN KEY (Employer_ID) REFERENCES EMPLOYER(Employer_ID) ON DELETE CASCADE,
+ADD FOREIGN KEY (Enterprise_ID) REFERENCES ENTERPRISE(Enterprise_ID) ON DELETE CASCADE;
 -- khoa ngoai revenue
 ALTER TABLE REVENUE
-ADD foreign key (Branch_ID) references BRANCHES(Branch_ID)
+ADD foreign key (Branch_ID) references BRANCHES(Branch_ID) ON DELETE CASCADE
 -- khoa ngoai employer
 ALTER TABLE EMPLOYER
-ADD Foreign key(Enterprise_ID) references ENTERPRISE(Enterprise_ID)
+ADD Foreign key(Enterprise_ID) references ENTERPRISE(Enterprise_ID) ON DELETE CASCADE
 -- khoa ngoai product
 ALTER TABLE PRODUCT 
-ADD foreign key (Branch_ID) references BRANCHES(Branch_ID)
+ADD foreign key (Branch_ID) references BRANCHES(Branch_ID) ON DELETE CASCADE
 -- khoa ngoai product_sales
 ALTER TABLE PRODUCT_SALES
-ADD foreign key (Product_ID) references PRODUCT(Product_ID),
-ADD foreign key (Branch_ID) references BRANCHES(Branch_ID)
+ADD foreign key (Product_ID) references PRODUCT(Product_ID) ON DELETE CASCADE,
+ADD foreign key (Branch_ID) references BRANCHES(Branch_ID) ON DELETE CASCADE
 -- Default cho create_at
 ALTER TABLE EMPLOYER
 MODIFY COLUMN Create_at DATETIME DEFAULT CURRENT_TIMESTAMP

@@ -9,12 +9,10 @@ from Backend.DAO.EnterpriseDAO import EnterpriseDao
 import pandas as pd
 
 class BranchesDAO:
-    def insert_branches(self, data):
+    def insert_branches(self, data, enterprise_id, employer_id):
         branchesName = data.get("name")
         branchesAddress = data.get("address")
         branchesPhone = data.get("phone_number").strip()
-        employerId = data.get("employer_id") or "2"         # fallback nếu None
-        enterpriseId = data.get("enterprise_id") or "ENT_VTX22NH"   # fallback nếu None
 
         connection = None
         cursor = None
@@ -24,7 +22,7 @@ class BranchesDAO:
         def is_valid_phoneNum(phone_number):
             return bool(re.fullmatch(r"[0-9]{10}",branchesPhone))
 
-        if not all([branchesName, branchesAddress, branchesPhone, employerId, enterpriseId]):
+        if not all([branchesName, branchesAddress, branchesPhone]):
             return False, "All fields are required"
 
         if not is_valid_phoneNum(branchesPhone):
@@ -66,8 +64,8 @@ class BranchesDAO:
                 branchesName,
                 branchesAddress,
                 branchesPhone,
-                employerId,
-                enterpriseId
+                employer_id,
+                enterprise_id
             ))
 
             connection.commit()
@@ -229,16 +227,16 @@ class BranchesDAO:
                     cursor.close()
                 if connection:
                     connection.close()
-    def get_branches_by_enterprise_employer(self, enterprise_id, employer_id):
+    def get_branches(self, enterprise_id, employer_id):
         connection = get_connection()
         cursor = connection.cursor()
 
         query = """
-            SELECT * FROM BRANCH
-            WHERE Enterprise_ID = %s AND Employer_ID = %s
+            SELECT * FROM BRANCHES
+            WHERE Enterprise_ID = %s
         """
 
-        cursor.execute(query, (enterprise_id, employer_id))
+        cursor.execute(query, (enterprise_id,))
         rows = cursor.fetchall()
         columns = [col[0] for col in cursor.description]
         df = pd.DataFrame(rows, columns=columns)
