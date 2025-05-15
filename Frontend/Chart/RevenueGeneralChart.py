@@ -39,7 +39,7 @@ class generalChart:
                 self.ax.set_title("Revenue General 2025")
                 self.ax.bar(df['Branch_name'], df['total_revenue'], color='skyblue')
                 self.ax.set_xlabel("Branch")
-                self.ax.set_ylabel("Amount (unit: million $")
+                self.ax.set_ylabel("Amount (unit: million$)")
             self.canvas.draw()
         except Exception as e:
             traceback.print_exc()

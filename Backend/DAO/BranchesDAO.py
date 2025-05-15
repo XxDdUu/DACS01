@@ -176,6 +176,8 @@ class BranchesDAO:
             return False, "Invalid phone number format"
 
         def branch_name_exists(branch_name):
+            conn_test = None
+            cursor_test = None
             try:
                 conn_test = get_connection()
                 cursor_test = conn_test.cursor()
@@ -183,10 +185,10 @@ class BranchesDAO:
                 cursor_test.execute(query, (branch_name,))
                 return cursor_test.fetchone() is not None
             finally:
-                if cursor:
-                    cursor.close()
-                if connection:
-                    connection.close()
+                if cursor_test:
+                    cursor_test.close()
+                if conn_test:
+                    conn_test.close()
 
             if branch_name_exists(branchesName):
                 return False, f"Branch name {branchesName} already exits"

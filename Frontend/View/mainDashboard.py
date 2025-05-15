@@ -11,6 +11,7 @@ from PyQt6.QtGui import QPixmap, QFont, QIcon
 
 from Backend.Model.ProductSales import ProductSalesFormData
 from Backend.Model.Revenue import RevenueFormData
+from Frontend.Chart.Branch_PSChart import PSBranchChart
 from Frontend.Chart.PSGeneralChart import ProductSaleChart
 from Frontend.Chart.RevenueGeneralChart import generalChart
 from Frontend.View.frameUI import Ui_MainWindow
@@ -184,14 +185,14 @@ class MainDashboard(QMainWindow):
                     fig_general_chart = general_chart.figure
 
                     canvas_chart_1 = FigureCanvas(fig_general_chart)
-                    canvas_chart_2 = FigureCanvas(fig_general_chart)
-                    canvas_chart_3 = FigureCanvas(fig_general_chart)
+                    # canvas_chart_2 = FigureCanvas(fig_general_chart)
+                    # canvas_chart_3 = FigureCanvas(fig_general_chart)
 
                     # Layout chứa 3 biểu đồ
                     chart_layout = QGridLayout()
                     chart_layout.addWidget(canvas_chart_1, 0, 0)
-                    chart_layout.addWidget(canvas_chart_2, 0, 1)
-                    chart_layout.addWidget(canvas_chart_3, 0, 2)
+                    # chart_layout.addWidget(canvas_chart_2, 0, 1)
+                    # chart_layout.addWidget(canvas_chart_3, 0, 2)
 
                     chart_widget = QWidget()
                     chart_widget.setLayout(chart_layout)
@@ -270,13 +271,18 @@ class MainDashboard(QMainWindow):
 
 
                 elif text == "Product Sales Info":
-                    # Khởi tạo biểu đồ doanh thu sản phẩm
-                    PS_chart = ProductSaleChart()
-                    fig_product_chart = PS_chart.figure
+                    # Khởi tạo biểu đồ doanh thu sản phẩm theo từng chi nhánh(name: A,B,C)
+                    chartA = PSBranchChart("A")
+                    chartB = PSBranchChart("B")
+                    chartC = PSBranchChart("C")
 
-                    canvas_chart_left = FigureCanvas(fig_product_chart)
-                    canvas_chart_center = FigureCanvas(fig_product_chart)
-                    canvas_chart_right = FigureCanvas(fig_product_chart)
+                    fig_PS_branchA_chart = chartA.figure
+                    fig_PS_branchB_chart = chartB.figure
+                    fig_PS_branchC_chart = chartC.figure
+
+                    canvas_chart_left = FigureCanvas(fig_PS_branchA_chart)
+                    canvas_chart_center = FigureCanvas(fig_PS_branchB_chart)
+                    canvas_chart_right = FigureCanvas(fig_PS_branchC_chart)
 
                     # Layout cho biểu đồ
                     chart_layout = QGridLayout()
@@ -677,7 +683,7 @@ class MainDashboard(QMainWindow):
             self.employer_data.ID
             )
         else:
-            print("⚠️ BranchesController chưa sẵn sàng.")
+            print("⚠!!! BranchesController chưa sẵn sàng.")
 
         branch_table = QTableWidget()
         branch_table.setColumnCount(4)
