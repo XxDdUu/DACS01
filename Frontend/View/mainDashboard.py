@@ -185,14 +185,14 @@ class MainDashboard(QMainWindow):
                     fig_general_chart = general_chart.figure
 
                     canvas_chart_1 = FigureCanvas(fig_general_chart)
-                    canvas_chart_2 = FigureCanvas(fig_general_chart)
-                    canvas_chart_3 = FigureCanvas(fig_general_chart)
+                    # canvas_chart_2 = FigureCanvas(fig_general_chart)
+                    # canvas_chart_3 = FigureCanvas(fig_general_chart)
 
                     # Layout chứa 3 biểu đồ
                     chart_layout = QGridLayout()
                     chart_layout.addWidget(canvas_chart_1, 0, 0)
-                    chart_layout.addWidget(canvas_chart_2, 0, 1)
-                    chart_layout.addWidget(canvas_chart_3, 0, 2)
+                    # chart_layout.addWidget(canvas_chart_2, 0, 1)
+                    # chart_layout.addWidget(canvas_chart_3, 0, 2)
 
                     chart_widget = QWidget()
                     chart_widget.setLayout(chart_layout)

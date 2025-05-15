@@ -12,6 +12,8 @@ class RevenueDAO:
         connection = None
         cursor = None
 
+        if not all([revenueId,revenueDate,revenue_raw,branchID]):
+            return False, "All fields are required to add"
         #Kiểm tra và ép kiểu giá
         try:
             revenueAmount = float(revenue_raw)
