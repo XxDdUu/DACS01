@@ -23,5 +23,5 @@ class ProductSalesFormData:
             "product_id": self.product_id.text().strip(),
             "date": self.sale_date.date().toString("yyyy-MM-dd"),
             "quantity_sold": self.quantity_sold.text().strip(),
-            "amount": self.sale_amount.text().strip()
+            "amount_total": self.sale_amount.text().strip()
         }

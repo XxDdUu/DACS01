@@ -9,12 +9,10 @@ from Backend.DAO.EnterpriseDAO import EnterpriseDao
 import pandas as pd
 
 class BranchesDAO:
-    def insert_branches(self, data):
+    def insert_branches(self, data, enterprise_id, employer_id):
         branchesName = data.get("name")
         branchesAddress = data.get("address")
         branchesPhone = data.get("phone_number").strip()
-        employerId = data.get("employer_id") or "2"         # fallback nếu None
-        enterpriseId = data.get("enterprise_id") or "ENT_VTX22NH"   # fallback nếu None
 
         connection = None
         cursor = None
@@ -24,7 +22,7 @@ class BranchesDAO:
         def is_valid_phoneNum(phone_number):
             return bool(re.fullmatch(r"[0-9]{10}",branchesPhone))
 
-        if not all([branchesName, branchesAddress, branchesPhone, employerId, enterpriseId]):
+        if not all([branchesName, branchesAddress, branchesPhone]):
             return False, "All fields are required"
 
         if not is_valid_phoneNum(branchesPhone):
@@ -66,8 +64,8 @@ class BranchesDAO:
                 branchesName,
                 branchesAddress,
                 branchesPhone,
-                employerId,
-                enterpriseId
+                employer_id,
+                enterprise_id
             ))
 
             connection.commit()
@@ -91,8 +89,8 @@ class BranchesDAO:
         # branchesName = data.get("name")
         # branchesAddress = data.get("address")
         # branchesPhone = data.get("phone_number").strip()
-        employerId = data.get("employer_id") or "2"         # fallback nếu None
-        enterpriseId = data.get("enterprise_id") or "ENT_VTX22NH"   # fallback nếu None
+        employerId = data.get("employer_id")         # fallback nếu None
+        enterpriseId = data.get("enterprise_id")   # fallback nếu None
 
         connection = None
         cursor = None
@@ -160,8 +158,8 @@ class BranchesDAO:
         branchesName = data.get("name")
         branchesAddress = data.get("address")
         branchesPhone = data.get("phone_number").strip()
-        employerId = data.get("employer_id") or "2"  # fallback nếu None
-        enterpriseId = data.get("enterprise_id") or "ENT_VTX22NH"  # fallback nếu None
+        employerId = data.get("employer_id")  # fallback nếu None
+        enterpriseId = data.get("enterprise_id") # fallback nếu None
 
         connection = None
         cursor = None
@@ -178,6 +176,8 @@ class BranchesDAO:
             return False, "Invalid phone number format"
 
         def branch_name_exists(branch_name):
+            conn_test = None
+            cursor_test = None
             try:
                 conn_test = get_connection()
                 cursor_test = conn_test.cursor()
@@ -185,11 +185,53 @@ class BranchesDAO:
                 cursor_test.execute(query, (branch_name,))
                 return cursor_test.fetchone() is not None
             finally:
+                if cursor_test:
+                    cursor_test.close()
+                if conn_test:
+                    conn_test.close()
+
+            if branch_name_exists(branchesName):
+                return False, f"Branch name {branchesName} already exits"
+
+            try:
+                connection = get_connection()
+                if not connection:
+                    return False, "Failed to connect to database"
+
+                cursor = connection.cursor()
+                query = """
+                           UPDATE BRANCHES
+                           SET Branch_name = %s, Branch_address = %s, Branch_phone_number = %s
+                           WHERE Employer_ID = %s AND Enterprise_ID = %s AND Branch_ID = %s
+                       """
+                cursor.execute(query, (
+                    branchesName,
+                    branchesAddress,
+                    branchesPhone,
+                    employerId,
+                    enterpriseId,
+                    branchId
+                ))
+
+                connection.commit()
+                return True, "Branch updated successfully"
+
+            except MySQLdb.Error as e:
+                traceback.print_exc()
+                return False, f"Database Error: {e}"
+
+            except Exception as e:
+                traceback.print_exc()
+                return False, f"Unexpected Error: {e}"
+
+            finally:
                 if cursor:
                     cursor.close()
                 if connection:
                     connection.close()
-
+    def get_branches(self, enterprise_id, employer_id):
+        connection = get_connection()
+        cursor = connection.cursor()
             if branch_name_exists(branchesName):
                 return False, f"Branch name {branchesName} already exits"
 

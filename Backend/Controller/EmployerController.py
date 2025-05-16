@@ -1,3 +1,5 @@
+from pyexpat.errors import messages
+
 from Backend.DAO.EmployerDAO import EmployerDAO
 from PyQt6.QtWidgets import QMessageBox
 from PyQt6.QtCore import QDate
@@ -35,3 +37,52 @@ class EmployerController:
 			self.login_view.identifierLineEdit.clear()
 		else:
 			QMessageBox.warning(self.login_view, "Error", message)
+class EmployerAccountSettingController:
+	def __init__(self,main_view):
+		self.main_view = main_view  # dashboard app
+		self.dao = EmployerDAO()
+		self.main_view.btn_edit_username.clicked.connect(self.handle_editName)
+		self.main_view.btn_edit_birthdate.clicked.connect(self.handle_editDateBirth)
+		self.main_view.btn_edit_email.clicked.connect(self.handle_editEmail)
+		self.main_view.btn_edit_phone.clicked.connect(self.handle_editPhoneNum)
+	def handle_editName(self):
+		data = self.main_view.get_accountSetting_data()
+		success, message = self.dao.edit_username(data)
+		if success:
+			QMessageBox.information(self.main_view, "Success", message)
+			# self.main_view.employer_data.username = data["username"]
+			# self.main_view.le_username.setText(data["username"])
+		else:
+			QMessageBox.warning(self.main_view, "Error", message)
+	def handle_editDateBirth(self):
+		data = self.main_view.get_accountSetting_data()
+		success, message = self.dao.edit_dateBirth(data)
+		if success:
+			QMessageBox.information(self.main_view, "Success", message)
+			self.main_view.employer_data.username = data["date_of_birth"]
+			self.main_view.le_birthdate.setDate(QDate(data["date_of_birth"].year,
+													  data["date_of_birth"].month,
+													  data["date_of_birth"].day))
+		else:
+			QMessageBox.warning(self.main_view, "Error", message)
+	def handle_editEmail(self):
+		data = self.main_view.get_accountSetting_data()
+		success, message = self.dao.edit_email(data)
+		if success:
+			QMessageBox.information(self.main_view, "Success", message)
+			self.main_view.employer_data.username = data["email"]
+			self.main_view.le_email.setText(data["email"])
+		else:
+			QMessageBox.warning(self.main_view, "Error", message)
+	def handle_editPhoneNum(self):
+		data = self.main_view.get_accountSetting_data()
+		success, message = self.dao.edit_phoneNum(data)
+		if success:
+			QMessageBox.information(self.main_view, "Success", message)
+			self.main_view.employer_data.username = data["phone_number"]
+			self.main_view.le_phone.setText(data["phone_number"])
+		else:
+			QMessageBox.warning(self.main_view, "Error", message)
+
+
+

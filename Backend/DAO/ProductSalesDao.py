@@ -5,6 +5,7 @@ import numpy as np
 
 class ProductSalesDAO:
     def add_ProductSales(self, data):
+        sale_id = data.get("id")
         product_id =  data.get("product_id")
         branch_id = data.get("branch_id")
         sale_date =  data.get("date")
@@ -14,7 +15,6 @@ class ProductSalesDAO:
         cursor = None
 
         try:
-        # Establish the connection
             connection = get_connection()
             if not connection:
                 return False, "Failed to connect to database"
@@ -44,17 +44,18 @@ class ProductSalesDAO:
 
             # Decrease the product's stock amount
             cursor.execute("""
-                UPDATE PRODUCT
-                SET Amount = Amount - %s
-                WHERE Product_ID = %s
-            """, (quantity_sold, product_id))
+
+                        UPDATE PRODUCT
+                        SET Amount = Amount - %s
+                        WHERE Product_ID = %s
+                    """, (quantity_sold, product_id))
 
             # Insert the sale record into PRODUCT_SALES
             query = """
-                INSERT INTO PRODUCT_SALES
-                (Product_ID, Branch_ID, SALE_DATE, QUANTITY_SOLD, SALE_AMOUNT)
-                VALUES (%s, %s, %s, %s, %s)
-            """
+                        INSERT INTO PRODUCT_SALES
+                        (Product_ID, Branch_ID, SALE_DATE, QUANTITY_SOLD, SALE_AMOUNT)
+                        VALUES (%s, %s, %s, %s, %s)
+                    """
             cursor.execute(query, (
                 product_id,
                 branch_id,
@@ -87,18 +88,18 @@ class ProductSalesDAO:
         branch_id = data.get("branch_id")
         sale_date = data.get("date")
         quantity_sold = data.get("quantity_sold")
-        sale_amount_raw = data.get("amount").strip()
+        # sale_amount_raw = data.get("amount").strip()
 
         connection = None
         cursor = None
 
-        # Kiểm tra và ép kiểu giá
-        try:
-            sale_amount = float(sale_amount_raw)
-            if sale_amount <= 0:
-                return False, "Invalid price: must be greater than 0"
-        except ValueError:
-            return False, f"Invalid price format: '{sale_amount_raw}'"
+        # # Kiểm tra và ép kiểu giá
+        # try:
+        #     sale_amount = float(sale_amount_raw)
+        #     if sale_amount <= 0:
+        #         return False, "Invalid price: must be greater than 0"
+        # except ValueError:
+        #     return False, f"Invalid price format: '{sale_amount_raw}'"
         try:
             connection = get_connection()
             if not connection:
@@ -107,10 +108,10 @@ class ProductSalesDAO:
             cursor = connection.cursor()
             query = """
                 DELETE FROM product_sales 
-                WHERE SALE_ID = %s AND Product_ID = %s AND Branch_ID = %s
+                WHERE Product_ID = %s AND Branch_ID = %s
             """
             cursor.execute(query, (
-                sale_Id,
+                # sale_Id,
                 product_id,
                 branch_id,
             ))
@@ -137,6 +138,7 @@ class ProductSalesDAO:
         branch_id = data.get("branch_id")
         sale_date = data.get("date")
         quantity_sold = data.get("quantity_sold")
+        sale_amount_raw = data.get("amount_total")
 
         connection = None
         cursor = None
