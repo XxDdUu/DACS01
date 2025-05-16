@@ -229,21 +229,20 @@ class BranchesDAO:
                     cursor.close()
                 if connection:
                     connection.close()
-        def get_branches_by_enterprise_employer(self, enterprise_id, employer_id):
-            connection = get_connection()
-            cursor = connection.cursor()
+    def get_branches_by_enterprise_employer(self, enterprise_id, employer_id):
+        connection = get_connection()
+        cursor = connection.cursor()
 
-            query = """
-                SELECT * FROM BRANCH
-                WHERE Enterprise_ID = %s AND Employer_ID = %s
-            """
+        query = """
+            SELECT * FROM BRANCH
+            WHERE Enterprise_ID = %s AND Employer_ID = %s
+        """
 
-            cursor.execute(query, (enterprise_id, employer_id))
-            rows = cursor.fetchall()
-            columns = [col[0] for col in cursor.description]
-            df = pd.DataFrame(rows, columns=columns)
+        cursor.execute(query, (enterprise_id, employer_id))
+        rows = cursor.fetchall()
+        columns = [col[0] for col in cursor.description]
+        df = pd.DataFrame(rows, columns=columns)
+        cursor.close()
+        connection.close()
 
-            cursor.close()
-            connection.close()
-
-            return df.to_dict(orient="records")
+        return df.to_dict(orient="records")
