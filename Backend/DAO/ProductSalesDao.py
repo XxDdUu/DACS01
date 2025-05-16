@@ -15,7 +15,6 @@ class ProductSalesDAO:
         cursor = None
 
         try:
-            # Establish the connection
             connection = get_connection()
             if not connection:
                 return False, "Failed to connect to database"
@@ -45,6 +44,7 @@ class ProductSalesDAO:
 
             # Decrease the product's stock amount
             cursor.execute("""
+
                         UPDATE PRODUCT
                         SET Amount = Amount - %s
                         WHERE Product_ID = %s
