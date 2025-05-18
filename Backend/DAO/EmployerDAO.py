@@ -210,7 +210,7 @@ class EmployerDAO:
                 enterprise_id
             ))
             connection.commit()
-            return True, "Product deleted successfully"
+            return True, "Edit successfully"
 
         except MySQLdb.Error as e:
             traceback.print_exc()
@@ -248,7 +248,7 @@ class EmployerDAO:
                 enterprise_id
             ))
             connection.commit()
-            return True, "Product deleted successfully"
+            return True, "Edit successfully"
 
         except MySQLdb.Error as e:
             traceback.print_exc()
@@ -286,7 +286,7 @@ class EmployerDAO:
                 enterprise_id
             ))
             connection.commit()
-            return True, "Product deleted successfully"
+            return True, "Edit successfully"
 
         except MySQLdb.Error as e:
             traceback.print_exc()

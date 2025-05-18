@@ -176,6 +176,8 @@ class BranchesDAO:
             return False, "Invalid phone number format"
 
         def branch_name_exists(branch_name):
+            conn_test = None
+            cursor_test = None
             try:
                 conn_test = get_connection()
                 cursor_test = conn_test.cursor()
@@ -183,10 +185,10 @@ class BranchesDAO:
                 cursor_test.execute(query, (branch_name,))
                 return cursor_test.fetchone() is not None
             finally:
-                if cursor:
-                    cursor.close()
-                if connection:
-                    connection.close()
+                if cursor_test:
+                    cursor_test.close()
+                if conn_test:
+                    conn_test.close()
 
             if branch_name_exists(branchesName):
                 return False, f"Branch name {branchesName} already exits"
@@ -230,13 +232,55 @@ class BranchesDAO:
     def get_branches(self, enterprise_id, employer_id):
         connection = get_connection()
         cursor = connection.cursor()
+            if branch_name_exists(branchesName):
+                return False, f"Branch name {branchesName} already exits"
+
+            try:
+                connection = get_connection()
+                if not connection:
+                    return False, "Failed to connect to database"
+
+                cursor = connection.cursor()
+                query = """
+                           UPDATE BRANCHES
+                           SET Branch_name = %s, Branch_address = %s, Branch_phone_number = %s
+                           WHERE Employer_ID = %s AND Enterprise_ID = %s AND Branch_ID = %s
+                       """
+                cursor.execute(query, (
+                    branchesName,
+                    branchesAddress,
+                    branchesPhone,
+                    employerId,
+                    enterpriseId,
+                    branchId
+                ))
+
+                connection.commit()
+                return True, "Branch updated successfully"
+
+            except MySQLdb.Error as e:
+                traceback.print_exc()
+                return False, f"Database Error: {e}"
+
+            except Exception as e:
+                traceback.print_exc()
+                return False, f"Unexpected Error: {e}"
+
+            finally:
+                if cursor:
+                    cursor.close()
+                if connection:
+                    connection.close()
+    def get_branches_by_enterprise_employer(self, enterprise_id, employer_id):
+        connection = get_connection()
+        cursor = connection.cursor()
 
         query = """
-            SELECT * FROM BRANCHES
-            WHERE Enterprise_ID = %s
+            SELECT * FROM BRANCH
+            WHERE Enterprise_ID = %s AND Employer_ID = %s
         """
 
-        cursor.execute(query, (enterprise_id,))
+        cursor.execute(query, (enterprise_id, employer_id))
         rows = cursor.fetchall()
         columns = [col[0] for col in cursor.description]
         df = pd.DataFrame(rows, columns=columns)
