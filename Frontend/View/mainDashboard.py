@@ -723,6 +723,7 @@ class MainDashboard(QMainWindow):
         }
     def get_accountSetting_data(self):
         return {
+            "employer_id": self.employer_data.ID,
             "username": self.le_username.text().strip(),
             "date_of_birth": self.le_birthdate.date().toPyDate(),
             "email": self.le_email.text().strip(),

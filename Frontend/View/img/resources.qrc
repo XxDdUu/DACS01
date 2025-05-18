@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="img">
+    <file>icon/pencil-svgrepo-com.svg</file>
     <file>icon/icons8_account_1.svg</file>
     <file>icon/icons8_alarm.svg</file>
     <file>icon/icons8_calendar_1.svg</file>

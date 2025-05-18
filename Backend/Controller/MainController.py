@@ -51,6 +51,7 @@ class MainController:
         self.product_controller = ProductController(self.dashboard_window)
         self.revenue_controller = RevenueController(self.dashboard_window)
         self.PS_controller = ProductSalesController(self.dashboard_window)
+        self.EmployerAccountSettingController = EmployerAccountSettingController(self.dashboard_window)
 
         self.dashboard_window.load_branches()
 
@@ -59,7 +60,6 @@ class MainController:
         self.login_window.hide()
         self.register_window.hide()
         self.dashboard_window.show()
-        self.EmployerAccountSettingController = EmployerAccountSettingController(self.dashboard_window)
 
     def get_branches_data(self, enterprise_id, employer_id):
         if self.branches_controller:

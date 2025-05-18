@@ -150,6 +150,7 @@ class EmployerDAO:
 
     def edit_username(self, data):
         username = data.get("username")
+        employer_id = data.get("employer_id")
         enterprise_id = data.get("enterprise_id")
 
         connection = None
@@ -163,11 +164,12 @@ class EmployerDAO:
             query = """
                 UPDATE EMPLOYER 
                 SET Employer_name = %s 
-                WHERE Enterprise_ID = %s
+                WHERE Enterprise_ID = %s AND Employer_ID = %s
                             """
             cursor.execute(query, (
                 username,
-                enterprise_id
+                enterprise_id,
+                employer_id
             ))
             connection.commit()
             return True, "Product deleted successfully"
