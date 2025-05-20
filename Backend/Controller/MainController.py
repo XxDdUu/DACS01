@@ -50,8 +50,6 @@ class MainController:
         self.PS_controller = ProductSalesController(self.dashboard_window)
         self.EmployerAccountSettingController = EmployerAccountSettingController(self.dashboard_window)
 
-        self.dashboard_window.load_branches()
-
         self.dashboard_window.switch_to_login = self.show_login
 
         self.login_window.hide()
