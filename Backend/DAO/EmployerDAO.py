@@ -124,6 +124,7 @@ class EmployerDAO:
                     employer_data = Employer(
                         ID=result["Employer_ID"],
                         username=result["Employer_name"],
+                        create_at_time = result["Create_at"],
                         phone_number=result["Employer_Phone_Number"],
                         email=result["Employer_Email"],
                         date_of_birth=result["DOB"],

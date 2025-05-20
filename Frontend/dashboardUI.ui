@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>786</width>
-    <height>435</height>
+    <height>449</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -78,6 +78,9 @@ background-color: rgb(255, 255, 255);
 #interact_frame {
     background-color: rgb(255, 255, 255);
 }
+#main_label {
+	background-color: rgb(255, 255, 255);
+}
 </string>
          </property>
          <property name="frameShape">
@@ -112,6 +115,15 @@ background-color: rgb(255, 255, 255);
 QPushButton::hover {
     border: 1px solid rgb(0, 0, 0);
     border-radius: 5px;
+}
+#logo_menu_frame {
+	background-color: rgb(255, 255, 255);
+}
+#main_logo_frame {
+	background-color: rgb(255, 255, 255);
+}
+#main_label {
+	color:rgb(0, 0, 0);
 }</string>
             </property>
             <property name="frameShape">
@@ -192,7 +204,7 @@ QPushButton::hover {
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="label">
+              <widget class="QLabel" name="main_label">
                <property name="font">
                 <font>
                  <pointsize>10</pointsize>
@@ -265,8 +277,12 @@ QPushButton::hover {
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">QPushButton {
+             <string notr="true">#interact_frame {
+	background-color: rgb(255, 255, 255);
+}
+QPushButton {
     border: none;
+	padding: 0;
 }
 #minimize_btn::hover {
     border: 1px solid rgb(0, 0, 0);
@@ -514,7 +530,7 @@ QPushButton:pressed {
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="revenue_btn">
+                 <widget class="QPushButton" name="report_btn">
                   <property name="minimumSize">
                    <size>
                     <width>0</width>
@@ -536,7 +552,7 @@ QPushButton:pressed {
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="product_sale_btn">
+                 <widget class="QPushButton" name="revenue_btn">
                   <property name="minimumSize">
                    <size>
                     <width>0</width>
@@ -583,7 +599,7 @@ QPushButton:pressed {
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="pushButton">
+                 <widget class="QPushButton" name="account_setting_btn">
                   <property name="minimumSize">
                    <size>
                     <width>0</width>
@@ -609,6 +625,11 @@ QPushButton:pressed {
              </item>
              <item>
               <widget class="QFrame" name="logout_frame">
+               <property name="styleSheet">
+                <string notr="true">#logout_frame {
+	background-color: rgb(255, 255, 255);
+}</string>
+               </property>
                <property name="frameShape">
                 <enum>QFrame::StyledPanel</enum>
                </property>
@@ -637,7 +658,7 @@ QPushButton:pressed {
                    <enum>Qt::Vertical</enum>
                   </property>
                   <property name="sizeType">
-                   <enum>QSizePolicy::MinimumExpanding</enum>
+                   <enum>QSizePolicy::Expanding</enum>
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
@@ -652,7 +673,13 @@ QPushButton:pressed {
                   <property name="minimumSize">
                    <size>
                     <width>0</width>
-                    <height>29</height>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>16777215</height>
                    </size>
                   </property>
                   <property name="text">
@@ -702,7 +729,7 @@ QPushButton:pressed {
              <item>
               <widget class="QStackedWidget" name="stackedWidget">
                <property name="currentIndex">
-                <number>0</number>
+                <number>3</number>
                </property>
                <widget class="QWidget" name="Account_setting_page">
                 <property name="styleSheet">
@@ -768,14 +795,18 @@ QWidget#Account_setting_page {
                     <item>
                      <widget class="QFrame" name="second_menu_frame">
                       <property name="styleSheet">
-                       <string notr="true">QPushButton {
+                       <string notr="true">#second_menu_frame {
+	background-color: rgb(255, 255, 255);
+}
+QPushButton {
+	color: rgb(0, 0, 0);
 	border: none;
 	text-align: left;
 	padding-left: 5px;
 }
 QPushButton::hover {
 	border-radius: 5px;
-	background-color: rgb(246, 246, 246);
+	background-color: rgb(200, 200, 200);
 }
 QPushButton::pressed {
 	border-radius: 5px;
@@ -912,7 +943,7 @@ QPushButton::pressed {
                         <item>
                          <widget class="QFrame" name="employer_info_frame">
                           <property name="styleSheet">
-                           <string notr="true">#main_employer_info_frame{
+                           <string notr="true">#employer_info_frame {
 	background-color: rgb(255, 255, 255);
 }</string>
                           </property>
@@ -954,7 +985,7 @@ QPushButton::pressed {
                              <property name="styleSheet">
                               <string notr="true">#main_employer_info_frame {
 	background-color: rgb(255, 255, 255);
-	border: 1px solid rgb(235, 235, 235);
+	border: 1px solid rgb(86, 86, 86);
 	border-radius: 10px;
 }
 #employer_info_frame_3 {
@@ -989,7 +1020,8 @@ QPushButton::pressed {
 #employer_name_lineedit {
 	border: none;
 	color: rgb(0, 0, 0);
-	padding: 0;
+	padding-left: 2px;
+	background-color: rgb(255, 255, 255);
 }
 #display_create_date {
 	color: rgb(80, 80, 80);
@@ -1054,7 +1086,10 @@ QPushButton::pressed {
                               <item>
                                <widget class="QFrame" name="employer_info_frame_3">
                                 <property name="styleSheet">
-                                 <string notr="true">#edit_btn_employer_info {
+                                 <string notr="true">#employer_info_frame_3 {
+	background-color: rgb(255, 255, 255);
+}
+#edit_btn_employer_info {
 	background-color: rgb(255, 255, 255);
 	border: 2px solid rgb(230, 230, 230);
 	padding: 5px;
@@ -1114,7 +1149,7 @@ QPushButton::pressed {
                              <property name="styleSheet">
                               <string notr="true">#sec_employer_info_frame {
 	background-color: rgb(255, 255, 255);
-	border: 1px solid rgb(235, 235, 235);
+	border: 1px solid  rgb(86, 86, 86);
 	border-radius: 10px;
 }</string>
                              </property>
@@ -1146,16 +1181,19 @@ QPushButton::pressed {
                                  <string notr="true">QLabel {
 	color: rgb(80, 80, 80);
 	margin-left: 1px;
+	background-color: rgb(255, 255, 255);
 }
 QLineEdit {
 	border: none;
 	color: rgb(0, 0, 0);
 	padding: 0;
+	background-color: rgb(255, 255, 255);
 }
 QDateEdit {
 	border: none;
 	color: rgb(0, 0, 0);
 	padding: 0;
+	background-color: rgb(255, 255, 255);
 }
 QDateEdit::down-arrow {
 	image: none;
@@ -1163,7 +1201,7 @@ QDateEdit::down-arrow {
 QDateEdit::drop-down {
      subcontrol-origin: padding;
   	 subcontrol-position: center right;
-  	 width:50px;
+  	 width:45px;
 	border: none;
 }
 QFrame {
@@ -1309,7 +1347,7 @@ QFrame {
                                      </widget>
                                     </item>
                                     <item>
-                                     <widget class="QLineEdit" name="e">
+                                     <widget class="QLineEdit" name="enterprise_id_line_edit">
                                       <property name="font">
                                        <font>
                                         <pointsize>10</pointsize>
@@ -1403,7 +1441,11 @@ QFrame {
                                  </size>
                                 </property>
                                 <property name="styleSheet">
-                                 <string notr="true">#edit_btn_employer_info_2 {
+                                 <string notr="true">
+#employer_info_frame_4 {
+	background-color: rgb(255, 255, 255);
+}
+#edit_btn_employer_info_2 {
 	background-color: rgb(255, 255, 255);
 	border: 2px solid rgb(230, 230, 230);
 	padding: 5px;
@@ -1495,8 +1537,18 @@ QFrame {
 }</string>
                 </property>
                 <layout class="QGridLayout" name="gridLayout_2">
-                 <item row="0" column="1">
-                  <widget class="QFrame" name="frame_6">
+                 <item row="1" column="0">
+                  <widget class="QFrame" name="frame_7">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QFrame" name="frame_8">
                    <property name="frameShape">
                     <enum>QFrame::StyledPanel</enum>
                    </property>
@@ -1515,18 +1567,8 @@ QFrame {
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="0">
-                  <widget class="QFrame" name="frame_7">
-                   <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <widget class="QFrame" name="frame_8">
+                 <item row="0" column="1">
+                  <widget class="QFrame" name="frame_6">
                    <property name="frameShape">
                     <enum>QFrame::StyledPanel</enum>
                    </property>
