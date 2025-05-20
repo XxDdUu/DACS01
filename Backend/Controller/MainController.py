@@ -6,7 +6,7 @@ from Backend.Controller.ProductSalesController import ProductSalesController
 from Backend.Controller.RevenueController import RevenueController
 from Backend.Model.Employer import Employer
 from Frontend.View.Login import Login
-from Frontend.View.mainDashboard import MainDashboard
+from Frontend.View.DashBoard import DashBoard
 from Frontend.View.register import Register
 from Backend.Controller.EmployerController import EmployerController, EmployerAccountSettingController
 from Backend.Controller.EnterpriseController import EnterpriseController
@@ -41,10 +41,7 @@ class MainController:
 
     def show_dashboardApp(self, employer_data):
 
-        self.dashboard_window = MainDashboard(employer_data, self)
-
-        self.dashboard_window.init_stackWidget()
-        self.dashboard_window.init_ListWidget()
+        self.dashboard_window = DashBoard(employer_data, self)
         
         self.employer_controller = EmployerController(self.register_window, self.login_window)
         self.branches_controller = BranchesController(self.dashboard_window)

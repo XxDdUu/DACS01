@@ -41,10 +41,8 @@ class EmployerAccountSettingController:
 	def __init__(self,main_view):
 		self.main_view = main_view  # dashboard app
 		self.dao = EmployerDAO()
-		self.main_view.btn_edit_username.clicked.connect(self.handle_editName)
-		self.main_view.btn_edit_birthdate.clicked.connect(self.handle_editDateBirth)
-		self.main_view.btn_edit_email.clicked.connect(self.handle_editEmail)
-		self.main_view.btn_edit_phone.clicked.connect(self.handle_editPhoneNum)
+		self.main_view.edit_btn_employer_info.clicked.connect(self.handle_editName)
+		self.main_view.edit_btn_employer_info_2.clicked.connect(self.handle_editDateBirth)
 	def handle_editName(self):
 		data = self.main_view.get_accountSetting_data()
 		success, message = self.dao.edit_username(data)
