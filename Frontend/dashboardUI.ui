@@ -648,7 +648,7 @@ QPushButton:pressed {
                  </spacer>
                 </item>
                 <item>
-                 <widget class="clickableLabel" name="logout_label">
+                 <widget class="ClickableLabel" name="logout_label">
                   <property name="minimumSize">
                    <size>
                     <width>0</width>
@@ -1484,7 +1484,59 @@ QFrame {
                </widget>
                <widget class="QWidget" name="Revenue_page"/>
                <widget class="QWidget" name="Report_page"/>
-               <widget class="QWidget" name="Home_page"/>
+               <widget class="QWidget" name="Home_page">
+                <property name="styleSheet">
+                 <string notr="true">#Home_page {
+	background-color:rgb(230, 230, 230);
+}
+QFrame {
+	background-color: rgb(255, 255, 255);
+	border-radius: 12px;
+}</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_2">
+                 <item row="0" column="1">
+                  <widget class="QFrame" name="frame_6">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QFrame" name="total_revenue_frame">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QFrame" name="frame_7">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QFrame" name="frame_8">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
               </widget>
              </item>
             </layout>
@@ -1501,9 +1553,9 @@ QFrame {
  </widget>
  <customwidgets>
   <customwidget>
-   <class>clickableLabel</class>
+   <class>ClickableLabel</class>
    <extends>QLabel</extends>
-   <header>Frontend\View\clickableLabel</header>
+   <header>Frontend/View/clickableLabel</header>
   </customwidget>
  </customwidgets>
  <resources>

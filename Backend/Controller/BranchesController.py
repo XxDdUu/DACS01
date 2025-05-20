@@ -6,8 +6,8 @@ class BranchesController:
     def __init__(self,distribution_view):
         self.distribution_view = distribution_view
         self.branches_dao = BranchesDAO()
-        self.distribution_view.branch_add_btn.clicked.connect(self.handle_add_button)
-        self.distribution_view.branch_remove_btn.clicked.connect(self.handle_remove_button)
+        # self.distribution_view.branch_add_btn.clicked.connect(self.handle_add_button)
+        # self.distribution_view.branch_remove_btn.clicked.connect(self.handle_remove_button)
     def handle_add_button(self):
         data = self.distribution_view.get_branchesForm_data()
         enterprise_id = self.distribution_view.employer_data.enterprise_id

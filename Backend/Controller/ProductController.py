@@ -7,9 +7,9 @@ class ProductController:
     def __init__(self,distribution_view):
         self.distribution_view = distribution_view
         self.product_dao = ProductDAO()
-        self.distribution_view.prod_add_btn.clicked.connect(self.handle_add_button)
-        self.distribution_view.prod_remove_btn.clicked.connect(self.handle_remove_button)
-        self.distribution_view.prod_update_btn.clicked.connect(self.handle_update_button)
+        # self.distribution_view.prod_add_btn.clicked.connect(self.handle_add_button)
+        # self.distribution_view.prod_remove_btn.clicked.connect(self.handle_remove_button)
+        # self.distribution_view.prod_update_btn.clicked.connect(self.handle_update_button)
     def handle_add_button(self):
         data = self.distribution_view.get_productForm_data()
         success, message = self.product_dao.insert_product(data)
