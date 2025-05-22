@@ -1,6 +1,6 @@
 from PyQt6 import uic, QtWidgets, QtGui
 from PyQt6.QtWidgets import QApplication, QMainWindow
-from PyQt6.QtCore import Qt, QPoint, QEvent, QDate
+from PyQt6.QtCore import Qt, QPoint, QEvent, QDate, QPropertyAnimation, QEasingCurve, QRect
 import sys
 import Frontend.View.resources_rc
 from datetime import datetime
@@ -26,6 +26,14 @@ class DashBoard(QMainWindow):
 		self.header.mouseReleaseEvent = self.mouse_release_event
 
 		self.fetch_account_info(employer_data)
+		self.active_switch_pages()
+
+		self.menu_expanded = True
+		self.left_menu_animation = QPropertyAnimation(self.mainMenu, b"minimumWidth")
+		self.left_menu_animation.setStartValue(self.mainMenu.width())
+		self.left_menu_animation.setDuration(300)
+		self.left_menu_animation.setEasingCurve(QEasingCurve.Type.InOutQuart)
+		self.btn_toggle_menu.clicked.connect(self.toggle_menu)
 
 	def exit_window(self):
 		self.close()
@@ -58,4 +66,23 @@ class DashBoard(QMainWindow):
 		self.enterprise_id_line_edit.setText(employer_data.enterprise_id)
 		birthdate = self.employer_data.date_of_birth
 		qbirthdate = QDate(birthdate.year, birthdate.month, birthdate.day)
+
 		self.dateEdit.setDate(qbirthdate)
+	def active_switch_pages(self):
+		self.main_display_widget.setCurrentWidget(self.Home_page)
+		self.home_btn.clicked.connect(lambda: self.main_display_widget.setCurrentWidget(self.Home_page))
+		self.account_setting_btn.clicked.connect(lambda: self.main_display_widget.setCurrentWidget(self.Account_setting_page))
+		self.revenue_btn.clicked.connect(lambda: self.main_display_widget.setCurrentWidget(self.Revenue_page))
+		self.report_btn.clicked.connect(lambda: self.main_display_widget.setCurrentWidget(self.Report_page))
+		self.productSales_menu_btn.clicked.connect(lambda: self.main_display_widget.setCurrentWidget(self.Product_sale_page))
+		self.distribution_btn.clicked.connect(lambda: self.main_display_widget.setCurrentWidget(self.Distribution_page))
+	
+	def toggle_menu(self):
+		current_width = self.mainMenu.width()
+		new_width = 0 if self.menu_expanded else 150
+
+		self.left_menu_animation.setStartValue(current_width)
+		self.left_menu_animation.setEndValue(new_width)
+		self.left_menu_animation.start()
+
+		self.menu_expanded = not self.menu_expanded
