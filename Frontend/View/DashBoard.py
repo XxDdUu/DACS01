@@ -28,7 +28,7 @@ class DashBoard(QMainWindow):
 		self.fetch_account_info(employer_data)
 		self.active_switch_pages()
 
-		self.menu_expanded = True
+		self.menu_expanded = False
 		self.left_menu_animation = QPropertyAnimation(self.mainMenu, b"minimumWidth")
 		self.left_menu_animation.setStartValue(self.mainMenu.width())
 		self.left_menu_animation.setDuration(300)
@@ -79,7 +79,7 @@ class DashBoard(QMainWindow):
 	
 	def toggle_menu(self):
 		current_width = self.mainMenu.width()
-		new_width = 0 if self.menu_expanded else 150
+		new_width = 44 if self.menu_expanded else 150
 
 		self.left_menu_animation.setStartValue(current_width)
 		self.left_menu_animation.setEndValue(new_width)
