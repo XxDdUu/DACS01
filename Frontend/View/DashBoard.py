@@ -1,5 +1,10 @@
+import traceback
+from functools import partial
+from operator import index
+
 from PyQt6 import uic, QtWidgets, QtGui
-from PyQt6.QtWidgets import QApplication, QMainWindow
+from PyQt6.QtGui import QIcon
+from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget
 from PyQt6.QtCore import Qt, QPoint, QEvent, QDate
 import sys
 import Frontend.View.resources_rc
@@ -12,6 +17,7 @@ class DashBoard(QMainWindow):
 		self.employer_data = employer_data
 		uic.loadUi("Frontend/dashboardUI.ui", self)
 		self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
+		self.setWindowIcon(QIcon("Frontend/View/img/logo/dark_pythonLogo.png"))
 
 		self.close_btn.clicked.connect(self.exit_window)
 		self.maximize_btn.clicked.connect(self.toggle_maximize)
@@ -26,6 +32,30 @@ class DashBoard(QMainWindow):
 		self.header.mouseReleaseEvent = self.mouse_release_event
 
 		self.fetch_account_info(employer_data)
+		self.switch_stackWidget()
+		self.switch_to_login = None
+		self.logout_label.clicked.connect(self.handle_to_logoutLabel)
+
+	def handle_to_logoutLabel(self):
+		if self.switch_to_login:
+			self.switch_to_login()
+
+	def switch_stackWidget(self):
+		try:
+			print(">>> switch_stackWidget() called")
+			self.stackedWidget.setCurrentIndex(5)  # Page xuất hiện ban đầu sau khi login
+			menuButton_list = [self.account_setting_btn,
+							   self.revenue_btn,
+							   self.productSales_menu_btn,
+							   self.distribution_btn,
+							   self.report_btn,
+							   self.home_btn]
+
+			for i,menu_btn in enumerate(menuButton_list):
+				menu_btn.clicked.connect(lambda checked, index=i: self.stackedWidget.setCurrentIndex(index))
+		except Exception as e:
+			traceback.print_exc()
+			print(f"Exception: {e}")
 
 	def exit_window(self):
 		self.close()

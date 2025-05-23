@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>786</width>
-    <height>445</height>
+    <height>446</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -745,7 +745,7 @@ QPushButton:pressed {
              <item>
               <widget class="QStackedWidget" name="stackedWidget">
                <property name="currentIndex">
-                <number>0</number>
+                <number>3</number>
                </property>
                <widget class="QWidget" name="Account_setting_page">
                 <property name="styleSheet">
