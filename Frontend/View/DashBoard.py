@@ -1,4 +1,5 @@
 from PyQt6 import uic, QtWidgets, QtGui
+from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from PyQt6.QtCore import Qt, QPoint, QEvent, QDate, QPropertyAnimation, QEasingCurve, QRect
 import sys
@@ -12,6 +13,7 @@ class DashBoard(QMainWindow):
 		self.employer_data = employer_data
 		uic.loadUi("Frontend/dashboardUI.ui", self)
 		self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
+		self.setWindowIcon(QIcon("Frontend/View/img/logo/dark_pythonLogo.png"))
 
 		self.close_btn.clicked.connect(self.exit_window)
 		self.maximize_btn.clicked.connect(self.toggle_maximize)
@@ -76,7 +78,7 @@ class DashBoard(QMainWindow):
 		self.report_btn.clicked.connect(lambda: self.main_display_widget.setCurrentWidget(self.Report_page))
 		self.productSales_menu_btn.clicked.connect(lambda: self.main_display_widget.setCurrentWidget(self.Product_sale_page))
 		self.distribution_btn.clicked.connect(lambda: self.main_display_widget.setCurrentWidget(self.Distribution_page))
-	
+
 	def toggle_menu(self):
 		current_width = self.mainMenu.width()
 		new_width = 44 if self.menu_expanded else 150
