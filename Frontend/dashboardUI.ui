@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>699</width>
-    <height>453</height>
+    <height>433</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -760,7 +760,16 @@ QPushButton:pressed {
                    </size>
                   </property>
                   <property name="text">
-                   <string>Log out</string>
+                   <string/>
+                  </property>
+                  <property name="textFormat">
+                   <enum>Qt::PlainText</enum>
+                  </property>
+                  <property name="pixmap">
+                   <pixmap>View/img/icon/logout_icon.png</pixmap>
+                  </property>
+                  <property name="scaledContents">
+                   <bool>false</bool>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignCenter</set>
@@ -806,7 +815,7 @@ QPushButton:pressed {
              <item>
               <widget class="QStackedWidget" name="main_display_widget">
                <property name="currentIndex">
-                <number>5</number>
+                <number>2</number>
                </property>
                <widget class="QWidget" name="Account_setting_page">
                 <property name="styleSheet">
@@ -1910,21 +1919,7 @@ border-radius: 10px</string>
                    <string>Product ID</string>
                   </property>
                  </widget>
-                 <widget class="QLineEdit" name="lineEdit_27">
-                  <property name="geometry">
-                   <rect>
-                    <x>90</x>
-                    <y>70</y>
-                    <width>191</width>
-                    <height>21</height>
-                   </rect>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">border: 2px solid black;
-border-radius: 5px;</string>
-                  </property>
-                 </widget>
-                 <widget class="QLineEdit" name="lineEdit_28">
+                 <widget class="QLineEdit" name="quantitySold_PS_le">
                   <property name="geometry">
                    <rect>
                     <x>90</x>
@@ -1938,7 +1933,7 @@ border-radius: 5px;</string>
 border-radius: 5px;</string>
                   </property>
                  </widget>
-                 <widget class="QLineEdit" name="lineEdit_29">
+                 <widget class="QLineEdit" name="saleAmount_PS_le">
                   <property name="geometry">
                    <rect>
                     <x>90</x>
@@ -1952,7 +1947,7 @@ border-radius: 5px;</string>
 border-radius: 5px;</string>
                   </property>
                  </widget>
-                 <widget class="QLineEdit" name="lineEdit_30">
+                 <widget class="QLineEdit" name="prod_id_PS_le">
                   <property name="geometry">
                    <rect>
                     <x>90</x>
@@ -1966,7 +1961,7 @@ border-radius: 5px;</string>
 border-radius: 5px;</string>
                   </property>
                  </widget>
-                 <widget class="QPushButton" name="pushButton_7">
+                 <widget class="QPushButton" name="add_PS_btn">
                   <property name="geometry">
                    <rect>
                     <x>60</x>
@@ -1984,7 +1979,7 @@ border-radius: 10px</string>
                    <string>Add</string>
                   </property>
                  </widget>
-                 <widget class="QPushButton" name="pushButton_8">
+                 <widget class="QPushButton" name="remove_PS_btn">
                   <property name="geometry">
                    <rect>
                     <x>140</x>
@@ -2002,7 +1997,7 @@ border-radius: 10px</string>
                    <string>Remove</string>
                   </property>
                  </widget>
-                 <widget class="QPushButton" name="pushButton_9">
+                 <widget class="QPushButton" name="update_PS_btn">
                   <property name="geometry">
                    <rect>
                     <x>220</x>
@@ -2020,7 +2015,7 @@ border-radius: 10px</string>
                    <string>Update</string>
                   </property>
                  </widget>
-                 <widget class="QLineEdit" name="lineEdit_31">
+                 <widget class="QLineEdit" name="saleID_PS_le">
                   <property name="geometry">
                    <rect>
                     <x>90</x>
@@ -2060,7 +2055,7 @@ border-radius: 5px;</string>
                    <string>Branch ID</string>
                   </property>
                  </widget>
-                 <widget class="QLineEdit" name="lineEdit_32">
+                 <widget class="QLineEdit" name="branch_id_PS_le">
                   <property name="geometry">
                    <rect>
                     <x>90</x>
@@ -2087,6 +2082,32 @@ border-radius: 5px;</string>
                    <string>Manage Product Sale</string>
                   </property>
                  </widget>
+                 <widget class="QDateEdit" name="sale_qdate_edit">
+                  <property name="geometry">
+                   <rect>
+                    <x>90</x>
+                    <y>70</y>
+                    <width>191</width>
+                    <height>22</height>
+                   </rect>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">border: 2px solid black;
+border-radius: 5px;
+QDateEdit::up-button, QDateEdit::down-button {
+    width: 0px;
+    height: 0px;
+    border: none;
+};
+QDateEdit::drop-down {
+    width: 0px;
+    border: none;
+}
+
+
+</string>
+                  </property>
+                 </widget>
                 </widget>
                 <widget class="QWidget" name="widget_28" native="true">
                  <property name="geometry">
@@ -2100,7 +2121,7 @@ border-radius: 5px;</string>
                  <property name="styleSheet">
                   <string notr="true">background-color: rgb(255, 255, 255);</string>
                  </property>
-                 <widget class="QTableView" name="tableView_3">
+                 <widget class="QTableView" name="PS_data_table">
                   <property name="geometry">
                    <rect>
                     <x>0</x>
@@ -2110,7 +2131,7 @@ border-radius: 5px;</string>
                    </rect>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">border: 3px solid black;
+                   <string notr="true">border: 1px solid black;
 border-radius: 7px;</string>
                   </property>
                  </widget>
@@ -2164,8 +2185,8 @@ border-radius: 7px;</string>
                         <rect>
                          <x>0</x>
                          <y>0</y>
-                         <width>631</width>
-                         <height>399</height>
+                         <width>245</width>
+                         <height>354</height>
                         </rect>
                        </property>
                        <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2620,7 +2641,8 @@ QPushButton::pressed {
                   <widget class="QWidget" name="widget" native="true">
                    <property name="styleSheet">
                     <string notr="true">background-color: rgb(255, 255, 255);
-</string>
+border: 1px solid black;
+border-radius: 5px;</string>
                    </property>
                   </widget>
                  </item>

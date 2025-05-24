@@ -1,6 +1,6 @@
 from PyQt6 import uic, QtWidgets, QtGui
-from PyQt6.QtGui import QIcon
-from PyQt6.QtWidgets import QApplication, QMainWindow
+from PyQt6.QtGui import QIcon, QStandardItemModel, QStandardItem
+from PyQt6.QtWidgets import QApplication, QMainWindow, QAbstractSpinBox
 from PyQt6.QtCore import Qt, QPoint, QEvent, QDate, QPropertyAnimation, QEasingCurve, QRect
 import sys
 import Frontend.View.resources_rc
@@ -26,6 +26,7 @@ class DashBoard(QMainWindow):
 		self.header.mouseMoveEvent = self.mouse_move_event
 		self.header.mousePressEvent = self.mouse_press_event
 		self.header.mouseReleaseEvent = self.mouse_release_event
+		self.sale_qdate_edit.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons) #làm mất nút up-down của qDateEdit
 
 		self.fetch_account_info(employer_data)
 		self.active_switch_pages()
@@ -36,6 +37,10 @@ class DashBoard(QMainWindow):
 		self.left_menu_animation.setDuration(300)
 		self.left_menu_animation.setEasingCurve(QEasingCurve.Type.InOutQuart)
 		self.btn_toggle_menu.clicked.connect(self.toggle_menu)
+
+		self.switch_to_login = None
+		self.logout_label.clicked.connect(self.handle_logOut_btn)
+		self.display_PS_table()
 
 	def exit_window(self):
 		self.close()
@@ -88,3 +93,109 @@ class DashBoard(QMainWindow):
 		self.left_menu_animation.start()
 
 		self.menu_expanded = not self.menu_expanded
+
+	def handle_logOut_btn(self):
+		if self.switch_to_login:
+			self.switch_to_login()
+
+	def get_PSForm_data(self):
+		return {
+			"id": self.saleID_PS_le.text().strip(),
+			"branch_id": self.branch_id_PS_le.text().strip(),
+			"product_id": self.prod_id_PS_le.text().strip(),
+			"date": self.sale_qdate_edit.date().toString("yyyy-MM-dd"),
+			"quantity_sold": self.quantitySold_PS_le.text().strip(),
+			"amount_total": self.saleAmount_PS_le.text().strip()
+		}
+	# def display_PS_table(self):
+	# 	productSale = []
+	# 	if hasattr(self.controller,'productSales_controller') and self.controller.productSales_controller:
+	# 		print("DEBUG employer ID:", self.employer_data.ID)
+	# 		print("DEBUG enterprise ID:", self.employer_data.enterprise_id)
+	# 		productSale = self.controller.get_PS_data(
+	# 			self.employer_data.ID,
+	# 			self.employer_data.enterprise_id
+	# 		)
+	# 		print("DEBUG result from DB:", productSale)
+	#
+	# 	model = QStandardItemModel(len(productSale),6)
+	# 	model.setHorizontalHeaderLabels(["SALE_ID", "Product_ID", "Branch_ID",
+	# 												  "SALE_DATE", "QUANTITY_SOLD", "SALE_AMOUNT"])
+	# 	for row_index, prod_sale in enumerate(productSale):
+	# 		model.setItem(row_index, 0, QStandardItem(prod_sale["SALE_ID"]))
+	# 		model.setItem(row_index, 1, QStandardItem(str(prod_sale["Product_ID"])))
+	# 		model.setItem(row_index, 2, QStandardItem(str(prod_sale["Branch_ID"])))
+	# 		model.setItem(row_index, 3, QStandardItem(prod_sale["SALE_DATE"]))
+	# 		model.setItem(row_index, 4, QStandardItem(prod_sale["QUANTITY_SOLD"]))
+	# 		model.setItem(row_index, 5, QStandardItem(prod_sale["SALE_AMOUNT"]))
+	# 	self.PS_data_table.setModel(model)
+	# 	self.PS_data_table.resizeColumnsToContents()
+	# 	print("Product Sales:", productSale)
+	#
+	# 	return self.PS_data_table
+
+	def display_PS_table(self):
+		productSale = []
+		if hasattr(self.controller, 'productSales_controller') and self.controller.productSales_controller:
+			print("DEBUG employer ID:", self.employer_data.ID)
+			print("DEBUG enterprise ID:", self.employer_data.enterprise_id)
+			productSale = self.controller.get_PS_data(
+				self.employer_data.ID,
+				self.employer_data.enterprise_id
+			)
+			print("DEBUG result from DB:", productSale)
+
+		model = QStandardItemModel(len(productSale), 6)
+		model.setHorizontalHeaderLabels(["SALE_ID", "Product_ID", "Branch_ID",
+										 "SALE_DATE", "QUANTITY_SOLD", "SALE_AMOUNT"])
+
+		for row_index, prod_sale in enumerate(productSale):
+			try:
+				# Convert all values to string safely
+				sale_id = str(prod_sale.get("SALE_ID", ""))
+				product_id = str(prod_sale.get("Product_ID", ""))
+				branch_id = str(prod_sale.get("Branch_ID", ""))
+
+				# Handle datetime.date object
+				sale_date = prod_sale.get("SALE_DATE", "")
+				if hasattr(sale_date, 'strftime'):
+					sale_date = sale_date.strftime("%Y-%m-%d")
+				else:
+					sale_date = str(sale_date)
+
+				quantity_sold = str(prod_sale.get("QUANTITY_SOLD", ""))
+
+				# Handle Decimal object
+				sale_amount = prod_sale.get("SALE_AMOUNT", "")
+				if hasattr(sale_amount, '__float__'):  # Decimal objects have __float__
+					sale_amount = f"{float(sale_amount):.2f}"
+				else:
+					sale_amount = str(sale_amount)
+
+				# Set items safely
+				model.setItem(row_index, 0, QStandardItem(sale_id))
+				model.setItem(row_index, 1, QStandardItem(product_id))
+				model.setItem(row_index, 2, QStandardItem(branch_id))
+				model.setItem(row_index, 3, QStandardItem(sale_date))
+				model.setItem(row_index, 4, QStandardItem(quantity_sold))
+				model.setItem(row_index, 5, QStandardItem(sale_amount))
+
+				print(
+					f"DEBUG Row {row_index}: {sale_id}, {product_id}, {branch_id}, {sale_date}, {quantity_sold}, {sale_amount}")
+
+			except Exception as e:
+				print(f"ERROR processing row {row_index}: {e}")
+				print(f"Row data: {prod_sale}")
+				# Create empty items for failed row
+				for col in range(6):
+					model.setItem(row_index, col, QStandardItem(""))
+
+		try:
+			self.PS_data_table.setModel(model)
+			self.PS_data_table.resizeColumnsToContents()
+			print(f"Product Sales data loaded: {len(productSale)} records")
+		except Exception as e:
+			print(f"ERROR setting model: {e}")
+
+		return self.PS_data_table
+
