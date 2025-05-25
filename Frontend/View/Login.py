@@ -55,9 +55,9 @@ class Login(QMainWindow):
         # code trên cần vô hiệu hóa để tránh logic nhập mk login sai mà vẫn enter ngay dashboardApp đc
 
         self.load_stylesheet()
-    def handle_switch_to_maindashboard(self, employer_data):
+    def handle_switch_to_maindashboard(self, employer_data = None, enterprise_data = None):
         if self.switch_to_dashboardApp:
-            self.switch_to_dashboardApp(employer_data)
+            self.switch_to_dashboardApp(employer_data, enterprise_data)
     def handle_switch_to_register(self):
         if self.switch_to_register:
             self.switch_to_register()

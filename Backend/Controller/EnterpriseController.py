@@ -23,3 +23,16 @@ class EnterpriseController:
 			self.register_view.business_type.setCurrentText("Partnership (Hợp tác xã)")
 		else:
 			QMessageBox.warning(self.register_view, "Error", message)
+
+	def set_dashboard(self, dashboard_window, employer_data):
+		self.dashboard_window = dashboard_window
+		self.load_enterprise(employer_data.enterprise_id)
+
+	def load_enterprise(self, enterprise_id):
+		if not self.dashboard_window:
+			print("Dashboard not set.")
+			return
+		enterprise_data = self.dao.get_employer_enterprise_data(enterprise_id)
+		print("enterprise_data:", enterprise_data)
+		self.dashboard_window.enterprise_data = enterprise_data
+		self.dashboard_window.fetch_enterprise_info(enterprise_data)

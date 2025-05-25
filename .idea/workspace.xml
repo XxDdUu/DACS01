@@ -5,10 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b664035e-7b0c-4c4d-8252-f0d6dc412f5b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Frontend/View/img/icon/icons8-search.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Utils/ProductSalesUtilities.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/View/img/icon/logout_icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Controller/EnterpriseController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Controller/EnterpriseController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Controller/MainController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Controller/MainController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Controller/ProductSalesController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Controller/ProductSalesController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/DAO/EnterpriseDAO.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/DAO/EnterpriseDAO.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/DAO/ProductSalesDao.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/DAO/ProductSalesDao.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Model/ProductSales.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Model/ProductSales.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/View/DashBoard.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/DashBoard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/View/Login.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/Login.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/View/img/resources.qrc" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/img/resources.qrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/View/mainDashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/mainDashboard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/View/resources_rc.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/resources_rc.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/dashboardUI.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/dashboardUI.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,10 +66,12 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python.BranchesController.executor": "Run",
+    "Python.DashBoard.executor": "Run",
     "Python.DatabaseConnection.executor": "Run",
     "Python.EmployerDAO.executor": "Run",
     "Python.EnterpriseDAO.executor": "Run",
     "Python.Login.executor": "Run",
+    "Python.ProductSalesUtilities.executor": "Run",
     "Python.frameUI.executor": "Run",
     "Python.loginUI.executor": "Debug",
     "Python.main (1).executor": "Run",
@@ -68,6 +81,7 @@
     "Python.plot_dataChart.executor": "Run",
     "Python.testEmpDao.executor": "Run",
     "Python.testPandas.executor": "Run",
+    "Python.testSwitchPage.executor": "Run",
     "Python.testTable.executor": "Run",
     "Python.test_pd.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -75,7 +89,7 @@
     "git-widget-placeholder": "Merging master",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "D:/PYTHON/py_project",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+    "settings.editor.selected.configurable": "consents"
   }
 }]]></component>
   <component name="RecentsManager">

@@ -5,6 +5,7 @@ from Backend.DAO.DatabaseConnection import get_connection
 from PyQt6.QtWidgets import QMessageBox
 from datetime import datetime
 from Backend.Utils.EnterpriseUtilities import generate_random_enterprise_id
+from Backend.Model.Enterprise import Enterprise
 import re
 import traceback
 class EnterpriseDao:
@@ -71,3 +72,35 @@ class EnterpriseDao:
 					connection.close()
 				except MySQLdb.Error:
 					pass
+	def get_employer_enterprise_data(self, enterprise_id):
+		connection = None
+		cursor = None
+		try:
+			connection = get_connection()
+			if not connection:
+				return None
+			cursor = connection.cursor()
+			query = """SELECT * FROM ENTERPRISE WHERE Enterprise_ID = %s"""
+			cursor.execute(query, (enterprise_id,))
+			result = cursor.fetchone()
+
+			enterprise_data = Enterprise(
+				ID =  enterprise_id,
+				name = result[1],
+				founder = result[2],
+				address = result[3],
+				phone_number = result[4],
+				type = result[5],
+				industry = result[6]
+				)
+			return enterprise_data
+		except Exception as e:
+			print(f"DAO ERROR: {e}")
+			return None
+		finally:
+			if cursor:
+				cursor.close()
+			if connection:
+				connection.close()
+
+
