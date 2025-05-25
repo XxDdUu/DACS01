@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>699</width>
-    <height>433</height>
+    <width>786</width>
+    <height>487</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -190,7 +190,7 @@ QPushButton::hover {
                    <string/>
                   </property>
                   <property name="pixmap">
-                   <pixmap resource="View/img/resources.qrc">:/img/logo/dark_pythonLogo.png</pixmap>
+                   <pixmap resource="View/img/resources.qrc">:/logo/logo/dark_pythonLogo.png</pixmap>
                   </property>
                   <property name="scaledContents">
                    <bool>true</bool>
@@ -208,6 +208,7 @@ QPushButton::hover {
                <property name="font">
                 <font>
                  <pointsize>10</pointsize>
+                 <weight>75</weight>
                  <bold>true</bold>
                 </font>
                </property>
@@ -241,7 +242,7 @@ QPushButton::hover {
                </property>
                <property name="icon">
                 <iconset resource="View/img/resources.qrc">
-                 <normaloff>:/img/icon/sidebar.png</normaloff>:/img/icon/sidebar.png</iconset>
+                 <normaloff>:/icon/icon/sidebar.png</normaloff>:/icon/icon/sidebar.png</iconset>
                </property>
               </widget>
              </item>
@@ -337,7 +338,7 @@ QPushButton {
                </property>
                <property name="icon">
                 <iconset resource="View/img/resources.qrc">
-                 <normaloff>:/img/icon/minus.png</normaloff>:/img/icon/minus.png</iconset>
+                 <normaloff>:/icon/icon/minus.png</normaloff>:/icon/icon/minus.png</iconset>
                </property>
               </widget>
              </item>
@@ -354,7 +355,7 @@ QPushButton {
                </property>
                <property name="icon">
                 <iconset resource="View/img/resources.qrc">
-                 <normaloff>:/img/icon/stack-svgrepo-com.svg</normaloff>:/img/icon/stack-svgrepo-com.svg</iconset>
+                 <normaloff>:/icon/icon/stack-svgrepo-com.svg</normaloff>:/icon/icon/stack-svgrepo-com.svg</iconset>
                </property>
               </widget>
              </item>
@@ -377,7 +378,7 @@ QPushButton {
                </property>
                <property name="icon">
                 <iconset resource="View/img/resources.qrc">
-                 <normaloff>:/img/icon/x.png</normaloff>:/img/icon/x.png</iconset>
+                 <normaloff>:/icon/icon/x.png</normaloff>:/icon/icon/x.png</iconset>
                </property>
               </widget>
              </item>
@@ -493,7 +494,7 @@ QPushButton:pressed {
               <number>0</number>
              </property>
              <property name="bottomMargin">
-              <number>0</number>
+              <number>3</number>
              </property>
              <item>
               <widget class="QFrame" name="list_btn">
@@ -549,7 +550,7 @@ QPushButton:pressed {
                   </property>
                   <property name="icon">
                    <iconset resource="View/img/resources.qrc">
-                    <normaloff>:/img/icon/home.png</normaloff>:/img/icon/home.png</iconset>
+                    <normaloff>:/icon/icon/home.png</normaloff>:/icon/icon/home.png</iconset>
                   </property>
                  </widget>
                 </item>
@@ -580,7 +581,7 @@ QPushButton:pressed {
                   </property>
                   <property name="icon">
                    <iconset resource="View/img/resources.qrc">
-                    <normaloff>:/img/icon/revenue_chart.png</normaloff>:/img/icon/revenue_chart.png</iconset>
+                    <normaloff>:/icon/icon/revenue_chart.png</normaloff>:/icon/icon/revenue_chart.png</iconset>
                   </property>
                  </widget>
                 </item>
@@ -602,8 +603,8 @@ QPushButton:pressed {
                    <string>Product Sales Info</string>
                   </property>
                   <property name="icon">
-                   <iconset>
-                    <normaloff>View/img/icon/productSales.png</normaloff>View/img/icon/productSales.png</iconset>
+                   <iconset resource="View/img/resources.qrc">
+                    <normaloff>:/icon/icon/productSales.png</normaloff>:/icon/icon/productSales.png</iconset>
                   </property>
                  </widget>
                 </item>
@@ -631,7 +632,7 @@ QPushButton:pressed {
                   </property>
                   <property name="icon">
                    <iconset resource="View/img/resources.qrc">
-                    <normaloff>:/img/icon/icons8_maintenance_2.svg</normaloff>:/img/icon/icons8_maintenance_2.svg</iconset>
+                    <normaloff>:/icon/icon/distributor.png</normaloff>:/icon/icon/distributor.png</iconset>
                   </property>
                  </widget>
                 </item>
@@ -659,7 +660,7 @@ QPushButton:pressed {
                   </property>
                   <property name="icon">
                    <iconset resource="View/img/resources.qrc">
-                    <normaloff>:/img/icon/report.png</normaloff>:/img/icon/report.png</iconset>
+                    <normaloff>:/icon/icon/icons8_graph_report_script.svg</normaloff>:/icon/icon/icons8_graph_report_script.svg</iconset>
                   </property>
                  </widget>
                 </item>
@@ -687,7 +688,7 @@ QPushButton:pressed {
                   </property>
                   <property name="icon">
                    <iconset resource="View/img/resources.qrc">
-                    <normaloff>:/img/icon/setting.png</normaloff>:/img/icon/setting.png</iconset>
+                    <normaloff>:/icon/icon/setting.png</normaloff>:/icon/icon/setting.png</iconset>
                   </property>
                  </widget>
                 </item>
@@ -755,18 +756,21 @@ QPushButton:pressed {
                   </property>
                   <property name="maximumSize">
                    <size>
-                    <width>16777215</width>
+                    <width>16777211</width>
                     <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="sizeIncrement">
+                   <size>
+                    <width>0</width>
+                    <height>0</height>
                    </size>
                   </property>
                   <property name="text">
                    <string/>
                   </property>
-                  <property name="textFormat">
-                   <enum>Qt::PlainText</enum>
-                  </property>
                   <property name="pixmap">
-                   <pixmap>View/img/icon/logout_icon.png</pixmap>
+                   <pixmap resource="View/img/resources.qrc">:/icon/icon/icons8_logout_rounded_down.svg</pixmap>
                   </property>
                   <property name="scaledContents">
                    <bool>false</bool>
@@ -815,7 +819,7 @@ QPushButton:pressed {
              <item>
               <widget class="QStackedWidget" name="main_display_widget">
                <property name="currentIndex">
-                <number>4</number>
+                <number>0</number>
                </property>
                <widget class="QWidget" name="Account_setting_page">
                 <property name="styleSheet">
@@ -839,6 +843,7 @@ QWidget#Account_setting_page {
                    <property name="font">
                     <font>
                      <pointsize>14</pointsize>
+                     <weight>75</weight>
                      <bold>true</bold>
                     </font>
                    </property>
@@ -934,6 +939,7 @@ QPushButton::pressed {
                          <property name="font">
                           <font>
                            <pointsize>9</pointsize>
+                           <weight>50</weight>
                            <bold>false</bold>
                           </font>
                          </property>
@@ -959,6 +965,7 @@ QPushButton::pressed {
                          <property name="font">
                           <font>
                            <pointsize>9</pointsize>
+                           <weight>50</weight>
                            <bold>false</bold>
                           </font>
                          </property>
@@ -985,15 +992,522 @@ QPushButton::pressed {
                     </item>
                     <item>
                      <widget class="QStackedWidget" name="employer_and_enterpriseInfo">
+                      <property name="minimumSize">
+                       <size>
+                        <width>546</width>
+                        <height>0</height>
+                       </size>
+                      </property>
                       <property name="styleSheet">
                        <string notr="true">#employer_info {
 	background-color: rgb(255, 255, 255);
 }</string>
                       </property>
                       <property name="currentIndex">
-                       <number>1</number>
+                       <number>0</number>
                       </property>
-                      <widget class="QWidget" name="enterprise_info"/>
+                      <widget class="QWidget" name="enterprise_info">
+                       <property name="styleSheet">
+                        <string notr="true">#enterprise_info {
+	background-color: rgb(255, 255, 255);
+}</string>
+                       </property>
+                       <layout class="QVBoxLayout" name="verticalLayout_23">
+                        <item>
+                         <widget class="QLabel" name="label_7">
+                          <property name="maximumSize">
+                           <size>
+                            <width>16777215</width>
+                            <height>18</height>
+                           </size>
+                          </property>
+                          <property name="font">
+                           <font>
+                            <pointsize>11</pointsize>
+                            <weight>75</weight>
+                            <bold>true</bold>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>My Enterprise Info</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QFrame" name="enterprise_info_frame">
+                          <property name="styleSheet">
+                           <string notr="true">#enterprise_info_frame {
+	background-color: rgb(255, 255, 255);
+	border: none;
+}
+
+QFrame  {
+	background-color: rgb(255, 255, 255);
+	border: 1px solid rgb(156, 156, 156);
+	border-radius: 3px;
+	border-top: none;
+	border-bottom: none;
+}
+QLabel {
+	border: none;
+	font-weight: 500;
+}
+QLineEdit {
+	border: none;
+}
+QTextEdit {
+	border: none;
+}</string>
+                          </property>
+                          <property name="frameShape">
+                           <enum>QFrame::Box</enum>
+                          </property>
+                          <property name="frameShadow">
+                           <enum>QFrame::Raised</enum>
+                          </property>
+                          <layout class="QGridLayout" name="gridLayout_3">
+                           <property name="leftMargin">
+                            <number>0</number>
+                           </property>
+                           <property name="topMargin">
+                            <number>9</number>
+                           </property>
+                           <property name="rightMargin">
+                            <number>0</number>
+                           </property>
+                           <property name="bottomMargin">
+                            <number>0</number>
+                           </property>
+                           <item row="0" column="0">
+                            <widget class="QFrame" name="enterprise_name_frame">
+                             <property name="maximumSize">
+                              <size>
+                               <width>200</width>
+                               <height>160</height>
+                              </size>
+                             </property>
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
+                             </property>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
+                             </property>
+                             <property name="lineWidth">
+                              <number>0</number>
+                             </property>
+                             <layout class="QVBoxLayout" name="verticalLayout_25" stretch="0,0">
+                              <property name="spacing">
+                               <number>0</number>
+                              </property>
+                              <property name="leftMargin">
+                               <number>9</number>
+                              </property>
+                              <property name="topMargin">
+                               <number>0</number>
+                              </property>
+                              <property name="bottomMargin">
+                               <number>9</number>
+                              </property>
+                              <item>
+                               <widget class="QLabel" name="enterprise_name_label">
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>16777215</width>
+                                  <height>30</height>
+                                 </size>
+                                </property>
+                                <property name="text">
+                                 <string>Enterprise Name</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLineEdit" name="enterprise_name_line_edit">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>0</width>
+                                  <height>20</height>
+                                 </size>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <pointsize>15</pointsize>
+                                 </font>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
+                            </widget>
+                           </item>
+                           <item row="1" column="0">
+                            <widget class="QFrame" name="enterprise_phone_num_frame">
+                             <property name="maximumSize">
+                              <size>
+                               <width>200</width>
+                               <height>160</height>
+                              </size>
+                             </property>
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
+                             </property>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
+                             </property>
+                             <property name="lineWidth">
+                              <number>0</number>
+                             </property>
+                             <layout class="QVBoxLayout" name="verticalLayout_20" stretch="0,0">
+                              <property name="spacing">
+                               <number>0</number>
+                              </property>
+                              <property name="leftMargin">
+                               <number>9</number>
+                              </property>
+                              <property name="topMargin">
+                               <number>0</number>
+                              </property>
+                              <property name="bottomMargin">
+                               <number>9</number>
+                              </property>
+                              <item>
+                               <widget class="QLabel" name="enterprise_phone_num_label">
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>16777215</width>
+                                  <height>30</height>
+                                 </size>
+                                </property>
+                                <property name="text">
+                                 <string>Phone number</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLineEdit" name="enterprise_phone_num_line_edit">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>0</width>
+                                  <height>20</height>
+                                 </size>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <pointsize>15</pointsize>
+                                 </font>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
+                            </widget>
+                           </item>
+                           <item row="1" column="1">
+                            <widget class="QFrame" name="enterprise_bs_type_frame">
+                             <property name="maximumSize">
+                              <size>
+                               <width>200</width>
+                               <height>160</height>
+                              </size>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true"/>
+                             </property>
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
+                             </property>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
+                             </property>
+                             <property name="lineWidth">
+                              <number>0</number>
+                             </property>
+                             <layout class="QVBoxLayout" name="verticalLayout_21" stretch="0,0">
+                              <property name="spacing">
+                               <number>0</number>
+                              </property>
+                              <property name="leftMargin">
+                               <number>9</number>
+                              </property>
+                              <property name="topMargin">
+                               <number>0</number>
+                              </property>
+                              <property name="bottomMargin">
+                               <number>9</number>
+                              </property>
+                              <item>
+                               <widget class="QLabel" name="enterprise_bs_type_label">
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>16777215</width>
+                                  <height>55</height>
+                                 </size>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <pointsize>9</pointsize>
+                                  <weight>62</weight>
+                                  <bold>true</bold>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>Business Type</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QTextEdit" name="enterprise_bs_type_text_edit">
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>16777215</width>
+                                  <height>40</height>
+                                 </size>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <pointsize>9</pointsize>
+                                 </font>
+                                </property>
+                                <property name="layoutDirection">
+                                 <enum>Qt::LeftToRight</enum>
+                                </property>
+                                <property name="lineWrapColumnOrWidth">
+                                 <number>0</number>
+                                </property>
+                                <property name="html">
+                                 <string notr="true">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                                </property>
+                                <property name="overwriteMode">
+                                 <bool>false</bool>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
+                            </widget>
+                           </item>
+                           <item row="0" column="2">
+                            <widget class="QFrame" name="enterprise_address_frame">
+                             <property name="maximumSize">
+                              <size>
+                               <width>200</width>
+                               <height>160</height>
+                              </size>
+                             </property>
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
+                             </property>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
+                             </property>
+                             <property name="lineWidth">
+                              <number>0</number>
+                             </property>
+                             <layout class="QVBoxLayout" name="verticalLayout_26" stretch="0,0">
+                              <property name="spacing">
+                               <number>0</number>
+                              </property>
+                              <property name="leftMargin">
+                               <number>9</number>
+                              </property>
+                              <property name="topMargin">
+                               <number>0</number>
+                              </property>
+                              <property name="bottomMargin">
+                               <number>9</number>
+                              </property>
+                              <item>
+                               <widget class="QLabel" name="enterprise_address_label">
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>16777215</width>
+                                  <height>30</height>
+                                 </size>
+                                </property>
+                                <property name="text">
+                                 <string>Address</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLineEdit" name="enterprise_address_line_edit">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>0</width>
+                                  <height>20</height>
+                                 </size>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <pointsize>15</pointsize>
+                                 </font>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
+                            </widget>
+                           </item>
+                           <item row="1" column="2">
+                            <widget class="QFrame" name="enterprise_industry_frame">
+                             <property name="maximumSize">
+                              <size>
+                               <width>200</width>
+                               <height>160</height>
+                              </size>
+                             </property>
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
+                             </property>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
+                             </property>
+                             <property name="lineWidth">
+                              <number>0</number>
+                             </property>
+                             <layout class="QVBoxLayout" name="verticalLayout_27" stretch="0,0">
+                              <property name="spacing">
+                               <number>0</number>
+                              </property>
+                              <property name="leftMargin">
+                               <number>9</number>
+                              </property>
+                              <property name="topMargin">
+                               <number>0</number>
+                              </property>
+                              <property name="bottomMargin">
+                               <number>9</number>
+                              </property>
+                              <item>
+                               <widget class="QLabel" name="enterprise_industry_label">
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>16777215</width>
+                                  <height>30</height>
+                                 </size>
+                                </property>
+                                <property name="text">
+                                 <string>Industry</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLineEdit" name="enterprise_industry_line_edit">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>0</width>
+                                  <height>20</height>
+                                 </size>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <pointsize>15</pointsize>
+                                 </font>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
+                            </widget>
+                           </item>
+                           <item row="0" column="1">
+                            <widget class="QFrame" name="enterprise_founder_frame">
+                             <property name="maximumSize">
+                              <size>
+                               <width>200</width>
+                               <height>160</height>
+                              </size>
+                             </property>
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
+                             </property>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
+                             </property>
+                             <property name="lineWidth">
+                              <number>0</number>
+                             </property>
+                             <layout class="QVBoxLayout" name="verticalLayout_18" stretch="0,0">
+                              <property name="spacing">
+                               <number>0</number>
+                              </property>
+                              <property name="leftMargin">
+                               <number>9</number>
+                              </property>
+                              <property name="topMargin">
+                               <number>0</number>
+                              </property>
+                              <property name="bottomMargin">
+                               <number>9</number>
+                              </property>
+                              <item>
+                               <widget class="QLabel" name="enterprise_founder_label">
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>16777215</width>
+                                  <height>30</height>
+                                 </size>
+                                </property>
+                                <property name="text">
+                                 <string>Founder</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLineEdit" name="enterprise_founder_line_edit">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>0</width>
+                                  <height>20</height>
+                                 </size>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <pointsize>15</pointsize>
+                                 </font>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
                       <widget class="QWidget" name="employer_info">
                        <property name="styleSheet">
                         <string notr="true">#My_Profile_Label  {
@@ -1014,6 +1528,7 @@ QPushButton::pressed {
                           <property name="font">
                            <font>
                             <pointsize>11</pointsize>
+                            <weight>75</weight>
                             <bold>true</bold>
                            </font>
                           </property>
@@ -1104,6 +1619,7 @@ QPushButton::pressed {
 	color: rgb(0, 0, 0);
 	padding-left: 2px;
 	background-color: rgb(255, 255, 255);
+	font-weight: bold;
 }
 #display_create_date {
 	color: rgb(80, 80, 80);
@@ -1143,6 +1659,7 @@ QPushButton::pressed {
                                    <property name="font">
                                     <font>
                                      <pointsize>12</pointsize>
+                                     <weight>75</weight>
                                      <bold>true</bold>
                                     </font>
                                    </property>
@@ -1199,7 +1716,7 @@ QPushButton::pressed {
                                    </property>
                                    <property name="icon">
                                     <iconset resource="View/img/resources.qrc">
-                                     <normaloff>:/img/icon/pencil-svgrepo-com.svg</normaloff>:/img/icon/pencil-svgrepo-com.svg</iconset>
+                                     <normaloff>:/icon/icon/pencil-svgrepo-com.svg</normaloff>:/icon/icon/pencil-svgrepo-com.svg</iconset>
                                    </property>
                                   </widget>
                                  </item>
@@ -1579,7 +2096,7 @@ QFrame {
                                    </property>
                                    <property name="icon">
                                     <iconset resource="View/img/resources.qrc">
-                                     <normaloff>:/img/icon/pencil-svgrepo-com.svg</normaloff>:/img/icon/pencil-svgrepo-com.svg</iconset>
+                                     <normaloff>:/icon/icon/pencil-svgrepo-com.svg</normaloff>:/icon/icon/pencil-svgrepo-com.svg</iconset>
                                    </property>
                                   </widget>
                                  </item>
@@ -2107,6 +2624,9 @@ QDateEdit::drop-down {
 
 </string>
                   </property>
+                  <property name="buttonSymbols">
+                   <enum>QAbstractSpinBox::NoButtons</enum>
+                  </property>
                  </widget>
                 </widget>
                 <widget class="QWidget" name="widget_28" native="true">
@@ -2185,8 +2705,8 @@ border-radius: 7px;</string>
                         <rect>
                          <x>0</x>
                          <y>0</y>
-                         <width>217</width>
-                         <height>354</height>
+                         <width>228</width>
+                         <height>350</height>
                         </rect>
                        </property>
                        <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2220,6 +2740,7 @@ QHeaderView::section {
                              <property name="font">
                               <font>
                                <pointsize>10</pointsize>
+                               <weight>75</weight>
                                <bold>true</bold>
                               </font>
                              </property>
@@ -2318,6 +2839,9 @@ QPushButton::pressed {
                                      <pointsize>3</pointsize>
                                     </font>
                                    </property>
+                                   <property name="layoutDirection">
+                                    <enum>Qt::LeftToRight</enum>
+                                   </property>
                                    <property name="text">
                                     <string/>
                                    </property>
@@ -2325,7 +2849,7 @@ QPushButton::pressed {
                                     <enum>Qt::AutoText</enum>
                                    </property>
                                    <property name="pixmap">
-                                    <pixmap resource="View/img/resources.qrc">:/img/icon/icons8-search.svg</pixmap>
+                                    <pixmap resource="View/img/resources.qrc">:/icon/icon/icons8-search.svg</pixmap>
                                    </property>
                                    <property name="scaledContents">
                                     <bool>false</bool>
@@ -2363,7 +2887,7 @@ QPushButton::pressed {
                                 </property>
                                 <property name="icon">
                                  <iconset resource="View/img/resources.qrc">
-                                  <normaloff>:/img/icon/icons8_update_left_rotation.svg</normaloff>:/img/icon/icons8_update_left_rotation.svg</iconset>
+                                  <normaloff>:/icon/icon/icons8_update_left_rotation.svg</normaloff>:/icon/icon/icons8_update_left_rotation.svg</iconset>
                                 </property>
                                </widget>
                               </item>
@@ -2374,7 +2898,7 @@ QPushButton::pressed {
                                 </property>
                                 <property name="icon">
                                  <iconset resource="View/img/resources.qrc">
-                                  <normaloff>:/img/icon/icons8_multiply.svg</normaloff>:/img/icon/icons8_multiply.svg</iconset>
+                                  <normaloff>:/icon/icon/icons8_multiply.svg</normaloff>:/icon/icon/icons8_multiply.svg</iconset>
                                 </property>
                                </widget>
                               </item>
@@ -2385,7 +2909,7 @@ QPushButton::pressed {
                                 </property>
                                 <property name="icon">
                                  <iconset resource="View/img/resources.qrc">
-                                  <normaloff>:/img/icon/icons8_plus_math.svg</normaloff>:/img/icon/icons8_plus_math.svg</iconset>
+                                  <normaloff>:/icon/icon/icons8_plus_math.svg</normaloff>:/icon/icon/icons8_plus_math.svg</iconset>
                                 </property>
                                </widget>
                               </item>
@@ -2430,6 +2954,7 @@ QPushButton::pressed {
                                 <property name="font">
                                  <font>
                                   <pointsize>10</pointsize>
+                                  <weight>75</weight>
                                   <bold>true</bold>
                                  </font>
                                 </property>
@@ -2541,7 +3066,7 @@ QPushButton::pressed {
                                        <enum>Qt::AutoText</enum>
                                       </property>
                                       <property name="pixmap">
-                                       <pixmap resource="View/img/resources.qrc">:/img/icon/icons8-search.svg</pixmap>
+                                       <pixmap resource="View/img/resources.qrc">:/icon/icon/icons8-search.svg</pixmap>
                                       </property>
                                       <property name="scaledContents">
                                        <bool>false</bool>
@@ -2579,7 +3104,7 @@ QPushButton::pressed {
                                    </property>
                                    <property name="icon">
                                     <iconset resource="View/img/resources.qrc">
-                                     <normaloff>:/img/icon/icons8_update_left_rotation.svg</normaloff>:/img/icon/icons8_update_left_rotation.svg</iconset>
+                                     <normaloff>:/icon/icon/icons8_update_left_rotation.svg</normaloff>:/icon/icon/icons8_update_left_rotation.svg</iconset>
                                    </property>
                                   </widget>
                                  </item>
@@ -2590,7 +3115,7 @@ QPushButton::pressed {
                                    </property>
                                    <property name="icon">
                                     <iconset resource="View/img/resources.qrc">
-                                     <normaloff>:/img/icon/icons8_multiply.svg</normaloff>:/img/icon/icons8_multiply.svg</iconset>
+                                     <normaloff>:/icon/icon/icons8_multiply.svg</normaloff>:/icon/icon/icons8_multiply.svg</iconset>
                                    </property>
                                   </widget>
                                  </item>
@@ -2601,7 +3126,7 @@ QPushButton::pressed {
                                    </property>
                                    <property name="icon">
                                     <iconset resource="View/img/resources.qrc">
-                                     <normaloff>:/img/icon/icons8_plus_math.svg</normaloff>:/img/icon/icons8_plus_math.svg</iconset>
+                                     <normaloff>:/icon/icon/icons8_plus_math.svg</normaloff>:/icon/icon/icons8_plus_math.svg</iconset>
                                    </property>
                                   </widget>
                                  </item>

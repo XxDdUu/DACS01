@@ -6,12 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="b664035e-7b0c-4c4d-8252-f0d6dc412f5b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/Chart/Branch_PSChart.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Chart/Branch_PSChart.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/Chart/Branch_RevenueChart.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Chart/Branch_RevenueChart.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/Chart/PSGeneralChart.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Chart/PSGeneralChart.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/Chart/RevenueGeneralChart.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Chart/RevenueGeneralChart.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Controller/EnterpriseController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Controller/EnterpriseController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Controller/MainController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Controller/MainController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/DAO/DatabaseConnection.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/DAO/DatabaseConnection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/DAO/EnterpriseDAO.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/DAO/EnterpriseDAO.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/View/DashBoard.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/DashBoard.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/View/mainDashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/mainDashboard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/View/Login.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/Login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/View/img/resources.qrc" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/img/resources.qrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/View/resources_rc.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/resources_rc.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/dashboardUI.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/dashboardUI.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +82,7 @@
     "Python.test_pd.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "cuong",
+    "git-widget-placeholder": "Merging cuong",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "D:/PYTHON/py_project",
     "settings.editor.selected.configurable": "consents"
