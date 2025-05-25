@@ -55,6 +55,15 @@ class MainController:
 
             self.dashboard_window.switch_to_login = self.show_login
 
+            try:
+                print("Attempting to load Product Sales table...")
+                self.dashboard_window.display_PS_table()
+                print("Product Sales table loaded successfully")
+            except Exception as e:
+                print(f"ERROR loading Product Sales table: {e}")
+                import traceback
+                traceback.print_exc()
+
             self.login_window.hide()
             self.register_window.hide()
             self.dashboard_window.show()
