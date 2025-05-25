@@ -48,7 +48,7 @@ class ProductSaleChart:
                 self.ax.pie(amount, labels=name, autopct='%1.1f%%', startangle=90)
                 self.ax.axis('equal')
                 self.ax.set_title("Product Sales 2025")
-
+                self.figure.savefig("D:/PYTHON/DACS01/Frontend/View/img/PS_general.png")
             self.canvas.draw()
 
         except Exception as e:

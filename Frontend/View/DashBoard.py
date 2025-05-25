@@ -1,10 +1,11 @@
 from PyQt6 import uic, QtWidgets, QtGui
 from PyQt6.QtGui import QIcon, QStandardItemModel, QStandardItem
-from PyQt6.QtWidgets import QApplication, QMainWindow, QAbstractSpinBox
+from PyQt6.QtWidgets import QApplication, QMainWindow, QAbstractSpinBox, QTableView
 from PyQt6.QtCore import Qt, QPoint, QEvent, QDate, QPropertyAnimation, QEasingCurve, QRect
 import sys
 import Frontend.View.resources_rc
 from datetime import datetime
+
 
 class DashBoard(QMainWindow):
 	def __init__(self, employer_data, controller):
@@ -40,7 +41,11 @@ class DashBoard(QMainWindow):
 
 		self.switch_to_login = None
 		self.logout_label.clicked.connect(self.handle_logOut_btn)
-		self.display_PS_table()
+		# self.display_PS_table()
+		#Xử lý sự kiện các crud row vào table
+		self.add_PS_btn.clicked.connect(self.add_row)
+		self.remove_PS_btn.clicked.connect(self.delete_row)
+		self.update_PS_btn.clicked.connect(self.update_row)
 
 	def exit_window(self):
 		self.close()
@@ -145,8 +150,8 @@ class DashBoard(QMainWindow):
 			)
 			print("DEBUG result from DB:", productSale)
 
-		model = QStandardItemModel(len(productSale), 6)
-		model.setHorizontalHeaderLabels(["SALE_ID", "Product_ID", "Branch_ID",
+		self.model = QStandardItemModel(len(productSale), 6)
+		self.model.setHorizontalHeaderLabels(["SALE_ID", "Product_ID", "Branch_ID",
 										 "SALE_DATE", "QUANTITY_SOLD", "SALE_AMOUNT"])
 
 		for row_index, prod_sale in enumerate(productSale):
@@ -173,12 +178,12 @@ class DashBoard(QMainWindow):
 					sale_amount = str(sale_amount)
 
 				# Set items safely
-				model.setItem(row_index, 0, QStandardItem(sale_id))
-				model.setItem(row_index, 1, QStandardItem(product_id))
-				model.setItem(row_index, 2, QStandardItem(branch_id))
-				model.setItem(row_index, 3, QStandardItem(sale_date))
-				model.setItem(row_index, 4, QStandardItem(quantity_sold))
-				model.setItem(row_index, 5, QStandardItem(sale_amount))
+				self.model.setItem(row_index, 0, QStandardItem(sale_id))
+				self.model.setItem(row_index, 1, QStandardItem(product_id))
+				self.model.setItem(row_index, 2, QStandardItem(branch_id))
+				self.model.setItem(row_index, 3, QStandardItem(sale_date))
+				self.model.setItem(row_index, 4, QStandardItem(quantity_sold))
+				self.model.setItem(row_index, 5, QStandardItem(sale_amount))
 
 				print(
 					f"DEBUG Row {row_index}: {sale_id}, {product_id}, {branch_id}, {sale_date}, {quantity_sold}, {sale_amount}")
@@ -188,14 +193,69 @@ class DashBoard(QMainWindow):
 				print(f"Row data: {prod_sale}")
 				# Create empty items for failed row
 				for col in range(6):
-					model.setItem(row_index, col, QStandardItem(""))
+					self.model.setItem(row_index, col, QStandardItem(""))
 
 		try:
-			self.PS_data_table.setModel(model)
+			self.PS_data_table.setModel(self.model)
 			self.PS_data_table.resizeColumnsToContents()
 			print(f"Product Sales data loaded: {len(productSale)} records")
 		except Exception as e:
 			print(f"ERROR setting model: {e}")
 
 		return self.PS_data_table
+
+	def add_row(self):
+		row = self.model.rowCount()
+		self.model.insertRow(row)
+		self.model.setItem(row, 0, QStandardItem(self.saleID_PS_le.text()))
+		self.model.setItem(row, 1, QStandardItem(self.prod_id_PS_le.text()))
+		self.model.setItem(row, 2, QStandardItem(self.branch_id_PS_le.text()))
+		self.model.setItem(row, 3, QStandardItem(self.sale_qdate_edit.text()))
+		self.model.setItem(row, 4, QStandardItem(self.quantitySold_PS_le.text()))
+		self.model.setItem(row, 5, QStandardItem(self.saleAmount_PS_le.text()))
+
+	def delete_row(self):
+		ps_id_delete = self.saleID_PS_le.text().strip()
+		for row in range(self.model.rowCount()):
+			item = self.model.item(row, 0)
+			if item and item.text() == ps_id_delete:
+				self.model.removeRow(row)
+				print(f"Đã xóa dòng có SALE_ID: {ps_id_delete}")
+				return
+		print(f"Không tìm thấy SALE_ID: {ps_id_delete}")
+
+	def update_row(self):
+		index = self.PS_data_table.currentIndex()
+		row = index.row()
+
+		if row >= 0:
+			# Nếu có dòng được chọn → cập nhật luôn
+			self.model.setItem(row, 0, QStandardItem(self.saleID_PS_le.text()))
+			self.model.setItem(row, 1, QStandardItem(self.prod_id_PS_le.text()))
+			self.model.setItem(row, 2, QStandardItem(self.branch_id_PS_le.text()))
+			self.model.setItem(row, 3, QStandardItem(self.sale_qdate_edit.text()))
+			self.model.setItem(row, 4, QStandardItem(self.quantitySold_PS_le.text()))
+			self.model.setItem(row, 5, QStandardItem(self.saleAmount_PS_le.text()))
+			print("Cập nhật thành công dòng được chọn!")
+		else:
+			# Nếu không chọn dòng → tìm dòng theo SALE_ID từ input
+			ps_id_update = self.saleID_PS_le.text().strip()
+			if not ps_id_update:
+				print("Vui lòng nhập SALE_ID để cập nhật!")
+				return
+
+			for row in range(self.model.rowCount()):
+				item = self.model.item(row, 0)
+				if item and item.text() == ps_id_update:
+					self.model.setItem(row, 1, QStandardItem(self.prod_id_PS_le.text()))
+					self.model.setItem(row, 2, QStandardItem(self.branch_id_PS_le.text()))
+					self.model.setItem(row, 3, QStandardItem(self.sale_qdate_edit.text()))
+					self.model.setItem(row, 4, QStandardItem(self.quantitySold_PS_le.text()))
+					self.model.setItem(row, 5, QStandardItem(self.saleAmount_PS_le.text()))
+					print(f"Đã cập nhật dòng có SALE_ID: {ps_id_update}")
+					return
+			print(f"Không tìm thấy SALE_ID: {ps_id_update}")
+
+
+
 

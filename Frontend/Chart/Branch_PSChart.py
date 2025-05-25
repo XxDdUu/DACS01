@@ -27,10 +27,10 @@ class PSBranchChart:
             df_merge1 = pd.merge(df_product_sale, df_product.drop(columns=["Branch_ID"]), on="Product_ID", how="left")
             df_merge2 = pd.merge(df_merge1, df_branch, on="Branch_ID", how="left")
 
-            # 🟢 Group theo cả Product + Branch để đảm bảo giữ Branch_name
+            # Group theo cả Product + Branch để đảm bảo giữ Branch_name
             df_groupby = df_merge2.groupby(['Product_NAME', 'Branch_name'])['SALE_AMOUNT'].sum().reset_index(name="Sale amount")
 
-            # 🔍 Lọc đúng branch được yêu cầu
+            # Lọc đúng branch được yêu cầu
             df_filtered = df_groupby[df_groupby['Branch_name'] == self.branch_name]
 
             name = df_filtered['Product_NAME']
@@ -43,7 +43,7 @@ class PSBranchChart:
                 self.ax.pie(amount, labels=name, autopct='%1.1f%%', startangle=90)
                 self.ax.axis('equal')
                 self.ax.set_title(f"Product Sales 2025 - Branch {self.branch_name}")
-
+                self.figure.savefig(f"D:/PYTHON/DACS01/Frontend/View/img/PS_branch{self.branch_name}.png")
             self.canvas.draw()
 
         except Exception as e:

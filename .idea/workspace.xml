@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b664035e-7b0c-4c4d-8252-f0d6dc412f5b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Controller/MainController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Controller/MainController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Controller/ProductSalesController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Controller/ProductSalesController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/DAO/ProductSalesDao.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/DAO/ProductSalesDao.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Model/ProductSales.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Model/ProductSales.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/Chart/Branch_PSChart.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Chart/Branch_PSChart.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/Chart/Branch_RevenueChart.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Chart/Branch_RevenueChart.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/Chart/PSGeneralChart.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Chart/PSGeneralChart.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/Chart/RevenueGeneralChart.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Chart/RevenueGeneralChart.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/View/DashBoard.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/DashBoard.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/View/mainDashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/mainDashboard.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/dashboardUI.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/dashboardUI.ui" afterDir="false" />
@@ -64,6 +64,8 @@
     "Python.EnterpriseDAO.executor": "Run",
     "Python.Login.executor": "Run",
     "Python.ProductSalesUtilities.executor": "Run",
+    "Python.RevenueGeneralChart.executor": "Run",
+    "Python.convertFile.executor": "Run",
     "Python.frameUI.executor": "Run",
     "Python.loginUI.executor": "Debug",
     "Python.main (1).executor": "Run",

@@ -815,7 +815,7 @@ QPushButton:pressed {
              <item>
               <widget class="QStackedWidget" name="main_display_widget">
                <property name="currentIndex">
-                <number>2</number>
+                <number>4</number>
                </property>
                <widget class="QWidget" name="Account_setting_page">
                 <property name="styleSheet">
@@ -2185,7 +2185,7 @@ border-radius: 7px;</string>
                         <rect>
                          <x>0</x>
                          <y>0</y>
-                         <width>245</width>
+                         <width>217</width>
                          <height>354</height>
                         </rect>
                        </property>
@@ -2666,7 +2666,7 @@ color: white;
 border-radius: 5px</string>
                     </property>
                     <property name="text">
-                     <string>Import</string>
+                     <string>Export</string>
                     </property>
                    </widget>
                   </widget>

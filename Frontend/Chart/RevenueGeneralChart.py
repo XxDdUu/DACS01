@@ -13,9 +13,6 @@ class generalChart:
     def __init__(self):
         self.figure, self.ax = plt.subplots()
         self.canvas = FigureCanvas(self.figure)
-        self.canvas.setSizePolicy(QSizePolicy.Policy.Expanding,
-                                   QSizePolicy.Policy.Expanding)
-
         self.plot_chart()
 
     def plot_chart(self):
@@ -40,6 +37,7 @@ class generalChart:
                 self.ax.bar(df['Branch_name'], df['total_revenue'], color='skyblue')
                 self.ax.set_xlabel("Branch")
                 self.ax.set_ylabel("Amount (unit: million$)")
+                self.figure.savefig("D:/PYTHON/DACS01/Frontend/View/img/revenue_general_chart.png")
             self.canvas.draw()
         except Exception as e:
             traceback.print_exc()
