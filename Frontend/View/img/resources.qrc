@@ -1,7 +1,11 @@
 <RCC>
-  <qresource prefix="img">
-    <file>icon/icons8-search.svg</file>
-    <file>icon/pencil-svgrepo-com.svg</file>
+  <qresource prefix="icon">
+    <file>icon/branches.png</file>
+    <file>icon/direct-marketing.png</file>
+    <file>icon/distributor.png</file>
+    <file>icon/editData.png</file>
+    <file>icon/enterprise.svg</file>
+    <file>icon/home.png</file>
     <file>icon/icons8_account_1.svg</file>
     <file>icon/icons8_alarm.svg</file>
     <file>icon/icons8_calendar_1.svg</file>
@@ -44,18 +48,22 @@
     <file>icon/icons8_todo_list.svg</file>
     <file>icon/icons8_update_left_rotation.svg</file>
     <file>icon/icons8_walkie_talkie.svg</file>
-    <file>icon/x_white.svg</file>
-    <file>icon/success.svg</file>
-    <file>icon/noun-enterprise-1584264.svg</file>
-    <file>icon/enterprise.svg</file>
-    <file>icon/home.png</file>
+    <file>icon/icons8-search.svg</file>
     <file>icon/minus.png</file>
+    <file>icon/noun-enterprise-1584264.svg</file>
+    <file>icon/pencil-svgrepo-com.svg</file>
+    <file>icon/productSales.png</file>
     <file>icon/report.png</file>
     <file>icon/revenue_chart.png</file>
+    <file>icon/sale-tag.png</file>
     <file>icon/setting.png</file>
     <file>icon/sidebar.png</file>
     <file>icon/stack-svgrepo-com.svg</file>
+    <file>icon/success.svg</file>
     <file>icon/x.png</file>
+    <file>icon/x_white.svg</file>
+  </qresource>
+  <qresource prefix="logo">
     <file>logo/dark_pythonLogo.png</file>
     <file>logo/moon-vector.jpg</file>
   </qresource>
