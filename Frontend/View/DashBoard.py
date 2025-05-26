@@ -33,10 +33,6 @@ class DashBoard(QMainWindow):
 		self._drag_active = False
 		self._drag_position = QPoint()
 
-		self.header.mouseMoveEvent = self.mouse_move_event
-		self.header.mousePressEvent = self.mouse_press_event
-		self.header.mouseReleaseEvent = self.mouse_release_event
-
 		self.fetch_account_info(employer_data)
 		self.active_switch_pages()
 
@@ -58,18 +54,9 @@ class DashBoard(QMainWindow):
 			self.showNormal()
 		else:
 			self.showMaximized()
-		self.is_maximized = True
-	def mouse_press_event(self, event):
-		if event.button() == Qt.MouseButton.LeftButton:
-			self._drag_active = True
-			self._drag_position = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
-			event.accept()
-	def mouse_release_event(self, event):
-		self._drag_active = False
-	def mouse_move_event(self, event):
-		if self._drag_active and event.buttons() == Qt.MouseButton.LeftButton:
-			self.move(event.globalPosition().toPoint() - self._drag_position)
-			event.accept()
+		self.is_maximized = not self.is_maximized
+	def mousePressEvent(self, event):
+		self.focusWidget().clearFocus()
 
 	def fetch_account_info(self, employer_data):
 		self.employer_name_lineedit.setText(employer_data.username)

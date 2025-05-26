@@ -224,7 +224,7 @@ QPushButton::hover {
               </property>
               <property name="icon">
                <iconset resource="View/img/resources.qrc">
-                <normaloff>:/img/icon/minus.png</normaloff>:/img/icon/minus.png</iconset>
+                <normaloff>:/icon/icon/minus.png</normaloff>:/icon/icon/minus.png</iconset>
               </property>
              </widget>
             </item>
@@ -259,7 +259,7 @@ QPushButton::hover {
               </property>
               <property name="icon">
                <iconset resource="View/img/resources.qrc">
-                <normaloff>:/img/icon/stack-svgrepo-com.svg</normaloff>:/img/icon/stack-svgrepo-com.svg</iconset>
+                <normaloff>:/icon/icon/stack-svgrepo-com.svg</normaloff>:/icon/icon/stack-svgrepo-com.svg</iconset>
               </property>
              </widget>
             </item>
@@ -288,7 +288,7 @@ QPushButton::hover {
               </property>
               <property name="icon">
                <iconset resource="View/img/resources.qrc">
-                <normaloff>:/img/icon/x.png</normaloff>:/img/icon/x.png</iconset>
+                <normaloff>:/icon/icon/x.png</normaloff>:/icon/icon/x.png</iconset>
               </property>
               <property name="iconSize">
                <size>
@@ -312,7 +312,7 @@ QPushButton::hover {
 }</string>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="Register_page">
          <property name="styleSheet">
@@ -433,7 +433,7 @@ QPushButton::hover {
                       <string/>
                      </property>
                      <property name="pixmap">
-                      <pixmap resource="View/img/resources.qrc">:/img/logo/dark_pythonLogo.png</pixmap>
+                      <pixmap resource="View/img/resources.qrc">:/logo/logo/dark_pythonLogo.png</pixmap>
                      </property>
                      <property name="scaledContents">
                       <bool>true</bool>
@@ -1120,7 +1120,7 @@ QDateEdit {
                    <string/>
                   </property>
                   <property name="pixmap">
-                   <pixmap resource="View/img/resources.qrc">:/img/icon/enterprise.svg</pixmap>
+                   <pixmap resource="View/img/resources.qrc">:/icon/icon/enterprise.svg</pixmap>
                   </property>
                   <property name="scaledContents">
                    <bool>true</bool>
