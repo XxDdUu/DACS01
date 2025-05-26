@@ -819,7 +819,7 @@ QPushButton:pressed {
              <item>
               <widget class="QStackedWidget" name="main_display_widget">
                <property name="currentIndex">
-                <number>0</number>
+                <number>5</number>
                </property>
                <widget class="QWidget" name="Account_setting_page">
                 <property name="styleSheet">
@@ -2757,8 +2757,8 @@ border-radius: 7px;</string>
                         <rect>
                          <x>0</x>
                          <y>0</y>
-                         <width>718</width>
-                         <height>433</height>
+                         <width>244</width>
+                         <height>350</height>
                         </rect>
                        </property>
                        <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -3287,12 +3287,139 @@ QFrame {
                  </item>
                  <item row="0" column="0">
                   <widget class="QFrame" name="total_revenue_frame">
+                   <property name="styleSheet">
+                    <string notr="true">QFrame {
+	background-color:rgb(106, 106, 106);
+	
+}
+#total_revenue_frame {
+	background-color: rgb(255, 255, 255);
+}</string>
+                   </property>
                    <property name="frameShape">
                     <enum>QFrame::StyledPanel</enum>
                    </property>
                    <property name="frameShadow">
                     <enum>QFrame::Raised</enum>
                    </property>
+                   <layout class="QGridLayout" name="gridLayout_4">
+                    <property name="spacing">
+                     <number>3</number>
+                    </property>
+                    <item row="0" column="0">
+                     <widget class="QFrame" name="Total_revenue">
+                      <property name="styleSheet">
+                       <string notr="true">#total_revenue_label {
+	color: rgb(255, 255, 255);
+	font-weight: 1000;
+}
+#number_of_total_revenue_label {
+	color: rgb(255, 255, 255);
+	font-weight: 500;
+}
+#total_revenue_date_label {
+	color: rgb(255, 255, 255);
+}
+#percentage_of_increase_revuenue_label {
+	color: rgb(78, 255, 66);
+}</string>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_28">
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <item alignment="Qt::AlignHCenter">
+                        <widget class="QLabel" name="total_revenue_label">
+                         <property name="font">
+                          <font>
+                           <pointsize>11</pointsize>
+                           <weight>99</weight>
+                           <bold>true</bold>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>Total Revenue</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item alignment="Qt::AlignHCenter">
+                        <widget class="QLabel" name="number_of_total_revenue_label">
+                         <property name="font">
+                          <font>
+                           <pointsize>10</pointsize>
+                           <weight>62</weight>
+                           <bold>true</bold>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>124.24$</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item alignment="Qt::AlignHCenter">
+                        <widget class="QLabel" name="percentage_of_increase_revuenue_label">
+                         <property name="font">
+                          <font>
+                           <pointsize>9</pointsize>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>+12%</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item alignment="Qt::AlignHCenter">
+                        <widget class="QLabel" name="total_revenue_date_label">
+                         <property name="font">
+                          <font>
+                           <pointsize>8</pointsize>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>26/05/2025</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QFrame" name="frame_10">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="1">
+                     <widget class="QFrame" name="frame_9">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QFrame" name="frame_11">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
                   </widget>
                  </item>
                  <item row="0" column="1">
