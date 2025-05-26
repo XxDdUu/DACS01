@@ -58,7 +58,7 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QFrame" name="header">
+        <widget class="DraggableHeader" name="header">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -208,6 +208,7 @@ QPushButton::hover {
                <property name="font">
                 <font>
                  <pointsize>10</pointsize>
+                 <weight>75</weight>
                  <bold>true</bold>
                 </font>
                </property>
@@ -818,7 +819,7 @@ QPushButton:pressed {
              <item>
               <widget class="QStackedWidget" name="main_display_widget">
                <property name="currentIndex">
-                <number>4</number>
+                <number>0</number>
                </property>
                <widget class="QWidget" name="Account_setting_page">
                 <property name="styleSheet">
@@ -842,6 +843,7 @@ QWidget#Account_setting_page {
                    <property name="font">
                     <font>
                      <pointsize>14</pointsize>
+                     <weight>75</weight>
                      <bold>true</bold>
                     </font>
                    </property>
@@ -937,6 +939,7 @@ QPushButton::pressed {
                          <property name="font">
                           <font>
                            <pointsize>9</pointsize>
+                           <weight>50</weight>
                            <bold>false</bold>
                           </font>
                          </property>
@@ -962,6 +965,7 @@ QPushButton::pressed {
                          <property name="font">
                           <font>
                            <pointsize>9</pointsize>
+                           <weight>50</weight>
                            <bold>false</bold>
                           </font>
                          </property>
@@ -1020,6 +1024,7 @@ QPushButton::pressed {
                           <property name="font">
                            <font>
                             <pointsize>11</pointsize>
+                            <weight>75</weight>
                             <bold>true</bold>
                            </font>
                           </property>
@@ -1046,12 +1051,17 @@ QFrame  {
 QLabel {
 	border: none;
 	font-weight: 500;
+	color: rgb(0, 0, 0);
 }
 QLineEdit {
 	border: none;
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 255, 255);
 }
 QTextEdit {
 	border: none;
+	background-color: rgb(255, 255, 255);
+	color: rgb(0, 0, 0);
 }</string>
                           </property>
                           <property name="frameShape">
@@ -1075,10 +1085,16 @@ QTextEdit {
                            </property>
                            <item row="0" column="0">
                             <widget class="QFrame" name="enterprise_name_frame">
+                             <property name="minimumSize">
+                              <size>
+                               <width>160</width>
+                               <height>160</height>
+                              </size>
+                             </property>
                              <property name="maximumSize">
                               <size>
-                               <width>200</width>
-                               <height>160</height>
+                               <width>16777215</width>
+                               <height>16777215</height>
                               </size>
                              </property>
                              <property name="frameShape">
@@ -1142,10 +1158,16 @@ QTextEdit {
                            </item>
                            <item row="1" column="0">
                             <widget class="QFrame" name="enterprise_phone_num_frame">
+                             <property name="minimumSize">
+                              <size>
+                               <width>160</width>
+                               <height>160</height>
+                              </size>
+                             </property>
                              <property name="maximumSize">
                               <size>
-                               <width>200</width>
-                               <height>160</height>
+                               <width>16777215</width>
+                               <height>500</height>
                               </size>
                              </property>
                              <property name="frameShape">
@@ -1209,10 +1231,16 @@ QTextEdit {
                            </item>
                            <item row="1" column="1">
                             <widget class="QFrame" name="enterprise_bs_type_frame">
+                             <property name="minimumSize">
+                              <size>
+                               <width>160</width>
+                               <height>160</height>
+                              </size>
+                             </property>
                              <property name="maximumSize">
                               <size>
-                               <width>200</width>
-                               <height>160</height>
+                               <width>16777215</width>
+                               <height>500</height>
                               </size>
                              </property>
                              <property name="styleSheet">
@@ -1250,8 +1278,8 @@ QTextEdit {
                                 </property>
                                 <property name="font">
                                  <font>
-                                  <pointsize>9</pointsize>
-                                  <bold>false</bold>
+                                  <weight>62</weight>
+                                  <bold>true</bold>
                                  </font>
                                 </property>
                                 <property name="text">
@@ -1262,11 +1290,17 @@ QTextEdit {
                                 </property>
                                </widget>
                               </item>
-                              <item>
+                              <item alignment="Qt::AlignHCenter">
                                <widget class="QTextEdit" name="enterprise_bs_type_text_edit">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>0</width>
+                                  <height>0</height>
+                                 </size>
+                                </property>
                                 <property name="maximumSize">
                                  <size>
-                                  <width>16777215</width>
+                                  <width>16777213</width>
                                   <height>40</height>
                                  </size>
                                 </property>
@@ -1278,18 +1312,21 @@ QTextEdit {
                                 <property name="layoutDirection">
                                  <enum>Qt::LeftToRight</enum>
                                 </property>
+                                <property name="verticalScrollBarPolicy">
+                                 <enum>Qt::ScrollBarAlwaysOff</enum>
+                                </property>
+                                <property name="horizontalScrollBarPolicy">
+                                 <enum>Qt::ScrollBarAlwaysOff</enum>
+                                </property>
                                 <property name="lineWrapColumnOrWidth">
                                  <number>0</number>
                                 </property>
                                 <property name="html">
                                  <string notr="true">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-hr { height: 1px; border-width: 0; }
-li.unchecked::marker { content: &quot;\2610&quot;; }
-li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                                 </property>
                                 <property name="overwriteMode">
                                  <bool>false</bool>
@@ -1301,10 +1338,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
                            </item>
                            <item row="0" column="2">
                             <widget class="QFrame" name="enterprise_address_frame">
+                             <property name="minimumSize">
+                              <size>
+                               <width>160</width>
+                               <height>160</height>
+                              </size>
+                             </property>
                              <property name="maximumSize">
                               <size>
-                               <width>200</width>
-                               <height>160</height>
+                               <width>16777215</width>
+                               <height>16777215</height>
                               </size>
                              </property>
                              <property name="frameShape">
@@ -1368,10 +1411,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
                            </item>
                            <item row="1" column="2">
                             <widget class="QFrame" name="enterprise_industry_frame">
+                             <property name="minimumSize">
+                              <size>
+                               <width>160</width>
+                               <height>160</height>
+                              </size>
+                             </property>
                              <property name="maximumSize">
                               <size>
-                               <width>200</width>
-                               <height>160</height>
+                               <width>16777215</width>
+                               <height>500</height>
                               </size>
                              </property>
                              <property name="frameShape">
@@ -1435,10 +1484,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
                            </item>
                            <item row="0" column="1">
                             <widget class="QFrame" name="enterprise_founder_frame">
+                             <property name="minimumSize">
+                              <size>
+                               <width>160</width>
+                               <height>160</height>
+                              </size>
+                             </property>
                              <property name="maximumSize">
                               <size>
-                               <width>200</width>
-                               <height>160</height>
+                               <width>16777215</width>
+                               <height>16777215</height>
                               </size>
                              </property>
                              <property name="frameShape">
@@ -1525,6 +1580,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                           <property name="font">
                            <font>
                             <pointsize>11</pointsize>
+                            <weight>75</weight>
                             <bold>true</bold>
                            </font>
                           </property>
@@ -1655,6 +1711,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                    <property name="font">
                                     <font>
                                      <pointsize>12</pointsize>
+                                     <weight>75</weight>
                                      <bold>true</bold>
                                     </font>
                                    </property>
@@ -2713,12 +2770,16 @@ border-radius: 7px;</string>
     background-color: rgb(228, 228, 228);
     alternate-background-color: #f9f9f9;
     gridline-color: #e0e0e0;
+	color: rgb(45, 45, 45);
 }
 
 QHeaderView::section {
     background-color: #f0f0f0;
     padding: 5px;
     font-weight: bold;
+	color: black;
+    border-bottom: 1px solid rgb(0, 0, 0);
+	qproperty-alignment: AlignCenter;
 }
 #branches_info_label {
 	color: rgb(0, 0, 0);
@@ -2735,6 +2796,7 @@ QHeaderView::section {
                              <property name="font">
                               <font>
                                <pointsize>10</pointsize>
+                               <weight>75</weight>
                                <bold>true</bold>
                               </font>
                              </property>
@@ -2948,6 +3010,7 @@ QPushButton::pressed {
                                 <property name="font">
                                  <font>
                                   <pointsize>10</pointsize>
+                                  <weight>75</weight>
                                   <bold>true</bold>
                                  </font>
                                 </property>
@@ -3263,6 +3326,12 @@ QFrame {
    <class>ClickableLabel</class>
    <extends>QLabel</extends>
    <header>Frontend/View/clickableLabel</header>
+  </customwidget>
+  <customwidget>
+   <class>DraggableHeader</class>
+   <extends>QFrame</extends>
+   <header>Frontend.View.DraggableHeader</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>
