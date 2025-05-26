@@ -105,7 +105,7 @@ class DashBoard(QMainWindow):
 			self.logout_label.setText('<img src="Frontend/View/img/icon/icons8_logout_rounded_down.svg">')
 		else:
 			self.logout_label.setText('<img src="Frontend/View/img/icon/icons8_logout_rounded_down.svg" style="width:16px; height:16px; vertical-align:middle;"> Log out')
-			
+
 		self.left_menu_animation.setStartValue(current_width)
 		self.left_menu_animation.setEndValue(new_width)
 		self.left_menu_animation.start()
@@ -201,3 +201,112 @@ class DashBoard(QMainWindow):
 			self.employer_data = employer_data
 		def set_enterprise_data(self, enterprise_data):
 			self.enterprise_data = enterprise_data
+
+	def display_branch_table(self):
+		branches = []
+		if hasattr(self.controller, 'branches_controller') and self.controller.branches_controller:
+			print("DEBUG employer ID:", self.employer_data.ID)
+			print("DEBUG enterprise ID:", self.employer_data.enterprise_id)
+			branches = self.controller.get_branches_data(
+				self.employer_data.enterprise_id,
+				self.employer_data.ID
+			)
+			print("DEBUG result from DB:", branches)
+		model = QStandardItemModel(len(branches), 7)
+		model.setHorizontalHeaderLabels(["Branch_ID", "Branch_name", "Branch_address",
+										 "Branch_phone_number", "Create_at", "Employer_ID","Enterprise_ID"])
+
+		for row_index, branch in enumerate(branches):
+			try:
+				# Convert all values to string safely
+				branch_id = str(branch.get("Branch_ID", ""))
+				employer_id = str(branch.get("Employer_ID", ""))
+				enterprise_id = str(branch.get("Enterprise_ID", ""))
+				branch_name = str(branch.get("Branch_name", ""))
+				branch_address = str(branch.get("Branch_address", ""))
+				branch_phone = str(branch.get("Branch_phone_number",""))
+
+				# Handle datetime.date object
+				branch_date = branch.get("Create_at", "")
+				if hasattr(branch_date, 'strftime'):
+					branch_date = branch_date.strftime("%Y-%m-%d")
+				else:
+					branch_date = str(branch_date)
+
+				# Set items safely
+				model.setItem(row_index, 0, QStandardItem(branch_id))
+				model.setItem(row_index, 1, QStandardItem(branch_name))
+				model.setItem(row_index, 2, QStandardItem(branch_address))
+				model.setItem(row_index, 3, QStandardItem(branch_phone))
+				model.setItem(row_index, 4, QStandardItem(branch_date))
+				model.setItem(row_index, 5, QStandardItem(employer_id))
+				model.setItem(row_index, 6, QStandardItem(enterprise_id))
+
+				print(
+					f"DEBUG Row {row_index}: {branch_id}, {branch_name}, {branch_address}, {branch_phone}, {branch_date}, {employer_id}, {enterprise_id}")
+
+			except Exception as e:
+				print(f"ERROR processing row {row_index}: {e}")
+				print(f"Row data: {branches}")
+				# Create empty items for failed row
+				for col in range(7):
+					model.setItem(row_index, col, QStandardItem(""))
+
+		try:
+			self.branchData_table.setModel(model)
+			self.branchData_table.resizeColumnsToContents()
+			print(f"Branches data loaded: {len(branches)} records")
+		except Exception as e:
+			print(f"ERROR setting model: {e}")
+
+		return self.branchData_table
+	def display_product_table(self):
+		products = []
+		if hasattr(self.controller, 'product_controller') and self.controller.product_controller:
+			print("DEBUG employer ID:", self.employer_data.ID)
+			print("DEBUG enterprise ID:", self.employer_data.enterprise_id)
+			products = self.controller.get_products_data(
+				self.employer_data.ID,
+				self.employer_data.enterprise_id
+			)
+			print("DEBUG result from DB:", products)
+
+		model = QStandardItemModel(len(products), 5)
+		model.setHorizontalHeaderLabels(["Product_ID", "Product_NAME", "Price",
+										 "Amount", "Branch_ID"])
+
+		for row_index, prod in enumerate(products):
+			try:
+				# Convert all values to string safely
+				product_id = str(prod.get("Product_ID",""))
+				product_name = str(prod.get("Product_NAME", ""))
+				branch_id = str(prod.get("Branch_ID", ""))
+				price = str(prod.get("PRICE", ""))
+				amount = str(prod.get("AMOUNT", ""))
+
+				# Set items safely
+				model.setItem(row_index, 0, QStandardItem(product_id))
+				model.setItem(row_index, 1, QStandardItem(product_name))
+				model.setItem(row_index, 2, QStandardItem(price))
+				model.setItem(row_index, 3, QStandardItem(amount))
+				model.setItem(row_index, 4, QStandardItem(branch_id))
+
+				print(
+					f"DEBUG Row {row_index}: {product_id}, {product_name}, {price}, {amount}, {branch_id}")
+
+			except Exception as e:
+				print(f"ERROR processing row {row_index}: {e}")
+				print(f"Row data: {products}")
+				# Create empty items for failed row
+				for col in range(7):
+					model.setItem(row_index, col, QStandardItem(""))
+
+		try:
+			self.product_data_table.setModel(model)
+			self.product_data_table.resizeColumnsToContents()
+			print(f"Products data loaded: {len(products)} records")
+		except Exception as e:
+			print(f"ERROR setting model: {e}")
+
+		return self.product_data_table
+
