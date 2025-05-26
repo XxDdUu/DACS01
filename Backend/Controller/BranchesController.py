@@ -34,4 +34,4 @@ class BranchesController:
         else:
             QMessageBox.warning(self.distribution_view, "Error", message)
     def get_branches(self, enterprise_id, employer_id):
-        return self.branches_dao.get_branches(enterprise_id, employer_id)
+        return self.branches_dao.get_branches_by_enterprise_employer(enterprise_id, employer_id)

@@ -3,6 +3,7 @@ from itertools import product
 from Backend.DAO.DatabaseConnection import get_connection
 import MySQLdb
 import traceback
+import pandas as pd
 
 class ProductDAO:
     def insert_product(self, data):
@@ -158,3 +159,33 @@ class ProductDAO:
                 cursor.close()
             if connection:
                 connection.close()
+    def get_product_by_account(self,emp_ID , ent_ID):
+        connection = None
+        cursor = None
+        try:
+            connection = get_connection()
+            cursor = connection.cursor()
+
+            query = """
+                SELECT p.* FROM PRODUCT p
+                JOIN BRANCHES b ON p.Branch_ID = b.Branch_ID
+                WHERE b.Employer_ID = %s AND b.Enterprise_ID = %s 
+            """
+
+            cursor.execute(query, (emp_ID, ent_ID))
+            rows = cursor.fetchall()
+            columns = [col[0] for col in cursor.description]
+            df = pd.DataFrame(rows, columns=columns)
+            return df.to_dict(orient="records")
+
+        except Exception as e:
+            print(f"ERROR in get_product_by_account: {e}")
+            traceback.print_exc()
+            return []
+
+        finally:
+            if cursor:
+                cursor.close()
+            if connection:
+                connection.close()
+

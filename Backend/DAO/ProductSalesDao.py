@@ -269,7 +269,6 @@ class ProductSalesDAO:
 
         except Exception as e:
             print(f"ERROR in get_product_sales_data: {e}")
-            import traceback
             traceback.print_exc()
             return []
 
