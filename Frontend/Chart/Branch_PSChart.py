@@ -42,7 +42,7 @@ class PSBranchChart:
             else:
                 self.ax.pie(amount, labels=name, autopct='%1.1f%%', startangle=90)
                 self.ax.axis('equal')
-                self.ax.set_title(f"Product Sales 2025 - Branch {self.branch_name}")
+                self.ax.set_title(f" - Branch {self.branch_name} -")
                 self.figure.savefig(f"D:/PYTHON/DACS01/Frontend/View/img/PS_branch{self.branch_name}.png")
             self.canvas.draw()
 

@@ -1,10 +1,19 @@
+import os
+
 from PyQt6 import uic, QtWidgets, QtGui
 from PyQt6.QtGui import QIcon, QStandardItemModel, QStandardItem
-from PyQt6.QtWidgets import QApplication, QMainWindow, QAbstractSpinBox, QMessageBox
+from PyQt6.QtWidgets import QApplication, QMainWindow, QAbstractSpinBox, QMessageBox, QFrame, QVBoxLayout
 from PyQt6.QtCore import Qt, QPoint, QEvent, QDate, QPropertyAnimation, QEasingCurve, QRect
 import sys
+
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+
 import Frontend.View.resources_rc
 from datetime import datetime
+
+from Frontend.Chart.Branch_PSChart import PSBranchChart
+from Frontend.View.SearchableTable import SearchableTable
+
 
 class DashBoard(QMainWindow):
 	def __init__(self, controller ,employer_data = None, enterprise_data = None):
@@ -40,6 +49,7 @@ class DashBoard(QMainWindow):
 
 		self.logout_label.clicked.connect(self.confirm_logout)
 		self.display_PS_table()
+		self.canvas_draw_PS_chart()
 
 	def exit_window(self):
 		self.close()
@@ -130,6 +140,28 @@ class DashBoard(QMainWindow):
 			"quantity_sold": self.quantitySold_PS_le.text().strip(),
 			"amount_total": self.saleAmount_PS_le.text().strip()
 		}
+	def canvas_draw_PS_chart(self):
+		# A, B, C là tên branch trong csdl
+		chartA = PSBranchChart("A")
+		chartB = PSBranchChart("B")
+		chartC = PSBranchChart("C")
+
+		fig_PS_branchA_chart = chartA.figure
+		fig_PS_branchB_chart = chartB.figure
+		fig_PS_branchC_chart = chartC.figure
+
+		canvas_chart_left = FigureCanvas(fig_PS_branchA_chart)
+		canvas_chart_center = FigureCanvas(fig_PS_branchB_chart)
+		canvas_chart_right = FigureCanvas(fig_PS_branchC_chart)
+
+		for frame in [self.frame_chart_1, self.frame_chart_2, self.frame_chart_3]:
+			if frame.layout() is None:
+				frame.setLayout(QVBoxLayout())
+
+		self.frame_chart_1.layout().addWidget(canvas_chart_left)
+		self.frame_chart_2.layout().addWidget(canvas_chart_center)
+		self.frame_chart_3.layout().addWidget(canvas_chart_right)
+
 
 	def display_PS_table(self):
 		productSale = []
@@ -142,8 +174,8 @@ class DashBoard(QMainWindow):
 			)
 			print("DEBUG result from DB:", productSale)
 
-		model = QStandardItemModel(len(productSale), 6)
-		model.setHorizontalHeaderLabels(["SALE_ID", "Product_ID", "Branch_ID",
+		PS_model = QStandardItemModel(len(productSale), 6)
+		PS_model.setHorizontalHeaderLabels(["SALE_ID", "Product_ID", "Branch_ID",
 										 "SALE_DATE", "QUANTITY_SOLD", "SALE_AMOUNT"])
 
 		for row_index, prod_sale in enumerate(productSale):
@@ -170,12 +202,12 @@ class DashBoard(QMainWindow):
 					sale_amount = str(sale_amount)
 
 				# Set items safely
-				model.setItem(row_index, 0, QStandardItem(sale_id))
-				model.setItem(row_index, 1, QStandardItem(product_id))
-				model.setItem(row_index, 2, QStandardItem(branch_id))
-				model.setItem(row_index, 3, QStandardItem(sale_date))
-				model.setItem(row_index, 4, QStandardItem(quantity_sold))
-				model.setItem(row_index, 5, QStandardItem(sale_amount))
+				PS_model.setItem(row_index, 0, QStandardItem(sale_id))
+				PS_model.setItem(row_index, 1, QStandardItem(product_id))
+				PS_model.setItem(row_index, 2, QStandardItem(branch_id))
+				PS_model.setItem(row_index, 3, QStandardItem(sale_date))
+				PS_model.setItem(row_index, 4, QStandardItem(quantity_sold))
+				PS_model.setItem(row_index, 5, QStandardItem(sale_amount))
 
 				print(
 					f"DEBUG Row {row_index}: {sale_id}, {product_id}, {branch_id}, {sale_date}, {quantity_sold}, {sale_amount}")
@@ -185,10 +217,10 @@ class DashBoard(QMainWindow):
 				print(f"Row data: {prod_sale}")
 				# Create empty items for failed row
 				for col in range(6):
-					model.setItem(row_index, col, QStandardItem(""))
+					PS_model.setItem(row_index, col, QStandardItem(""))
 
 		try:
-			self.PS_data_table.setModel(model)
+			self.PS_data_table.setModel(PS_model)
 			self.PS_data_table.resizeColumnsToContents()
 			print(f"Product Sales data loaded: {len(productSale)} records")
 		except Exception as e:
@@ -212,8 +244,8 @@ class DashBoard(QMainWindow):
 				self.employer_data.ID
 			)
 			print("DEBUG result from DB:", branches)
-		model = QStandardItemModel(len(branches), 7)
-		model.setHorizontalHeaderLabels(["Branch_ID", "Branch_name", "Branch_address",
+		self.branch_model = QStandardItemModel(len(branches), 7)
+		self.branch_model.setHorizontalHeaderLabels(["Branch_ID", "Branch_name", "Branch_address",
 										 "Branch_phone_number", "Create_at", "Employer_ID","Enterprise_ID"])
 
 		for row_index, branch in enumerate(branches):
@@ -234,13 +266,13 @@ class DashBoard(QMainWindow):
 					branch_date = str(branch_date)
 
 				# Set items safely
-				model.setItem(row_index, 0, QStandardItem(branch_id))
-				model.setItem(row_index, 1, QStandardItem(branch_name))
-				model.setItem(row_index, 2, QStandardItem(branch_address))
-				model.setItem(row_index, 3, QStandardItem(branch_phone))
-				model.setItem(row_index, 4, QStandardItem(branch_date))
-				model.setItem(row_index, 5, QStandardItem(employer_id))
-				model.setItem(row_index, 6, QStandardItem(enterprise_id))
+				self.branch_model.setItem(row_index, 0, QStandardItem(branch_id))
+				self.branch_model.setItem(row_index, 1, QStandardItem(branch_name))
+				self.branch_model.setItem(row_index, 2, QStandardItem(branch_address))
+				self.branch_model.setItem(row_index, 3, QStandardItem(branch_phone))
+				self.branch_model.setItem(row_index, 4, QStandardItem(branch_date))
+				self.branch_model.setItem(row_index, 5, QStandardItem(employer_id))
+				self.branch_model.setItem(row_index, 6, QStandardItem(enterprise_id))
 
 				print(
 					f"DEBUG Row {row_index}: {branch_id}, {branch_name}, {branch_address}, {branch_phone}, {branch_date}, {employer_id}, {enterprise_id}")
@@ -250,10 +282,11 @@ class DashBoard(QMainWindow):
 				print(f"Row data: {branches}")
 				# Create empty items for failed row
 				for col in range(7):
-					model.setItem(row_index, col, QStandardItem(""))
+					self.branch_model.setItem(row_index, col, QStandardItem(""))
 
 		try:
-			self.branchData_table.setModel(model)
+			self.branch_search_working = SearchableTable(self.search_branch_le, self.branchData_table, self.branch_model)
+			self.branch_search_working.search_function()
 			self.branchData_table.resizeColumnsToContents()
 			print(f"Branches data loaded: {len(branches)} records")
 		except Exception as e:
@@ -271,8 +304,8 @@ class DashBoard(QMainWindow):
 			)
 			print("DEBUG result from DB:", products)
 
-		model = QStandardItemModel(len(products), 5)
-		model.setHorizontalHeaderLabels(["Product_ID", "Product_NAME", "Price",
+		self.products_model = QStandardItemModel(len(products), 5)
+		self.products_model.setHorizontalHeaderLabels(["Product_ID", "Product_NAME", "Price",
 										 "Amount", "Branch_ID"])
 
 		for row_index, prod in enumerate(products):
@@ -285,11 +318,11 @@ class DashBoard(QMainWindow):
 				amount = str(prod.get("AMOUNT", ""))
 
 				# Set items safely
-				model.setItem(row_index, 0, QStandardItem(product_id))
-				model.setItem(row_index, 1, QStandardItem(product_name))
-				model.setItem(row_index, 2, QStandardItem(price))
-				model.setItem(row_index, 3, QStandardItem(amount))
-				model.setItem(row_index, 4, QStandardItem(branch_id))
+				self.products_model.setItem(row_index, 0, QStandardItem(product_id))
+				self.products_model.setItem(row_index, 1, QStandardItem(product_name))
+				self.products_model.setItem(row_index, 2, QStandardItem(price))
+				self.products_model.setItem(row_index, 3, QStandardItem(amount))
+				self.products_model.setItem(row_index, 4, QStandardItem(branch_id))
 
 				print(
 					f"DEBUG Row {row_index}: {product_id}, {product_name}, {price}, {amount}, {branch_id}")
@@ -299,10 +332,12 @@ class DashBoard(QMainWindow):
 				print(f"Row data: {products}")
 				# Create empty items for failed row
 				for col in range(7):
-					model.setItem(row_index, col, QStandardItem(""))
+					self.products_model.setItem(row_index, col, QStandardItem(""))
 
 		try:
-			self.product_data_table.setModel(model)
+			self.products_search_working = SearchableTable(self.search_products_le, self.product_data_table,
+														 self.products_model)
+			self.products_search_working.search_function()
 			self.product_data_table.resizeColumnsToContents()
 			print(f"Products data loaded: {len(products)} records")
 		except Exception as e:
