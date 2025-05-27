@@ -4,6 +4,7 @@ from Backend.Controller.BranchesController import BranchesController
 from Backend.Controller.ProductController import ProductController
 from Backend.Controller.ProductSalesController import ProductSalesController
 from Backend.Controller.RevenueController import RevenueController
+from Backend.Import_report.convertFile import ExportReportFile
 from Backend.Model.Employer import Employer
 from Frontend.View.Login import Login
 from Frontend.View.DashBoard import DashBoard
@@ -52,6 +53,7 @@ class MainController:
             self.revenue_controller = RevenueController(self.dashboard_window)
             self.productSales_controller = ProductSalesController(self.dashboard_window)
             self.EmployerAccountSettingController = EmployerAccountSettingController(self.dashboard_window)
+            self.export_report_file = ExportReportFile(self.dashboard_window)
 
             self.enterprise_controller.set_dashboard(self.dashboard_window, employer_data)
 

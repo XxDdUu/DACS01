@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b664035e-7b0c-4c4d-8252-f0d6dc412f5b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Controller/ProductSalesController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Controller/ProductSalesController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/View/DashBoard.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/DashBoard.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/View/img/PS_branchA.png" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/img/PS_branchA.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/View/img/PS_branchC.png" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/img/PS_branchC.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Controller/MainController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Controller/MainController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Import_report/convertFile.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Import_report/convertFile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/View/img/PS_chart.png" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/img/PS_chart.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,41 +51,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.BranchesController.executor": "Run",
-    "Python.DashBoard.executor": "Run",
-    "Python.DatabaseConnection.executor": "Run",
-    "Python.EmployerDAO.executor": "Run",
-    "Python.EnterpriseDAO.executor": "Run",
-    "Python.Login.executor": "Run",
-    "Python.ProductSalesUtilities.executor": "Run",
-    "Python.RevenueGeneralChart.executor": "Run",
-    "Python.box.executor": "Run",
-    "Python.convertFile.executor": "Run",
-    "Python.frameUI.executor": "Run",
-    "Python.loginUI.executor": "Debug",
-    "Python.main (1).executor": "Run",
-    "Python.main (2).executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.mainDashboard.executor": "Run",
-    "Python.plot_dataChart.executor": "Run",
-    "Python.product_Box.executor": "Run",
-    "Python.reload.executor": "Run",
-    "Python.test.executor": "Run",
-    "Python.testEmpDao.executor": "Run",
-    "Python.testPandas.executor": "Run",
-    "Python.testSwitchPage.executor": "Run",
-    "Python.testTable.executor": "Run",
-    "Python.test_pd.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "long",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/PYTHON/py_project",
-    "settings.editor.selected.configurable": "consents"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.BranchesController.executor&quot;: &quot;Run&quot;,
+    &quot;Python.DashBoard.executor&quot;: &quot;Run&quot;,
+    &quot;Python.DatabaseConnection.executor&quot;: &quot;Run&quot;,
+    &quot;Python.EmployerDAO.executor&quot;: &quot;Run&quot;,
+    &quot;Python.EnterpriseDAO.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Login.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ProductSalesUtilities.executor&quot;: &quot;Run&quot;,
+    &quot;Python.RevenueGeneralChart.executor&quot;: &quot;Run&quot;,
+    &quot;Python.box.executor&quot;: &quot;Run&quot;,
+    &quot;Python.convertFile.executor&quot;: &quot;Run&quot;,
+    &quot;Python.frameUI.executor&quot;: &quot;Run&quot;,
+    &quot;Python.loginUI.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.main (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.main (2).executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.mainDashboard.executor&quot;: &quot;Run&quot;,
+    &quot;Python.plot_dataChart.executor&quot;: &quot;Run&quot;,
+    &quot;Python.product_Box.executor&quot;: &quot;Run&quot;,
+    &quot;Python.reload.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.testEmpDao.executor&quot;: &quot;Run&quot;,
+    &quot;Python.testPandas.executor&quot;: &quot;Run&quot;,
+    &quot;Python.testSwitchPage.executor&quot;: &quot;Run&quot;,
+    &quot;Python.testTable.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_pd.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;long&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/PYTHON/py_project&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;consents&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\PYTHON\DACS01\Frontend" />
