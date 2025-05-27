@@ -5,38 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b664035e-7b0c-4c4d-8252-f0d6dc412f5b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/Import_report/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/Import_report/convertFile.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/Import_report/reportTest.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/Import_report/reportTmpl.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Frontend/View/Add_and_update_branch_product.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Frontend/View/DraggableHeader.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Frontend/View/SearchableTable.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Frontend/View/img/PS_branchA.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Frontend/View/img/PS_branchB.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Frontend/View/img/PS_branchC.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Frontend/View/img/PS_chart.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Frontend/View/img/PS_general.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Frontend/View/img/revenue_general_chart.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Frontend/add_branch_and_product.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Controller/BranchesController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Controller/BranchesController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Controller/EmployerController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Controller/EmployerController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Controller/MainController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Controller/MainController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Controller/ProductController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Controller/ProductController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/DAO/BranchesDAO.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/DAO/BranchesDAO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/DAO/EmployerDAO.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/DAO/EmployerDAO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/DAO/ProductDAO.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/DAO/ProductDAO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/DAO/ProductSalesDao.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/DAO/ProductSalesDao.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/Chart/Branch_PSChart.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Chart/Branch_PSChart.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/Chart/Branch_RevenueChart.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Chart/Branch_RevenueChart.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/Chart/PSGeneralChart.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Chart/PSGeneralChart.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/Chart/RevenueGeneralChart.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Chart/RevenueGeneralChart.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Controller/ProductSalesController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Controller/ProductSalesController.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/View/DashBoard.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/DashBoard.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/View/dashboard_style.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/View/mainDashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/mainDashboard.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/dashboardUI.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/dashboardUI.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/login_resgister.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/login_resgister.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/View/img/PS_branchA.png" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/img/PS_branchA.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/View/img/PS_branchC.png" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/img/PS_branchC.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +81,7 @@
     "Python.test_pd.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Merging long",
+    "git-widget-placeholder": "long",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "D:/PYTHON/py_project",
     "settings.editor.selected.configurable": "consents"
