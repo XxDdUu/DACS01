@@ -34,6 +34,8 @@ class BranchesDAO:
             return False, "Invalid phone number format"
 
         def branch_name_exists(branch_name):
+            conn_test = None
+            cursor_test = None
             try:
                 conn_test = get_connection()
                 cursor_test = conn_test.cursor()
@@ -158,11 +160,27 @@ class BranchesDAO:
         branchesName = data.get("name")
         branchesAddress = data.get("address")
         branchesPhone = data.get("phone_number").strip()
-        employerId = data.get("employer_id")  # fallback nếu None
-        enterpriseId = data.get("enterprise_id") # fallback nếu None
-
         connection = None
         cursor = None
+
+        def found_branch_id(branchID):
+            conn_test = None
+            cursor_test = None
+            try:
+                conn_test = get_connection()
+                cursor_test = conn_test.cursor()
+                query = "SELECT 1 FROM BRANCHES WHERE Branch_ID = %s"
+                cursor_test.execute(query, (branchID,))
+                return cursor_test.fetchone() is not None
+            finally:
+                if cursor_test:
+                    cursor_test.close()
+                if conn_test:
+                    conn_test.close()
+        if not found_branch_id(branchId):
+            return False, "Branch Id not found."
+
+
 
         def is_valid_phoneNum(phone_number):
             return bool(re.fullmatch(r"[0-9]{10}", branchesPhone))
@@ -190,45 +208,43 @@ class BranchesDAO:
                 if conn_test:
                     conn_test.close()
 
-            if branch_name_exists(branchesName):
-                return False, f"Branch name {branchesName} already exits"
+        if branch_name_exists(branchesName):
+            return False, f"Branch name {branchesName} already exits"
 
-            try:
-                connection = get_connection()
-                if not connection:
-                    return False, "Failed to connect to database"
+        try:
+            connection = get_connection()
+            if not connection:
+                return False, "Failed to connect to database"
 
-                cursor = connection.cursor()
-                query = """
-                           UPDATE BRANCHES
-                           SET Branch_name = %s, Branch_address = %s, Branch_phone_number = %s
-                           WHERE Employer_ID = %s AND Enterprise_ID = %s AND Branch_ID = %s
-                       """
-                cursor.execute(query, (
-                    branchesName,
-                    branchesAddress,
-                    branchesPhone,
-                    employerId,
-                    enterpriseId,
-                    branchId
-                ))
+            cursor = connection.cursor()
+            query = """
+                        UPDATE BRANCHES
+                        SET Branch_name = %s, Branch_address = %s, Branch_phone_number = %s
+                        WHERE Branch_ID = %s
+                    """
+            cursor.execute(query, (
+                branchesName,
+                branchesAddress,
+                branchesPhone,
+                branchId,
+            ))
 
-                connection.commit()
-                return True, "Branch updated successfully"
+            connection.commit()
+            return True, "Branch updated successfully"
 
-            except MySQLdb.Error as e:
-                traceback.print_exc()
-                return False, f"Database Error: {e}"
+        except MySQLdb.Error as e:
+            traceback.print_exc()
+            return False, f"Database Error: {e}"
 
-            except Exception as e:
-                traceback.print_exc()
-                return False, f"Unexpected Error: {e}"
+        except Exception as e:
+            traceback.print_exc()
+            return False, f"Unexpected Error: {e}"
 
-            finally:
-                if cursor:
-                    cursor.close()
-                if connection:
-                    connection.close()
+        finally:
+            if cursor:
+                cursor.close()
+            if connection:
+                connection.close()
     # def get_branches(self, enterprise_id, employer_id):
     #     connection = get_connection()
     #     cursor = connection.cursor()

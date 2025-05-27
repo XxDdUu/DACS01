@@ -10,7 +10,7 @@ from Frontend.View.DashBoard import DashBoard
 from Frontend.View.register import Register
 from Backend.Controller.EmployerController import EmployerController, EmployerAccountSettingController
 from Backend.Controller.EnterpriseController import EnterpriseController
-
+from Frontend.View.Add_and_update_branch_product import Add_and_update_branch_product
 
 class MainController:
 
@@ -43,10 +43,11 @@ class MainController:
     def show_dashboardApp(self, employer_data, enterprise_data):
         try:
             self.dashboard_window = DashBoard(self, employer_data)
+            self.add_and_update_branch_product_window = Add_and_update_branch_product()
 
             self.employer_controller = EmployerController(self.register_window, self.login_window)
             self.enterprise_controller = EnterpriseController(self.register_window)
-            self.branches_controller = BranchesController(self.dashboard_window)
+            self.branches_controller = BranchesController(self.dashboard_window, self.add_and_update_branch_product_window)
             self.product_controller = ProductController(self.dashboard_window)
             self.revenue_controller = RevenueController(self.dashboard_window)
             self.productSales_controller = ProductSalesController(self.dashboard_window)
