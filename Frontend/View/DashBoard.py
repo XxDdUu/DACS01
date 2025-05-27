@@ -56,7 +56,10 @@ class DashBoard(QMainWindow):
 			self.showMaximized()
 		self.is_maximized = not self.is_maximized
 	def mousePressEvent(self, event):
-		self.focusWidget().clearFocus()
+		focused_widget = self.focusWidget()
+		if focused_widget is not None:
+			focused_widget.clearFocus()
+		super().mousePressEvent(event)
 
 	def fetch_account_info(self, employer_data):
 		self.employer_name_lineedit.setText(employer_data.username)
@@ -233,6 +236,7 @@ class DashBoard(QMainWindow):
 	def display_branch_table(self):
 		branches = []
 		if hasattr(self.controller, 'branches_controller') and self.controller.branches_controller:
+			self.controller.branches_controller.data_changed.connect(self.display_branch_table)
 			print("DEBUG employer ID:", self.employer_data.ID)
 			print("DEBUG enterprise ID:", self.employer_data.enterprise_id)
 			branches = self.controller.get_branches_data(

@@ -2999,7 +2999,7 @@ QPushButton::pressed {
                                </widget>
                               </item>
                               <item>
-                               <widget class="QPushButton" name="deleteRow_branch_btn">
+                               <widget class="QPushButton" name="branch_remove_btn">
                                 <property name="text">
                                  <string/>
                                 </property>
@@ -3010,7 +3010,7 @@ QPushButton::pressed {
                                </widget>
                               </item>
                               <item>
-                               <widget class="QPushButton" name="addRow_branch_btn">
+                               <widget class="QPushButton" name="branch_add_btn">
                                 <property name="text">
                                  <string>Add</string>
                                 </property>
@@ -3215,7 +3215,7 @@ QPushButton::pressed {
                                   </widget>
                                  </item>
                                  <item>
-                                  <widget class="QPushButton" name="deleteRow_product_btn">
+                                  <widget class="QPushButton" name="product_remove_btn">
                                    <property name="text">
                                     <string/>
                                    </property>
@@ -3226,7 +3226,7 @@ QPushButton::pressed {
                                   </widget>
                                  </item>
                                  <item>
-                                  <widget class="QPushButton" name="addRow_product_btn">
+                                  <widget class="QPushButton" name="product_add_btn">
                                    <property name="text">
                                     <string>Add</string>
                                    </property>
@@ -3389,6 +3389,7 @@ QFrame {
                          <property name="font">
                           <font>
                            <pointsize>11</pointsize>
+                           <weight>99</weight>
                            <bold>true</bold>
                           </font>
                          </property>
@@ -3402,7 +3403,8 @@ QFrame {
                          <property name="font">
                           <font>
                            <pointsize>10</pointsize>
-                           <bold>false</bold>
+                           <weight>62</weight>
+                           <bold>true</bold>
                           </font>
                          </property>
                          <property name="text">
@@ -3498,15 +3500,15 @@ QFrame {
  </widget>
  <customwidgets>
   <customwidget>
-   <class>ClickableLabel</class>
-   <extends>QLabel</extends>
-   <header>Frontend/View/clickableLabel</header>
-  </customwidget>
-  <customwidget>
    <class>DraggableHeader</class>
    <extends>QFrame</extends>
    <header>Frontend.View.DraggableHeader</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ClickableLabel</class>
+   <extends>QLabel</extends>
+   <header>Frontend/View/clickableLabel</header>
   </customwidget>
  </customwidgets>
  <resources>
