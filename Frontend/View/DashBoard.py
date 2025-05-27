@@ -127,6 +127,15 @@ class DashBoard(QMainWindow):
 			"quantity_sold": self.quantitySold_PS_le.text().strip(),
 			"amount_total": self.saleAmount_PS_le.text().strip()
 		}
+	def get_AccSetting_data(self):
+		return {
+			"employer_id": self.employer_data.ID,
+			"username": self.employer_name_lineedit.text().strip(),
+			"date_of_birth": self.dateEdit.date().toPyDate(),
+			"email": self.email_line_edit.text().strip(),
+			"phone_number": self.Phone_number_lineedit.text().strip(),
+			"enterprise_id": self.enterprise_id_line_edit.text().strip()
+		}
 	def canvas_draw_PS_chart(self):
 		# A, B, C là tên branch trong csdl
 		chartA = PSBranchChart("A")
