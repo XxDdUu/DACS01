@@ -173,7 +173,7 @@ class EmployerDAO:
                 employer_id
             ))
             connection.commit()
-            return True, "Product deleted successfully"
+            return True, "Edit successfully"
 
         except MySQLdb.Error as e:
             traceback.print_exc()
@@ -189,9 +189,12 @@ class EmployerDAO:
             if connection:
                 connection.close()
 
-    def edit_dateBirth(self, data):
+    def edit_dateBirth_Email_phoneNum(self, data):
         datebirth = data.get("date_of_birth")
+        email = data.get("email")
+        phoneNumber = data.get("phone_number")
         enterprise_id = data.get("enterprise_id")
+        employer_id = data.get("employer_id")
 
         connection = None
         cursor = None
@@ -203,88 +206,15 @@ class EmployerDAO:
             cursor = connection.cursor()
             query = """
                         UPDATE EMPLOYER 
-                        SET DOB = %s
-                        WHERE Enterprise_ID = %s
+                        SET DOB = %s, Employer_Email = %s, Employer_Phone_Number = %s
+                        WHERE Enterprise_ID = %s AND Employer_ID = %s
                                     """
             cursor.execute(query, (
                 datebirth,
-                enterprise_id
-            ))
-            connection.commit()
-            return True, "Edit successfully"
-
-        except MySQLdb.Error as e:
-            traceback.print_exc()
-            return False, f"Database Error: {e}"
-
-        except Exception as e:
-            traceback.print_exc()
-            return False, f"Unexpected Error: {e}"
-
-        finally:
-            if cursor:
-                cursor.close()
-            if connection:
-                connection.close()
-
-    def edit_email(self, data):
-        email = data.get("email")
-        enterprise_id = data.get("enterprise_id")
-
-        connection = None
-        cursor = None
-
-        try:
-            connection = get_connection()
-            if not connection:
-                return False, "Failed to connect to database"
-            cursor = connection.cursor()
-            query = """
-                UPDATE EMPLOYER 
-                SET Employer_Email = %s
-                WHERE Enterprise_ID = %s
-            """
-            cursor.execute(query, (
                 email,
-                enterprise_id
-            ))
-            connection.commit()
-            return True, "Edit successfully"
-
-        except MySQLdb.Error as e:
-            traceback.print_exc()
-            return False, f"Database Error: {e}"
-
-        except Exception as e:
-            traceback.print_exc()
-            return False, f"Unexpected Error: {e}"
-
-        finally:
-            if cursor:
-                cursor.close()
-            if connection:
-                connection.close()
-
-    def edit_phoneNum(self, data):
-        phoneNumber = data.get("phone_number")
-        enterprise_id = data.get("enterprise_id")
-
-        connection = None
-        cursor = None
-
-        try:
-            connection = get_connection()
-            if not connection:
-                return False, "Failed to connect to database"
-            cursor = connection.cursor()
-            query = """
-                        UPDATE EMPLOYER 
-                        SET Employer_Phone_Number = %s
-                        WHERE Enterprise_ID = %s
-                    """
-            cursor.execute(query, (
                 phoneNumber,
-                enterprise_id
+                enterprise_id,
+                employer_id
             ))
             connection.commit()
             return True, "Edit successfully"
@@ -296,6 +226,7 @@ class EmployerDAO:
         except Exception as e:
             traceback.print_exc()
             return False, f"Unexpected Error: {e}"
+
         finally:
             if cursor:
                 cursor.close()

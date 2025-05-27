@@ -1,3 +1,5 @@
+from itertools import product
+
 from PyQt6.QtWidgets import QMessageBox
 from Backend.DAO.BranchesDAO import BranchesDAO
 from Backend.DAO.ProductDAO import ProductDAO
@@ -31,3 +33,5 @@ class ProductController:
             QMessageBox.information(self.distribution_view, "Success", message)
         else:
             QMessageBox.warning(self.distribution_view, "Error", message)
+    def get_products(self,employer_id, enterprise_id):
+        return self.product_dao.get_product_by_account(employer_id,enterprise_id)

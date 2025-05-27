@@ -41,10 +41,10 @@ class EmployerAccountSettingController:
 	def __init__(self,main_view):
 		self.main_view = main_view  # dashboard app
 		self.dao = EmployerDAO()
-		# self.main_view.edit_btn_employer_info.clicked.connect(self.handle_editName)
-		# self.main_view.edit_btn_employer_info_2.clicked.connect(self.handle_editDateBirth)
+		self.main_view.edit_btn_employer_info.clicked.connect(self.handle_editName)
+		self.main_view.edit_btn_employer_info_2.clicked.connect(self.handle_edit_birthdate_email_phoneNum)
 	def handle_editName(self):
-		data = self.main_view.get_accountSetting_data()
+		data = self.main_view.get_AccSetting_data()
 		success, message = self.dao.edit_username(data)
 		if success:
 			QMessageBox.information(self.main_view, "Success", message)
@@ -52,19 +52,19 @@ class EmployerAccountSettingController:
 			# self.main_view.le_username.setText(data["username"])
 		else:
 			QMessageBox.warning(self.main_view, "Error", message)
-	def handle_editDateBirth(self):
-		data = self.main_view.get_accountSetting_data()
-		success, message = self.dao.edit_dateBirth(data)
+	def handle_edit_birthdate_email_phoneNum(self):
+		data = self.main_view.get_AccSetting_data()
+		success, message = self.dao.edit_dateBirth_Email_phoneNum(data)
 		if success:
 			QMessageBox.information(self.main_view, "Success", message)
-			self.main_view.employer_data.username = data["date_of_birth"]
-			self.main_view.le_birthdate.setDate(QDate(data["date_of_birth"].year,
-													  data["date_of_birth"].month,
-													  data["date_of_birth"].day))
+			# self.main_view.employer_data.username = data["date_of_birth"]
+			# self.main_view.le_birthdate.setDate(QDate(data["date_of_birth"].year,
+			# 										  data["date_of_birth"].month,
+			# 										  data["date_of_birth"].day))
 		else:
 			QMessageBox.warning(self.main_view, "Error", message)
 	def handle_editEmail(self):
-		data = self.main_view.get_accountSetting_data()
+		data = self.main_view.get_AccSetting_data()
 		success, message = self.dao.edit_email(data)
 		if success:
 			QMessageBox.information(self.main_view, "Success", message)
@@ -73,7 +73,7 @@ class EmployerAccountSettingController:
 		else:
 			QMessageBox.warning(self.main_view, "Error", message)
 	def handle_editPhoneNum(self):
-		data = self.main_view.get_accountSetting_data()
+		data = self.main_view.get_AccSetting_data()
 		success, message = self.dao.edit_phoneNum(data)
 		if success:
 			QMessageBox.information(self.main_view, "Success", message)

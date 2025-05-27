@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_6">
+   <layout class="QVBoxLayout" name="verticalLayout_28">
     <property name="spacing">
      <number>0</number>
     </property>
@@ -58,7 +58,7 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QFrame" name="header">
+        <widget class="DraggableHeader" name="header">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -818,7 +818,7 @@ QPushButton:pressed {
              <item>
               <widget class="QStackedWidget" name="main_display_widget">
                <property name="currentIndex">
-                <number>4</number>
+                <number>0</number>
                </property>
                <widget class="QWidget" name="Account_setting_page">
                 <property name="styleSheet">
@@ -1000,7 +1000,7 @@ QPushButton::pressed {
 }</string>
                       </property>
                       <property name="currentIndex">
-                       <number>0</number>
+                       <number>1</number>
                       </property>
                       <widget class="QWidget" name="enterprise_info">
                        <property name="styleSheet">
@@ -1046,12 +1046,17 @@ QFrame  {
 QLabel {
 	border: none;
 	font-weight: 500;
+	color: rgb(0, 0, 0);
 }
 QLineEdit {
 	border: none;
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 255, 255);
 }
 QTextEdit {
 	border: none;
+	background-color: rgb(255, 255, 255);
+	color: rgb(0, 0, 0);
 }</string>
                           </property>
                           <property name="frameShape">
@@ -1075,10 +1080,16 @@ QTextEdit {
                            </property>
                            <item row="0" column="0">
                             <widget class="QFrame" name="enterprise_name_frame">
+                             <property name="minimumSize">
+                              <size>
+                               <width>160</width>
+                               <height>160</height>
+                              </size>
+                             </property>
                              <property name="maximumSize">
                               <size>
-                               <width>200</width>
-                               <height>160</height>
+                               <width>16777215</width>
+                               <height>16777215</height>
                               </size>
                              </property>
                              <property name="frameShape">
@@ -1142,10 +1153,16 @@ QTextEdit {
                            </item>
                            <item row="1" column="0">
                             <widget class="QFrame" name="enterprise_phone_num_frame">
+                             <property name="minimumSize">
+                              <size>
+                               <width>160</width>
+                               <height>160</height>
+                              </size>
+                             </property>
                              <property name="maximumSize">
                               <size>
-                               <width>200</width>
-                               <height>160</height>
+                               <width>16777215</width>
+                               <height>500</height>
                               </size>
                              </property>
                              <property name="frameShape">
@@ -1209,10 +1226,16 @@ QTextEdit {
                            </item>
                            <item row="1" column="1">
                             <widget class="QFrame" name="enterprise_bs_type_frame">
+                             <property name="minimumSize">
+                              <size>
+                               <width>160</width>
+                               <height>160</height>
+                              </size>
+                             </property>
                              <property name="maximumSize">
                               <size>
-                               <width>200</width>
-                               <height>160</height>
+                               <width>16777215</width>
+                               <height>500</height>
                               </size>
                              </property>
                              <property name="styleSheet">
@@ -1250,7 +1273,6 @@ QTextEdit {
                                 </property>
                                 <property name="font">
                                  <font>
-                                  <pointsize>9</pointsize>
                                   <bold>false</bold>
                                  </font>
                                 </property>
@@ -1262,11 +1284,17 @@ QTextEdit {
                                 </property>
                                </widget>
                               </item>
-                              <item>
+                              <item alignment="Qt::AlignHCenter">
                                <widget class="QTextEdit" name="enterprise_bs_type_text_edit">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>0</width>
+                                  <height>0</height>
+                                 </size>
+                                </property>
                                 <property name="maximumSize">
                                  <size>
-                                  <width>16777215</width>
+                                  <width>16777213</width>
                                   <height>40</height>
                                  </size>
                                 </property>
@@ -1277,6 +1305,12 @@ QTextEdit {
                                 </property>
                                 <property name="layoutDirection">
                                  <enum>Qt::LeftToRight</enum>
+                                </property>
+                                <property name="verticalScrollBarPolicy">
+                                 <enum>Qt::ScrollBarAlwaysOff</enum>
+                                </property>
+                                <property name="horizontalScrollBarPolicy">
+                                 <enum>Qt::ScrollBarAlwaysOff</enum>
                                 </property>
                                 <property name="lineWrapColumnOrWidth">
                                  <number>0</number>
@@ -1301,10 +1335,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
                            </item>
                            <item row="0" column="2">
                             <widget class="QFrame" name="enterprise_address_frame">
+                             <property name="minimumSize">
+                              <size>
+                               <width>160</width>
+                               <height>160</height>
+                              </size>
+                             </property>
                              <property name="maximumSize">
                               <size>
-                               <width>200</width>
-                               <height>160</height>
+                               <width>16777215</width>
+                               <height>16777215</height>
                               </size>
                              </property>
                              <property name="frameShape">
@@ -1368,10 +1408,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
                            </item>
                            <item row="1" column="2">
                             <widget class="QFrame" name="enterprise_industry_frame">
+                             <property name="minimumSize">
+                              <size>
+                               <width>160</width>
+                               <height>160</height>
+                              </size>
+                             </property>
                              <property name="maximumSize">
                               <size>
-                               <width>200</width>
-                               <height>160</height>
+                               <width>16777215</width>
+                               <height>500</height>
                               </size>
                              </property>
                              <property name="frameShape">
@@ -1435,10 +1481,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
                            </item>
                            <item row="0" column="1">
                             <widget class="QFrame" name="enterprise_founder_frame">
+                             <property name="minimumSize">
+                              <size>
+                               <width>160</width>
+                               <height>160</height>
+                              </size>
+                             </property>
                              <property name="maximumSize">
                               <size>
-                               <width>200</width>
-                               <height>160</height>
+                               <width>16777215</width>
+                               <height>16777215</height>
                               </size>
                              </property>
                              <property name="frameShape">
@@ -2135,235 +2187,260 @@ QFrame {
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>641</width>
+                   <width>731</width>
                    <height>201</height>
                   </rect>
                  </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 255, 255);</string>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_17">
+                  <item>
+                   <widget class="QFrame" name="frame_5">
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QFrame" name="frame_9">
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QFrame" name="frame_10">
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </widget>
                 <widget class="QWidget" name="widget_11" native="true">
                  <property name="geometry">
                   <rect>
                    <x>0</x>
                    <y>200</y>
-                   <width>641</width>
-                   <height>201</height>
+                   <width>731</width>
+                   <height>241</height>
                   </rect>
                  </property>
-                 <widget class="QWidget" name="widget_12" native="true">
-                  <property name="geometry">
-                   <rect>
-                    <x>310</x>
-                    <y>0</y>
-                    <width>331</width>
-                    <height>201</height>
-                   </rect>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">background-color: rgb(255, 255, 255);</string>
-                  </property>
-                  <widget class="QTableView" name="tableView">
-                   <property name="geometry">
-                    <rect>
-                     <x>0</x>
-                     <y>11</y>
-                     <width>331</width>
-                     <height>181</height>
-                    </rect>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">border: 3px solid black;
+                 <layout class="QHBoxLayout" name="horizontalLayout_16">
+                  <item>
+                   <widget class="QWidget" name="widget_13" native="true">
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(255, 255, 255);</string>
+                    </property>
+                    <widget class="QLabel" name="label">
+                     <property name="geometry">
+                      <rect>
+                       <x>8</x>
+                       <y>40</y>
+                       <width>71</width>
+                       <height>20</height>
+                      </rect>
+                     </property>
+                     <property name="text">
+                      <string>Revenue ID:</string>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="label_2">
+                     <property name="geometry">
+                      <rect>
+                       <x>8</x>
+                       <y>70</y>
+                       <width>71</width>
+                       <height>20</height>
+                      </rect>
+                     </property>
+                     <property name="text">
+                      <string>Revnue Date:</string>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="label_4">
+                     <property name="geometry">
+                      <rect>
+                       <x>8</x>
+                       <y>100</y>
+                       <width>81</width>
+                       <height>20</height>
+                      </rect>
+                     </property>
+                     <property name="text">
+                      <string>Amount:</string>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="label_6">
+                     <property name="geometry">
+                      <rect>
+                       <x>8</x>
+                       <y>130</y>
+                       <width>71</width>
+                       <height>20</height>
+                      </rect>
+                     </property>
+                     <property name="text">
+                      <string>Branch ID: </string>
+                     </property>
+                    </widget>
+                    <widget class="QLineEdit" name="lineEdit_10">
+                     <property name="geometry">
+                      <rect>
+                       <x>80</x>
+                       <y>40</y>
+                       <width>201</width>
+                       <height>21</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">border: 2px solid black;
+border-radius: 5px;</string>
+                     </property>
+                    </widget>
+                    <widget class="QLineEdit" name="lineEdit_11">
+                     <property name="geometry">
+                      <rect>
+                       <x>80</x>
+                       <y>70</y>
+                       <width>201</width>
+                       <height>21</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">border: 2px solid black;
+border-radius: 5px;</string>
+                     </property>
+                    </widget>
+                    <widget class="QLineEdit" name="lineEdit_12">
+                     <property name="geometry">
+                      <rect>
+                       <x>80</x>
+                       <y>100</y>
+                       <width>201</width>
+                       <height>21</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">border: 2px solid black;
+border-radius: 5px;</string>
+                     </property>
+                    </widget>
+                    <widget class="QLineEdit" name="lineEdit_13">
+                     <property name="geometry">
+                      <rect>
+                       <x>80</x>
+                       <y>130</y>
+                       <width>201</width>
+                       <height>21</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">border: 2px solid black;
+border-radius: 5px;</string>
+                     </property>
+                    </widget>
+                    <widget class="QPushButton" name="pushButton">
+                     <property name="geometry">
+                      <rect>
+                       <x>60</x>
+                       <y>160</y>
+                       <width>75</width>
+                       <height>24</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: black;
+color: white;
+border-radius: 10px</string>
+                     </property>
+                     <property name="text">
+                      <string>Add</string>
+                     </property>
+                    </widget>
+                    <widget class="QPushButton" name="pushButton_2">
+                     <property name="geometry">
+                      <rect>
+                       <x>140</x>
+                       <y>160</y>
+                       <width>75</width>
+                       <height>24</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: black;
+color: white;
+border-radius: 10px</string>
+                     </property>
+                     <property name="text">
+                      <string>Remove</string>
+                     </property>
+                    </widget>
+                    <widget class="QPushButton" name="pushButton_3">
+                     <property name="geometry">
+                      <rect>
+                       <x>220</x>
+                       <y>160</y>
+                       <width>75</width>
+                       <height>24</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: black;
+color: white;
+border-radius: 10px</string>
+                     </property>
+                     <property name="text">
+                      <string>Update</string>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="mangePS_label_2">
+                     <property name="geometry">
+                      <rect>
+                       <x>120</x>
+                       <y>10</y>
+                       <width>121</width>
+                       <height>16</height>
+                      </rect>
+                     </property>
+                     <property name="text">
+                      <string>Manage Revenue Info</string>
+                     </property>
+                    </widget>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QWidget" name="widget_12" native="true">
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(255, 255, 255);</string>
+                    </property>
+                    <widget class="QTableView" name="tableView">
+                     <property name="geometry">
+                      <rect>
+                       <x>10</x>
+                       <y>11</y>
+                       <width>331</width>
+                       <height>181</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">border: 1px solid black;
 border-radius: 7px;</string>
-                   </property>
-                  </widget>
-                 </widget>
-                 <widget class="QWidget" name="widget_13" native="true">
-                  <property name="geometry">
-                   <rect>
-                    <x>0</x>
-                    <y>0</y>
-                    <width>311</width>
-                    <height>201</height>
-                   </rect>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">background-color: rgb(255, 255, 255);</string>
-                  </property>
-                  <widget class="QLabel" name="label">
-                   <property name="geometry">
-                    <rect>
-                     <x>8</x>
-                     <y>40</y>
-                     <width>71</width>
-                     <height>20</height>
-                    </rect>
-                   </property>
-                   <property name="text">
-                    <string>Revenue ID:</string>
-                   </property>
-                  </widget>
-                  <widget class="QLabel" name="label_2">
-                   <property name="geometry">
-                    <rect>
-                     <x>8</x>
-                     <y>70</y>
-                     <width>71</width>
-                     <height>20</height>
-                    </rect>
-                   </property>
-                   <property name="text">
-                    <string>Revnue Date:</string>
-                   </property>
-                  </widget>
-                  <widget class="QLabel" name="label_4">
-                   <property name="geometry">
-                    <rect>
-                     <x>8</x>
-                     <y>100</y>
-                     <width>81</width>
-                     <height>20</height>
-                    </rect>
-                   </property>
-                   <property name="text">
-                    <string>Amount:</string>
-                   </property>
-                  </widget>
-                  <widget class="QLabel" name="label_6">
-                   <property name="geometry">
-                    <rect>
-                     <x>8</x>
-                     <y>130</y>
-                     <width>71</width>
-                     <height>20</height>
-                    </rect>
-                   </property>
-                   <property name="text">
-                    <string>Branch ID: </string>
-                   </property>
-                  </widget>
-                  <widget class="QLineEdit" name="lineEdit_10">
-                   <property name="geometry">
-                    <rect>
-                     <x>80</x>
-                     <y>40</y>
-                     <width>201</width>
-                     <height>21</height>
-                    </rect>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">border: 2px solid black;
-border-radius: 5px;</string>
-                   </property>
-                  </widget>
-                  <widget class="QLineEdit" name="lineEdit_11">
-                   <property name="geometry">
-                    <rect>
-                     <x>80</x>
-                     <y>70</y>
-                     <width>201</width>
-                     <height>21</height>
-                    </rect>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">border: 2px solid black;
-border-radius: 5px;</string>
-                   </property>
-                  </widget>
-                  <widget class="QLineEdit" name="lineEdit_12">
-                   <property name="geometry">
-                    <rect>
-                     <x>80</x>
-                     <y>100</y>
-                     <width>201</width>
-                     <height>21</height>
-                    </rect>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">border: 2px solid black;
-border-radius: 5px;</string>
-                   </property>
-                  </widget>
-                  <widget class="QLineEdit" name="lineEdit_13">
-                   <property name="geometry">
-                    <rect>
-                     <x>80</x>
-                     <y>130</y>
-                     <width>201</width>
-                     <height>21</height>
-                    </rect>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">border: 2px solid black;
-border-radius: 5px;</string>
-                   </property>
-                  </widget>
-                  <widget class="QPushButton" name="pushButton">
-                   <property name="geometry">
-                    <rect>
-                     <x>60</x>
-                     <y>160</y>
-                     <width>75</width>
-                     <height>24</height>
-                    </rect>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">background-color: black;
-color: white;
-border-radius: 10px</string>
-                   </property>
-                   <property name="text">
-                    <string>Add</string>
-                   </property>
-                  </widget>
-                  <widget class="QPushButton" name="pushButton_2">
-                   <property name="geometry">
-                    <rect>
-                     <x>140</x>
-                     <y>160</y>
-                     <width>75</width>
-                     <height>24</height>
-                    </rect>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">background-color: black;
-color: white;
-border-radius: 10px</string>
-                   </property>
-                   <property name="text">
-                    <string>Remove</string>
-                   </property>
-                  </widget>
-                  <widget class="QPushButton" name="pushButton_3">
-                   <property name="geometry">
-                    <rect>
-                     <x>220</x>
-                     <y>160</y>
-                     <width>75</width>
-                     <height>24</height>
-                    </rect>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">background-color: black;
-color: white;
-border-radius: 10px</string>
-                   </property>
-                   <property name="text">
-                    <string>Update</string>
-                   </property>
-                  </widget>
-                  <widget class="QLabel" name="mangePS_label_2">
-                   <property name="geometry">
-                    <rect>
-                     <x>120</x>
-                     <y>10</y>
-                     <width>121</width>
-                     <height>16</height>
-                    </rect>
-                   </property>
-                   <property name="text">
-                    <string>Manage Revenue Info</string>
-                   </property>
-                  </widget>
-                 </widget>
+                     </property>
+                    </widget>
+                   </widget>
+                  </item>
+                 </layout>
                 </widget>
                </widget>
                <widget class="QWidget" name="Product_sale_page">
@@ -2371,8 +2448,8 @@ border-radius: 10px</string>
                  <property name="geometry">
                   <rect>
                    <x>0</x>
-                   <y>150</y>
-                   <width>311</width>
+                   <y>200</y>
+                   <width>321</width>
                    <height>251</height>
                   </rect>
                  </property>
@@ -2627,9 +2704,9 @@ QDateEdit::drop-down {
                 <widget class="QWidget" name="widget_28" native="true">
                  <property name="geometry">
                   <rect>
-                   <x>310</x>
-                   <y>150</y>
-                   <width>331</width>
+                   <x>320</x>
+                   <y>200</y>
+                   <width>421</width>
                    <height>251</height>
                   </rect>
                  </property>
@@ -2639,9 +2716,9 @@ QDateEdit::drop-down {
                  <widget class="QTableView" name="PS_data_table">
                   <property name="geometry">
                    <rect>
-                    <x>0</x>
+                    <x>20</x>
                     <y>20</y>
-                    <width>331</width>
+                    <width>361</width>
                     <height>211</height>
                    </rect>
                   </property>
@@ -2656,13 +2733,45 @@ border-radius: 7px;</string>
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>641</width>
-                   <height>151</height>
+                   <width>741</width>
+                   <height>201</height>
                   </rect>
                  </property>
                  <property name="styleSheet">
                   <string notr="true">background-color: rgb(255, 255, 255);</string>
                  </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_15">
+                  <item>
+                   <widget class="QFrame" name="frame_chart_1">
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QFrame" name="frame_chart_2">
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QFrame" name="frame_chart_3">
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </widget>
                </widget>
                <widget class="QWidget" name="Distribution_page">
@@ -2713,12 +2822,16 @@ border-radius: 7px;</string>
     background-color: rgb(228, 228, 228);
     alternate-background-color: #f9f9f9;
     gridline-color: #e0e0e0;
+	color: rgb(45, 45, 45);
 }
 
 QHeaderView::section {
     background-color: #f0f0f0;
     padding: 5px;
     font-weight: bold;
+	color: black;
+    border-bottom: 1px solid rgb(0, 0, 0);
+	qproperty-alignment: AlignCenter;
 }
 #branches_info_label {
 	color: rgb(0, 0, 0);
@@ -2854,7 +2967,7 @@ QPushButton::pressed {
                                   </widget>
                                  </item>
                                  <item>
-                                  <widget class="QLineEdit" name="search_line_edit">
+                                  <widget class="QLineEdit" name="search_branch_le">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -2886,7 +2999,7 @@ QPushButton::pressed {
                                </widget>
                               </item>
                               <item>
-                               <widget class="QPushButton" name="deleteRow_branch_btn">
+                               <widget class="QPushButton" name="branch_remove_btn">
                                 <property name="text">
                                  <string/>
                                 </property>
@@ -2897,7 +3010,7 @@ QPushButton::pressed {
                                </widget>
                               </item>
                               <item>
-                               <widget class="QPushButton" name="addRow_branch_btn">
+                               <widget class="QPushButton" name="branch_add_btn">
                                 <property name="text">
                                  <string>Add</string>
                                 </property>
@@ -3070,7 +3183,7 @@ QPushButton::pressed {
                                      </widget>
                                     </item>
                                     <item>
-                                     <widget class="QLineEdit" name="search_line_edit_2">
+                                     <widget class="QLineEdit" name="search_products_le">
                                       <property name="minimumSize">
                                        <size>
                                         <width>0</width>
@@ -3102,7 +3215,7 @@ QPushButton::pressed {
                                   </widget>
                                  </item>
                                  <item>
-                                  <widget class="QPushButton" name="deleteRow_product_btn">
+                                  <widget class="QPushButton" name="product_remove_btn">
                                    <property name="text">
                                     <string/>
                                    </property>
@@ -3113,7 +3226,7 @@ QPushButton::pressed {
                                   </widget>
                                  </item>
                                  <item>
-                                  <widget class="QPushButton" name="addRow_product_btn">
+                                  <widget class="QPushButton" name="product_add_btn">
                                    <property name="text">
                                     <string>Add</string>
                                    </property>
@@ -3169,13 +3282,13 @@ border-radius: 5px;</string>
                    <property name="styleSheet">
                     <string notr="true">background-color: rgb(255, 255, 255);</string>
                    </property>
-                   <widget class="QPushButton" name="import_report_btn">
+                   <widget class="QPushButton" name="export_report_btn">
                     <property name="geometry">
                      <rect>
                       <x>320</x>
-                      <y>90</y>
-                      <width>81</width>
-                      <height>31</height>
+                      <y>10</y>
+                      <width>75</width>
+                      <height>24</height>
                      </rect>
                     </property>
                     <property name="styleSheet">
@@ -3184,7 +3297,7 @@ color: white;
 border-radius: 5px</string>
                     </property>
                     <property name="text">
-                     <string>Import</string>
+                     <string>Export</string>
                     </property>
                    </widget>
                   </widget>
@@ -3224,12 +3337,139 @@ QFrame {
                  </item>
                  <item row="0" column="0">
                   <widget class="QFrame" name="total_revenue_frame">
+                   <property name="styleSheet">
+                    <string notr="true">QFrame {
+	background-color:rgb(106, 106, 106);
+	
+}
+#total_revenue_frame {
+	background-color: rgb(255, 255, 255);
+}</string>
+                   </property>
                    <property name="frameShape">
                     <enum>QFrame::StyledPanel</enum>
                    </property>
                    <property name="frameShadow">
                     <enum>QFrame::Raised</enum>
                    </property>
+                   <layout class="QGridLayout" name="gridLayout_4">
+                    <property name="spacing">
+                     <number>3</number>
+                    </property>
+                    <item row="0" column="0">
+                     <widget class="QFrame" name="Total_revenue">
+                      <property name="styleSheet">
+                       <string notr="true">#total_revenue_label {
+	color: rgb(255, 255, 255);
+	font-weight: 1000;
+}
+#number_of_total_revenue_label {
+	color: rgb(255, 255, 255);
+	font-weight: 500;
+}
+#total_revenue_date_label {
+	color: rgb(255, 255, 255);
+}
+#percentage_of_increase_revuenue_label {
+	color: rgb(78, 255, 66);
+}</string>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_28">
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <item alignment="Qt::AlignHCenter">
+                        <widget class="QLabel" name="total_revenue_label">
+                         <property name="font">
+                          <font>
+                           <pointsize>11</pointsize>
+                           <weight>99</weight>
+                           <bold>true</bold>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>Total Revenue</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item alignment="Qt::AlignHCenter">
+                        <widget class="QLabel" name="number_of_total_revenue_label">
+                         <property name="font">
+                          <font>
+                           <pointsize>10</pointsize>
+                           <weight>62</weight>
+                           <bold>true</bold>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>124.24$</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item alignment="Qt::AlignHCenter">
+                        <widget class="QLabel" name="percentage_of_increase_revuenue_label">
+                         <property name="font">
+                          <font>
+                           <pointsize>9</pointsize>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>+12%</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item alignment="Qt::AlignHCenter">
+                        <widget class="QLabel" name="total_revenue_date_label">
+                         <property name="font">
+                          <font>
+                           <pointsize>8</pointsize>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>26/05/2025</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QFrame" name="frame_10">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="1">
+                     <widget class="QFrame" name="frame_9">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QFrame" name="frame_11">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
                   </widget>
                  </item>
                  <item row="0" column="1">
@@ -3259,6 +3499,12 @@ QFrame {
   </widget>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>DraggableHeader</class>
+   <extends>QFrame</extends>
+   <header>Frontend.View.DraggableHeader</header>
+   <container>1</container>
+  </customwidget>
   <customwidget>
    <class>ClickableLabel</class>
    <extends>QLabel</extends>
