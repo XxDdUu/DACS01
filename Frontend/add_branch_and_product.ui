@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>381</width>
-    <height>428</height>
+    <width>399</width>
+    <height>439</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -348,9 +348,9 @@ QPushButton {
     </widget>
    </item>
    <item>
-    <widget class="QStackedWidget" name="stackedWidget">
+    <widget class="QStackedWidget" name="main_widget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="manage_branches">
       <property name="styleSheet">
@@ -767,7 +767,466 @@ background-color: rgb(255, 255, 255);
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="manage_product"/>
+     <widget class="QWidget" name="manage_product">
+      <property name="styleSheet">
+       <string notr="true">#manage_product {
+	background-color: rgb(255, 255, 255);
+}
+QFrame {
+	background-color: rgb(255, 255, 255);
+}</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_8">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="main_product_logo_frame">
+         <property name="styleSheet">
+          <string notr="true">#Manage_branch_info_label {
+	font-weight: bold;
+	color: rgb(0, 0, 0);
+	padding: 10px;
+}</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QFrame" name="main_product_logo_label">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777201</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">#main_branch_logo {
+	background-color: rgb(210, 210, 210);
+	border-radius: 50px;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_9">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>45</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="main_product_logo">
+               <property name="minimumSize">
+                <size>
+                 <width>60</width>
+                 <height>60</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>100</width>
+                 <height>100</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>3</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="pixmap">
+                <pixmap resource="View/img/resources.qrc">:/icon/icon/productSales.png</pixmap>
+               </property>
+               <property name="scaledContents">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="Manage_product_info_label">
+            <property name="maximumSize">
+             <size>
+              <width>211</width>
+              <height>120</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Add Product</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="product_edit_frame">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">#branch_edit_frame {
+background-color: rgb(255, 255, 255);
+}
+QLineEdit {
+	    color :  rgb(56, 56, 56);
+        background-color:  rgb(245, 245, 245);
+        border: none;
+        border-bottom-style: solid;
+        border-radius: 2px;
+        border-left: 1px solid  rgb(0, 0, 0);
+        margin: 2px;
+        height: 35px;
+        padding-left: 5px;
+}
+QLineEdit:hover {
+		background-color: rgb(220, 220, 220);
+}
+QComboBox {
+	    color :  rgb(56, 56, 56);
+        background-color:  rgb(245, 245, 245);
+        border: none;
+        border-bottom-style: solid;
+        border-radius: 2px;
+        border-left: 1px solid  rgb(0, 0, 0);
+        margin: 2px;
+        height: 35px;
+        padding-left: 5px;
+}
+QComboBox:hover {
+		background-color: rgb(220, 220, 220);
+}
+QComboBox QAbstractItemView {
+    background-color: white;
+    selection-background-color: #4CAF50;
+    selection-color: white;
+    border: 1px solid #ddd;
+}
+
+QComboBox QAbstractItemView::item {
+    padding: 5px;
+    height: 25px;
+}
+QComboBox QAbstractItemView::item:selected {
+    background-color:  rgb(175, 175, 175);
+    color: black;
+}
+
+QComboBox QAbstractItemView::item:hover {
+    background-color: #e0e0e0;
+}</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_6">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>9</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>9</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLineEdit" name="product_id_line_edit">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>9</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="placeholderText">
+             <string>Product id</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="product_name_and_address_frame">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_8">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLineEdit" name="product_name_line_edit">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>9</pointsize>
+                </font>
+               </property>
+               <property name="echoMode">
+                <enum>QLineEdit::Normal</enum>
+               </property>
+               <property name="placeholderText">
+                <string>Name</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="product_price_line_edit">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>9</pointsize>
+                </font>
+               </property>
+               <property name="placeholderText">
+                <string>Price</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="product_amount_line_edit">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>35</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>9</pointsize>
+             </font>
+            </property>
+            <property name="echoMode">
+             <enum>QLineEdit::Normal</enum>
+            </property>
+            <property name="placeholderText">
+             <string>Amount</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="branch_id_combo_box">
+            <property name="currentText">
+             <string notr="true">Branch id</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>Branch id</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="product_btn_frame">
+         <property name="styleSheet">
+          <string notr="true">#branch_btn_frame {
+background-color: rgb(255, 255, 255);
+}
+#update_and_add_button {
+	border: 2px solid rgb(197, 197, 197);
+	border-radius: 3px;
+	background-color: rgb(213, 213, 213);
+	color: rgb(65, 65, 65);
+}
+#update_and_add_button:hover {
+	border: 2px solid rgb(107, 107, 107);
+}
+#update_and_add_button:pressed{
+	border: 2px solid rgb(107, 107, 107);
+	background-color: rgb(144, 144, 144);
+}
+#update_and_add_label {
+	color: rgb(0, 0, 0);
+}
+#update_and_add_label:hover {
+	color: rgb(126, 126, 126);
+}
+#update_and_add_label:pressed {
+	color: rgb(115, 115, 115)
+}</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_7">
+          <item>
+           <widget class="QPushButton" name="product_and_add_button">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Add</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="ClickableLabel" name="product_and_add_label">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>23</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Update product info? Click here</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
   </layout>

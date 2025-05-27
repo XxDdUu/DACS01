@@ -35,3 +35,5 @@ class ProductController:
             QMessageBox.warning(self.distribution_view, "Error", message)
     def get_products(self,employer_id, enterprise_id):
         return self.product_dao.get_product_by_account(employer_id,enterprise_id)
+    def get_top_products(self, employer_id, enterprise_id):
+        return self.product_dao.get_top_product_table_by_account(employer_id, enterprise_id)

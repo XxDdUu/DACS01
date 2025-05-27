@@ -76,3 +76,11 @@ class Add_and_update_branch_product(QtWidgets.QWidget):
 			"address": self.branch_address_line_edit.text().strip(),
 			"phone_number": self.branch_phone_num_line_edit.text().strip(),
 		}
+	def get_productForm_data(self):
+		return {
+			"id": self.product_id_line_edit.text().strip(),
+			"name": self.product_name_line_edit.text().strip(),
+			"price": self.product_price_line_edit.text().strip(),
+			"amount": self.product_amount_line_edit.text().strip(),
+			"branch_id": self.branch_id_combo_box.currentText()
+		}

@@ -227,12 +227,67 @@ class DashBoard(QMainWindow):
 			print(f"ERROR setting model: {e}")
 
 		return self.PS_data_table
+	def display_top_product_table(self):
+		TopProduct = []
+		if hasattr(self.controller, 'product_controller') and self.controller.product_controller:
+			print("DEBUG employer ID!!!!!!!!!!:", self.employer_data.ID)
+			print("DEBUG enterprise ID:", self.employer_data.enterprise_id)
+			TopProduct = self.controller.get_top_products_data(
+				self.employer_data.ID,
+				self.employer_data.enterprise_id
+			)
+			print("DEBUG Top Product from DB!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!:", TopProduct)
+
+		TP_model = QStandardItemModel(len(TopProduct), 5)
+		TP_model.setHorizontalHeaderLabels(["Product_ID", "Product_NAME", "Price",
+										 "Amount", "Branch_ID"])
+
+		for row_index, top_product in enumerate(TopProduct):
+			try:
+				# Convert all values to string safely
+				product_id = str(top_product.get("Product_ID", ""))
+				product_name = str(top_product.get("Product_ID", ""))
+				product_price = str(top_product.get("PRICE", ""))
+
+				product_amount = str(top_product.get("AMOUNT", ""))
+				branch_id = str(top_product.get("Branch_ID", ""))
+
+				if hasattr(product_price, '__float__'):  # Decimal objects have __float__
+					product_price = f"{float(product_price):.2f}"
+				else:
+					product_price = str(product_price)
+
+				# Set items safely
+				TP_model.setItem(row_index, 0, QStandardItem(product_id))
+				TP_model.setItem(row_index, 1, QStandardItem(product_name))
+				TP_model.setItem(row_index, 2, QStandardItem(product_price))
+				TP_model.setItem(row_index, 3, QStandardItem(product_amount))
+				TP_model.setItem(row_index, 4, QStandardItem(branch_id))
+
+				print(
+					f"DEBUG Row {row_index}: {sale_id}, {product_id}, {branch_id}, {sale_date}, {quantity_sold}, {sale_amount}")
+
+			except Exception as e:
+				print(f"ERROR processing row {row_index}: {e}")
+				print(f"Row data: {TopProduct}")
+				# Create empty items for failed row
+				for col in range(6):
+					TP_model.setItem(row_index, col, QStandardItem(""))
+
+		try:
+			self.top_product_table.setModel(TP_model)
+			self.top_product_table.resizeColumnsToContents()
+			print(f"Product Sales data loaded: {len(TopProduct)} records")
+		except Exception as e:
+			print(f"ERROR setting model: {e}")
+
+		return self.top_product_table
 
 		#setter method
-		def set_employer_data(self, employer_data):
-			self.employer_data = employer_data
-		def set_enterprise_data(self, enterprise_data):
-			self.enterprise_data = enterprise_data
+	def set_employer_data(self, employer_data):
+		self.employer_data = employer_data
+	def set_enterprise_data(self, enterprise_data):
+		self.enterprise_data = enterprise_data
 
 	def display_branch_table(self):
 		branches = []
