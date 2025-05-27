@@ -62,6 +62,7 @@
     <file>icon/success.svg</file>
     <file>icon/x.png</file>
     <file>icon/x_white.svg</file>
+    <file>icon/brand-microsoft-word-svgrepo-com.svg</file>
   </qresource>
   <qresource prefix="logo">
     <file>logo/dark_pythonLogo.png</file>

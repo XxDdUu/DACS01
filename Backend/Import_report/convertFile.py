@@ -65,13 +65,13 @@ class ExportReportFile:
             ax.set_xlabel("Product")
             ax.set_ylabel("Revenue")
             figure.tight_layout()
-            figure.savefig("D:/PYTHON/DACS01/Frontend/View/img/PS_chart.png")
+            figure.savefig("Frontend/View/img/PS_chart.png")
 
             context = {
                 "reportDtStr": "29, Oct 2025",
                 "salesTblRows": sales_rows,
                 "topItemsRows": top_items,
-                "trendImg": InlineImage(doc, "D:/PYTHON/DACS01/Frontend/View/img/PS_chart.png")
+                "trendImg": InlineImage(doc, "Frontend/View/img/PS_chart.png")
             }
             doc.render(context)
             file_path, _ = QFileDialog.getSaveFileName(
