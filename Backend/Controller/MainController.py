@@ -4,6 +4,7 @@ from Backend.Controller.BranchesController import BranchesController
 from Backend.Controller.ProductController import ProductController
 from Backend.Controller.ProductSalesController import ProductSalesController
 from Backend.Controller.RevenueController import RevenueController
+from Backend.Import_report.convertFile import ExportReportFile
 from Backend.Model.Employer import Employer
 from Frontend.View.Login import Login
 from Frontend.View.DashBoard import DashBoard
@@ -52,10 +53,20 @@ class MainController:
             self.revenue_controller = RevenueController(self.dashboard_window)
             self.productSales_controller = ProductSalesController(self.dashboard_window)
             self.EmployerAccountSettingController = EmployerAccountSettingController(self.dashboard_window)
+            self.export_report_file = ExportReportFile(self.dashboard_window)
 
             self.enterprise_controller.set_dashboard(self.dashboard_window, employer_data)
 
             self.dashboard_window.switch_to_login = self.show_login
+
+            try:
+                print("Attempting to load Product Sales table...")
+                self.dashboard_window.display_PS_table()
+                print("Product Sales table loaded successfully")
+            except Exception as e:
+                print(f"ERROR loading Product Sales table: {e}")
+                import traceback
+                traceback.print_exc()
 
             self.login_window.hide()
             self.register_window.hide()

@@ -167,6 +167,7 @@ class DashBoard(QMainWindow):
 		if hasattr(self.controller, 'productSales_controller') and self.controller.productSales_controller:
 			print("DEBUG employer ID:", self.employer_data.ID)
 			print("DEBUG enterprise ID:", self.employer_data.enterprise_id)
+			self.controller.productSales_controller.ps_data_changed.connect(self.display_PS_table)
 			productSale = self.controller.get_PS_data(
 				self.employer_data.ID,
 				self.employer_data.enterprise_id
