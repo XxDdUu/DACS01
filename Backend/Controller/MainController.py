@@ -50,7 +50,7 @@ class MainController:
             self.employer_controller = EmployerController(self.register_window, self.login_window)
             self.enterprise_controller = EnterpriseController(self.register_window)
             self.branches_controller = BranchesController(self.dashboard_window, self.add_and_update_branch_product_window)
-            self.product_controller = ProductController(self.dashboard_window)
+            self.product_controller = ProductController(self.dashboard_window, self.add_and_update_branch_product_window)
             self.revenue_controller = RevenueController(self.dashboard_window)
             self.productSales_controller = ProductSalesController(self.dashboard_window)
             self.EmployerAccountSettingController = EmployerAccountSettingController(self.dashboard_window)
@@ -80,6 +80,7 @@ class MainController:
                 self.dashboard_window.display_branch_table()
                 self.dashboard_window.display_product_table()
                 self.dashboard_window.display_revenue_table()
+                self.dashboard_window.display_top_product_table()
                 print("data table loaded successfully")
             except Exception as e:
                 print(f"ERROR loading Product Sales table: {e}")
@@ -106,4 +107,8 @@ class MainController:
     def get_revenues_data(self, employer_id, enterprise_id):
         if self.revenue_controller:
             return self.revenue_controller.get_revenues(employer_id,enterprise_id)
+        return []
+    def get_top_products_data(self, employer_id, enterprise_id):
+        if self.product_controller:
+            return self.product_controller.get_top_products(employer_id, enterprise_id)
         return []
