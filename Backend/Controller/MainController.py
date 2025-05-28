@@ -29,6 +29,7 @@ class MainController:
         self.branches_controller = None
         self.productSales_controller = None
         self.product_controller = None
+        self.revenue_controller = None
 
     def show_login(self):
         self.register_window.hide()
@@ -78,6 +79,7 @@ class MainController:
                 self.dashboard_window.display_PS_table()
                 self.dashboard_window.display_branch_table()
                 self.dashboard_window.display_product_table()
+                self.dashboard_window.display_revenue_table()
                 print("data table loaded successfully")
             except Exception as e:
                 print(f"ERROR loading Product Sales table: {e}")
@@ -100,4 +102,8 @@ class MainController:
     def get_products_data(self, employer_id, enterprise_id):
         if self.product_controller:
             return self.product_controller.get_products(employer_id, enterprise_id)
+        return []
+    def get_revenues_data(self, employer_id, enterprise_id):
+        if self.revenue_controller:
+            return self.revenue_controller.get_revenues(employer_id,enterprise_id)
         return []

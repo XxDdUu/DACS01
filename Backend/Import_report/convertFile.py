@@ -9,12 +9,14 @@ from matplotlib.backends.backend_template import FigureCanvas
 from Backend.DAO.DatabaseConnection import get_connection
 from Frontend.Chart.Branch_PSChart import PSBranchChart
 from Frontend.Chart.PSGeneralChart import ProductSaleChart
-from Frontend.Chart.RevenueGeneralChart import generalChart
+from Frontend.Chart.RevenueGeneralChart import RevenueGeneralChart
 
 
 class ExportReportFile:
     def __init__(self, main_view):
         self.main_view = main_view
+        self.emp_id = main_view.employer_data.ID
+        self.ent_id = main_view.employer_data.enterprise_id
         self.main_view.export_report_btn.clicked.connect(self.export_file)
     def export_file(self):
         try:
@@ -36,12 +38,14 @@ class ExportReportFile:
             PRODUCT p ON ps.Product_ID = p.Product_ID
         JOIN
             BRANCHES b ON ps.Branch_ID = b.Branch_ID
+        WHERE 
+            b.Employer_ID = %s AND b.Enterprise_ID = %s
         GROUP BY
             p.Product_NAME, b.Branch_name, p.PRICE, ps.QUANTITY_SOLD, ps.SALE_DATE
         ORDER BY
             total_revenue DESC;
             """
-            df = pd.read_sql(query, conn)
+            df = pd.read_sql(query, conn, params=[self.emp_id,self.ent_id])
             print(df)
 
             doc = DocxTemplate("Backend/Import_report/reportTmpl.docx")
@@ -71,7 +75,7 @@ class ExportReportFile:
                 "reportDtStr": "29, Oct 2025",
                 "salesTblRows": sales_rows,
                 "topItemsRows": top_items,
-                "trendImg": InlineImage(doc, "D:/PYTHON/DACS01/Frontend/View/img/PS_chart.png")
+                "trendImg": InlineImage(doc, "D:/PYTHON/DACS01/Frontend/View/img/rev_general.png")
             }
             doc.render(context)
             file_path, _ = QFileDialog.getSaveFileName(

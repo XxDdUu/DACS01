@@ -1,6 +1,7 @@
 from Backend.DAO.DatabaseConnection import get_connection
 import MySQLdb
 import traceback
+import pandas as pd
 
 class RevenueDAO:
     def create_revenue(self, data):
@@ -148,6 +149,67 @@ class RevenueDAO:
         except Exception as e:
             traceback.print_exc()
             return False, f"Unexpected Error: {e}"
+
+        finally:
+            if cursor:
+                cursor.close()
+            if connection:
+                connection.close()
+    def get_revenue_data(self,emp_id,ent_id):
+        connection = None
+        cursor = None
+        try:
+            connection = get_connection()
+            cursor = connection.cursor()
+            query1 = """
+            INSERT INTO REVENUE(Branch_ID, Revenue_date, Amount)
+            SELECT DISTINCT p.Branch_ID, ps.SALE_DATE, SUM(ps.SALE_AMOUNT)
+            FROM PRODUCT p
+            JOIN PRODUCT_SALES ps ON ps.Product_ID = p.Product_ID 
+            JOIN BRANCHES b ON b.Branch_ID = p.Branch_ID
+            WHERE b.Employer_ID = %s AND b.Enterprise_ID = %s
+            GROUP BY p.Branch_ID, ps.SALE_DATE
+            ON DUPLICATE KEY UPDATE 
+            Revenue_date = VALUES(Revenue_date),
+            Amount = VALUES(Amount);
+            """
+            cursor.execute(query1,(emp_id,ent_id))
+
+            query2 = """
+                UPDATE REVENUE r
+                JOIN (
+                    SELECT 
+                        p.Branch_ID,
+                        ps.SALE_DATE as Revenue_Date ,
+                        SUM(ps.SALE_AMOUNT) AS total_revenue
+                    FROM PRODUCT p
+                    JOIN PRODUCT_SALES ps ON ps.Product_ID = p.Product_ID
+                    JOIN BRANCHES b on b.Branch_ID = p.Branch_ID
+                    WHERE b.Employer_ID = %s AND b.Enterprise_ID = %s
+                    GROUP BY p.Branch_ID, ps.SALE_DATE
+                    ) AS sub 
+                    ON r.Branch_ID = sub.Branch_ID AND r.Revenue_date = sub.Revenue_date
+                    SET r.Amount = sub.total_revenue;
+            """
+            cursor.execute(query2,(emp_id,ent_id))
+            connection.commit()
+
+            query3 = """
+           SELECT r.* FROM REVENUE r
+                        JOIN BRANCHES b ON r.Branch_ID = b.Branch_ID
+                        WHERE b.Employer_ID = %s AND b.Enterprise_ID = %s ;
+                    """
+            cursor.execute(query3, (emp_id, ent_id))
+
+            rows = cursor.fetchall()
+            columns = [col[0] for col in cursor.description]
+            df = pd.DataFrame(rows, columns=columns)
+            return df.to_dict(orient="records")
+
+        except Exception as e:
+            print(f"ERROR in get_product_by_account: {e}")
+            traceback.print_exc()
+            return []
 
         finally:
             if cursor:
