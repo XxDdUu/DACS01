@@ -15,7 +15,7 @@ from Frontend.Chart.RevenueGeneralChart import generalChart
 class ExportReportFile:
     def __init__(self, main_view):
         self.main_view = main_view
-        self.main_view.export_report_btn.clicked.connect(self.export_file)
+        self.main_view.export_word_btn.clicked.connect(self.export_file)
     def export_file(self):
         try:
             conn = get_connection()

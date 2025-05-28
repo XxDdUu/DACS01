@@ -90,7 +90,6 @@ class DashBoard(QMainWindow):
 		self.home_btn.clicked.connect(lambda: self.main_display_widget.setCurrentWidget(self.Home_page))
 		self.account_setting_btn.clicked.connect(lambda: self.main_display_widget.setCurrentWidget(self.Account_setting_page))
 		self.revenue_btn.clicked.connect(lambda: self.main_display_widget.setCurrentWidget(self.Revenue_page))
-		self.report_btn.clicked.connect(lambda: self.main_display_widget.setCurrentWidget(self.Report_page))
 		self.productSales_menu_btn.clicked.connect(lambda: self.main_display_widget.setCurrentWidget(self.Product_sale_page))
 		self.distribution_btn.clicked.connect(lambda: self.main_display_widget.setCurrentWidget(self.Distribution_page))
 
@@ -344,6 +343,14 @@ class DashBoard(QMainWindow):
 			self.branch_search_working = SearchableTable(self.search_branch_le, self.branchData_table, self.branch_model)
 			self.branch_search_working.search_function()
 			self.branchData_table.resizeColumnsToContents()
+			branch_ids = []
+			for row in range(self.branch_model.rowCount()):
+				item = self.branch_model.item(row, 0)
+				if item is not None:
+					branch_ids.append(item.text())
+			self.controller.product_controller.branch_id_list = branch_ids
+			self.controller.product_controller.add_branch_id_to_combobox()
+			print("branch id added to controller!🔥🔥🔥: ", branch_ids)
 			print(f"Branches data loaded: {len(branches)} records")
 		except Exception as e:
 			print(f"ERROR setting model: {e}")
@@ -352,6 +359,7 @@ class DashBoard(QMainWindow):
 	def display_product_table(self):
 		products = []
 		if hasattr(self.controller, 'product_controller') and self.controller.product_controller:
+			self.controller.product_controller.data_changed.connect(self.display_product_table)
 			print("DEBUG employer ID:", self.employer_data.ID)
 			print("DEBUG enterprise ID:", self.employer_data.enterprise_id)
 			products = self.controller.get_products_data(

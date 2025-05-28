@@ -49,7 +49,7 @@ class MainController:
             self.employer_controller = EmployerController(self.register_window, self.login_window)
             self.enterprise_controller = EnterpriseController(self.register_window)
             self.branches_controller = BranchesController(self.dashboard_window, self.add_and_update_branch_product_window)
-            self.product_controller = ProductController(self.dashboard_window)
+            self.product_controller = ProductController(self.dashboard_window, self.add_and_update_branch_product_window)
             self.revenue_controller = RevenueController(self.dashboard_window)
             self.productSales_controller = ProductSalesController(self.dashboard_window)
             self.EmployerAccountSettingController = EmployerAccountSettingController(self.dashboard_window)

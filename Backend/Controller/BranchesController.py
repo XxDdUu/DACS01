@@ -10,12 +10,11 @@ class BranchesController(QObject):
         self.distribution_view = distribution_view
         self.add_branch_view = add_branch_view
         self.branches_dao = BranchesDAO()
-        self.distribution_view.branch_add_btn.clicked.connect(lambda: [self.add_branch_view.show(), self.add_branch_view.main_widget.setCurrentWidget(self.add_branch_view.manage_branches)])
-        self.distribution_view.product_add_btn.clicked.connect(lambda: [self.add_branch_view.show(), self.add_branch_view.main_widget.setCurrentWidget(self.add_branch_view.manage_product)])
-        self.add_branch_view.update_and_add_button.clicked.connect(self.handle_add_and_update_branch)
+        self.distribution_view.branch_add_btn.clicked.connect(lambda: [self.add_branch_view.show(), self.add_branch_view.main_widget.setCurrentWidget(self.add_branch_view.manage_branches)])    
+        self.add_branch_view.branch_update_and_add_label.clicked.connect(self.handle_add_and_update_branch)
         # self.distribution_view.branch_remove_btn.clicked.connect(self.handle_remove_button)
     def handle_add_and_update_branch(self):
-        if self.add_branch_view.update_and_add_button.text() == "Add":
+        if self.add_branch_view.branch_update_and_add_label.text() == "Add":
             data = self.add_branch_view.get_branchesForm_data()
             enterprise_id = self.distribution_view.employer_data.enterprise_id
             employer_id = self.distribution_view.employer_data.ID
