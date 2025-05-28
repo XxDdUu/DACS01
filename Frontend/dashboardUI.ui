@@ -637,34 +637,6 @@ QPushButton:pressed {
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="report_btn">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>50</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <pointsize>10</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Reports</string>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="View/img/resources.qrc">
-                    <normaloff>:/icon/icon/icons8_graph_report_script.svg</normaloff>:/icon/icon/icons8_graph_report_script.svg</iconset>
-                  </property>
-                 </widget>
-                </item>
-                <item>
                  <widget class="QPushButton" name="account_setting_btn">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
@@ -822,7 +794,7 @@ QPushButton:pressed {
              <item>
               <widget class="QStackedWidget" name="main_display_widget">
                <property name="currentIndex">
-                <number>5</number>
+                <number>3</number>
                </property>
                <widget class="QWidget" name="Account_setting_page">
                 <property name="styleSheet">
@@ -1007,7 +979,7 @@ QPushButton::pressed {
 }</string>
                       </property>
                       <property name="currentIndex">
-                       <number>1</number>
+                       <number>0</number>
                       </property>
                       <widget class="QWidget" name="enterprise_info">
                        <property name="styleSheet">
@@ -3331,42 +3303,7 @@ QPushButton::pressed {
                 </layout>
                </widget>
                <widget class="QWidget" name="Report_page">
-                <layout class="QVBoxLayout" name="verticalLayout_22">
-                 <item>
-                  <widget class="QWidget" name="widget" native="true">
-                   <property name="styleSheet">
-                    <string notr="true">background-color: rgb(255, 255, 255);
-border: 1px solid black;
-border-radius: 5px;</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QWidget" name="widget_3" native="true">
-                   <property name="styleSheet">
-                    <string notr="true">background-color: rgb(255, 255, 255);</string>
-                   </property>
-                   <widget class="QPushButton" name="export_report_btn">
-                    <property name="geometry">
-                     <rect>
-                      <x>320</x>
-                      <y>10</y>
-                      <width>75</width>
-                      <height>24</height>
-                     </rect>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">background-color: black;
-color: white;
-border-radius: 5px</string>
-                    </property>
-                    <property name="text">
-                     <string>Export</string>
-                    </property>
-                   </widget>
-                  </widget>
-                 </item>
-                </layout>
+                <layout class="QVBoxLayout" name="verticalLayout_22"/>
                </widget>
                <widget class="QWidget" name="Home_page">
                 <property name="styleSheet">
