@@ -163,11 +163,11 @@ class DashBoard(QMainWindow):
 		canvas_chart_center = FigureCanvas(fig_PS_branchB_chart)
 		canvas_chart_right = FigureCanvas(fig_PS_branchC_chart)
 
-		for frame in [self.frame_chart_1, self.frame_chart_2, self.frame_chart_3, self.frame_revChart_1]:
+		for frame in [self.frame_chart_1, self.frame_chart_2, self.frame_chart_3, self.frame_revenue_chart1]:
 			if frame.layout() is None:
 				frame.setLayout(QVBoxLayout())
 
-		self.frame_revChart_1.layout().addWidget(canvas_RevenuePage)
+		self.frame_revenue_chart1.layout().addWidget(canvas_RevenuePage)
 		self.frame_chart_1.layout().addWidget(canvas_chart_left)
 		self.frame_chart_2.layout().addWidget(canvas_chart_center)
 		self.frame_chart_3.layout().addWidget(canvas_chart_right)

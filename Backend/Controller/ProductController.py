@@ -25,6 +25,10 @@ class ProductController(QObject):
             if success:
                 QMessageBox.information(self.add_product_view, "Success", message)
                 self.product_data_changed.emit()
+                self.distribution_view.display_branch_table()
+                self.distribution_view.display_PS_table()
+                self.distribution_view.display_revenue_table()
+                self.distribution_view.display_top_product_table()
             else:
                 QMessageBox.warning(self.add_product_view, "Error", message)
         else:
@@ -34,6 +38,10 @@ class ProductController(QObject):
             if success:
                 QMessageBox.information(self.add_product_view, "Success", message)
                 self.product_data_changed.emit()
+                self.distribution_view.display_branch_table()
+                self.distribution_view.display_PS_table()
+                self.distribution_view.display_revenue_table()
+                self.distribution_view.display_top_product_table()
             else:
                 QMessageBox.warning(self.add_product_view, "Error", message)
 
@@ -74,6 +82,10 @@ class ProductController(QObject):
         if success:
             QMessageBox.information(self.distribution_view, "Success", message)
             self.product_data_changed.emit()
+            self.distribution_view.display_branch_table()
+            self.distribution_view.display_PS_table()
+            self.distribution_view.display_revenue_table()
+            self.distribution_view.display_top_product_table()
         else:
             QMessageBox.warning(self.distribution_view, "Error", message)
     def add_branch_id_to_combobox(self): 
