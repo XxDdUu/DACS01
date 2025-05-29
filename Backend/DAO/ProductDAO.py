@@ -101,8 +101,10 @@ class ProductDAO:
             return False, f"Unexpected Error: {e}"
 
         finally:
-            if cursor:
-                cursor.close()
+            if cursor1:
+                cursor1.close()
+            if cursor2:
+                cursor2.close()
             if connection:
                 connection.close()
     def update_product(self, data):

@@ -17,7 +17,7 @@ class ExportReportFile:
         self.main_view = main_view
         self.emp_id = main_view.employer_data.ID
         self.ent_id = main_view.employer_data.enterprise_id
-        self.main_view.export_report_btn.clicked.connect(self.export_file)
+        self.main_view.export_word_btn.clicked.connect(self.export_file)
     def export_file(self):
         try:
             conn = get_connection()

@@ -2225,7 +2225,7 @@ QFrame {
                  </property>
                  <layout class="QHBoxLayout" name="horizontalLayout_17">
                   <item>
-                   <widget class="QFrame" name="frame_10">
+                   <widget class="QFrame" name="frame_revChart_1">
                     <property name="frameShape">
                      <enum>QFrame::StyledPanel</enum>
                     </property>
@@ -2433,7 +2433,7 @@ border-radius: 10px</string>
                     <property name="styleSheet">
                      <string notr="true">background-color: rgb(255, 255, 255);</string>
                     </property>
-                    <widget class="QTableView" name="tableView">
+                    <widget class="QTableView" name="revenue_data_table">
                      <property name="geometry">
                       <rect>
                        <x>10</x>
@@ -3008,7 +3008,7 @@ QPushButton::pressed {
                                </widget>
                               </item>
                               <item>
-                               <widget class="QPushButton" name="branch_remove_btn">
+                               <widget class="QPushButton" name="branches_remove_btn">
                                 <property name="text">
                                  <string/>
                                 </property>

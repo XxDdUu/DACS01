@@ -219,12 +219,12 @@ class DashBoard(QMainWindow):
 					rev_model.setItem(row_index,row,QStandardItem(""))
 
 			try:
-				self.rev_data_table.setModel(rev_model)
-				self.rev_data_table.resizeColumnsToContents()
+				self.revenue_data_table.setModel(rev_model)
+				self.revenue_data_table.resizeColumnsToContents()
 			except Exception as e:
 				print(f"ERROR setting model: {e}")
 
-		return self.rev_data_table
+		return self.revenue_data_table
 
 	def display_PS_table(self):
 		productSale = []
@@ -293,7 +293,7 @@ class DashBoard(QMainWindow):
 	def display_top_product_table(self):
 		TopProduct = []
 		if hasattr(self.controller, 'product_controller') and self.controller.product_controller:
-			self.controller.product_controller.data_changed.connect(self.display_top_product_table)
+			self.controller.product_controller.product_data_changed.connect(self.display_top_product_table)
 			TopProduct = self.controller.get_top_products_data(
 				self.employer_data.enterprise_id
 			)
