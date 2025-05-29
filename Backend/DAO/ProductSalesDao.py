@@ -143,18 +143,9 @@ class ProductSalesDAO:
         branch_id = data.get("branch_id")
         sale_date = data.get("date")
         quantity_sold = data.get("quantity_sold")
-        sale_amount_raw = data.get("amount_total")
 
         connection = None
         cursor = None
-
-        # Kiểm tra và ép kiểu giá
-        try:
-            sale_amount = float(sale_amount_raw)
-            if sale_amount <= 0:
-                return False, "Invalid price: must be greater than 0"
-        except ValueError:
-            return False, f"Invalid price format: '{sale_amount_raw}'"
 
         try:
             connection = get_connection()
@@ -175,6 +166,12 @@ class ProductSalesDAO:
             quantity_sold = int(quantity_sold)
             sale_amount = np.multiply(price, quantity_sold)
 
+            query = """SELECT QUANTITY_SOLD FROM PRODUCT_SALES WHERE SALE_ID = %s"""
+            cursor.execute(query, (sale_id,))
+
+            old_quantity = cursor.fetchone()[0]
+            delta = quantity_sold - old_quantity
+
             query = """
                 UPDATE product_sales 
                 SET SALE_DATE = %s, QUANTITY_SOLD = %s, SALE_AMOUNT = %s
@@ -188,6 +185,11 @@ class ProductSalesDAO:
                 product_id,
                 branch_id
             ))
+            cursor.execute("""
+                        UPDATE PRODUCT
+                        SET Amount = Amount - %s
+                        WHERE Product_ID = %s
+                    """, (delta, product_id))
 
             connection.commit()
             return True, f"Updated product {productName} sale information successfully"

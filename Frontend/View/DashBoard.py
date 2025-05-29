@@ -11,12 +11,12 @@ import sys
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 
 import Frontend.View.resources_rc
-import datetime
+from datetime import datetime
 
 from Frontend.Chart.Branch_PSChart import PSBranchChart
 from Frontend.Chart.RevenueGeneralChart import RevenueGeneralChart
 from Frontend.View.SearchableTable import SearchableTable
-
+from Frontend.View.EventFilter import HoverEventFilter
 
 class DashBoard(QMainWindow):
 	def __init__(self, controller ,employer_data = None, enterprise_data = None):
@@ -45,10 +45,39 @@ class DashBoard(QMainWindow):
 		self.left_menu_animation.setDuration(300)
 		self.left_menu_animation.setEasingCurve(QEasingCurve.Type.InOutQuart)
 		self.btn_toggle_menu.clicked.connect(self.toggle_menu)
+		self.sale_qdate_edit.setDate(QDate.currentDate())
 
 		self.logout_label.clicked.connect(self.confirm_logout)
 		self.display_PS_table()
 		self.canvas_draw_PS_chart()
+
+		widgets_for_add_ps = {
+			"sale_qdate": self.sale_qdate_edit,
+			"quantity": self.quantitySold_PS_le,
+			"prod_id": self.prod_id_PS_le,
+			"branch_id": self.branch_id_PS_le
+		}
+
+		widgets_for_update_ps = {
+			"sale_id" : self.saleID_PS_le,
+			"sale_qdate": self.sale_qdate_edit,
+			"quantity": self.quantitySold_PS_le,
+			"prod_id": self.prod_id_PS_le,
+			"branch_id": self.branch_id_PS_le
+		}
+		widgets_for_remove_ps = {
+			"sale_id" : self.saleID_PS_le,
+			"prod_id": self.prod_id_PS_le,
+			"branch_id": self.branch_id_PS_le
+		}
+
+		self.hover_filter_add_ps = HoverEventFilter(widgets_for_add_ps)
+		self.hover_filter_update_ps = HoverEventFilter(widgets_for_update_ps)
+		self.hover_filter_remove_ps = HoverEventFilter(widgets_for_remove_ps)
+
+		self.add_PS_btn.installEventFilter(self.hover_filter_add_ps)
+		self.update_PS_btn.installEventFilter(self.hover_filter_update_ps)
+		self.remove_PS_btn.installEventFilter(self.hover_filter_remove_ps)
 
 	def exit_window(self):
 		self.close()
@@ -130,7 +159,6 @@ class DashBoard(QMainWindow):
 			"product_id": self.prod_id_PS_le.text().strip(),
 			"date": self.sale_qdate_edit.date().toString("yyyy-MM-dd"),
 			"quantity_sold": self.quantitySold_PS_le.text().strip(),
-			"amount_total": self.saleAmount_PS_le.text().strip()
 		}
 	def get_AccSetting_data(self):
 		return {
@@ -340,9 +368,13 @@ class DashBoard(QMainWindow):
 		try:
 			self.top_product_table.setModel(TP_model)
 			self.top_product_table.resizeColumnsToContents()
-			self.top_product_name_label.setText(product_name)
+			if TopProduct:
+				first_product_name = str(TopProduct[0].get("Product_NAME", ""))
+				self.top_product_name_label.setText(first_product_name)
+			else:
+				self.top_product_name_label.setText("No top products found.")
 			self.top_product_date_label.setText(datetime.now().strftime("%d/%m/%Y"))
-			print(f"Product Sales data loaded: {len(TopProduct)} records")
+			print(f"Product Top data loaded: {len(TopProduct)} records")
 		except Exception as e:
 			print(f"ERROR setting model: {e}")
 
@@ -473,4 +505,3 @@ class DashBoard(QMainWindow):
 			print(f"ERROR setting model: {e}")
 
 		return self.product_data_table
-

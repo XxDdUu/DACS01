@@ -61,6 +61,11 @@ class EnterpriseDao:
 			print("Can't insert data!\n")
 			print(f"Error:{e}")
 			return False, f"Database error: {e}"
+		except MySQLdb.Error as err:
+			if err.errno == errorcode.ER_DUP_ENTRY:
+				return False, f"Duplicate entry phone_number detected: {err}"
+			else:
+				print(f"Other database error: {err}")
 		finally:
 			if cursor is not None:
 				try:
