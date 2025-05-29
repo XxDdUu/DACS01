@@ -1,4 +1,6 @@
 import os
+import traceback
+from itertools import product
 
 from PyQt6 import uic, QtWidgets, QtGui
 from PyQt6.QtGui import QIcon, QStandardItemModel, QStandardItem
@@ -9,9 +11,10 @@ import sys
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 
 import Frontend.View.resources_rc
-from datetime import datetime
+import datetime
 
 from Frontend.Chart.Branch_PSChart import PSBranchChart
+from Frontend.Chart.RevenueGeneralChart import RevenueGeneralChart
 from Frontend.View.SearchableTable import SearchableTable
 
 
@@ -139,27 +142,89 @@ class DashBoard(QMainWindow):
 			"enterprise_id": self.enterprise_id_line_edit.text().strip()
 		}
 	def canvas_draw_PS_chart(self):
-		# A, B, C là tên branch trong csdl
-		chartA = PSBranchChart("A")
-		chartB = PSBranchChart("B")
-		chartC = PSBranchChart("C")
-
+		# A, B, C là tên branch trong csdl bên này
+		rev_general_chart = RevenueGeneralChart(self.employer_data)
+		chartA = PSBranchChart("A",
+							   self.employer_data.ID,
+							   self.employer_data.enterprise_id)
+		chartB = PSBranchChart("B",
+							   self.employer_data.ID,
+							   self.employer_data.enterprise_id)
+		chartC = PSBranchChart("C",
+							   self.employer_data.ID,
+							   self.employer_data.enterprise_id)
+		fig_revenueGeneral_chart = rev_general_chart.figure
 		fig_PS_branchA_chart = chartA.figure
 		fig_PS_branchB_chart = chartB.figure
 		fig_PS_branchC_chart = chartC.figure
 
+		canvas_RevenuePage = FigureCanvas(fig_revenueGeneral_chart)
 		canvas_chart_left = FigureCanvas(fig_PS_branchA_chart)
 		canvas_chart_center = FigureCanvas(fig_PS_branchB_chart)
 		canvas_chart_right = FigureCanvas(fig_PS_branchC_chart)
 
-		for frame in [self.frame_chart_1, self.frame_chart_2, self.frame_chart_3]:
+		for frame in [self.frame_chart_1, self.frame_chart_2, self.frame_chart_3, self.frame_revChart_1]:
 			if frame.layout() is None:
 				frame.setLayout(QVBoxLayout())
 
+		self.frame_revChart_1.layout().addWidget(canvas_RevenuePage)
 		self.frame_chart_1.layout().addWidget(canvas_chart_left)
 		self.frame_chart_2.layout().addWidget(canvas_chart_center)
 		self.frame_chart_3.layout().addWidget(canvas_chart_right)
 
+	def display_revenue_table(self):
+		revenues = []
+		if hasattr(self.controller,"revenue_controller") and self.controller.revenue_controller:
+			# self.controller.revenue_controller.revenue_data_changed.connect(self.display_revenue_table)
+			revenues = self.controller.get_revenues_data(
+				self.employer_data.ID,
+				self.employer_data.enterprise_id,
+			)
+		rev_model = QStandardItemModel(len(revenues),5)
+		rev_model.setHorizontalHeaderLabels(['Revenue_ID', 'Revenue_date',
+												 'Amount', 'Create_at', 'Branch_ID'])
+		for row_index, rev in enumerate(revenues):
+			try:
+				rev_id = str(rev.get("Revenue_ID",""))
+				rev_branch_id = str(rev.get("Branch_ID",""))
+
+				rev_date = rev.get("Revenue_date","")
+				if hasattr(rev_date,"strftime"):
+					rev_date = rev_date.strftime("%Y-%m-%d")
+				else:
+					rev_date = str(rev_date)
+
+				rev_create_at = rev.get("Create_at","")
+				if hasattr(rev_create_at,"strftime"):
+					rev_create_at = rev_create_at.strftime("%Y-%m-%d %H:%M:S")
+				else:
+					rev_create_at = str(rev_create_at)
+
+				rev_amount = rev.get("Amount")
+				if hasattr(rev_amount,"__float__"):
+					rev_amount = f"{float(rev_amount):.2f}"
+				else:
+					rev_amount = str(rev_amount)
+
+				rev_model.setItem(row_index,0,QStandardItem(rev_id))
+				rev_model.setItem(row_index,1,QStandardItem(rev_date))
+				rev_model.setItem(row_index,2,QStandardItem(rev_amount))
+				rev_model.setItem(row_index,3,QStandardItem(rev_create_at))
+				rev_model.setItem(row_index,4,QStandardItem(rev_branch_id))
+
+			except Exception as e:
+				traceback.print_exc()
+				print(f"Exception: {e}")
+				for row in range(5):
+					rev_model.setItem(row_index,row,QStandardItem(""))
+
+			try:
+				self.rev_data_table.setModel(rev_model)
+				self.rev_data_table.resizeColumnsToContents()
+			except Exception as e:
+				print(f"ERROR setting model: {e}")
+
+		return self.rev_data_table
 
 	def display_PS_table(self):
 		productSale = []
@@ -208,8 +273,7 @@ class DashBoard(QMainWindow):
 				PS_model.setItem(row_index, 4, QStandardItem(quantity_sold))
 				PS_model.setItem(row_index, 5, QStandardItem(sale_amount))
 
-				print(
-					f"DEBUG Row {row_index}: {sale_id}, {product_id}, {branch_id}, {sale_date}, {quantity_sold}, {sale_amount}")
+				print(f"DEBUG Row {row_index}: {sale_id}, {product_id}, {branch_id}, {sale_date}, {quantity_sold}, {sale_amount}")
 
 			except Exception as e:
 				print(f"ERROR processing row {row_index}: {e}")

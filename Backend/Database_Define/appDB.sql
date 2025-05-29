@@ -94,3 +94,37 @@ ADD unique (Employer_Email),
 ADD unique (Employer_Phone_Number)
 ALTER TABLE ENTERPRISE
 ADD unique (Enterprise_PHONE_NUMBER)
+
+-- query auto update
+INSERT INTO REVENUE (Branch_ID, Revenue_date)
+SELECT DISTINCT p.Branch_ID, ps.SALE_DATE
+FROM PRODUCT p
+JOIN PRODUCT_SALES ps ON p.Product_ID = ps.Product_ID
+JOIN BRANCHES b ON p.Branch_ID = b.Branch_ID
+WHERE b.Employer_ID = 3 AND b.Enterprise_ID = 'ENT_2UL4KYS';
+-- --------------------------------------------------------
+UPDATE REVENUE r
+            JOIN (
+            SELECT p.Branch_ID,
+                   ps.SALE_DATE AS Revenue_date,
+                   SUM(ps.SALE_AMOUNT) AS total_revenue
+            FROM PRODUCT p
+            JOIN PRODUCT_SALES ps ON p.Product_ID = ps.Product_ID
+            JOIN BRANCHES b ON p.Branch_ID = b.Branch_ID
+            WHERE b.Employer_ID = 3 AND b.Enterprise_ID = 'ENT_2UL4KYS'
+            GROUP BY p.Branch_ID, ps.SALE_DATE
+            ) AS sub
+            ON r.Branch_ID = sub.Branch_ID AND r.Revenue_date = sub.Revenue_date
+            SET r.Amount = sub.total_revenue;
+SELECT r.*
+FROM REVENUE r
+JOIN BRANCHES b ON r.Branch_ID = b.Branch_ID
+WHERE b.Employer_ID = 3 AND b.Enterprise_ID = 'ENT_2UL4KYS' ;
+-- ------------------------------------------------
+SELECT b.Branch_name, SUM(r.Amount) AS total_revenue
+                   FROM REVENUE r
+                   JOIN BRANCHES b ON r.Branch_ID = b.Branch_ID
+                   GROUP BY b.Branch_name;
+-- --------------------------------------------------
+ALTER TABLE REVENUE
+ADD UNIQUE KEY unique_branch_date (Branch_ID, Revenue_date);

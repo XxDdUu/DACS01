@@ -29,6 +29,7 @@ class MainController:
         self.branches_controller = None
         self.productSales_controller = None
         self.product_controller = None
+        self.revenue_controller = None
 
     def show_login(self):
         self.register_window.hide()
@@ -101,6 +102,10 @@ class MainController:
     def get_products_data(self, employer_id, enterprise_id):
         if self.product_controller:
             return self.product_controller.get_products(employer_id, enterprise_id)
+        return []
+    def get_revenues_data(self, employer_id, enterprise_id):
+        if self.revenue_controller:
+            return self.revenue_controller.get_revenues(employer_id,enterprise_id)
         return []
     def get_top_products_data(self, enterprise_id):
         if self.product_controller:
