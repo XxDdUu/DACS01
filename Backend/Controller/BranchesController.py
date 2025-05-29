@@ -13,7 +13,7 @@ class BranchesController(QObject):
         self.branches_dao = BranchesDAO()
         self.distribution_view.branch_add_btn.clicked.connect(lambda: [self.add_branch_view.show(), self.add_branch_view.main_widget.setCurrentWidget(self.add_branch_view.manage_branches)])    
         self.add_branch_view.branch_update_and_add_button.clicked.connect(self.handle_add_and_update_branch)
-        self.distribution_view.branches_remove_btn.clicked.connect(self.handle_remove_branch)
+        self.distribution_view.branch_remove_btn.clicked.connect(self.handle_remove_branch)
     def handle_add_and_update_branch(self):
         if self.add_branch_view.branch_update_and_add_button.text() == "Add":
             data = self.add_branch_view.get_branchesForm_data()
@@ -24,6 +24,10 @@ class BranchesController(QObject):
             if success:
                 QMessageBox.information(self.add_branch_view, "Success", message)
                 self.branch_data_changed.emit()
+                self.distribution_view.display_product_table()
+                self.distribution_view.display_PS_table()
+                self.distribution_view.display_revenue_table()
+                self.distribution_view.display_top_product_table()
             else:
                 QMessageBox.warning(self.add_branch_view, "Error", message)
         else:
@@ -33,6 +37,10 @@ class BranchesController(QObject):
             if success:
                 QMessageBox.information(self.add_branch_view, "Success", message)
                 self.branch_data_changed.emit()
+                self.distribution_view.display_product_table()
+                self.distribution_view.display_PS_table()
+                self.distribution_view.display_revenue_table()
+                self.distribution_view.display_top_product_table()
             else:
                 QMessageBox.warning(self.add_branch_view, "Error", message)
 
@@ -69,6 +77,10 @@ class BranchesController(QObject):
         if success:
             QMessageBox.information(self.distribution_view, "Success", message)
             self.branch_data_changed.emit()
+            self.distribution_view.display_product_table()
+            self.distribution_view.display_PS_table()
+            self.distribution_view.display_revenue_table()
+            self.distribution_view.display_top_product_table()
         else:
             QMessageBox.warning(self.distribution_view, "Error", message)
     def handle_update_button(self):
