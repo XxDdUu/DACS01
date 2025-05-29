@@ -88,6 +88,11 @@ class ProductController(QObject):
             self.distribution_view.display_top_product_table()
         else:
             QMessageBox.warning(self.distribution_view, "Error", message)
+    def update_amount_product_chart(self):
+        print("🤣🤣🤣🤣🤣🤣") 
+        enterprise_id = self.distribution_view.employer_data.enterprise_id
+        data = self.product_dao.get_product_amounts_by_enterprise(enterprise_id)
+        self.distribution_view.product_amount_chart.plot(data)
     def add_branch_id_to_combobox(self): 
         if self.branch_id_list:
             self.add_product_view.branch_id_combo_box.clear()

@@ -231,4 +231,25 @@ class ProductDAO:
                 cursor.close()
             if connection:
                 connection.close()
-
+    def get_product_amounts_by_enterprise(self, enterprise_id):
+        connection = None
+        cursor = None
+        try:
+            connection = get_connection()
+            cursor = connection.cursor()
+            query = """
+                SELECT Product_Name, Amount
+                FROM PRODUCT
+                JOIN BRANCHES ON PRODUCT.Branch_ID = BRANCHES.Branch_ID
+                WHERE BRANCHES.Enterprise_ID = %s
+            """
+            cursor.execute(query, (enterprise_id,))
+            return cursor.fetchall()
+        except Exception as e:
+            print("Database error:", e)
+            return []
+        finally:
+            if cursor:
+                cursor.close()
+            if connection:
+                connection.close()
