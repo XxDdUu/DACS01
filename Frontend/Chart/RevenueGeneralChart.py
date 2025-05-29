@@ -41,7 +41,7 @@ class RevenueGeneralChart:
                 self.ax.bar(df['Branch_name'], df['total_revenue'], color='skyblue')
                 self.ax.set_xlabel("Branch")
                 self.ax.set_ylabel("Amount (unit: million$)")
-                self.figure.savefig("D:/PYTHON/DACS01/Frontend/View/img/rev_general.png")
+                self.figure.savefig("Frontend/View/img/rev_general.png")
             self.canvas.draw()
         except Exception as e:
             traceback.print_exc()

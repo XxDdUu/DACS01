@@ -17,6 +17,7 @@ from Frontend.Chart.Branch_PSChart import PSBranchChart
 from Frontend.Chart.RevenueGeneralChart import RevenueGeneralChart
 from Frontend.View.SearchableTable import SearchableTable
 from Frontend.View.EventFilter import HoverEventFilter
+from Frontend.Chart.ProductAmountChart import ProductAmountChart
 
 class DashBoard(QMainWindow):
 	def __init__(self, controller ,employer_data = None, enterprise_data = None):
@@ -38,6 +39,8 @@ class DashBoard(QMainWindow):
 
 		self.fetch_account_info(employer_data)
 		self.active_switch_pages()
+
+		self.product_amount_chart = ProductAmountChart()
 
 		self.menu_expanded = False
 		self.left_menu_animation = QPropertyAnimation(self.mainMenu, b"minimumWidth")
@@ -253,6 +256,13 @@ class DashBoard(QMainWindow):
 				print(f"ERROR setting model: {e}")
 
 		return self.revenue_data_table
+	def display_amount_product_chart(self):
+		layout = QVBoxLayout()
+		layout.addWidget(self.product_amount_chart)
+		self.amount_product_chart_frame.setLayout(layout)
+		self.controller.product_controller.update_amount_product_chart()
+		if hasattr(self.controller, 'product_controller') and self.controller.product_controller:
+			self.controller.product_controller.product_data_changed.connect(self.display_amount_product_chart)
 
 	def display_PS_table(self):
 		productSale = []

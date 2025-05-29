@@ -81,6 +81,7 @@ class MainController:
                 self.dashboard_window.display_product_table()
                 self.dashboard_window.display_top_product_table()
                 self.dashboard_window.display_revenue_table()
+                self.dashboard_window.display_amount_product_chart()
                 print("data table loaded successfully")
             except Exception as e:
                 print(f"ERROR loading Product Sales table: {e}")
