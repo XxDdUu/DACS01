@@ -11,6 +11,7 @@ class BranchesController(QObject):
         self.distribution_view = distribution_view
         self.add_branch_view = add_branch_view
         self.branches_dao = BranchesDAO()
+        self.branch_data = []
         self.distribution_view.branch_add_btn.clicked.connect(lambda: [self.add_branch_view.show(), self.add_branch_view.main_widget.setCurrentWidget(self.add_branch_view.manage_branches)])    
         self.add_branch_view.branch_update_and_add_button.clicked.connect(self.handle_add_and_update_branch)
         self.distribution_view.branch_remove_btn.clicked.connect(self.handle_remove_branch)
@@ -92,6 +93,8 @@ class BranchesController(QObject):
             QMessageBox.warning(self.distribution_view, "Error", message)
     def get_branches(self, enterprise_id, employer_id):
         return self.branches_dao.get_branches_by_enterprise_employer(enterprise_id, employer_id)
+    def display_top_branch(self):
+        pass
     def refresh_branches_ui(self):
         data = self.get_branches_data(enterprise_id, employer_id)
         self.view.update_branch_table(data)
