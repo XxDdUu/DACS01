@@ -79,7 +79,6 @@ class MainController:
                 self.dashboard_window.display_PS_table()
                 self.dashboard_window.display_branch_table()
                 self.dashboard_window.display_product_table()
-                self.dashboard_window.display_revenue_table()
                 self.dashboard_window.display_top_product_table()
                 print("data table loaded successfully")
             except Exception as e:
@@ -108,7 +107,7 @@ class MainController:
         if self.revenue_controller:
             return self.revenue_controller.get_revenues(employer_id,enterprise_id)
         return []
-    def get_top_products_data(self, employer_id, enterprise_id):
+    def get_top_products_data(self, enterprise_id):
         if self.product_controller:
-            return self.product_controller.get_top_products(employer_id, enterprise_id)
+            return self.product_controller.get_top_products(enterprise_id)
         return []

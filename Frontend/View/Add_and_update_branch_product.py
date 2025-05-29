@@ -77,12 +77,12 @@ class Add_and_update_branch_product(QtWidgets.QWidget):
 			# Currently in ADD mode, switch to UPDATE
 			self.branch_update_and_add_label.setText("Add branch info")
 			self.Manage_branch_info_label.setText("Update branch info")
-			self.update_and_add_button.setText("Update")
+			self.branch_update_and_add_button.setText("Update")
 		else:
 			# Currently in UPDATE mode, switch to ADD
 			self.branch_update_and_add_label.setText("Update branch info? Click here")
 			self.Manage_branch_info_label.setText("Add branch info")
-			self.update_and_add_button.setText("Add")
+			self.branch_update_and_add_button.setText("Add")
 	def switch_add_and_update_product(self):
 		if self.product_update_and_add_label.text() == "Update product info? Click here":
 			# Currently in ADD mode, switch to UPDATE

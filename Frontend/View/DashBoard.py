@@ -293,27 +293,26 @@ class DashBoard(QMainWindow):
 	def display_top_product_table(self):
 		TopProduct = []
 		if hasattr(self.controller, 'product_controller') and self.controller.product_controller:
-			print("DEBUG employer ID!!!!!!!!!!:", self.employer_data.ID)
-			print("DEBUG enterprise ID:", self.employer_data.enterprise_id)
+			self.controller.product_controller.data_changed.connect(self.display_top_product_table)
 			TopProduct = self.controller.get_top_products_data(
-				self.employer_data.ID,
 				self.employer_data.enterprise_id
 			)
-			print("DEBUG Top Product from DB!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!:", TopProduct)
+			print("DEBUG Top Product from DB!!", TopProduct)
 
-		TP_model = QStandardItemModel(len(TopProduct), 5)
+		TP_model = QStandardItemModel(len(TopProduct), 6)
 		TP_model.setHorizontalHeaderLabels(["Product_ID", "Product_NAME", "Price",
-										 "Amount", "Branch_ID"])
+										 "Amount", "Branch_ID", "Total_quantity_sold"])
 
 		for row_index, top_product in enumerate(TopProduct):
 			try:
 				# Convert all values to string safely
 				product_id = str(top_product.get("Product_ID", ""))
-				product_name = str(top_product.get("Product_ID", ""))
+				product_name = str(top_product.get("Product_NAME", ""))
 				product_price = str(top_product.get("PRICE", ""))
 
 				product_amount = str(top_product.get("AMOUNT", ""))
 				branch_id = str(top_product.get("Branch_ID", ""))
+				total_quantity_sold = str(top_product.get("total_quantity_sold", ""))
 
 				if hasattr(product_price, '__float__'):  # Decimal objects have __float__
 					product_price = f"{float(product_price):.2f}"
@@ -326,13 +325,14 @@ class DashBoard(QMainWindow):
 				TP_model.setItem(row_index, 2, QStandardItem(product_price))
 				TP_model.setItem(row_index, 3, QStandardItem(product_amount))
 				TP_model.setItem(row_index, 4, QStandardItem(branch_id))
+				TP_model.setItem(row_index, 5, QStandardItem(total_quantity_sold))
 
 				print(
-					f"DEBUG Row {row_index}: {sale_id}, {product_id}, {branch_id}, {sale_date}, {quantity_sold}, {sale_amount}")
+					f"DEBUG Row {row_index}: {product_id}, {product_name}, {product_price}, {product_amount}, {branch_id}, {total_quantity_sold}")
 
 			except Exception as e:
 				print(f"ERROR processing row {row_index}: {e}")
-				print(f"Row data: {TopProduct}")
+				print(f"Row top products data: {TopProduct}")
 				# Create empty items for failed row
 				for col in range(6):
 					TP_model.setItem(row_index, col, QStandardItem(""))
@@ -340,6 +340,8 @@ class DashBoard(QMainWindow):
 		try:
 			self.top_product_table.setModel(TP_model)
 			self.top_product_table.resizeColumnsToContents()
+			self.top_product_name_label.setText(product_name)
+			self.top_product_date_label.setText(datetime.now().strftime("%d/%m/%Y"))
 			print(f"Product Sales data loaded: {len(TopProduct)} records")
 		except Exception as e:
 			print(f"ERROR setting model: {e}")
@@ -414,7 +416,6 @@ class DashBoard(QMainWindow):
 					branch_ids.append(item.text())
 			self.controller.product_controller.branch_id_list = branch_ids
 			self.controller.product_controller.add_branch_id_to_combobox()
-			print("branch id added to controller!🔥🔥🔥: ", branch_ids)
 			print(f"Branches data loaded: {len(branches)} records")
 		except Exception as e:
 			print(f"ERROR setting model: {e}")

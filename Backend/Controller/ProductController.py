@@ -49,5 +49,5 @@ class ProductController(QObject):
             self.add_product_view.branch_id_combo_box.addItems(self.branch_id_list)
     def get_products(self,employer_id, enterprise_id):
         return self.product_dao.get_product_by_account(employer_id,enterprise_id)
-    def get_top_products(self, employer_id, enterprise_id):
-        return self.product_dao.get_top_product_table_by_account(employer_id, enterprise_id)
+    def get_top_products(self, enterprise_id):
+        return self.product_dao.get_top_product_table_by_account(enterprise_id)
