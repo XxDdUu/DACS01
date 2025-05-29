@@ -95,7 +95,9 @@ class BranchesDAO:
         enterpriseId = data.get("enterprise_id")   # fallback nếu None
 
         connection = None
-        cursor = None
+        cursor1 = None
+        cursor2 = None
+        cursor3 = None
 
         # if not branchesPhone.isdigit() or len(branchesPhone) != 10:
         #     return False, "Invalid phone number format"
@@ -130,12 +132,25 @@ class BranchesDAO:
             connection = get_connection()
             if not connection:
                 return False, "Failed to connect to database"
-
-            cursor = connection.cursor()
+            cursor1 = connection.cursor()
+            query = """
+                           DELETE FROM PRODUCT_SALES WHERE Branch_ID = %s
+                       """
+            cursor1.execute(query, (
+                branchesID
+            ))
+            cursor2 = connection.cursor()
+            query = """
+                    DELETE FROM PRODUCT WHERE Branch_ID = %s
+            """
+            cursor2.execute(query, (
+                branchesID
+            ))
+            cursor3 = connection.cursor()
             query = """
                 DELETE FROM BRANCHES WHERE Branch_ID = %s
             """
-            cursor.execute(query, (
+            cursor3.execute(query, (
                 branchesID
             ))
 
@@ -151,8 +166,12 @@ class BranchesDAO:
             return False, f"Unexpected Error: {e}"
 
         finally:
-            if cursor:
-                cursor.close()
+            if cursor1:
+                cursor1.close()
+            if cursor2:
+                cursor2.close()
+            if cursor3:
+                cursor3.close()
             if connection:
                 connection.close()
     def update_branches(self,data):

@@ -1,9 +1,10 @@
 from PyQt6.QtWidgets import QMessageBox
 from Backend.DAO.BranchesDAO import BranchesDAO
-from PyQt6.QtCore import QObject, pyqtSignal
+from PyQt6.QtCore import QObject, pyqtSignal, QSortFilterProxyModel
+
 
 class BranchesController(QObject):
-    data_changed = pyqtSignal()
+    branch_data_changed = pyqtSignal()
 
     def __init__(self,distribution_view, add_branch_view = None):
         super().__init__()
@@ -12,7 +13,7 @@ class BranchesController(QObject):
         self.branches_dao = BranchesDAO()
         self.distribution_view.branch_add_btn.clicked.connect(lambda: [self.add_branch_view.show(), self.add_branch_view.main_widget.setCurrentWidget(self.add_branch_view.manage_branches)])    
         self.add_branch_view.branch_update_and_add_button.clicked.connect(self.handle_add_and_update_branch)
-        # self.distribution_view.branch_remove_btn.clicked.connect(self.handle_remove_button)
+        self.distribution_view.branches_remove_btn.clicked.connect(self.handle_remove_branch)
     def handle_add_and_update_branch(self):
         if self.add_branch_view.branch_update_and_add_button.text() == "Add":
             data = self.add_branch_view.get_branchesForm_data()
@@ -22,7 +23,7 @@ class BranchesController(QObject):
             success, message = self.branches_dao.insert_branches(data, enterprise_id, employer_id)
             if success:
                 QMessageBox.information(self.add_branch_view, "Success", message)
-                self.data_changed.emit()
+                self.branch_data_changed.emit()
             else:
                 QMessageBox.warning(self.add_branch_view, "Error", message)
         else:
@@ -31,16 +32,43 @@ class BranchesController(QObject):
             success, message = self.branches_dao.update_branches(data)
             if success:
                 QMessageBox.information(self.add_branch_view, "Success", message)
-                self.data_changed.emit()
+                self.branch_data_changed.emit()
             else:
                 QMessageBox.warning(self.add_branch_view, "Error", message)
 
-    def handle_remove_button(self):
-        data = self.distribution_view.get_branchesForm_data()
-        print("[DEBUG] Form data:", data)  # Kiểm tra lại giá trị thực tế
+    def handle_remove_branch(self):
+        # Lấy dữ liệu từ distribution_view hoặc bảng được chọn
+        selected_indexes = self.distribution_view.branchData_table.selectionModel().selectedRows()
+        if not selected_indexes:
+            QMessageBox.warning(self.distribution_view, "Warning", "Please select a product to delete")
+            return
+
+        row = selected_indexes[0].row()
+        model = self.distribution_view.branchData_table.model()
+
+        # Tạo dictionary dữ liệu
+        data = {}
+        if isinstance(model, QSortFilterProxyModel):
+            # Sử dụng index() và data() cho QSortFilterProxyModel
+            data = {
+                "id": str(model.data(model.index(row, 0))),
+                "employer_id": str(model.data(model.index(row, 5))),
+                "enterprise_id": str(model.data(model.index(row, 6)))
+            }
+        else:
+            # Sử dụng item() cho QStandardItemModel
+            data = {
+                "id": model.item(row, 0).text(),
+                "employer_id": model.item(row, 5).text(),
+                "enterprise_id": model.item(row, 6).text()
+            }
+        print("DEBUG: Data passed to remove_branches:", data)
+
+        # Gọi DAO để xóa
         success, message = self.branches_dao.remove_branches(data)
         if success:
             QMessageBox.information(self.distribution_view, "Success", message)
+            self.branch_data_changed.emit()
         else:
             QMessageBox.warning(self.distribution_view, "Error", message)
     def handle_update_button(self):

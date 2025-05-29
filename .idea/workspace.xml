@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b664035e-7b0c-4c4d-8252-f0d6dc412f5b" name="Changes" comment="" />
+    <list default="true" id="b664035e-7b0c-4c4d-8252-f0d6dc412f5b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Controller/BranchesController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Controller/BranchesController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Controller/MainController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Controller/MainController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Controller/ProductController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Controller/ProductController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/DAO/BranchesDAO.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/DAO/BranchesDAO.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/DAO/ProductDAO.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/DAO/ProductDAO.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Import_report/convertFile.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Import_report/convertFile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/View/DashBoard.py" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/View/DashBoard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/dashboardUI.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/dashboardUI.ui" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,7 +78,7 @@
     &quot;Python.test_pd.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Merging long&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;cuong&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/PYTHON/py_project&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;

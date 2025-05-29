@@ -219,12 +219,12 @@ class DashBoard(QMainWindow):
 					rev_model.setItem(row_index,row,QStandardItem(""))
 
 			try:
-				self.rev_data_table.setModel(rev_model)
-				self.rev_data_table.resizeColumnsToContents()
+				self.revenue_data_table.setModel(rev_model)
+				self.revenue_data_table.resizeColumnsToContents()
 			except Exception as e:
 				print(f"ERROR setting model: {e}")
 
-		return self.rev_data_table
+		return self.revenue_data_table
 
 	def display_PS_table(self):
 		productSale = []
@@ -293,7 +293,7 @@ class DashBoard(QMainWindow):
 	def display_top_product_table(self):
 		TopProduct = []
 		if hasattr(self.controller, 'product_controller') and self.controller.product_controller:
-			self.controller.product_controller.data_changed.connect(self.display_top_product_table)
+			self.controller.product_controller.product_data_changed.connect(self.display_top_product_table)
 			TopProduct = self.controller.get_top_products_data(
 				self.employer_data.enterprise_id
 			)
@@ -357,7 +357,7 @@ class DashBoard(QMainWindow):
 	def display_branch_table(self):
 		branches = []
 		if hasattr(self.controller, 'branches_controller') and self.controller.branches_controller:
-			self.controller.branches_controller.data_changed.connect(self.display_branch_table)
+			self.controller.branches_controller.branch_data_changed.connect(self.display_branch_table)
 			print("DEBUG employer ID:", self.employer_data.ID)
 			print("DEBUG enterprise ID:", self.employer_data.enterprise_id)
 			branches = self.controller.get_branches_data(
@@ -424,7 +424,7 @@ class DashBoard(QMainWindow):
 	def display_product_table(self):
 		products = []
 		if hasattr(self.controller, 'product_controller') and self.controller.product_controller:
-			self.controller.product_controller.data_changed.connect(self.display_product_table)
+			self.controller.product_controller.product_data_changed.connect(self.display_product_table)
 			print("DEBUG employer ID:", self.employer_data.ID)
 			print("DEBUG enterprise ID:", self.employer_data.enterprise_id)
 			products = self.controller.get_products_data(
