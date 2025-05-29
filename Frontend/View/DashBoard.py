@@ -357,7 +357,7 @@ class DashBoard(QMainWindow):
 	def display_branch_table(self):
 		branches = []
 		if hasattr(self.controller, 'branches_controller') and self.controller.branches_controller:
-			self.controller.branches_controller.data_changed.connect(self.display_branch_table)
+			self.controller.branches_controller.branch_data_changed.connect(self.display_branch_table)
 			print("DEBUG employer ID:", self.employer_data.ID)
 			print("DEBUG enterprise ID:", self.employer_data.enterprise_id)
 			branches = self.controller.get_branches_data(
@@ -424,7 +424,7 @@ class DashBoard(QMainWindow):
 	def display_product_table(self):
 		products = []
 		if hasattr(self.controller, 'product_controller') and self.controller.product_controller:
-			self.controller.product_controller.data_changed.connect(self.display_product_table)
+			self.controller.product_controller.product_data_changed.connect(self.display_product_table)
 			print("DEBUG employer ID:", self.employer_data.ID)
 			print("DEBUG enterprise ID:", self.employer_data.enterprise_id)
 			products = self.controller.get_products_data(

@@ -7,7 +7,7 @@ from PyQt6.QtCore import QObject, pyqtSignal
 
 
 class ProductController(QObject):
-    data_changed = pyqtSignal()
+    product_data_changed = pyqtSignal()
     def __init__(self,distribution_view, add_product_view = None):
         super().__init__()
         self.add_product_view = add_product_view
@@ -24,7 +24,7 @@ class ProductController(QObject):
             success, message = self.product_dao.insert_product(data)
             if success:
                 QMessageBox.information(self.add_product_view, "Success", message)
-                self.data_changed.emit()
+                self.product_data_changed.emit()
             else:
                 QMessageBox.warning(self.add_product_view, "Error", message)
         else:
@@ -33,7 +33,7 @@ class ProductController(QObject):
             success, message = self.product_dao.update_product(data)
             if success:
                 QMessageBox.information(self.add_product_view, "Success", message)
-                self.data_changed.emit()
+                self.product_data_changed.emit()
             else:
                 QMessageBox.warning(self.add_product_view, "Error", message)
     def handle_remove_button(self):

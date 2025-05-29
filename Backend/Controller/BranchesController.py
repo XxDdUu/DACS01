@@ -3,7 +3,7 @@ from Backend.DAO.BranchesDAO import BranchesDAO
 from PyQt6.QtCore import QObject, pyqtSignal
 
 class BranchesController(QObject):
-    data_changed = pyqtSignal()
+    branch_data_changed = pyqtSignal()
 
     def __init__(self,distribution_view, add_branch_view = None):
         super().__init__()
@@ -22,7 +22,7 @@ class BranchesController(QObject):
             success, message = self.branches_dao.insert_branches(data, enterprise_id, employer_id)
             if success:
                 QMessageBox.information(self.add_branch_view, "Success", message)
-                self.data_changed.emit()
+                self.branch_data_changed.emit()
             else:
                 QMessageBox.warning(self.add_branch_view, "Error", message)
         else:
@@ -31,7 +31,7 @@ class BranchesController(QObject):
             success, message = self.branches_dao.update_branches(data)
             if success:
                 QMessageBox.information(self.add_branch_view, "Success", message)
-                self.data_changed.emit()
+                self.branch_data_changed.emit()
             else:
                 QMessageBox.warning(self.add_branch_view, "Error", message)
 
