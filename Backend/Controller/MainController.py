@@ -102,7 +102,7 @@ class MainController:
         if self.product_controller:
             return self.product_controller.get_products(employer_id, enterprise_id)
         return []
-    def get_top_products_data(self, employer_id, enterprise_id):
+    def get_top_products_data(self, enterprise_id):
         if self.product_controller:
-            return self.product_controller.get_top_products(employer_id, enterprise_id)
+            return self.product_controller.get_top_products(enterprise_id)
         return []
