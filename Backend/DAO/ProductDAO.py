@@ -188,7 +188,7 @@ class ProductDAO:
                 cursor.close()
             if connection:
                 connection.close()
-    def get_top_product_table_by_account(self,emp_ID , ent_ID):
+    def get_top_product_table_by_account(self, ent_ID):
         connection = None
         cursor = None
         try:
@@ -206,15 +206,14 @@ class ProductDAO:
                 LEFT JOIN 
                     PRODUCT_SALES ps ON p.Product_ID = ps.Product_ID AND p.Branch_ID = ps.Branch_ID
                 WHERE 
-                    b.Employer_ID = %s 
-                    AND b.Enterprise_ID = %s
+                    b.Enterprise_ID = %s
                 GROUP BY 
                     p.Product_ID, p.Branch_ID
                 ORDER BY 
                     total_quantity_sold DESC;
             """
 
-            cursor.execute(query, (emp_ID, ent_ID))
+            cursor.execute(query, (ent_ID,))
             rows = cursor.fetchall()
             columns = [col[0] for col in cursor.description]
             df = pd.DataFrame(rows, columns=columns)
