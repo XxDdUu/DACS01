@@ -57,7 +57,7 @@ class Login(QMainWindow):
         self.load_stylesheet()
     def handle_switch_to_maindashboard(self, employer_data = None, enterprise_data = None):
         if self.switch_to_dashboardApp:
-            self.switch_to_dashboardApp(employer_data, enterprise_data)
+            self.switch_to_dashboardApp("dashboard", employer_data, enterprise_data)
     def handle_switch_to_register(self):
         if self.switch_to_register:
             self.switch_to_register()
