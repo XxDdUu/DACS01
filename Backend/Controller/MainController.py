@@ -12,6 +12,7 @@ from Frontend.View.register import Register
 from Backend.Controller.EmployerController import EmployerController, EmployerAccountSettingController
 from Backend.Controller.EnterpriseController import EnterpriseController
 from Frontend.View.Add_and_update_branch_product import Add_and_update_branch_product
+from Frontend.View.LoadingWindow import LoadingWindow
 
 class MainController:
 
@@ -21,7 +22,7 @@ class MainController:
 
         self.login_window.switch_to_register = self.show_register
         self.register_window.switch_to_login = self.show_login
-        self.login_window.switch_to_dashboardApp = self.show_dashboardApp
+        self.login_window.switch_to_dashboardApp = self.switch_with_loading
 
         self.show_login()
         self.employer_controller = EmployerController(self.register_window, self.login_window)
@@ -47,7 +48,7 @@ class MainController:
             self.dashboard_window = DashBoard(self, employer_data)
             self.add_and_update_branch_product_window = Add_and_update_branch_product()
 
-            self.employer_controller = EmployerController(self.register_window, self.login_window)
+            self.employer_controller = EmployerController(self.register_window, self.login_window, self.switch_with_loading)
             self.enterprise_controller = EnterpriseController(self.register_window)
             self.branches_controller = BranchesController(self.dashboard_window, self.add_and_update_branch_product_window)
             self.product_controller = ProductController(self.dashboard_window, self.add_and_update_branch_product_window)
@@ -92,6 +93,18 @@ class MainController:
             print(f"ERROR in show_dashboardApp: {e}")
             import traceback
             traceback.print_exc()
+    def switch_with_loading(self, target, employer_data, enterprise_data):
+        self.login_window.hide()
+        self.register_window.hide()
+
+        self.loading_window = LoadingWindow()
+        self.loading_window.show()
+        def after_loading():
+            if target == "dashboard":
+                self.show_dashboardApp(employer_data, enterprise_data)
+                self.loading_window.hide()
+
+        self.loading_window.start_loading(after_loading)
 
     def get_branches_data(self, enterprise_id, employer_id):
         if self.branches_controller:

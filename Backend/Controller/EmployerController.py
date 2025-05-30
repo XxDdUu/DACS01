@@ -5,7 +5,8 @@ from PyQt6.QtWidgets import QMessageBox
 from PyQt6.QtCore import QDate
 
 class EmployerController:
-	def __init__(self, register_view, login_view):
+	def __init__(self, register_view, login_view, switch_callback = None):
+		self.switch_callback = switch_callback
 		self.register_view = register_view # register
 		self.login_view = login_view	# login
 		self.dao = EmployerDAO()
@@ -32,9 +33,9 @@ class EmployerController:
 		success, message, employer_data = self.dao.check_loginUser(data)
 		if success:
 			# QMessageBox.information(self.login_view, "Success", message)
-			self.login_view.handle_switch_to_maindashboard(employer_data)
 			self.login_view.passLineEdit.clear()
 			self.login_view.identifierLineEdit.clear()
+			self.login_view.handle_switch_to_maindashboard(employer_data)
 		else:
 			QMessageBox.warning(self.login_view, "Error", message)
 class EmployerAccountSettingController:

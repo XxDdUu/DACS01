@@ -20,7 +20,7 @@ from Frontend.View.EventFilter import HoverEventFilter
 from Frontend.Chart.ProductAmountChart import ProductAmountChart
 
 class DashBoard(QMainWindow):
-	def __init__(self, controller ,employer_data = None, enterprise_data = None):
+	def __init__(self, controller,employer_data = None, enterprise_data = None):
 		super().__init__()
 		self.controller = controller
 		self.employer_data = employer_data
