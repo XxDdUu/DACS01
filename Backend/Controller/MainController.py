@@ -6,13 +6,13 @@ from Backend.Controller.ProductSalesController import ProductSalesController
 from Backend.Controller.RevenueController import RevenueController
 from Backend.Import_report.convertFile import ExportReportFile
 from Backend.Model.Employer import Employer
-from Frontend.View.Login import Login
-from Frontend.View.DashBoard import DashBoard
-from Frontend.View.register import Register
+from Frontend.View.window.Login import Login
+from Frontend.View.window.DashBoard import DashBoard
+from Frontend.View.window.register import Register
 from Backend.Controller.EmployerController import EmployerController, EmployerAccountSettingController
 from Backend.Controller.EnterpriseController import EnterpriseController
-from Frontend.View.Add_and_update_branch_product import Add_and_update_branch_product
-from Frontend.View.LoadingWindow import LoadingWindow
+from Frontend.View.window.Add_and_update_branch_product import Add_and_update_branch_product
+from Frontend.View.window.LoadingWindow import LoadingWindow
 
 class MainController:
 

@@ -7,9 +7,9 @@ from docxtpl import DocxTemplate, InlineImage
 from matplotlib.backends.backend_template import FigureCanvas
 
 from Backend.DAO.DatabaseConnection import get_connection
-from Frontend.Chart.Branch_PSChart import PSBranchChart
-from Frontend.Chart.PSGeneralChart import ProductSaleChart
-from Frontend.Chart.RevenueGeneralChart import RevenueGeneralChart
+from Frontend.View.Chart.Branch_PSChart import PSBranchChart
+from Frontend.View.Chart.PSGeneralChart import ProductSaleChart
+from Frontend.View.Chart.RevenueGeneralChart import RevenueGeneralChart
 
 
 class ExportReportFile:
