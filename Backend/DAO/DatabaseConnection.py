@@ -4,19 +4,16 @@ from Backend.DAO.Constant import DB_CONFIG, PYAPP_DB_CONFIG
 
 def get_connection():
 	try:
-		print("Trying to connect...")
 		connection = MySQLdb.connect(**DB_CONFIG)
 
 		if connection:
 			connection.set_character_set('utf8mb4')
 			connection.autocommit = True
-			print("Database connected!.")
 			return connection
 		else:
 			raise Error("Connection failed.")
 
 	except MySQLdb.Error as e:
-		print(f"[Connection error] {e}")
 		import traceback
 		traceback.print_exc()
 		return None
