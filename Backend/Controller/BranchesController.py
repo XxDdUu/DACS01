@@ -20,7 +20,6 @@ class BranchesController(QObject):
             data = self.add_branch_view.get_branchesForm_data()
             enterprise_id = self.distribution_view.employer_data.enterprise_id
             employer_id = self.distribution_view.employer_data.ID
-            print("[DEBUG] Form data:", data)  # Kiểm tra lại giá trị thực tế
             success, message = self.branches_dao.insert_branches(data, enterprise_id, employer_id)
             if success:
                 QMessageBox.information(self.add_branch_view, "Success", message)
@@ -33,7 +32,6 @@ class BranchesController(QObject):
                 QMessageBox.warning(self.add_branch_view, "Error", message)
         else:
             data = self.add_branch_view.get_branchesForm_data()
-            print(data)
             success, message = self.branches_dao.update_branches(data)
             if success:
                 QMessageBox.information(self.add_branch_view, "Success", message)
@@ -71,9 +69,6 @@ class BranchesController(QObject):
                 "employer_id": model.item(row, 5).text(),
                 "enterprise_id": model.item(row, 6).text()
             }
-        print("DEBUG: Data passed to remove_branches:", data)
-
-        # Gọi DAO để xóa
         success, message = self.branches_dao.remove_branches(data)
         if success:
             QMessageBox.information(self.distribution_view, "Success", message)

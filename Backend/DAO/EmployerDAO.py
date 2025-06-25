@@ -104,7 +104,6 @@ class EmployerDAO:
         password = data.get("password")
         connection = None
         cursor = None
-        print(identifier + " " + password)
         if not all([identifier, password]):
             return False, "All fields are required", None
         try:
@@ -117,7 +116,6 @@ class EmployerDAO:
                 Employer_Email = %s OR Employer_Phone_Number = %s LIMIT 1""",
                            (identifier, identifier))
             result = cursor.fetchone()
-            print("Query result:", result)
             if result:
                 stored_hashed_pass = result["Employer_password"]
                 if check_password_hash(stored_hashed_pass, password):
@@ -130,7 +128,6 @@ class EmployerDAO:
                         date_of_birth=result["DOB"],
                         enterprise_id=result["Enterprise_ID"]
                     )
-                    print("Login successfully!")
                     return True, "Login successfully!", employer_data
                 else:
                     return False, "Password does not match!", None

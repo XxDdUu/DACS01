@@ -30,9 +30,7 @@ class EnterpriseController:
 
 	def load_enterprise(self, enterprise_id):
 		if not self.dashboard_window:
-			print("Dashboard not set.")
 			return
 		enterprise_data = self.dao.get_employer_enterprise_data(enterprise_id)
-		print("enterprise_data:", enterprise_data)
 		self.dashboard_window.enterprise_data = enterprise_data
 		self.dashboard_window.fetch_enterprise_info(enterprise_data)

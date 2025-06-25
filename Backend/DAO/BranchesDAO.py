@@ -26,11 +26,6 @@ class BranchesDAO:
             return False, "All fields are required"
 
         if not is_valid_phoneNum(branchesPhone):
-            print(f"Phone input raw: '{data.get('phone_number')}'")
-            print(f"Phone after strip: '{branchesPhone}'")
-            print(f"Phone length: {len(branchesPhone)}")
-            print(f"Digits only: {branchesPhone.isdigit()}")
-            print([ord(c) for c in branchesPhone])  # In mã unicode từng ký tự
             return False, "Invalid phone number format"
 
         def branch_name_exists(branch_name):
@@ -89,51 +84,23 @@ class BranchesDAO:
 
     def remove_branches(self, data):
         branchesID = data.get("id")
-        employerId = data.get("employer_id")  # fallback nếu None
-        enterpriseId = data.get("enterprise_id")  # fallback nếu None
+        employerId = data.get("employer_id")
+        enterpriseId = data.get("enterprise_id")
 
         connection = None
-        cursor1 = None
-        cursor2 = None
-        cursor3 = None
-        cursor4 = None
+        cursor = None
 
         try:
             connection = get_connection()
             if not connection:
                 return False, "Failed to connect to database"
 
-            # Xóa các bản ghi trong REVENUE trước
-            cursor1 = connection.cursor()
-            query = """
-                DELETE FROM REVENUE WHERE Branch_ID = %s
-            """
-            cursor1.execute(query, (branchesID,))
-            print(f"DEBUG: Rows affected in REVENUE delete: {cursor1.rowcount}")
-
-            # Xóa các bản ghi trong PRODUCT_SALES
-            cursor2 = connection.cursor()
-            query = """
-                DELETE FROM PRODUCT_SALES WHERE Branch_ID = %s
-            """
-            cursor2.execute(query, (branchesID,))
-            print(f"DEBUG: Rows affected in PRODUCT_SALES delete: {cursor2.rowcount}")
-
-            # Xóa các bản ghi trong PRODUCT
-            cursor3 = connection.cursor()
-            query = """
-                DELETE FROM PRODUCT WHERE Branch_ID = %s
-            """
-            cursor3.execute(query, (branchesID,))
-            print(f"DEBUG: Rows affected in PRODUCT delete: {cursor3.rowcount}")
-
             # Xóa bản ghi trong BRANCHES
-            cursor4 = connection.cursor()
+            cursor = connection.cursor()
             query = """
                 DELETE FROM BRANCHES WHERE Branch_ID = %s
             """
-            cursor4.execute(query, (branchesID,))
-            print(f"DEBUG: Rows affected in BRANCHES delete: {cursor4.rowcount}")
+            cursor.execute(query, (branchesID,))
 
             if cursor4.rowcount == 0:
                 return False, "No branch found with given Branch_ID"
@@ -151,14 +118,8 @@ class BranchesDAO:
             return False, f"Unexpected Error: {e}"
 
         finally:
-            if cursor1:
-                cursor1.close()
-            if cursor2:
-                cursor2.close()
-            if cursor3:
-                cursor3.close()
-            if cursor4:
-                cursor4.close()
+            if cursor:
+                cursor.close()
             if connection:
                 connection.close()
     def update_branches(self,data):
@@ -192,11 +153,6 @@ class BranchesDAO:
             return bool(re.fullmatch(r"[0-9]{10}", branchesPhone))
 
         if not is_valid_phoneNum(branchesPhone):
-            print(f"Phone input raw: '{data.get('phone_number')}'")
-            print(f"Phone after strip: '{branchesPhone}'")
-            print(f"Phone length: {len(branchesPhone)}")
-            print(f"Digits only: {branchesPhone.isdigit()}")
-            print([ord(c) for c in branchesPhone])  # In mã unicode từng ký tự
             return False, "Invalid phone number format"
 
         def branch_name_exists(branch_name):
@@ -251,48 +207,6 @@ class BranchesDAO:
                 cursor.close()
             if connection:
                 connection.close()
-    # def get_branches(self, enterprise_id, employer_id):
-    #     connection = get_connection()
-    #     cursor = connection.cursor()
-    #     if branch_name_exists(branchesName):
-    #         return False, f"Branch name {branchesName} already exits"
-    #
-    #     try:
-    #         connection = get_connection()
-    #         if not connection:
-    #             return False, "Failed to connect to database"
-    #
-    #         cursor = connection.cursor()
-    #         query = """
-    #                     UPDATE BRANCHES
-    #                     SET Branch_name = %s, Branch_address = %s, Branch_phone_number = %s
-    #                     WHERE Employer_ID = %s AND Enterprise_ID = %s AND Branch_ID = %s
-    #                 """
-    #         cursor.execute(query, (
-    #                 branchesName,
-    #                 branchesAddress,
-    #                 branchesPhone,
-    #                 employerId,
-    #                 enterpriseId,
-    #                 branchId
-    #         ))
-    #
-    #         connection.commit()
-    #         return True, "Branch updated successfully"
-    #
-    #     except MySQLdb.Error as e:
-    #         traceback.print_exc()
-    #         return False, f"Database Error: {e}"
-    #
-    #     except Exception as e:
-    #         traceback.print_exc()
-    #         return False, f"Unexpected Error: {e}"
-    #
-    #     finally:
-    #         if cursor:
-    #             cursor.close()
-    #         if connection:
-    #             connection.close()
     def get_branches_by_enterprise_employer(self, enterprise_id, employer_id):
         connection = None
         cursor = None

@@ -61,36 +61,23 @@ class MainController:
 
             self.dashboard_window.switch_to_login = self.show_login
 
-            try:
-                print("Attempting to load Product Sales table...")
-                self.dashboard_window.display_PS_table()
-                print("Product Sales table loaded successfully")
-            except Exception as e:
-                print(f"ERROR loading Product Sales table: {e}")
-                import traceback
-                traceback.print_exc()
-
             self.login_window.hide()
             self.register_window.hide()
             self.dashboard_window.show()
 
             # Safely call display_data_table after controllers are set up
             try:
-                print("Attempting to load Product Sales table...")
-                self.dashboard_window.display_PS_table()
-                self.dashboard_window.display_branch_table()
-                self.dashboard_window.display_product_table()
-                self.dashboard_window.display_top_product_table()
-                self.dashboard_window.display_revenue_table()
+                self.dashboard_window.table_display.display_PS_table()
+                self.dashboard_window.table_display.display_branch_table()
+                self.dashboard_window.table_display.display_product_table()
+                self.dashboard_window.table_display.display_top_product_table()
+                self.dashboard_window.table_display.display_revenue_table()
                 self.dashboard_window.display_amount_product_chart()
-                print("data table loaded successfully")
             except Exception as e:
-                print(f"ERROR loading Product Sales table: {e}")
                 import traceback
                 traceback.print_exc()
 
         except Exception as e:
-            print(f"ERROR in show_dashboardApp: {e}")
             import traceback
             traceback.print_exc()
     def switch_with_loading(self, target, employer_data, enterprise_data):

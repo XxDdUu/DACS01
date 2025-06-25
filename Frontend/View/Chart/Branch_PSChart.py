@@ -40,8 +40,6 @@ class PSBranchChart:
                 WHERE Employer_ID = %s AND Enterprise_ID = %s
             """
 
-            # Debug: In ra để kiểm tra
-            print(f"DEBUG - emp_id: {self.emp_id}, ent_id: {self.ent_id}")
 
             # Lấy dữ liệu với parameters
             df_product_sale = pd.read_sql(product_sale_query, conn, params=[self.emp_id, self.ent_id])
@@ -52,7 +50,6 @@ class PSBranchChart:
 
             # Kiểm tra dữ liệu trống
             if df_product_sale.empty or df_product.empty or df_branch.empty:
-                print("One or more dataframes are empty")
                 self.show_no_data()
                 return
 
@@ -73,8 +70,6 @@ class PSBranchChart:
 
             # Lọc theo branch được yêu cầu
             df_filtered = df_groupby[df_groupby['Branch_name'] == self.branch_name]
-
-            print(f"DEBUG - Filtered data for branch '{self.branch_name}': {len(df_filtered)} rows")
 
             self.ax.clear()
 
@@ -97,13 +92,13 @@ class PSBranchChart:
                         self.figure.savefig(f"Frontend/View/img/PS_branch{self.branch_name}.png",
                                             bbox_inches='tight', dpi=100)
                     except Exception as save_error:
+              
                         print(f"Could not save chart image: {save_error}")
 
             self.canvas.draw()
 
         except Exception as e:
             traceback.print_exc()
-            print(f"Exception in plot_chart: {e}")
             self.show_no_data()
 
     def show_no_data(self):
