@@ -31,11 +31,8 @@ class EnterpriseDao:
 		try:
 			hashed_password_enterprise = generate_password_hash(enterprise_password)
 
-			print("Connecting")
 			connection = get_connection()
-			print("Connection successful.")
 			cursor = connection.cursor()
-			print("Cursor created.")
 			query = """
 			INSERT INTO ENTERPRISE
 				(Enterprise_ID, Enterprise_NAME, Enterprise_FOUNDER, ADDRESS,
@@ -55,17 +52,12 @@ class EnterpriseDao:
 				))
 
 			connection.commit()
-			print("Enterprise registered successfully")
 			return True, "Enterprise registered successfully"
 		except Exception as e:
-			print("Can't insert data!\n")
-			print(f"Error:{e}")
 			return False, f"Database error: {e}"
 		except MySQLdb.Error as err:
 			if err.errno == errorcode.ER_DUP_ENTRY:
 				return False, f"Duplicate entry phone_number detected: {err}"
-			else:
-				print(f"Other database error: {err}")
 		finally:
 			if cursor is not None:
 				try:
@@ -100,7 +92,6 @@ class EnterpriseDao:
 				)
 			return enterprise_data
 		except Exception as e:
-			print(f"DAO ERROR: {e}")
 			return None
 		finally:
 			if cursor:

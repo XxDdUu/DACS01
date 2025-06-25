@@ -2604,23 +2604,38 @@ border-radius: 7px;</string>
                </widget>
                <widget class="QWidget" name="Distribution_page">
                 <property name="styleSheet">
-                 <string notr="true">background-color: rgb(255, 255, 255);</string>
+                 <string notr="true">#Distribution_page {
+	background-color: rgb(235, 235, 235);
+}</string>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_24">
                  <item>
                   <widget class="QWidget" name="main_distribution_widget" native="true">
+                   <property name="styleSheet">
+                    <string notr="true">#main_distribution_widget {
+	background-color: rgb(255, 255, 255);
+}
+#scrollAreaWidgetContents {
+	background-color: rgb(255, 255, 255);
+}
+#branch_N_product_widget {
+	background-color: rgb(255, 255, 255);
+}
+
+</string>
+                   </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_10">
                     <property name="leftMargin">
-                     <number>0</number>
+                     <number>5</number>
                     </property>
                     <property name="topMargin">
-                     <number>0</number>
+                     <number>5</number>
                     </property>
                     <property name="rightMargin">
-                     <number>0</number>
+                     <number>5</number>
                     </property>
                     <property name="bottomMargin">
-                     <number>0</number>
+                     <number>5</number>
                     </property>
                     <item>
                      <widget class="QScrollArea" name="scrollArea">
@@ -2637,8 +2652,8 @@ border-radius: 7px;</string>
                         <rect>
                          <x>0</x>
                          <y>0</y>
-                         <width>718</width>
-                         <height>440</height>
+                         <width>708</width>
+                         <height>430</height>
                         </rect>
                        </property>
                        <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2647,8 +2662,8 @@ border-radius: 7px;</string>
                           <property name="styleSheet">
                            <string notr="true">QTableView {
     border: none;
-    background-color: rgb(228, 228, 228);
-    alternate-background-color: #f9f9f9;
+    background-color: rgb(235, 235, 235);
+    alternate-background-color: rgb(240, 240, 240);
     gridline-color: #e0e0e0;
     color: rgb(45, 45, 45);
 }

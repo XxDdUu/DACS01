@@ -181,7 +181,6 @@ class ProductDAO:
             return df.to_dict(orient="records")
 
         except Exception as e:
-            print(f"ERROR in get_product_by_account: {e}")
             traceback.print_exc()
             return []
 
@@ -222,7 +221,6 @@ class ProductDAO:
             return df.to_dict(orient="records")
 
         except Exception as e:
-            print(f"ERROR in get_top_product_by_account: {e}")
             traceback.print_exc()
             return []
 

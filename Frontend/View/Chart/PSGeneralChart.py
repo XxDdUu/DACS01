@@ -38,9 +38,6 @@ class ProductSaleChart:
                             WHERE Employer_ID = %s AND Enterprise_ID = %s
                         """
 
-            # Debug: In ra để kiểm tra
-            print(f"DEBUG - emp_id: {self.emp_id}, ent_id: {self.ent_id}")
-
             # Lấy dữ liệu với parameters
             df_product_sale = pd.read_sql(product_sale_query, conn, params=[self.emp_id, self.ent_id])
             df_product = pd.read_sql(product_query, conn, params=[self.emp_id, self.ent_id])
@@ -69,7 +66,7 @@ class ProductSaleChart:
                 self.ax.pie(amount, labels=name, autopct='%1.1f%%', startangle=90)
                 self.ax.axis('equal')
                 self.ax.set_title("Product Sales 2025")
-                self.figure.savefig("D:/PYTHON/DACS01/Frontend/View/img/PS_general.png")
+                self.figure.savefig("Frontend/View/img/PS_general.png")
             self.canvas.draw()
 
         except Exception as e:

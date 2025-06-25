@@ -208,36 +208,11 @@ class ProductSalesDAO:
             if connection:
                 connection.close()
 
-    # def get_product_sales_data(self, employer_id, enterprise_id):
-    #     conn = get_connection()
-    #     curs = conn.cursor()
-    #     query = """
-    #         SELECT ps.*
-    #         FROM PRODUCT_SALES ps
-    #         JOIN PRODUCT p ON ps.Product_ID = p.Product_ID
-    #         JOIN BRANCHES b ON b.Branch_ID = ps.Branch_ID
-    #         WHERE b.Employer_ID = %s AND b.Enterprise_ID = %s
-    #     """
-    #     print("DEBUG Query:", query)
-    #     curs.execute(query, (employer_id, enterprise_id))
-    #     rows = curs.fetchall()
-    #     print("DEBUG rows:", rows)
-    #     cols = [col[0] for col in curs.description]
-    #     print("DEBUG cols:", cols)
-    #     df = pd.DataFrame(rows, columns=cols)
-    #     print("DEBUG DataFrame:", df)
-    #     curs.close()
-    #     conn.close()
-    #     return df.to_dict(orient="records")
-
     def get_product_sales_data(self, employer_id, enterprise_id):
         conn = None
         curs = None
         try:
             conn = get_connection()
-            if not conn:
-                print("Failed to connect to database")
-                return []
 
             curs = conn.cursor()
             query = """
@@ -248,11 +223,8 @@ class ProductSalesDAO:
                 JOIN BRANCHES b ON b.Branch_ID = ps.Branch_ID
                 WHERE b.Employer_ID = %s AND b.Enterprise_ID = %s
             """
-            print("DEBUG Query:", query)
             curs.execute(query, (employer_id, enterprise_id))
             rows = curs.fetchall()
-            print("DEBUG raw rows:", rows)
-
             # Convert data types manually
             result = []
             for row in rows:
@@ -266,11 +238,9 @@ class ProductSalesDAO:
                 }
                 result.append(record)
 
-            print("DEBUG converted result:", result)
             return result
 
         except Exception as e:
-            print(f"ERROR in get_product_sales_data: {e}")
             traceback.print_exc()
             return []
 

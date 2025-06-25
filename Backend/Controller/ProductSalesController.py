@@ -18,16 +18,6 @@ class ProductSalesController(QObject):
         if success:
             QMessageBox.information(self.dashboard_view, "Success", message)
             self.ps_data_changed.emit()
-            self.distribution_view.display_branch_table()
-            self.distribution_view.display_product_table()
-            self.distribution_view.display_revenue_table()
-            self.distribution_view.display_top_product_table()
-            # self.dashboard_view.saleID_PS_le.clear()
-            # self.dashboard_view.branch_id_PS_le.clear()
-            # self.dashboard_view.prod_id_PS_le.clear()
-            # self.dashboard_view.sale_qdate_edit.clear()
-            # self.dashboard_view.quantitySold_PS_le.clear()
-            # self.dashboard_view.saleAmount_PS_le.clear()
         else:
             QMessageBox.warning(self.dashboard_view, "Error", message)
     def handle_remove_button(self):
@@ -36,16 +26,6 @@ class ProductSalesController(QObject):
         if success:
             QMessageBox.information(self.dashboard_view, "Success", message)
             self.ps_data_changed.emit()
-            self.dashboard_view.display_branch_table()
-            self.dashboard_view.display_product_table()
-            self.dashboard_view.display_revenue_table()
-            self.dashboard_view.display_top_product_table()
-            # self.dashboard_view.saleID_PS_le.clear()
-            # self.dashboard_view.branch_id_PS_le.clear()
-            # self.dashboard_view.prod_id_PS_le.clear()
-            # self.dashboard_view.sale_qdate_edit.clear()
-            # self.dashboard_view.quantitySold_PS_le.clear()
-            # self.dashboard_view.saleAmount_PS_le.clear()
         else:
             QMessageBox.warning(self.dashboard_view, "Error", message)
     def handle_update_button(self):
@@ -54,16 +34,6 @@ class ProductSalesController(QObject):
         if success:
             QMessageBox.information(self.dashboard_view, "Success", message)
             self.ps_data_changed.emit()
-            self.dashboard_view.display_branch_table()
-            self.dashboard_view.display_product_table()
-            self.dashboard_view.display_revenue_table()
-            self.dashboard_view.display_top_product_table()
-            # self.dashboard_view.saleID_PS_le.clear()
-            # self.dashboard_view.branch_id_PS_le.clear()
-            # self.dashboard_view.prod_id_PS_le.clear()
-            # self.dashboard_view.sale_qdate_edit.clear()
-            # self.dashboard_view.quantitySold_PS_le.clear()
-            # self.dashboard_view.saleAmount_PS_le.clear()
         else:
             QMessageBox.warning(self.dashboard_view, "Error", message)
     def get_product_sales(self,employer_id,enterprise_id):
