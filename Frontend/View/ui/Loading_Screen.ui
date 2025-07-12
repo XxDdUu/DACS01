@@ -227,6 +227,7 @@ QProgressBar:chunk {
              <widget class="QLabel" name="main_app_label">
               <property name="font">
                <font>
+                <pointsize>21</pointsize>
                 <weight>99</weight>
                 <bold>true</bold>
                </font>
