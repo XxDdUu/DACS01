@@ -1,18 +1,21 @@
 from PyQt6 import uic, QtWidgets, QtGui
-from PyQt6.QtWidgets import QMainWindow, QLabel, QMessageBox
+from PyQt6.QtWidgets import QMainWindow, QLabel, QMessageBox, QMenu
 from PyQt6.QtCore import Qt, QPoint, QEvent
+from PyQt6.QtGui import QAction
 from Frontend.View.helper.font_decorator import apply_font_to_widgets
+from Frontend.View.widget.menubar import create_main_menu 
 import sys
 import Frontend.View.resource.resources_rc
-
-from PyQt6.QtWidgets import QApplication
 
 class Register(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
         self.load_ui()
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
+        self.root_menu = QMenu()
 
+        menu = create_main_menu(self)
+        self.Menu_Button.setMenu(menu)
         self.minimize_btn.clicked.connect(self.showMinimized)
         self.maximize_btn.clicked.connect(self.toggle_maximize)
 
