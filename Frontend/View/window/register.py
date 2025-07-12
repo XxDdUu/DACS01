@@ -1,6 +1,7 @@
 from PyQt6 import uic, QtWidgets, QtGui
 from PyQt6.QtWidgets import QMainWindow, QLabel, QMessageBox
 from PyQt6.QtCore import Qt, QPoint, QEvent
+from Frontend.View.helper.font_decorator import apply_font_to_widgets
 import sys
 import Frontend.View.resource.resources_rc
 
@@ -9,7 +10,7 @@ from PyQt6.QtWidgets import QApplication
 class Register(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
-        uic.loadUi("Frontend/View/ui/login_resgister.ui", self)
+        self.load_ui()
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
 
         self.minimize_btn.clicked.connect(self.showMinimized)
@@ -37,6 +38,10 @@ class Register(QtWidgets.QWidget):
         self.create_enterprise.clicked.connect(lambda: self.Background.setCurrentWidget(self.Enterprise_register))
 
         self.goback_register.clicked.connect(lambda: self.Background.setCurrentWidget(self.Register_page))
+
+    @apply_font_to_widgets(font_family="Dubai")
+    def load_ui(self):
+        uic.loadUi("Frontend/View/ui/login_resgister.ui", self)
 
     def handle_switch(self):
         if self.switch_to_login:
