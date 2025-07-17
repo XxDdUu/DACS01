@@ -1,0 +1,9 @@
+docxtpl==0.20.1
+matplotlib==3.10.3
+mysqlclient==2.2.7
+mysql_connector_repackaged==0.3.1
+numpy==2.3.1
+pandas==2.3.1
+PyQt6==6.9.1
+PyQt6_sip==13.10.0
+Werkzeug==3.1.3
